@@ -6,7 +6,4 @@
 #define CLIENT_SITENAME @"<LoginRadius-Site-Name>"
 #define API_KEY @"<LoginRadius-API-Key>"
 #define API_SECRET @"<LoginRadius-API-Secret>"
-
-#define EMAIL_VERIFICATION @"<LoginRadius-Email-Verification-Url>"
-#define FORGOTPASSWORD @"<LoginRadius-Forgot-Password-Url>"
 #define TW_SECRET @"<Twitter-App-Secret>"
