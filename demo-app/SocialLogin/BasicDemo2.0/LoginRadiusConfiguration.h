@@ -5,5 +5,4 @@
 
 #define CLIENT_SITENAME @"<LoginRadius-Site-Name>"
 #define API_KEY @"<LoginRadius-API-Key>"
-#define API_SECRET @"<LoginRadius-API-Secret>"
 #define TW_SECRET @"<Twitter-App-Secret>"

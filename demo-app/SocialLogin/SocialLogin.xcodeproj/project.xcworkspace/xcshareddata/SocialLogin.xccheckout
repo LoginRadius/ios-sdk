@@ -12,24 +12,20 @@
 	<dict>
 		<key>23BD00B55ED9A58023D02B41404FE9CC34F3E6B0</key>
 		<string>https://github.com/LoginRadius/ios-sdk.git</string>
-		<key>2DDA475D376D461971DBAC7882AEE2413BE44484</key>
-		<string>https://github.com/leyuan/LoginRadius-IOS-SDK.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SocialLogin.xcodeproj</string>
+	<string>demo-app/SocialLogin/SocialLogin.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>23BD00B55ED9A58023D02B41404FE9CC34F3E6B0</key>
 		<string>../../../..</string>
-		<key>2DDA475D376D461971DBAC7882AEE2413BE44484</key>
-		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/leyuan/LoginRadius-IOS-SDK.git</string>
+	<string>https://github.com/LoginRadius/ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2DDA475D376D461971DBAC7882AEE2413BE44484</string>
+	<string>23BD00B55ED9A58023D02B41404FE9CC34F3E6B0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -38,15 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>23BD00B55ED9A58023D02B41404FE9CC34F3E6B0</string>
 			<key>IDESourceControlWCCName</key>
-			<string>..</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2DDA475D376D461971DBAC7882AEE2413BE44484</string>
-			<key>IDESourceControlWCCName</key>
-			<string>SocialLogin</string>
+			<string>ios-sdk</string>
 		</dict>
 	</array>
 </dict>
