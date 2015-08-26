@@ -11,7 +11,6 @@
 #import <Foundation/Foundation.h>
 #import "LoginRadiusService.h"
 #import "LoginRadiusLoginViewController.h"
-#import "LoginRadiusUserRegistration.h"
 #import "LoginRadiusUtilities.h"
 
 @interface LoginRadius : NSObject
