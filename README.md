@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# sdk-ios-customer-identity
-iOS SDK library for customer identity
-=======
 # ios-sdk
 
 This repo contains the framework(source and compiled) of LoginRadius IOS SDK, and a demo-app.
