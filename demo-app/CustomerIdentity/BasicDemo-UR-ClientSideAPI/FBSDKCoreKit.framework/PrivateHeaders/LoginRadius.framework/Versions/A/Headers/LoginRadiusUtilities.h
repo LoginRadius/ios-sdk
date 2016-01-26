@@ -4,7 +4,7 @@
  @brief This class includes the gadgets which might be used to format/parse the string, url, dictionary, api, etc..
  
  @author LoginRadius Team
- @copyright  2016 LoginRadius
+ @copyright  2015 LoginRadius
  @version    2015-06
  @helps All other classes in the framework.
  */

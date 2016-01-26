@@ -1,12 +1,12 @@
 /*!
- @header LoginRadiusUserRegistration.h
+ @header LoginRadiusService.h
  
  @brief This file contains LoginRadiusService NSObject, which grants the access to LoginRadius Social APIs.
  
         Currently it only supports Post Status API.
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helper LoginRadiusUtilities.h
  */
@@ -52,24 +52,5 @@
  */
 - (void)loginradiusContact: (NSString *)token :(NSString *)nextcursor;
 
-/*!
- * @function lrFbNativeLogin
- * @brief This method handles the reponse returned from Facebook IOS SDK
- * It exchanges for a LoginRadius access token with the native Facebook access token and saves the user object.
- * @param key LoginRadius API Key.
- * @param token Facebook access toke from Facebook IOS SDK.
- * @return Nothing will be returned other than calling delegate to notify the action is done
- */
-- (BOOL)lrFbNativeLogin :(NSString *)key :(NSString *)token;
-
-/*!
- * @function lrLogout
- * @brief LoginRadius user logout, it clears ALL the WebView cookies and remove all the saved info inside NSUserDefault
- * @return Nothing will be returned other than calling delegate to notify the action is done
- */
-- (void)lrLogout;
-
 @end
-
-extern NSString *const NATIVE_AUTH_URL;
 

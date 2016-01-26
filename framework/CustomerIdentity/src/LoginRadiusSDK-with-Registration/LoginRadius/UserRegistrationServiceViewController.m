@@ -3,7 +3,7 @@
 //  LoginRadius
 //
 //  Created by Lucius Yu on 2015-06-18.
-//  Copyright (c) 2015 LoginRadius. All rights reserved.
+//  Copyright (c) 2016 LoginRadius. All rights reserved.
 //
 
 #import "UserRegistrationServiceViewController.h"
@@ -27,7 +27,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //    webView.delegate = self;
-    NSString *url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
+    NSString *url_address = [[NSString alloc] initWithFormat:@"http://www.deevoz.com/lrhostedtest/?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
+
+    //NSString *url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
     NSLog(@"web url is %@", url_address);
     
     NSURL *url = [NSURL URLWithString:url_address];

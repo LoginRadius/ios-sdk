@@ -3,7 +3,7 @@
 //  LoginRadius
 //
 //  Created by Lucius Yu on 2014-12-11.
-//  Copyright (c) 2014 LoginRadius. All rights reserved.
+//  Copyright (c) 2016 LoginRadius. All rights reserved.
 //
 
 #import "LoginRadiusLoginViewController.h"
@@ -121,8 +121,8 @@
         NSString *url = [[NSString alloc] initWithFormat:@"https://api.loginradius.com/api/v2/access_token/twitter?key=%@&tw_access_token=%@&tw_token_secret=%@", _apiKey, twAccessToken, _twitterSecret];
         NSLog(@"%@", url);
         LoginRadiusUtilities *util = [[LoginRadiusUtilities alloc] init];
-        NSMutableDictionary *resposne = [util sendSyncGetRequest:url];
-        NSString *lrAccessToken = [resposne objectForKey:@"access_token"];
+        NSMutableDictionary *response = [util sendSyncGetRequest:url];
+        NSString *lrAccessToken = [response objectForKey:@"access_token"];
         NSLog(@"LoginRadius Access Token is => %@", lrAccessToken);
         BOOL isUserSaved = [util lrSaveUserData:nil lrToken:lrAccessToken];
         
@@ -133,8 +133,6 @@
             // Error
             NSLog(@"Native Twitter => Error in saving user information");
         }
-        
-        
         
     } else {
         

@@ -4,7 +4,7 @@
  @brief This class imports all the headers files of the other classes within this framework.
  
  @author LoginRadius Team
- @copyright  2016 LoginRadius
+ @copyright  2015 LoginRadius
  @version    2015-06
  @helper LoginRadiusUtilities.h
  */

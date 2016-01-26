@@ -4,7 +4,7 @@
  @brief This ViewController contains the client side API call to LoginRadius User Registration Service, each time when you want to call an action,
  
  @author LoginRadius Team
- @copyright  2016 LoginRadius
+ @copyright  2015 LoginRadius
  @version    2015-06
  @helps All other classes in the framework.
  */
@@ -20,6 +20,8 @@
 
 @end
 
+
+
 @interface UserRegistrationServiceViewController : UIViewController <UIWebViewDelegate> {
     UIWebView *webView;
 }
@@ -29,13 +31,11 @@
  @brief Your LoginRadius Site Name, you get it in your LoginRadius User Dashboard
  */
 @property (nonatomic, retain) NSString *siteName;
-
 /*!
  @property apiKey
  @brief Your LoginRadius API Key
  */
 @property (nonatomic, retain) NSString *apiKey;
-
 /*!
  @property action
  @brief ["register", "login", "forgotpassword", "social"]
