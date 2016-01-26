@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1082F0421C56B2A0002D3AE4 /* LoginRadius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1082F0411C56B29F002D3AE4 /* LoginRadius.framework */; };
+		1082F0431C56B2A0002D3AE4 /* LoginRadius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1082F0411C56B29F002D3AE4 /* LoginRadius.framework */; };
 		F814F1021A3F53BD00A5D4AA /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F814F1011A3F53BD00A5D4AA /* PostViewController.m */; };
 		F8AF1D351A3204E400FD33E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AF1D341A3204E400FD33E1 /* main.m */; };
 		F8AF1D381A3204E400FD33E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AF1D371A3204E400FD33E1 /* AppDelegate.m */; };
@@ -17,7 +19,6 @@
 		F8AF1D521A3204E500FD33E1 /* BasicDemo2_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AF1D511A3204E500FD33E1 /* BasicDemo2_0Tests.m */; };
 		F8E91FB51B25F358005F988D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E91FB41B25F358005F988D /* FBSDKLoginKit.framework */; };
 		F8E91FB91B25F585005F988D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E91FB81B25F585005F988D /* FBSDKCoreKit.framework */; };
-		F8EB82961B4ECF8600EF1174 /* LoginRadius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EB82951B4ECF8600EF1174 /* LoginRadius.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1082F0411C56B29F002D3AE4 /* LoginRadius.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoginRadius.framework; sourceTree = "<group>"; };
 		F814F1001A3F53BD00A5D4AA /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		F814F1011A3F53BD00A5D4AA /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		F8AF1D2F1A3204E400FD33E1 /* BasicDemo2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicDemo2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +51,6 @@
 		F8AF1D881A32090F00FD33E1 /* LoginRadiusConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginRadiusConfiguration.h; sourceTree = "<group>"; };
 		F8E91FB41B25F358005F988D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		F8E91FB81B25F585005F988D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		F8EB82951B4ECF8600EF1174 /* LoginRadius.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoginRadius.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8EB82961B4ECF8600EF1174 /* LoginRadius.framework in Frameworks */,
+				1082F0421C56B2A0002D3AE4 /* LoginRadius.framework in Frameworks */,
 				F8E91FB91B25F585005F988D /* FBSDKCoreKit.framework in Frameworks */,
 				F8E91FB51B25F358005F988D /* FBSDKLoginKit.framework in Frameworks */,
 			);
@@ -67,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1082F0431C56B2A0002D3AE4 /* LoginRadius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +78,7 @@
 		F81A0C611B2A5AF7001B267E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8EB82951B4ECF8600EF1174 /* LoginRadius.framework */,
+				1082F0411C56B29F002D3AE4 /* LoginRadius.framework */,
 				F8E91FB41B25F358005F988D /* FBSDKLoginKit.framework */,
 				F8E91FB81B25F585005F988D /* FBSDKCoreKit.framework */,
 			);
@@ -195,7 +197,7 @@
 				TargetAttributes = {
 					F8AF1D2E1A3204E400FD33E1 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = ALKGCW9CD6;
+						DevelopmentTeam = R9U5RF5K67;
 					};
 					F8AF1D4A1A3204E400FD33E1 = {
 						CreatedOnToolsVersion = 6.1;
@@ -376,6 +378,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"LRDEBUG=1",
@@ -384,7 +387,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BasicDemo2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -404,12 +407,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BasicDemo2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				ONLY_ACTIVE_ARCH = NO;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -428,6 +432,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -435,6 +440,10 @@
 				);
 				INFOPLIST_FILE = BasicDemo2.0Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicDemo2.0.app/BasicDemo2.0";
 			};
@@ -447,9 +456,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BasicDemo2.0Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicDemo2.0.app/BasicDemo2.0";
 			};

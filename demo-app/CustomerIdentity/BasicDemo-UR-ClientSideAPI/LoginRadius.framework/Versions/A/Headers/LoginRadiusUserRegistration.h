@@ -6,7 +6,7 @@
  Social Login will not be handled here, it is handled in LoginRadiusLoginViewController.
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helper LoginRadiusUtilities.h
  */
@@ -67,7 +67,7 @@
  * @param forgotpasswordUrl The web url which contains the function to reset the user's password.
  * @warning The webpage of forgotpasswordUrl must contain the logic to handle the url being passed in and call the function in LoginRadius
  * User Registration SDK.
- * @seealso https://apidocs.loginradius.com/v2.0/docs/user-registration
+ * @seealso http://apidocs.loginradius.com/v2.0/docs/user-registration
  * @return Nothing will be returned other than calling delegate to notify the action is done
  */
 - (void)lrForgotPassword :(NSString *)key :(NSString *)email :(NSString *)forgotpasswordUrl;

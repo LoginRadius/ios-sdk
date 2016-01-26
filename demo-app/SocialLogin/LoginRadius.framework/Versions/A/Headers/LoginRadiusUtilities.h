@@ -4,7 +4,7 @@
  @brief This class includes the gadgets which might be used to format/parse the string, url, dictionary, api, etc..
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helps All other classes in the framework.
  */
@@ -21,6 +21,8 @@
  * @return a NSMutableDictionary object contains the reponse from server.
  */
 - (NSMutableDictionary *)sendSyncGetRequest :(NSString *)urlString;
+
+
 /*!
  * @function createPostAPIRequest
  * @brief Create a POST API call based on the passed in parameters
@@ -32,6 +34,8 @@
  * @return a NSMutableRequest request for the POST API call
  */
 - (NSMutableURLRequest *)createPostAPIRequest :(NSString *)endpoint :(NSString *)method :(NSString *)dataLength :(NSData *)postData;
+
+
 /*!
     @function parseDatatoJsonData
     @brief Parse the NSMutableDictionary data into JSON format and return
@@ -39,6 +43,8 @@
     @return NSData of the passed in data
  */
 - (NSData *)parseDatatoJsonData :(NSMutableDictionary *)data;
+
+
 /*!
     @function URLEncodedString
     @brief Encode the string of url into URL friendly form
@@ -46,6 +52,8 @@
     @return URL friendly NSString
  */
 - (NSString *)URLEncodedString :(NSString *)urlString;
+
+
 /*!
     @function URLDecodedString
     @brief Decode the string of url into normal NSString
@@ -53,6 +61,8 @@
     @return normal NSString
  */
 - (NSString *)URLDecodedString :(NSString *)urlString;
+
+
 /*!
     @function dictionaryWithQueryString
     @brief Parse the queryString from format http://example.com?key1=value1&key2=value2 into NSdictionary
@@ -60,6 +70,7 @@
     @return NSDictionary containing the pair values
  */
 - (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString;
+
 
 /*!
  @function lrSaveUserData
@@ -70,6 +81,12 @@
  @return NSDictionary containing the pair values
  */
 - (BOOL)lrSaveUserData :(NSMutableDictionary *)userProfile lrToken:(NSString *)token;
+
+- (BOOL)lrSaveUserRaaSData :(NSString *)token APIKey:(NSString *)key;
+
+- (NSMutableDictionary *)lrGetUserProfile :(NSString *)token;
+
+- (NSMutableDictionary *)lrGetUserLinkedProfile :(NSString *)token APIKey:(NSString *)key;
 
 
 @end

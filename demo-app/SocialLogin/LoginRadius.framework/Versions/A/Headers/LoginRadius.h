@@ -4,14 +4,16 @@
  @brief This class imports all the headers files of the other classes within this framework.
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helper LoginRadiusUtilities.h
  */
 #import <Foundation/Foundation.h>
 #import "LoginRadiusService.h"
 #import "LoginRadiusLoginViewController.h"
+#import "LoginRadiusUserRegistration.h"
 #import "LoginRadiusUtilities.h"
+#import "UserRegistrationServiceViewController.h"
 
 @interface LoginRadius : NSObject
 

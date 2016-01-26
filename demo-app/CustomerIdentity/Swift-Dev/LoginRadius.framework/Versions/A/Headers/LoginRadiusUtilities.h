@@ -4,7 +4,7 @@
  @brief This class includes the gadgets which might be used to format/parse the string, url, dictionary, api, etc..
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helps All other classes in the framework.
  */
@@ -65,7 +65,7 @@
 
 /*!
     @function dictionaryWithQueryString
-    @brief Parse the queryString from format https://example.com?key1=value1&key2=value2 into NSdictionary
+    @brief Parse the queryString from format http://example.com?key1=value1&key2=value2 into NSdictionary
     @param urlString The string that wants to be parsed
     @return NSDictionary containing the pair values
  */
@@ -88,9 +88,6 @@
 
 - (NSMutableDictionary *)lrGetUserLinkedProfile :(NSString *)token APIKey:(NSString *)key;
 
-- (NSString *)GetUidFromProfile :(NSMutableDictionary *)profile;
-
-- (NSString *)GetEmailFromProfile :(NSMutableDictionary *)profile;
 
 @end
 
