@@ -3,7 +3,7 @@
 //  BasicDemo2.0
 //
 //  Created by Lucius Yu on 2014-12-08.
-//  Copyright (c) 2014 LoginRadius. All rights reserved.
+//  Copyright (c) 2016 LoginRadius. All rights reserved.
 //
 
 #import "LoginRadiusService.h"

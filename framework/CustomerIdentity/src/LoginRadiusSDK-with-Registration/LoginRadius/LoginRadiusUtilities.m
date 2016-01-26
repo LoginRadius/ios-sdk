@@ -3,7 +3,7 @@
 //  LoginRadius
 //
 //  Created by Lucius Yu on 2015-06-03.
-//  Copyright (c) 2015 LoginRadius. All rights reserved.
+//  Copyright (c) 2016 LoginRadius. All rights reserved.
 //
 #import "LoginRadiusUtilities.h"
 
@@ -60,35 +60,40 @@
 
 - (BOOL)lrSaveUserData :(NSMutableDictionary *)userProfile lrToken:(NSString *)token {
     
-    
     BOOL isSaved = FALSE;
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
     
-    if (!userProfile) {
-        userProfile = [self lrGetUserProfile:token];
+
+    
+    if (!token || [@""  isEqual: token]) {
+        NSLog(@"SETTING ISLOGGEDIN TO FALSE");i
+        [lrUser setInteger:false forKey:@"isLoggedIn"];
+        isSaved = FALSE;
+    }else {
+        
+        if (!userProfile) {
+            userProfile = [self lrGetUserProfile:token];
+        }
+
+        long lrUserBlocked = [[userProfile objectForKey:@"IsDeleted"] integerValue];
+        NSLog(@"User social profile => %@", userProfile);
+        
+        if(lrUserBlocked == 0) {
+            NSLog(@"User is NOT blocked");
+            [lrUser setInteger:false forKey:@"lrUserBlocked"];
+        } else {
+            NSLog(@"User is blocked");
+            NSLog(@"Delete value => %li", lrUserBlocked);
+            [lrUser setInteger:true forKey:@"lrUserBlocked"];
+        }
+        
+        if (![userProfile objectForKey:@"errorCode"]) {
+            [lrUser setObject:userProfile forKey:@"lrUserProfile"];
+        }
+    
+        isSaved = TRUE;
     }
     
-    long lrUserBlocked = [[userProfile objectForKey:@"IsDeleted"] integerValue];
-    NSLog(@"User social profile => %@", userProfile);
-    
-    
-    
-    [lrUser setInteger:TRUE forKey:@"isLoggedIn"];
-    [lrUser setValue:token forKey:@"lrAccessToken"];
-    if(lrUserBlocked == 0) {
-        NSLog(@"User is NOT blocked");
-        [lrUser setInteger:false forKey:@"lrUserBlocked"];
-    } else {
-        NSLog(@"User is blocked");
-        NSLog(@"Delete value => %li", lrUserBlocked);
-        [lrUser setInteger:true forKey:@"lrUserBlocked"];
-    }
-    
-    if (![userProfile objectForKey:@"errorCode"]) {
-        [lrUser setObject:userProfile forKey:@"lrUserProfile"];
-    }
-    
-    isSaved = TRUE;
     
     return isSaved;
 }

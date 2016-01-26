@@ -6,7 +6,7 @@
     It also handles the callback from the authentication results and notify the parent ViewController the status of the authentication.
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helps All other classes in the framework.
  */

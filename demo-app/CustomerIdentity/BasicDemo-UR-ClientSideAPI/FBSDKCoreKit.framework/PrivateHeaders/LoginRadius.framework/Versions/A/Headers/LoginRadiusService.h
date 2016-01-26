@@ -6,7 +6,7 @@
         Currently it only supports Post Status API.
  
  @author LoginRadius Team
- @copyright  2016 LoginRadius
+ @copyright  2015 LoginRadius
  @version    2015-06
  @helper LoginRadiusUtilities.h
  */

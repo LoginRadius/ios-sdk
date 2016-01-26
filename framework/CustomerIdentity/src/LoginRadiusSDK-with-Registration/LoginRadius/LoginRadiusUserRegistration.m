@@ -3,7 +3,7 @@
 //  LoginRadius
 //
 //  Created by Lucius Yu on 2015-06-03.
-//  Copyright (c) 2015 LoginRadius. All rights reserved.
+//  Copyright (c) 2016 LoginRadius. All rights reserved.
 //
 
 #import "LoginRadiusUserRegistration.h"

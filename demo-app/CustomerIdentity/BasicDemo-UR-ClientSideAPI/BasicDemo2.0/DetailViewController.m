@@ -43,21 +43,20 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    
     if ([segue.identifier isEqualToString:@"register"]) {
         UserRegistrationServiceViewController *ur = [segue destinationViewController];
         ur.apiKey = API_KEY;
         ur.siteName = CLIENT_SITENAME;
         ur.action = @"registration";
         ur.urDelegate = self;
-//        ur = segue.destinationViewController;
+        //ur = segue.destinationViewController;
 
     }else if ([segue.identifier isEqualToString:@"login"]) {
         UserRegistrationServiceViewController *ur = [segue destinationViewController];
         ur.apiKey = API_KEY;
         ur.siteName = CLIENT_SITENAME;
         ur.action = @"login";
-//        ur = segue.destinationViewController;
+        //ur = segue.destinationViewController;
 
     }else if ([segue.identifier isEqualToString:@"postStatus"]) {
         return;
@@ -88,8 +87,7 @@
     
     BOOL isLoggedIn = [lrUserDefault integerForKey:@"isLoggedIn"];
     NSString *lrAccessToken = [lrUserDefault valueForKey:@"lrAccessToken"];
-    NSLog(@"Access token is: %@", lrAccessToken);
-    
+    NSLog(@"Check Status - Access token is: %@", lrAccessToken);
     
     if (isLoggedIn) {
         NSLog(@"User is logged in ");
@@ -110,7 +108,7 @@
             _postStatusBtn.enabled = true;
         }
     } else {
-        NSLog(@"User is not logged in ");
+        NSLog(@"User is NOT logged in ");
         _registerBtn.enabled = true;
         _loginBtn.enabled = true;
         _fpBtn.enabled = true;
@@ -186,9 +184,6 @@
     //    [self presentViewController:ur animated:YES completion:nil];
     [self.navigationController pushViewController:ur animated:YES];
 }
-
-
-
 
 #pragma delegate
 

@@ -6,7 +6,7 @@
         Currently it only supports Post Status API.
  
  @author LoginRadius Team
- @copyright  2015 LoginRadius
+ @copyright  2016 LoginRadius
  @version    2015-06
  @helper LoginRadiusUtilities.h
  */
@@ -40,7 +40,7 @@
  @brief Call LoginRadius Post Status API to post status into user's wall
  @param title The title of status
  @param description The actual body of your status
- @seealso https://apidocs.loginradius.com/v2.0/docs/status-posting
+ @seealso http://apidocs.loginradius.com/v2.0/docs/status-posting
  @return Server response indicating the status of the post
  */
 
