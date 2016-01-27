@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1048CC381C59402C008964BB /* LoginRadius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048CC371C59402C008964BB /* LoginRadius.framework */; };
 		F814F1021A3F53BD00A5D4AA /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F814F1011A3F53BD00A5D4AA /* PostViewController.m */; };
-		F8750ED31B2F5D98005C86BE /* LoginRadius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8750ED21B2F5D98005C86BE /* LoginRadius.framework */; };
 		F8AF1D351A3204E400FD33E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AF1D341A3204E400FD33E1 /* main.m */; };
 		F8AF1D381A3204E400FD33E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AF1D371A3204E400FD33E1 /* AppDelegate.m */; };
 		F8AF1D3E1A3204E400FD33E1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AF1D3D1A3204E400FD33E1 /* DetailViewController.m */; };
@@ -31,9 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1048CC371C59402C008964BB /* LoginRadius.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoginRadius.framework; sourceTree = "<group>"; };
 		F814F1001A3F53BD00A5D4AA /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		F814F1011A3F53BD00A5D4AA /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
-		F8750ED21B2F5D98005C86BE /* LoginRadius.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoginRadius.framework; sourceTree = "<group>"; };
 		F8AF1D2F1A3204E400FD33E1 /* SocialLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AF1D331A3204E400FD33E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8AF1D341A3204E400FD33E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8750ED31B2F5D98005C86BE /* LoginRadius.framework in Frameworks */,
+				1048CC381C59402C008964BB /* LoginRadius.framework in Frameworks */,
 				F8E91FB91B25F585005F988D /* FBSDKCoreKit.framework in Frameworks */,
 				F8E91FB51B25F358005F988D /* FBSDKLoginKit.framework in Frameworks */,
 			);
@@ -76,7 +76,7 @@
 		F81A0C611B2A5AF7001B267E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8750ED21B2F5D98005C86BE /* LoginRadius.framework */,
+				1048CC371C59402C008964BB /* LoginRadius.framework */,
 				F8E91FB41B25F358005F988D /* FBSDKLoginKit.framework */,
 				F8E91FB81B25F585005F988D /* FBSDKCoreKit.framework */,
 			);
@@ -190,7 +190,7 @@
 		F8AF1D271A3204E400FD33E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = LoginRadius;
 				TargetAttributes = {
 					F8AF1D2E1A3204E400FD33E1 = {
@@ -312,6 +312,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -393,6 +394,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.loginradius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SocialLogin;
 				PROVISIONING_PROFILE = "";
 				STRIP_STYLE = all;
@@ -420,6 +422,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.loginradius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SocialLogin;
 				PROVISIONING_PROFILE = "";
 				STRIP_STYLE = all;
@@ -434,6 +437,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -441,6 +445,7 @@
 				);
 				INFOPLIST_FILE = BasicDemo2.0Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.loginradius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SocialLoginTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicDemo2.0.app/BasicDemo2.0";
 			};
@@ -453,9 +458,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BasicDemo2.0Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.loginradius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SocialLoginTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicDemo2.0.app/BasicDemo2.0";
 			};
