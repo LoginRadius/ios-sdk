@@ -86,7 +86,7 @@
 - (IBAction)fbNativeLogin:(id)sender {
     
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    LoginRadiusService *lr = [[LoginRadiusService alloc] init];
+    LoginRadiusUserRegistration *lr = [[LoginRadiusUserRegistration alloc] init];
     
     [login logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         if (error) {
@@ -109,7 +109,7 @@
 
 - (IBAction)logoutBtnClicked:(id)sender {
 
-    LoginRadiusService *lrUserRegistration = [[LoginRadiusService alloc] init];
+    LoginRadiusUserRegistration *lrUserRegistration = [[LoginRadiusUserRegistration alloc] init];
     [lrUserRegistration lrLogout];
     [self checkStatus];
 }
