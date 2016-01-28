@@ -13,6 +13,14 @@ This repo contains the following
 + Social Login Project (Objective-C)
 
 	- path: **ios-sdk/demo-app/SocialLogin/**
+	
++ LoginRadius.framework (Compiled)
+
+	- path: **ios-sdk/framework/compiled/**
+	
++ LoginRadius.framework (Source Code)
+
+	- path: **ios-sdk/framework/src/**
 
 ## Getting Started
 	
