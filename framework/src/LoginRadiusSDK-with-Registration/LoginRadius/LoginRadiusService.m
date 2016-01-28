@@ -54,7 +54,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", endpoint]]];
     [request setHTTPMethod:@"GET"];
-     NSLog(@"NS URL => %@", [request URL]);
+    NSLog(@"NS URL => %@", [request URL]);
     
 }
 
@@ -66,10 +66,13 @@
      **/
     
     // Parse title & description into URL friendly form
-LoginRadiusUtilities *util = [[LoginRadiusUtilities alloc] init];
+    LoginRadiusUtilities *util = [[LoginRadiusUtilities alloc] init];
     
     // TODO - add this part to Utility function -> Get token
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"lrAccessToken"];
+    
+    NSLog(@"lrpoststatus token %@", token);
+    
     title = [util URLEncodedString:title];
     description = [util URLEncodedString:description];
     NSString *post = [NSString stringWithFormat:@"status/js?access_token=%@&title=%@&url=&imageurl=&caption=&description=@&status=%@", token, title, description];

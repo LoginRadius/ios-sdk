@@ -111,16 +111,6 @@
                                     <action selector="profileBtnClicked:" destination="Ah7-4n-0Wa" eventType="touchUpInside" id="JSx-hX-mGf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RNy-4K-gBE">
-                                <rect key="frame" x="20" y="257" width="280" height="42"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Post Status">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="erh-eT-A9P" kind="push" identifier="postStatus" id="PjA-eC-CmG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ab4-A5-I2O">
                                 <rect key="frame" x="20" y="109" width="151" height="47"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -159,6 +149,16 @@
                                 </state>
                                 <connections>
                                     <action selector="logoutBtnClicked:" destination="Ah7-4n-0Wa" eventType="touchUpInside" id="FFx-3M-yiA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RNy-4K-gBE">
+                                <rect key="frame" x="20" y="257" width="280" height="42"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Post Status">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="erh-eT-A9P" kind="push" identifier="postStatus" id="PjA-eC-CmG"/>
                                 </connections>
                             </button>
                         </subviews>

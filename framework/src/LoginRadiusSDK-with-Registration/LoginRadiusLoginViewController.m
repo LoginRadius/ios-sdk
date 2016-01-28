@@ -69,13 +69,23 @@
         NSLog(@"[LR] - token: %@", token);
         if( token ) {
 
-            
             NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
             BOOL userProfileSaved = [utility lrSaveUserData:nil lrToken:token];
-            BOOL userLinkedProfileSaved = [utility lrSaveUserRaaSData:token APIKey:_apiKey];
+            
+            if(!userProfileSaved) {
+                NSLog(@"Error, something wrong with lrSaveUserData");
+            }
+            
+            NSMutableDictionary *lrUserDict = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lrUserProfile"] mutableCopy];
+            
+            NSString *uid = [utility getUidFromProfile:lrUserDict];
            
-            if(!userProfileSaved || !userLinkedProfileSaved) {
-                NSLog(@"Error, something wrong with user saving process");
+            //If uid exists save Raas user data
+            if (uid && ![uid  isEqualToString: @""] ) {
+                BOOL userLinkedProfileSaved = [utility lrSaveUserRaaSData:token APIKey:_apiKey];
+                if(!userLinkedProfileSaved) {
+                    NSLog(@"Error, something wrong with lrSaveUserRaasData");
+                }
             }
             
             NSLog(@"Login Succeed");

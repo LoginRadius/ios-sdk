@@ -16,7 +16,6 @@
     return postdata;
 }
 
-
 - (NSMutableDictionary *)sendSyncGetRequest :(NSString *)urlString {
     
     NSLog(@"Sync GET API url => %@", urlString);
@@ -63,10 +62,8 @@
     BOOL isSaved = FALSE;
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
     
-
-    
-    if (!token || [@""  isEqual: token]) {
-        NSLog(@"SETTING ISLOGGEDIN TO FALSE");i
+    if (!token || [token isEqualToString:@""]) {
+        NSLog(@"Error Token is Nil or empty");
         [lrUser setInteger:false forKey:@"isLoggedIn"];
         isSaved = FALSE;
     }else {
@@ -76,30 +73,33 @@
         }
 
         long lrUserBlocked = [[userProfile objectForKey:@"IsDeleted"] integerValue];
-        NSLog(@"User social profile => %@", userProfile);
+        //NSLog(@"User social profile => %@", userProfile);
         
+        //User is not blocked
         if(lrUserBlocked == 0) {
             NSLog(@"User is NOT blocked");
+            [lrUser setInteger:true forKey:@"isLoggedIn"];
             [lrUser setInteger:false forKey:@"lrUserBlocked"];
+            [lrUser setObject:token forKey:@"lrAccessToken"];
+            
+            //Save user profile as lrUserProfile
+            if (![userProfile objectForKey:@"errorCode"]) {
+                [lrUser setObject:userProfile forKey:@"lrUserProfile"];
+            }
         } else {
-            NSLog(@"User is blocked");
+            NSLog(@"Error User is blocked");
             NSLog(@"Delete value => %li", lrUserBlocked);
             [lrUser setInteger:true forKey:@"lrUserBlocked"];
         }
         
-        if (![userProfile objectForKey:@"errorCode"]) {
-            [lrUser setObject:userProfile forKey:@"lrUserProfile"];
-        }
-    
         isSaved = TRUE;
     }
-    
-    
     return isSaved;
 }
 
 - (BOOL)lrSaveUserRaaSData :(NSString *)token APIKey:(NSString *)key {
     BOOL isSaved = false;
+    
     id userLinkedProfile = [self lrGetUserLinkedProfile:token APIKey:key];
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
     
@@ -146,7 +146,7 @@
     
 }
 
-- (NSString *)GetUidFromProfile :(NSMutableDictionary *)profile {
+- (NSString *)getUidFromProfile :(NSMutableDictionary *)profile {
     NSString *uid = [profile objectForKey:@"Uid"];
     if (uid) {
         return uid;
@@ -155,7 +155,7 @@
     }
 }
 
-- (NSString *)GetEmailFromProfile :(NSMutableDictionary *)profile {
+- (NSString *)getEmailFromProfile :(NSMutableDictionary *)profile {
     NSString *email = [profile objectForKey:@"Email"];
     if(email) {
         return email;
