@@ -27,10 +27,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //    webView.delegate = self;
-    NSString *url_address = [[NSString alloc] initWithFormat:@"http://www.deevoz.com/lrhostedtest/?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
+    
+    //Hosted URL
+    //NSString *url_address = [[NSString alloc] initWithFormat:@"http://www.deevoz.com/lrhostedtest/?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
 
-    //NSString *url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
-    NSLog(@"web url is %@", url_address);
+    NSString *url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",apiKey, siteName, action];
+    
+    NSLog(@"Web url is %@", url_address);
     
     NSURL *url = [NSURL URLWithString:url_address];
     [webView loadRequest:[NSURLRequest requestWithURL: url]];

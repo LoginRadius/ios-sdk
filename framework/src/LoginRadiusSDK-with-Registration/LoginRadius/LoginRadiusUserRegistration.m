@@ -45,7 +45,7 @@ NSString *const FB_NATIVE_AUTH_URL = @"https://api.loginradius.com/api/v2/access
 - (void)lrLogin :(NSString *)key :(NSString *)secret :(NSString *)username :(NSString *)password {
     
     NSString *apiEndPoint = [NSString stringWithFormat:LOGIN_URL, key, secret, username, password];
-   // NSLog(@"Login Url => %@", apiEndPoint);
+    //NSLog(@"Login Url => %@", apiEndPoint);
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:apiEndPoint]];
@@ -77,7 +77,6 @@ NSString *const FB_NATIVE_AUTH_URL = @"https://api.loginradius.com/api/v2/access
     
 }
 
-
 - (BOOL)lrFbNativeLogin :(NSString *)key :(NSString *)token {
     
     NSString *apiEndPoint = [NSString stringWithFormat:FB_NATIVE_AUTH_URL, key, token];
@@ -85,6 +84,8 @@ NSString *const FB_NATIVE_AUTH_URL = @"https://api.loginradius.com/api/v2/access
     
     LoginRadiusUtilities *util = [[LoginRadiusUtilities alloc]init];
     NSMutableDictionary *response = [util sendSyncGetRequest:apiEndPoint];
+    
+    NSLog( @"Lr FB Native Login => %@", response );
     
     if( [response objectForKey:@"access_token"] ) {
         NSString *lrAccessToken = [response objectForKey:@"access_token"];
@@ -113,7 +114,6 @@ NSString *const FB_NATIVE_AUTH_URL = @"https://api.loginradius.com/api/v2/access
 
 
 /*Response from server*/
-
 - (void)connection: (NSURLConnection *)connection didReceiveData:(NSData *)responseData {
     NSError* error;
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData
