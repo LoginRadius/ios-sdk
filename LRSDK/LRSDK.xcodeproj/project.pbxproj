@@ -26,6 +26,10 @@
 		6884DF481CC9FC8A0071EFFB /* LRSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF471CC9FC8A0071EFFB /* LRSDKTests.m */; };
 		6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */; };
 		6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */; };
+		6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF941CCA09110071EFFB /* LoginRadiusREST.h */; };
+		6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF951CCA09110071EFFB /* LoginRadiusREST.m */; };
+		6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */; };
+		6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		6884DF491CC9FC8A0071EFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusSDK.h; sourceTree = "<group>"; };
 		6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusSDK.m; sourceTree = "<group>"; };
+		6884DF941CCA09110071EFFB /* LoginRadiusREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusREST.h; sourceTree = "<group>"; };
+		6884DF951CCA09110071EFFB /* LoginRadiusREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusREST.m; sourceTree = "<group>"; };
+		6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LRDictionary.h"; sourceTree = "<group>"; };
+		6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LRDictionary.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,8 @@
 				6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */,
 				6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */,
 				6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */,
+				6884DF981CCA09170071EFFB /* Network */,
+				6884DF991CCA09550071EFFB /* Categories */,
 				6884DF3D1CC9FC8A0071EFFB /* Info.plist */,
 			);
 			path = LRSDK;
@@ -106,6 +116,24 @@
 			path = LRSDKTests;
 			sourceTree = "<group>";
 		};
+		6884DF981CCA09170071EFFB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6884DF941CCA09110071EFFB /* LoginRadiusREST.h */,
+				6884DF951CCA09110071EFFB /* LoginRadiusREST.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		6884DF991CCA09550071EFFB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */,
+				6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -115,6 +143,8 @@
 			files = (
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
 				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
+				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
+				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +264,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */,
 				6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */,
+				6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

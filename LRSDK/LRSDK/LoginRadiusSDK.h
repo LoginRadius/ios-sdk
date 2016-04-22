@@ -1,11 +1,3 @@
-//
-//  LoginRadiusSDK.h
-//  LoginRadius
-//
-//  Created by Raviteja Ghanta on 13/04/16.
-//  Copyright © 2016 LoginRadius. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
