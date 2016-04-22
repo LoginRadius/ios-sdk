@@ -14,6 +14,8 @@ FOUNDATION_EXPORT double LRSDKVersionNumber;
 //! Project version string for LRSDK.
 FOUNDATION_EXPORT const unsigned char LRSDKVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <LRSDK/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like
+
+#import <LRSDK/LoginRadiusSDK.h>
 
 

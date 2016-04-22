@@ -24,6 +24,8 @@
 		6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF431CC9FC8A0071EFFB /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DF381CC9FC8A0071EFFB /* LRSDK.framework */; };
 		6884DF481CC9FC8A0071EFFB /* LRSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF471CC9FC8A0071EFFB /* LRSDKTests.m */; };
+		6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */; };
+		6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		6884DF421CC9FC8A0071EFFB /* LRSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LRSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6884DF471CC9FC8A0071EFFB /* LRSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LRSDKTests.m; sourceTree = "<group>"; };
 		6884DF491CC9FC8A0071EFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusSDK.h; sourceTree = "<group>"; };
+		6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusSDK.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */,
+				6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */,
+				6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */,
 				6884DF3D1CC9FC8A0071EFFB /* Info.plist */,
 			);
 			path = LRSDK;
@@ -108,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
+				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
