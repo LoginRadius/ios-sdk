@@ -22,6 +22,11 @@ typedef void (^responseHandler)(NSDictionary *data, NSError *error);
 
 - (void)applicationDidBecomeActive:(UIApplication *)application;
 
+// Social login
++ (void) socialLoginWithProvider:(NSString*)provider
+					inController:(UIViewController*)controller
+			   completionHandler:(loginResult)handler;
+
 + (NSString*) apiKey;
 + (NSString*) siteName;
 

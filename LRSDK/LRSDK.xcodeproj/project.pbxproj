@@ -30,6 +30,22 @@
 		6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF951CCA09110071EFFB /* LoginRadiusREST.m */; };
 		6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */; };
 		6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */; };
+		6884DFA01CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF9E1CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h */; };
+		6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF9F1CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m */; };
+		6884DFA51CCA0E850071EFFB /* LoginRadiusTwitterLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFA31CCA0E850071EFFB /* LoginRadiusTwitterLogin.h */; };
+		6884DFA61CCA0E850071EFFB /* LoginRadiusTwitterLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFA41CCA0E850071EFFB /* LoginRadiusTwitterLogin.m */; };
+		6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFA71CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h */; };
+		6884DFAE1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFA81CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m */; };
+		6884DFAF1CCA0E930071EFFB /* LoginRadiusFacebookLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFA91CCA0E930071EFFB /* LoginRadiusFacebookLogin.h */; };
+		6884DFB01CCA0E930071EFFB /* LoginRadiusFacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFAA1CCA0E930071EFFB /* LoginRadiusFacebookLogin.m */; };
+		6884DFB11CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFAB1CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h */; };
+		6884DFB21CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFAC1CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m */; };
+		6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFB41CCA0F0E0071EFFB /* LoginRadiusUtilities.h */; };
+		6884DFB71CCA0F0E0071EFFB /* LoginRadiusUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFB51CCA0F0E0071EFFB /* LoginRadiusUtilities.m */; };
+		6884DFC31CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFC11CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h */; };
+		6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */; };
+		6884DFCC1CCA14CC0071EFFB /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */; };
+		6884DFCD1CCA14CC0071EFFB /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +71,22 @@
 		6884DF951CCA09110071EFFB /* LoginRadiusREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusREST.m; sourceTree = "<group>"; };
 		6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LRDictionary.h"; sourceTree = "<group>"; };
 		6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LRDictionary.m"; sourceTree = "<group>"; };
+		6884DF9E1CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusSocialLoginManager.h; sourceTree = "<group>"; };
+		6884DF9F1CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusSocialLoginManager.m; sourceTree = "<group>"; };
+		6884DFA31CCA0E850071EFFB /* LoginRadiusTwitterLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusTwitterLogin.h; sourceTree = "<group>"; };
+		6884DFA41CCA0E850071EFFB /* LoginRadiusTwitterLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusTwitterLogin.m; sourceTree = "<group>"; };
+		6884DFA71CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDTwitterAccountChooserViewController.h; sourceTree = "<group>"; };
+		6884DFA81CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDTwitterAccountChooserViewController.m; sourceTree = "<group>"; };
+		6884DFA91CCA0E930071EFFB /* LoginRadiusFacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusFacebookLogin.h; sourceTree = "<group>"; };
+		6884DFAA1CCA0E930071EFFB /* LoginRadiusFacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusFacebookLogin.m; sourceTree = "<group>"; };
+		6884DFAB1CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusWebLoginViewController.h; sourceTree = "<group>"; };
+		6884DFAC1CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusWebLoginViewController.m; sourceTree = "<group>"; };
+		6884DFB41CCA0F0E0071EFFB /* LoginRadiusUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusUtilities.h; sourceTree = "<group>"; };
+		6884DFB51CCA0F0E0071EFFB /* LoginRadiusUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusUtilities.m; sourceTree = "<group>"; };
+		6884DFC11CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+LRMutableDictionary.h"; sourceTree = "<group>"; };
+		6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+LRMutableDictionary.m"; sourceTree = "<group>"; };
+		6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6884DFCD1CCA14CC0071EFFB /* FBSDKLoginKit.framework in Frameworks */,
+				6884DFCC1CCA14CC0071EFFB /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +134,10 @@
 				6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */,
 				6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */,
 				6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */,
+				6884DFA21CCA0DAF0071EFFB /* Social Login */,
 				6884DF981CCA09170071EFFB /* Network */,
+				6884DFB81CCA0F160071EFFB /* Util */,
+				6884DFB31CCA0EA60071EFFB /* Vendor */,
 				6884DF991CCA09550071EFFB /* Categories */,
 				6884DF3D1CC9FC8A0071EFFB /* Info.plist */,
 			);
@@ -128,10 +165,47 @@
 		6884DF991CCA09550071EFFB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				6884DFC11CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h */,
+				6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */,
 				6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */,
 				6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		6884DFA21CCA0DAF0071EFFB /* Social Login */ = {
+			isa = PBXGroup;
+			children = (
+				6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */,
+				6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */,
+				6884DF9E1CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h */,
+				6884DF9F1CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m */,
+				6884DFA31CCA0E850071EFFB /* LoginRadiusTwitterLogin.h */,
+				6884DFA41CCA0E850071EFFB /* LoginRadiusTwitterLogin.m */,
+				6884DFA91CCA0E930071EFFB /* LoginRadiusFacebookLogin.h */,
+				6884DFAA1CCA0E930071EFFB /* LoginRadiusFacebookLogin.m */,
+				6884DFAB1CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h */,
+				6884DFAC1CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m */,
+			);
+			name = "Social Login";
+			sourceTree = "<group>";
+		};
+		6884DFB31CCA0EA60071EFFB /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				6884DFA71CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h */,
+				6884DFA81CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		6884DFB81CCA0F160071EFFB /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				6884DFB41CCA0F0E0071EFFB /* LoginRadiusUtilities.h */,
+				6884DFB51CCA0F0E0071EFFB /* LoginRadiusUtilities.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +215,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6884DFA51CCA0E850071EFFB /* LoginRadiusTwitterLogin.h in Headers */,
+				6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */,
+				6884DFB11CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h in Headers */,
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
 				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
+				6884DFA01CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h in Headers */,
+				6884DFAF1CCA0E930071EFFB /* LoginRadiusFacebookLogin.h in Headers */,
+				6884DFC31CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h in Headers */,
+				6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */,
 				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
 				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
 			);
@@ -159,6 +240,7 @@
 				6884DF341CC9FC8A0071EFFB /* Frameworks */,
 				6884DF351CC9FC8A0071EFFB /* Headers */,
 				6884DF361CC9FC8A0071EFFB /* Resources */,
+				6884DFC91CCA12E40071EFFB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -257,6 +339,19 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Next, work out if we're in SIM or DEVICE\nif [ \"false\" == ${ALREADYINVOKED:-false} ]\nthen\n\nexport ALREADYINVOKED=\"true\"\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nelse\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nfi\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n\nfi";
 		};
+		6884DFC91CCA12E40071EFFB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $BUILT_PRODUCTS_DIR\n\nmkdir $PROJECT_NAME.framework/Frameworks &>/dev/null\n\nfor framework in *.framework; do\nif [ $framework != $PROJECT_NAME.framework ]; then\ncp -r $framework $PROJECT_NAME.framework/Frameworks/ &>/dev/null\nfi\ndone";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -264,9 +359,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6884DFA61CCA0E850071EFFB /* LoginRadiusTwitterLogin.m in Sources */,
 				6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */,
+				6884DFB71CCA0F0E0071EFFB /* LoginRadiusUtilities.m in Sources */,
 				6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */,
+				6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */,
+				6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */,
 				6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */,
+				6884DFB21CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m in Sources */,
+				6884DFB01CCA0E930071EFFB /* LoginRadiusFacebookLogin.m in Sources */,
+				6884DFAE1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,9 +486,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LRSDK",
+				);
 				INFOPLIST_FILE = LRSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.LRSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -400,6 +507,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LRSDK",
+				);
 				INFOPLIST_FILE = LRSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

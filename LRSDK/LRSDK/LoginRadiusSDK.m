@@ -1,4 +1,5 @@
 #import "LoginRadiusSDK.h"
+#import "LoginRadiusSocialLoginManager.h"
 
 @interface LoginRadiusSDK()
 @property(nonatomic, copy) NSString* apiKey;
@@ -20,6 +21,13 @@
 + (void)instanceWithAPIKey:(NSString *)apiKey siteName:(NSString *)siteName application:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
 	[LoginRadiusSDK sharedInstance].apiKey = apiKey;
 	[LoginRadiusSDK sharedInstance].siteName = siteName;
+	[LoginRadiusSocialLoginManager instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions];
+}
+
++ (void) socialLoginWithProvider:(NSString*)provider inController:(UIViewController *)controller completionHandler:(loginResult)handler {
+	[[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider
+														 inController:controller
+													completionHandler:handler];
 }
 
 + (NSString*) apiKey {
@@ -32,6 +40,10 @@
 
 #pragma mark Application Delegate methods
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+	if ([[LoginRadiusSocialLoginManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]) {
+		return YES;
+	}
+	
 	return YES;
 }
 
