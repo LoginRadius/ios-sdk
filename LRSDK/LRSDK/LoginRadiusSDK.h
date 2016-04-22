@@ -27,6 +27,13 @@ typedef void (^responseHandler)(NSDictionary *data, NSError *error);
 					inController:(UIViewController*)controller
 			   completionHandler:(loginResult)handler;
 
+// User Registration
++ (void) userRegistrationWithAction:(NSString*) action
+					   inController:(UIViewController*)controller
+				  completionHandler:(loginResult)handler;
+
++ (void) logout;
+
 + (NSString*) apiKey;
 + (NSString*) siteName;
 

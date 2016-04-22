@@ -1,5 +1,6 @@
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusSocialLoginManager.h"
+#import "LoginRadiusRegistrationManager.h"
 
 @interface LoginRadiusSDK()
 @property(nonatomic, copy) NSString* apiKey;
@@ -21,13 +22,24 @@
 + (void)instanceWithAPIKey:(NSString *)apiKey siteName:(NSString *)siteName application:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
 	[LoginRadiusSDK sharedInstance].apiKey = apiKey;
 	[LoginRadiusSDK sharedInstance].siteName = siteName;
-	[LoginRadiusSocialLoginManager instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions];
+	[LoginRadiusSocialLoginManager instanceWithApplication:application launchOptions:launchOptions];
+	[LoginRadiusRegistrationManager instanceWithApplication:application launchOptions:launchOptions];
 }
 
 + (void) socialLoginWithProvider:(NSString*)provider inController:(UIViewController *)controller completionHandler:(loginResult)handler {
 	[[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider
 														 inController:controller
 													completionHandler:handler];
+}
+
++ (void) userRegistrationWithAction:(NSString*) action inController:(UIViewController*)controller completionHandler:(loginResult)handler {
+	[[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:action
+															   inController:controller
+														  completionHandler:handler];
+}
+
++ (void) logout {
+
 }
 
 + (NSString*) apiKey {

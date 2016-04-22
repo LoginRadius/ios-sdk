@@ -46,6 +46,10 @@
 		6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */; };
 		6884DFCC1CCA14CC0071EFFB /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */; };
 		6884DFCD1CCA14CC0071EFFB /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */; };
+		6884DFD41CCA295F0071EFFB /* LoginRadiusRaaSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD01CCA295F0071EFFB /* LoginRadiusRaaSViewController.h */; };
+		6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */; };
+		6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */; };
+		6884DFD71CCA295F0071EFFB /* LoginRadiusRegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,10 @@
 		6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+LRMutableDictionary.m"; sourceTree = "<group>"; };
 		6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		6884DFD01CCA295F0071EFFB /* LoginRadiusRaaSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusRaaSViewController.h; sourceTree = "<group>"; };
+		6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRaaSViewController.m; sourceTree = "<group>"; };
+		6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusRegistrationManager.h; sourceTree = "<group>"; };
+		6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRegistrationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 				6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */,
 				6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */,
 				6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */,
+				6884DFD81CCA29640071EFFB /* RaaS */,
 				6884DFA21CCA0DAF0071EFFB /* Social Login */,
 				6884DF981CCA09170071EFFB /* Network */,
 				6884DFB81CCA0F160071EFFB /* Util */,
@@ -208,6 +217,17 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		6884DFD81CCA29640071EFFB /* RaaS */ = {
+			isa = PBXGroup;
+			children = (
+				6884DFD01CCA295F0071EFFB /* LoginRadiusRaaSViewController.h */,
+				6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */,
+				6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */,
+				6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */,
+			);
+			name = RaaS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -219,6 +239,7 @@
 				6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */,
 				6884DFB11CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h in Headers */,
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
+				6884DFD41CCA295F0071EFFB /* LoginRadiusRaaSViewController.h in Headers */,
 				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 				6884DFA01CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h in Headers */,
 				6884DFAF1CCA0E930071EFFB /* LoginRadiusFacebookLogin.h in Headers */,
@@ -226,6 +247,7 @@
 				6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */,
 				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
 				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
+				6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,11 +381,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6884DFD71CCA295F0071EFFB /* LoginRadiusRegistrationManager.m in Sources */,
 				6884DFA61CCA0E850071EFFB /* LoginRadiusTwitterLogin.m in Sources */,
 				6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */,
 				6884DFB71CCA0F0E0071EFFB /* LoginRadiusUtilities.m in Sources */,
 				6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */,
 				6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */,
+				6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */,
 				6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */,
 				6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */,
 				6884DFB21CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m in Sources */,
