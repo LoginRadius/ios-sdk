@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		6884DF8F1CCA063B0071EFFB /* LoginRadius */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6884DF901CCA063C0071EFFB /* Build configuration list for PBXAggregateTarget "LoginRadius" */;
+			buildPhases = (
+				6884DF931CCA06610071EFFB /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = LoginRadius;
+			productName = LoginRadius;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF431CC9FC8A0071EFFB /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DF381CC9FC8A0071EFFB /* LRSDK.framework */; };
@@ -151,6 +165,9 @@
 					6884DF411CC9FC8A0071EFFB = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					6884DF8F1CCA063B0071EFFB = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = 6884DF321CC9FC8A0071EFFB /* Build configuration list for PBXProject "LRSDK" */;
@@ -167,6 +184,7 @@
 			targets = (
 				6884DF371CC9FC8A0071EFFB /* LRSDK */,
 				6884DF411CC9FC8A0071EFFB /* LRSDKTests */,
+				6884DF8F1CCA063B0071EFFB /* LoginRadius */,
 			);
 		};
 /* End PBXProject section */
@@ -187,6 +205,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6884DF931CCA06610071EFFB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Next, work out if we're in SIM or DEVICE\nif [ \"false\" == ${ALREADYINVOKED:-false} ]\nthen\n\nexport ALREADYINVOKED=\"true\"\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nelse\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nfi\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6884DF331CC9FC8A0071EFFB /* Sources */ = {
@@ -355,6 +389,20 @@
 			};
 			name = Release;
 		};
+		6884DF911CCA063C0071EFFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6884DF921CCA063C0071EFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -380,6 +428,14 @@
 			buildConfigurations = (
 				6884DF501CC9FC8A0071EFFB /* Debug */,
 				6884DF511CC9FC8A0071EFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6884DF901CCA063C0071EFFB /* Build configuration list for PBXAggregateTarget "LoginRadius" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6884DF911CCA063C0071EFFB /* Debug */,
+				6884DF921CCA063C0071EFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
