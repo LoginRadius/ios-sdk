@@ -24,7 +24,7 @@
 		6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF431CC9FC8A0071EFFB /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DF381CC9FC8A0071EFFB /* LRSDK.framework */; };
 		6884DF481CC9FC8A0071EFFB /* LRSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF471CC9FC8A0071EFFB /* LRSDKTests.m */; };
-		6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */; };
+		6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */; };
 		6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF941CCA09110071EFFB /* LoginRadiusREST.h */; };
 		6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF951CCA09110071EFFB /* LoginRadiusREST.m */; };
@@ -236,11 +236,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6884DFA51CCA0E850071EFFB /* LoginRadiusTwitterLogin.h in Headers */,
+				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 				6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */,
 				6884DFB11CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h in Headers */,
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
 				6884DFD41CCA295F0071EFFB /* LoginRadiusRaaSViewController.h in Headers */,
-				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 				6884DFA01CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h in Headers */,
 				6884DFAF1CCA0E930071EFFB /* LoginRadiusFacebookLogin.h in Headers */,
 				6884DFC31CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h in Headers */,
@@ -359,7 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Next, work out if we're in SIM or DEVICE\nif [ \"false\" == ${ALREADYINVOKED:-false} ]\nthen\n\nexport ALREADYINVOKED=\"true\"\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nelse\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nfi\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n\nfi";
+			shellScript = "# This script is based on Jacob Van Order's answer on apple dev forums https://devforums.apple.com/message/971277\n# See also http://spin.atomicobject.com/2011/12/13/building-a-universal-framework-for-ios/ for the start\n\n\n# To get this to work with a Xcode 6 Cocoa Touch Framework, create Framework\n# Then create a new Aggregate Target. Throw this script into a Build Script Phrase on the Aggregate\n\n\n######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=true\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator | echo\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make fat universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n\n######################\n# On Release, copy the result to desktop folder\n######################\n\n\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nDIR=\"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nif [ -d \"$DIR\" ]; then\nprintf '%s\\n' \"Removing Lock ($DIR)\"\nrm -rf \"$DIR\"\nfi\nmkdir \"$DIR\"\ncp -r \"${FRAMEWORK}\" \"$DIR\"\nfi\n\n\n######################\n# If needed, open the Framework folder\n######################\n\nif [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nopen \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nelse\nopen \"${UNIVERSAL_LIBRARY_DIR}/\"\nfi\nfi";
 		};
 		6884DFC91CCA12E40071EFFB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -597,6 +597,7 @@
 				6884DF4E1CC9FC8A0071EFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6884DF4F1CC9FC8A0071EFFB /* Build configuration list for PBXNativeTarget "LRSDKTests" */ = {
 			isa = XCConfigurationList;
@@ -605,6 +606,7 @@
 				6884DF511CC9FC8A0071EFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6884DF901CCA063C0071EFFB /* Build configuration list for PBXAggregateTarget "LoginRadius" */ = {
 			isa = XCConfigurationList;
@@ -613,6 +615,7 @@
 				6884DF921CCA063C0071EFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
