@@ -8,6 +8,7 @@
 
 #import "LoginRadiusFacebookLogin.h"
 #import "LoginRadiusREST.h"
+#import "LoginRadiusUtilities.h"
 
 @interface LoginRadiusFacebookLogin ()
 @end
@@ -46,6 +47,7 @@
 - (void)loginfromViewController:(UIViewController*)controller handler:(loginResult)handler {
 	FBSDKLoginManager *facebookLogin = [[FBSDKLoginManager alloc] init];
 	facebookLogin.loginBehavior = FBSDKLoginBehaviorSystemAccount;
+	// TODO: Right now asking for default permissions, need to ask for permissions set in user portal
 	[facebookLogin logInWithReadPermissions:@[@"email"] fromViewController:controller handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
 		if (error) {
 			NSLog(@"Facebook login failed. Error: %@", error);
@@ -54,6 +56,12 @@
 		} else {
 			NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
 			// Get loginradius access_token for facebook access_token
+			[[LoginRadiusREST sharedInstance] callAPIEndpoint:@"api/v2/access_token/facebook" method:@"GET" params:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
+				NSString *token = [data objectForKey:@"access_token"];
+				if ([LoginRadiusUtilities lrSaveUserData:nil lrToken:token]) {
+					NSLog(@"User successfully saved");
+				}
+			}];
 		}
 	}];
 }
