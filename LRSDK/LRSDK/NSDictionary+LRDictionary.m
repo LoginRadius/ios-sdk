@@ -1,3 +1,9 @@
+//
+//  LRDictionary
+//
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//
+
 #import "NSDictionary+LRDictionary.h"
 
 static NSString * URLDecodedString(NSString *urlString) {

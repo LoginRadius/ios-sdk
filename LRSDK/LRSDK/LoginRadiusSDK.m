@@ -1,3 +1,9 @@
+//
+//  LoginRadiusSDK.m
+//
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//
+
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusSocialLoginManager.h"
 #import "LoginRadiusRegistrationManager.h"

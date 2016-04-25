@@ -1,10 +1,9 @@
 //
 //  LoginRadiusUtilities.m
-//  LoginRadius
 //
-//  Created by Lucius Yu on 2015-06-03.
-//  Copyright (c) 2016 LoginRadius. All rights reserved.
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
+
 #import "LoginRadiusUtilities.h"
 #import "NSMutableDictionary+LRMutableDictionary.h"
 #import "LoginRadiusREST.h"

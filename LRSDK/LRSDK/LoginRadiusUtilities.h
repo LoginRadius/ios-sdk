@@ -1,13 +1,8 @@
-/*!
- @header LoginRadiusUtilities.h
- 
- @brief This class includes the gadgets which might be used to format/parse the string, url, dictionary, api, etc..
- 
- @author LoginRadius Team
- @copyright  2016 LoginRadius
- @version    2015-06
- @helps All other classes in the framework.
- */
+//
+//  LoginRadiusUtilities.h
+//
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import "LoginRadiusUtilities.h"

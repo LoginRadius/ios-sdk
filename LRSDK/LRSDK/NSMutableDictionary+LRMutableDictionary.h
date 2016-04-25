@@ -1,9 +1,7 @@
 //
-//  NSMutableDictionary+LRMutableDictionary.h
-//  LR-iOS-SDK-Sample
+//  LRMutableDictionary
 //
-//  Created by Raviteja Ghanta on 19/04/16.
-//  Copyright © 2016 LR. All rights reserved.
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
