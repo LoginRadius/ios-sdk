@@ -57,7 +57,8 @@
 	} else {
 		// Use web login
 		LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider];
-		[controller presentViewController:webVC animated:YES completion:nil];
+		UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
+		[controller presentViewController:navVC animated:YES completion:nil];
 	}
 }
 
