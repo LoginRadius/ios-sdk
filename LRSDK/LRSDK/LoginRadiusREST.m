@@ -28,12 +28,7 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 }
 
 - (NSURL*)clientURLRequest:(NSString*)path params:(NSDictionary*) params {
-	NSString* str;
-	if ([path isEqualToString:@"posts"]) {
-		str = [@"http://jsonplaceholder.typicode.com/" stringByAppendingString:path];
-	} else {
-		 str = [API_BASE_URL stringByAppendingString:path];
-	}
+	NSString* str = [API_BASE_URL stringByAppendingString:path];
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wdeprecated"
 	return [NSURL URLWithString:[[str stringByAppendingString:[params queryString]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
