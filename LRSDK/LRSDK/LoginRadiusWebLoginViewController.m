@@ -74,7 +74,7 @@
 
 			NSMutableDictionary *lrUserDict = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lrUserProfile"] mutableCopy];
 
-			NSString *uid = [LoginRadiusUtilities getUidFromProfile:lrUserDict];
+			NSString *uid = [lrUserDict objectForKey:@"Uid"];
 
 			//If uid exists save Raas user data
 			if (uid && ![uid  isEqualToString: @""] ) {

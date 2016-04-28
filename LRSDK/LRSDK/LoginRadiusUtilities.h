@@ -73,9 +73,4 @@
 + (NSMutableDictionary *)lrGetUserProfile :(NSString *)token;
 
 + (NSMutableDictionary *)lrGetUserLinkedProfile :(NSString *)token APIKey:(NSString *)key;
-
-+ (NSString *)getUidFromProfile :(NSMutableDictionary *)profile;
-
-+ (NSString *)getEmailFromProfile :(NSMutableDictionary *)profile;
-
 @end

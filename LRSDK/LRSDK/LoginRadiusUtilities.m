@@ -147,24 +147,6 @@
 
 }
 
-+ (NSString *)getUidFromProfile :(NSMutableDictionary *)profile {
-	NSString *uid = [profile objectForKey:@"Uid"];
-	if (uid) {
-		return uid;
-	} else {
-		return nil;
-	}
-}
-
-+ (NSString *)getEmailFromProfile :(NSMutableDictionary *)profile {
-	NSString *email = [profile objectForKey:@"Email"];
-	if(email) {
-		return email;
-	} else {
-		return nil;
-	}
-}
-
 + (NSString *)URLEncodedString :(NSString *)urlString {
 	__autoreleasing NSString *encodedString;
 	encodedString = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
