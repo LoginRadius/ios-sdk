@@ -14,8 +14,9 @@
 + (instancetype)sharedInstance;
 
 -(void)loginWithProvider:(NSString*)provider
+			  parameters:(NSDictionary*)params
 			inController:(UIViewController*)controller
-	   completionHandler:(loginResult)handler;
+	   completionHandler:(responseHandler)handler;
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 @end

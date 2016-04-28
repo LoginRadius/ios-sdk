@@ -31,7 +31,7 @@
 	return instance;
 }
 
--(void)login:(loginResult)handler {
+-(void)login:(responseHandler)handler {
 	accountStore = [[ACAccountStore alloc] init];
 	accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 	[accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
@@ -90,7 +90,7 @@
 	return @"Error, can not get Twitter Native Access Token";
 }
 
-- (void)takeActions: (ACAccount *)twAccount completionHandler: (loginResult)handler{
+- (void)takeActions: (ACAccount *)twAccount completionHandler: (responseHandler)handler{
 	if (_isConfigured) {
 		//Exchange for LoginRadius Access Token and go to specified page
 		NSString *twAccessToken = [self getNativeAccessToken:twAccount];

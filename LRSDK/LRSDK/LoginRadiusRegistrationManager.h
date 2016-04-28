@@ -14,6 +14,6 @@
 
 - (void) registrationWithAction:(NSString*) action
 				   inController:(UIViewController*)controller
-			  completionHandler:(loginResult)handler;
+			  completionHandler:(responseHandler)handler;
 
 @end

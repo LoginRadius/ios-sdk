@@ -32,13 +32,19 @@
 	[LoginRadiusRegistrationManager instanceWithApplication:application launchOptions:launchOptions];
 }
 
-+ (void) socialLoginWithProvider:(NSString*)provider inController:(UIViewController *)controller completionHandler:(loginResult)handler {
++ (void) socialLoginWithProvider:(NSString*)provider
+					  parameters:(NSDictionary*)params
+					inController:(UIViewController*)controller
+			   completionHandler:(responseHandler)handler {
 	[[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider
+														   parameters:params
 														 inController:controller
 													completionHandler:handler];
 }
 
-+ (void) userRegistrationWithAction:(NSString*) action inController:(UIViewController*)controller completionHandler:(loginResult)handler {
++ (void) userRegistrationWithAction:(NSString*) action
+					   inController:(UIViewController*)controller
+				  completionHandler:(responseHandler)handler {
 	[[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:action
 															   inController:controller
 														  completionHandler:handler];

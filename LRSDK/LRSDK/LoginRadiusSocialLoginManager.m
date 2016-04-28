@@ -44,8 +44,9 @@
 
 #pragma mark Login Methods
 -(void)loginWithProvider:(NSString*)provider
+			  parameters:(NSDictionary*)params
 			inController:(UIViewController*)controller
-	   completionHandler:(loginResult)handler {
+	   completionHandler:(responseHandler)handler {
 
 	// TODO Add provider validation for the user
 	if( [provider caseInsensitiveCompare:@"twitter"] == NSOrderedSame && self.useNativeLogin) {
@@ -53,7 +54,7 @@
 		[_twitterLogin login:handler];
 	} else if ([provider caseInsensitiveCompare:@"facebook"] == NSOrderedSame && self.useNativeLogin) {
 		// Use native facebook login
-		[_facebookLogin loginfromViewController:controller handler:handler];
+		[_facebookLogin loginfromViewController:controller parameters:params handler:handler];
 	} else {
 		// Use web login
 		LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider];

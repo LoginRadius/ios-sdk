@@ -7,7 +7,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef void(^loginResult)(NSMutableDictionary *user, NSError *error);
 typedef void (^responseHandler)(NSDictionary *data, NSError *error);
 
 @interface LoginRadiusSDK : NSObject
@@ -28,15 +27,36 @@ typedef void (^responseHandler)(NSDictionary *data, NSError *error);
 
 - (void)applicationDidBecomeActive:(UIApplication *)application;
 
-// Social login
-+ (void) socialLoginWithProvider:(NSString*)provider
-					inController:(UIViewController*)controller
-			   completionHandler:(loginResult)handler;
+/*
+	Social Login with the provider
+	@param provider - provider name
+	@param parameters - dict of parameters
+			These are the valid keys
+			- facebookPermissions : should be an array of strings
+			- facebookLoginBehavior : should be FBSDKLoginBehaviorNative / FBSDKLoginBehaviorBrowser / FBSDKLoginBehaviorSystemAccount / FBSDKLoginBehaviorWeb
+				recommended approach is to use FBSDKLoginBehaviorSystemAccount
+	@param controller - view controller where social login take place should not be nil
+	@param handler - code block executed after completion
+ */
 
-// User Registration
++ (void) socialLoginWithProvider:(NSString*)provider
+					  parameters:(NSDictionary*)opts
+					inController:(UIViewController*)controller
+			   completionHandler:(responseHandler)handler;
+
+/*
+	User Registration with the action 
+	@param action - user registration action should be one of these @"login", @"registration", @"forgotpassword", @"sociallogin", @"resetpassword", @"emailverification"
+	@param controller - view controller where user registration actions take place should not be nil
+	@param handler - code block executed after completion
+ */
 + (void) userRegistrationWithAction:(NSString*) action
 					   inController:(UIViewController*)controller
-				  completionHandler:(loginResult)handler;
+				  completionHandler:(responseHandler)handler;
+
+/*
+	Logouts the user
+ */
 
 + (void) logout;
 

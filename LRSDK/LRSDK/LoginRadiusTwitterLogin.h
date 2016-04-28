@@ -9,5 +9,5 @@
 
 @interface LoginRadiusTwitterLogin : NSObject
 + (instancetype)instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions;
--(void)login:(loginResult)handler;
+-(void)login:(responseHandler)handler;
 @end
