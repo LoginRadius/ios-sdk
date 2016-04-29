@@ -130,9 +130,6 @@
 	if ([FBSDKAccessToken currentAccessToken]) {
 		FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
 		[login logOut];
-		NSLog(@"Logged out");
-	} else {
-		NSLog(@"Not logged in");
 	}
 }
 

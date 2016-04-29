@@ -14,6 +14,7 @@
 @interface LoginRadiusTwitterLogin()
 @property (nonatomic, retain) ACAccountStore *accountStore;
 @property (nonatomic, retain) ACAccountType *accountType;
+@property (nonatomic, copy) LRServiceCompletionHandler handler;
 @property BOOL isConfigured;
 
 @end
@@ -32,11 +33,11 @@
 }
 
 -(void)login:(LRServiceCompletionHandler)handler {
+	self.handler = handler;
 	accountStore = [[ACAccountStore alloc] init];
 	accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 	[accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
 		if(granted) {
-			NSLog(@"Twitter Native Login is granted");
 			_isConfigured = true;
 			NSArray *accounts = [accountStore accountsWithAccountType:accountType];
 			if ([accounts count] > 1) {
@@ -45,17 +46,19 @@
 				[chooser setCompletionHandler:^(ACAccount *twAccount) {
 					// if user cancels the chooser then 'account' will be set to nil
 					if (!twAccount) {
-						NSLog(@"Native twiiter user cancelled login");
+						NSError *err = [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginCancelled description:@"Twitter login cancelled" failureReason:@"Native twitter login is cancelled by user"];
+						[self finishLogin:NO withError:err];
 					}
 					else {
-						[self takeActions:twAccount completionHandler: handler];
+						[self takeActions:twAccount];
 					}
 				}];
 			} else {
-				[self takeActions:[accounts objectAtIndex:0] completionHandler: handler];
+				[self takeActions:[accounts objectAtIndex:0]];
 			}
 		} else {
-			NSLog(@"Twitter Native Login is NOT granted");
+			NSError *err = [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginFailed description:@"Twitter login failed" failureReason:@"Native twitter login is not granted by user"];
+			[self finishLogin:NO withError:err];
 			_isConfigured = false;
 		}
 	}];
@@ -82,7 +85,6 @@
 			[accessToken stringByReplacingOccurrencesOfString:@"oauth_token="
 												   withString:@""];
 
-			NSLog(@"Accesstoken is %@", accessToken);
 			return accessToken;
 		}
 	}
@@ -90,7 +92,7 @@
 	return @"Error, can not get Twitter Native Access Token";
 }
 
-- (void)takeActions: (ACAccount *)twAccount completionHandler: (LRServiceCompletionHandler)handler{
+- (void)takeActions: (ACAccount *)twAccount {
 	if (_isConfigured) {
 		//Exchange for LoginRadius Access Token and go to specified page
 		NSString *twAccessToken = [self getNativeAccessToken:twAccount];
@@ -102,4 +104,9 @@
 	}
 }
 
+- (void)finishLogin:(BOOL) success withError:(NSError*) error {
+	if (self.handler) {
+		self.handler(success, error);
+	}
+}
 @end
