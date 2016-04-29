@@ -51,7 +51,17 @@
 }
 
 + (void) logout {
+	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	for (NSHTTPCookie *cookie in [storage cookies]) {
+		[storage deleteCookie:cookie];
+	}
 
+	NSUserDefaults *lrUserDefault = [NSUserDefaults standardUserDefaults];
+	[lrUserDefault removeObjectForKey:@"isLoggedIn"];
+	[lrUserDefault removeObjectForKey:@"lrAccessToken"];
+	[lrUserDefault removeObjectForKey:@"lrUserBlocked"];
+	[lrUserDefault removeObjectForKey:@"lrUserProfile"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (NSString*) apiKey {
