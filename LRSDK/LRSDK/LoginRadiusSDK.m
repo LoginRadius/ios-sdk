@@ -51,6 +51,8 @@
 }
 
 + (void) logout {
+	[[LoginRadiusSocialLoginManager sharedInstance] logout];
+	// Clearing all stored tokens userprofiles for loginradius
 	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	for (NSHTTPCookie *cookie in [storage cookies]) {
 		[storage deleteCookie:cookie];

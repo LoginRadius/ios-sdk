@@ -19,6 +19,8 @@
 					 parameters:(NSDictionary*)params
 						handler:(LRServiceCompletionHandler)handler;
 
+- (void)logout;
+
 - (BOOL)application:(UIApplication *)application
 			openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication

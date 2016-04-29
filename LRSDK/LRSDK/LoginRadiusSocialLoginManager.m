@@ -63,6 +63,11 @@
 	}
 }
 
+- (void)logout {
+	// Only facebook native login stores sessions that we have to clear
+	[_facebookLogin logout];
+}
+
 #pragma mark Application delegate methods
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 	return [[LoginRadiusFacebookLogin sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
