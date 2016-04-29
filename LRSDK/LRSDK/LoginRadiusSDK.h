@@ -6,8 +6,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NSError+LRError.h"
+#import "LRErrorCode.h"
 
 typedef void (^responseHandler)(NSDictionary *data, NSError *error);
+typedef void (^LRRaaSCompletionHandler)(BOOL success, NSError *error);
 
 @interface LoginRadiusSDK : NSObject
 
@@ -52,7 +55,7 @@ typedef void (^responseHandler)(NSDictionary *data, NSError *error);
  */
 + (void) userRegistrationWithAction:(NSString*) action
 					   inController:(UIViewController*)controller
-				  completionHandler:(responseHandler)handler;
+				  completionHandler:(LRRaaSCompletionHandler)handler;
 
 /*
 	Logouts the user

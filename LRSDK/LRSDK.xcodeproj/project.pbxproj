@@ -50,6 +50,9 @@
 		6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */; };
 		6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */; };
 		6884DFD71CCA295F0071EFFB /* LoginRadiusRegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */; };
+		688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20151CD33D770052CEA4 /* LRErrorCode.h */; };
+		688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20161CD33D770052CEA4 /* NSError+LRError.h */; };
+		688A201A1CD33D770052CEA4 /* NSError+LRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 688A20171CD33D770052CEA4 /* NSError+LRError.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRaaSViewController.m; sourceTree = "<group>"; };
 		6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusRegistrationManager.h; sourceTree = "<group>"; };
 		6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRegistrationManager.m; sourceTree = "<group>"; };
+		688A20151CD33D770052CEA4 /* LRErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRErrorCode.h; sourceTree = "<group>"; };
+		688A20161CD33D770052CEA4 /* NSError+LRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+LRError.h"; sourceTree = "<group>"; };
+		688A20171CD33D770052CEA4 /* NSError+LRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+LRError.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,9 @@
 		6884DFB81CCA0F160071EFFB /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				688A20151CD33D770052CEA4 /* LRErrorCode.h */,
+				688A20161CD33D770052CEA4 /* NSError+LRError.h */,
+				688A20171CD33D770052CEA4 /* NSError+LRError.m */,
 				6884DFB41CCA0F0E0071EFFB /* LoginRadiusUtilities.h */,
 				6884DFB51CCA0F0E0071EFFB /* LoginRadiusUtilities.m */,
 			);
@@ -247,6 +256,8 @@
 				6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */,
 				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
 				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
+				688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */,
+				688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */,
 				6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +397,7 @@
 				6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */,
 				6884DFB71CCA0F0E0071EFFB /* LoginRadiusUtilities.m in Sources */,
 				6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */,
+				688A201A1CD33D770052CEA4 /* NSError+LRError.m in Sources */,
 				6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */,
 				6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */,
 				6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */,

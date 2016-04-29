@@ -30,8 +30,8 @@
 	return self;
 }
 
-- (void) registrationWithAction:(NSString*) action inController:(UIViewController*)controller completionHandler:(responseHandler)handler {
-	LoginRadiusRaaSViewController *webVC = [[LoginRadiusRaaSViewController alloc] initWithAction:action];
+- (void) registrationWithAction:(NSString*) action inController:(UIViewController*)controller completionHandler:(LRRaaSCompletionHandler)handler {
+	LoginRadiusRaaSViewController *webVC = [[LoginRadiusRaaSViewController alloc] initWithAction:action completionHandler:handler];
 	UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
 	[controller presentViewController:navVC animated:YES completion:nil];
 }

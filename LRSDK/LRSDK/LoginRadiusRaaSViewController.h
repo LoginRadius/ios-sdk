@@ -5,7 +5,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginRadiusSDK.h"
 
 @interface LoginRadiusRaaSViewController : UIViewController
-- (instancetype)initWithAction: (NSString*) action;
+- (instancetype)initWithAction: (NSString*) action completionHandler:(LRRaaSCompletionHandler)handler;
 @end

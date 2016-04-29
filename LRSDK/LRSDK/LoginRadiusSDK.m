@@ -44,7 +44,7 @@
 
 + (void) userRegistrationWithAction:(NSString*) action
 					   inController:(UIViewController*)controller
-				  completionHandler:(responseHandler)handler {
+				  completionHandler:(LRRaaSCompletionHandler)handler {
 	[[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:action
 															   inController:controller
 														  completionHandler:handler];

@@ -12,15 +12,16 @@
 	UIWebView *_webView;
 	NSString *_action;
 }
-
+@property(nonatomic, copy) LRRaaSCompletionHandler handler;
 @end
 
 @implementation LoginRadiusRaaSViewController
 
--(instancetype)initWithAction:(NSString *)action {
+-(instancetype)initWithAction:(NSString *)action completionHandler:(LRRaaSCompletionHandler)handler {
 	self = [super init];
 	if (self) {
 		_action = action;
+		_handler = handler;
 	}
 	return self;
 }
@@ -48,7 +49,13 @@
 }
 
 - (void)cancelPressed {
+	NSError *error = [NSError errorWithCode:LRErrorCodeRaaSCancelled
+								description:@"User Registration Service cancelled"
+							  failureReason:[NSString stringWithFormat:@"User registration with action: %@ cancelled", _action]];
 	[self dismissViewControllerAnimated:YES completion:nil];
+	if (self.handler) {
+		self.handler(NO, error);
+	}
 }
 
 - (void)viewDidLayoutSubviews {
@@ -63,47 +70,43 @@
 
 	if( [returnAction isEqualToString:@"registration"]) {
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			NSLog(@"registration finished");
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self finishRaasAction];
 		}
 	} else if( [returnAction isEqualToString:@"login"] ) {
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
-			NSLog(@"login finished, token => %@, lr user id => %@", [params objectForKey:@"lrtoken"], [params objectForKey:@"lraccountid"]);
-
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
-
 			[LoginRadiusUtilities lrSaveUserData:nil lrToken:lrtoken];
 			[LoginRadiusUtilities lrSaveUserRaaSData:lrtoken APIKey:[LoginRadiusSDK apiKey]];
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self finishRaasAction];
 		}
 	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			NSLog(@"forgotpassword finished");
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self finishRaasAction];
 		}
 	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
-			NSLog(@"login finished, token => %@, lr user id => %@", [params objectForKey:@"lrtoken"], [params objectForKey:@"lraccountid"]);
-
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
-
 			[LoginRadiusUtilities lrSaveUserData:nil lrToken:lrtoken];
 			[LoginRadiusUtilities lrSaveUserRaaSData:lrtoken APIKey:[LoginRadiusSDK apiKey]];
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self finishRaasAction];
 		}
 	}  else if ( [returnAction isEqualToString:@"emailverification"] ) {
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			NSLog(@"Email Verification is done");
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self finishRaasAction];
 		}
 	} else if ( [returnAction isEqualToString:@"resetpassword"] ) {
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			NSLog(@"Reset password is done");
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self finishRaasAction];
 		}
 	}
 	return YES;
 }
 
+- (void) finishRaasAction {
+	if (self.handler) {
+		self.handler(YES, nil);
+	}
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
 

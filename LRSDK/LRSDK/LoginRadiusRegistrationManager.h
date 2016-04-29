@@ -14,6 +14,6 @@
 
 - (void) registrationWithAction:(NSString*) action
 				   inController:(UIViewController*)controller
-			  completionHandler:(responseHandler)handler;
+			  completionHandler:(LRRaaSCompletionHandler)handler;
 
 @end
