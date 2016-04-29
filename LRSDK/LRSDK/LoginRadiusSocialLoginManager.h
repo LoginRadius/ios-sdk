@@ -16,7 +16,7 @@
 -(void)loginWithProvider:(NSString*)provider
 			  parameters:(NSDictionary*)params
 			inController:(UIViewController*)controller
-	   completionHandler:(responseHandler)handler;
+	   completionHandler:(LRServiceCompletionHandler)handler;
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 @end

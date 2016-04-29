@@ -6,6 +6,6 @@
 - (void)callAPIEndpoint:(NSString*)endpoint
 				 method:(NSString*)httpMethod
 				 params:(NSDictionary*)params
-	  completionHandler:(responseHandler)completion;
+	  completionHandler:(LRAPIResponseHandler)completion;
 
 @end

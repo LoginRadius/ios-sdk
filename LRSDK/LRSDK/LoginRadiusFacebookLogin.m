@@ -9,6 +9,7 @@
 #import "LoginRadiusUtilities.h"
 
 @interface LoginRadiusFacebookLogin ()
+@property(nonatomic, copy) LRServiceCompletionHandler handler;
 @end
 
 @implementation LoginRadiusFacebookLogin
@@ -35,15 +36,16 @@
 
 - (void)loginfromViewController:(UIViewController*)controller
 					 parameters:(NSDictionary*)params
-						handler:(responseHandler)handler {
+						handler:(LRServiceCompletionHandler)handler {
 
 	BOOL permissionsAllowed = YES;
 	NSArray *permissions;
+	self.handler = handler;
 
 	if (params[@"facebookPermissions"]) {
 		permissions = params[@"facebookPermissions"];
 	} else {
-		NSLog(@"permissions not set using basic permissions");
+		// permissions not set using basic permissions;
 		permissions = @[@"public_profile"];
 	}
 
@@ -52,7 +54,7 @@
 	login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorSystemAccount;
 
 	void (^handleLogin)(FBSDKLoginManagerLoginResult *result, NSError *error) = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
-		[self onLoginResult:result callback:handler error:error];
+		[self onLoginResult:result error:error];
 	};
 
 	if (token) {
@@ -72,11 +74,12 @@
 		}
 
 		if ([permissions count] == 0) {
-			[self finishLogin:handler];
+			[self finishLogin:YES withError:nil];
 		} else if (publishPermissionFound && readPermissionFound) {
 			// Mix of permissions, not allowed
 			permissionsAllowed = NO;
-			NSLog(@"Your app can't ask for both read and write permissions.");
+			NSError *err = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed description:@"Facebook login failed" failureReason:@"Your app can't ask for both read and write permissions"];
+			[self finishLogin:NO withError:err];
 		} else if (publishPermissionFound) {
 			// Only publish permissions
 			[login logInWithPublishPermissions:permissions fromViewController:controller handler:handleLogin];
@@ -86,37 +89,39 @@
 		}
 	} else {
 		// Initial log in, can only ask for read type permissions
-		NSLog(@"{facebook} requesting initial login");
 		if ([self areAllPermissionsReadPermissions:permissions]) {
 			[login logInWithReadPermissions:permissions fromViewController:controller handler:handleLogin];
 		} else {
 			permissionsAllowed = NO;
-			NSLog(@"You can only ask for read permissions initially");
+			NSError *err = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed description:@"Facebook login failed" failureReason:@"You can only ask for read permissions initially"];
+			[self finishLogin:NO withError:err];
 		}
 	}
 
 	if (!permissionsAllowed) {
-		NSLog(@"You can only ask for read permissions for the first time login");
+		NSError *err = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed description:@"Facebook login failed" failureReason:@"You can only ask for read permissions initially"];
+		[self finishLogin:NO withError:err];
 	}
 }
 
 - (void) onLoginResult:(FBSDKLoginManagerLoginResult *) result
-			  callback:(responseHandler)handler
 				 error:(NSError *)error {
 
 	if (error) {
-		NSLog(@"Facebook login failed. Error: %@", error);
+		[self finishLogin:NO withError:error];
 	} else if (result.isCancelled) {
-		NSLog(@"Facebook login got cancelled.");
+		NSError *error = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginCancelled
+									description:@"Facebook Login cancelled"
+								  failureReason:@"Faceook native login is cancelled"];
+		[self finishLogin:NO withError:error];
 	} else {
 		// all other cases are handled by the access token notification
 		NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
 		// Get loginradius access_token for facebook access_token
 		[[LoginRadiusREST sharedInstance] callAPIEndpoint:@"api/v2/access_token/facebook" method:@"GET" params:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
 			NSString *token = [data objectForKey:@"access_token"];
-			if ([LoginRadiusUtilities lrSaveUserData:nil lrToken:token]) {
-				NSLog(@"User successfully saved");
-			}
+			[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
+			[self finishLogin:YES withError:nil];
 		}];
 	}
 }
@@ -148,26 +153,9 @@
 	return YES;
 }
 
-- (void)finishLogin:(responseHandler)handler {
-	FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
-	NSTimeInterval expiresTimeInterval = [token.expirationDate timeIntervalSinceNow];
-	NSNumber* expiresIn = @0;
-	if (expiresTimeInterval > 0) {
-		expiresIn = [NSNumber numberWithDouble:expiresTimeInterval];
-	}
-
-	NSString * userID = token ? token.userID : @"";
-	if (token) {
-		// Build an object that matches the javascript response
-		NSDictionary * authData = @{
-									@"accessToken": token.tokenString,
-									@"expiresIn": expiresIn,
-									@"grantedScopes": [[[token permissions] allObjects] componentsJoinedByString:@","],
-									@"declinedScopes": [[[token declinedPermissions] allObjects] componentsJoinedByString:@","],
-									@"userID": userID
-									};
-
-		handler(@{@"status": @"connected", @"authResponse": authData}, nil);
+- (void)finishLogin:(BOOL)success withError:(NSError*)error {
+	if (self.handler) {
+		self.handler(success, error);
 	}
 }
 

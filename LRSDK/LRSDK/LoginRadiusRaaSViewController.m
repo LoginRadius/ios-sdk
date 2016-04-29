@@ -12,12 +12,12 @@
 	UIWebView *_webView;
 	NSString *_action;
 }
-@property(nonatomic, copy) LRRaaSCompletionHandler handler;
+@property(nonatomic, copy) LRServiceCompletionHandler handler;
 @end
 
 @implementation LoginRadiusRaaSViewController
 
--(instancetype)initWithAction:(NSString *)action completionHandler:(LRRaaSCompletionHandler)handler {
+-(instancetype)initWithAction:(NSString *)action completionHandler:(LRServiceCompletionHandler)handler {
 	self = [super init];
 	if (self) {
 		_action = action;

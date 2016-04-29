@@ -12,11 +12,12 @@
 	UIWebView * _webView;
 	NSString * _provider;
 }
+@property(nonatomic, copy) LRServiceCompletionHandler handler;
 @end
 
 @implementation LoginRadiusWebLoginViewController
 
--(instancetype) initWithProvider: (NSString*) provider {
+- (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRServiceCompletionHandler)handler{
 	self = [super init];
 	if (self) {
 		_provider = provider;
@@ -44,7 +45,10 @@
 }
 
 - (void) cancelPressed {
-	[self dismissViewControllerAnimated:YES completion:nil];
+	NSError *error = [NSError errorWithCode:LRErrorCodeWebSocialLoginCancelled
+								description:@"Social Login cancelled"
+							  failureReason:[NSString stringWithFormat:@"Social login with %@ failed is cancelled", _provider]];
+	[self finishSocialLogin:NO withError:error];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,37 +66,26 @@
 
 		NSDictionary *parameters = [LoginRadiusUtilities dictionaryWithQueryString:request.URL.query];
 		NSString *token = [parameters objectForKey:@"token"];
-		NSLog(@"[LR] - token: %@", token);
+
 		if( token ) {
-
-			NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
-			BOOL userProfileSaved = [LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
-
-			if(!userProfileSaved) {
-				NSLog(@"Error, something wrong with lrSaveUserData");
-			}
-
-			NSMutableDictionary *lrUserDict = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lrUserProfile"] mutableCopy];
-
-			NSString *uid = [lrUserDict objectForKey:@"Uid"];
-
-			//If uid exists save Raas user data
-			if (uid && ![uid  isEqualToString: @""] ) {
-				BOOL userLinkedProfileSaved = [LoginRadiusUtilities lrSaveUserRaaSData:token APIKey:[LoginRadiusSDK apiKey]];
-				if(!userLinkedProfileSaved) {
-					NSLog(@"Error, something wrong with lrSaveUserRaasData");
-				}
-			}
-
-			NSLog(@"Login Succeed");
-			BOOL userDeleted = [lrUser integerForKey:@"lrUserBlocked"];
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
+			[self finishSocialLogin:YES	withError:nil];
 		} else {
-			NSLog(@" [LR] - Did not obtain valid token to redirect.");
-			[self dismissViewControllerAnimated:YES completion:nil];
+			NSError *error = [NSError errorWithCode:LRErrorCodeWebSocialLoginFailed
+										description:@"Social Login failed"
+									  failureReason:@"login failed since token is not received"];
+			[self finishSocialLogin:NO withError:error];
 		}
 		return YES;
 	}
 	return YES;
 }
+
+- (void)finishSocialLogin:(BOOL)success withError:(NSError*) error {
+	[self dismissViewControllerAnimated:YES completion:nil];
+	if (self.handler) {
+		self.handler(success, error);
+	}
+}
+
 @end

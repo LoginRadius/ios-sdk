@@ -5,7 +5,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginRadiusSDK.h"
 
 @interface LoginRadiusWebLoginViewController : UIViewController
-- (instancetype)initWithProvider: (NSString*) provider;
+- (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRServiceCompletionHandler)handler;
 @end

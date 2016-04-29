@@ -87,6 +87,17 @@
 			if (![userProfile objectForKey:@"errorCode"]) {
 				[lrUser setObject:userProfile forKey:@"lrUserProfile"];
 			}
+
+			NSString *uid = [userProfile objectForKey:@"Uid"];
+
+			//If uid exists save Raas user data
+			if (uid && ![uid  isEqualToString: @""] ) {
+				BOOL userLinkedProfileSaved = [LoginRadiusUtilities lrSaveUserRaaSData:token APIKey:[LoginRadiusSDK apiKey]];
+				if(!userLinkedProfileSaved) {
+					NSLog(@"Error, something wrong with lrSaveUserRaasData");
+				}
+			}
+
 		} else {
 			NSLog(@"Error User is blocked");
 			NSLog(@"Delete value => %li", lrUserBlocked);

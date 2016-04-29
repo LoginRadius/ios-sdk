@@ -9,8 +9,8 @@
 #import "NSError+LRError.h"
 #import "LRErrorCode.h"
 
-typedef void (^responseHandler)(NSDictionary *data, NSError *error);
-typedef void (^LRRaaSCompletionHandler)(BOOL success, NSError *error);
+typedef void (^LRAPIResponseHandler)(NSDictionary *data, NSError *error);
+typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 
 @interface LoginRadiusSDK : NSObject
 
@@ -45,7 +45,7 @@ typedef void (^LRRaaSCompletionHandler)(BOOL success, NSError *error);
 + (void) socialLoginWithProvider:(NSString*)provider
 					  parameters:(NSDictionary*)opts
 					inController:(UIViewController*)controller
-			   completionHandler:(responseHandler)handler;
+			   completionHandler:(LRServiceCompletionHandler)handler;
 
 /*
 	User Registration with the action 
@@ -55,7 +55,7 @@ typedef void (^LRRaaSCompletionHandler)(BOOL success, NSError *error);
  */
 + (void) userRegistrationWithAction:(NSString*) action
 					   inController:(UIViewController*)controller
-				  completionHandler:(LRRaaSCompletionHandler)handler;
+				  completionHandler:(LRServiceCompletionHandler)handler;
 
 /*
 	Logouts the user

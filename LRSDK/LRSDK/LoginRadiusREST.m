@@ -17,7 +17,7 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 - (void)callAPIEndpoint:(NSString*)endpoint
 				 method:(NSString*)httpMethod
 				 params:(NSDictionary*)params
-	  completionHandler:(responseHandler)completion {
+	  completionHandler:(LRAPIResponseHandler)completion {
 
 	NSURL* url = [self clientURLRequest:endpoint params:params];
 	if ([httpMethod isEqualToString:@"GET"]) {
@@ -35,7 +35,7 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 	#pragma GCC diagnostic pop
 }
 
-- (void)sendPOST :(NSURL *)url completionHandler:(responseHandler)completion {
+- (void)sendPOST :(NSURL *)url completionHandler:(LRAPIResponseHandler)completion {
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -66,7 +66,7 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 	}] resume];
 }
 
-- (void)sendGET :(NSURL *)url completionHandler:(responseHandler)completion {
+- (void)sendGET :(NSURL *)url completionHandler:(LRAPIResponseHandler)completion {
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSURLSession * session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 	[[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

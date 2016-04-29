@@ -35,7 +35,7 @@
 + (void) socialLoginWithProvider:(NSString*)provider
 					  parameters:(NSDictionary*)params
 					inController:(UIViewController*)controller
-			   completionHandler:(responseHandler)handler {
+			   completionHandler:(LRServiceCompletionHandler)handler {
 	[[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider
 														   parameters:params
 														 inController:controller
@@ -44,7 +44,7 @@
 
 + (void) userRegistrationWithAction:(NSString*) action
 					   inController:(UIViewController*)controller
-				  completionHandler:(LRRaaSCompletionHandler)handler {
+				  completionHandler:(LRServiceCompletionHandler)handler {
 	[[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:action
 															   inController:controller
 														  completionHandler:handler];

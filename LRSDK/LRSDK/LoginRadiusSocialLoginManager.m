@@ -46,7 +46,7 @@
 -(void)loginWithProvider:(NSString*)provider
 			  parameters:(NSDictionary*)params
 			inController:(UIViewController*)controller
-	   completionHandler:(responseHandler)handler {
+	   completionHandler:(LRServiceCompletionHandler)handler {
 
 	// TODO Add provider validation for the user
 	if( [provider caseInsensitiveCompare:@"twitter"] == NSOrderedSame && self.useNativeLogin) {
@@ -57,7 +57,7 @@
 		[_facebookLogin loginfromViewController:controller parameters:params handler:handler];
 	} else {
 		// Use web login
-		LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider];
+		LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider completionHandler:handler];
 		UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
 		[controller presentViewController:navVC animated:YES completion:nil];
 	}

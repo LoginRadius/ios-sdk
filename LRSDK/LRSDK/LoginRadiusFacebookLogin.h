@@ -17,7 +17,7 @@
 
 - (void)loginfromViewController:(UIViewController*)controller
 					 parameters:(NSDictionary*)params
-						handler:(responseHandler)handler;
+						handler:(LRServiceCompletionHandler)handler;
 
 - (BOOL)application:(UIApplication *)application
 			openURL:(NSURL *)url
