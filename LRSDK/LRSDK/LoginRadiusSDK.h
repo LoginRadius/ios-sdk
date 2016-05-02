@@ -14,7 +14,10 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 
 @interface LoginRadiusSDK : NSObject
 
-// Initilization
+// Default value is false, set this to true to use native social login
+@property (nonatomic) BOOL useNativeSocialLogin;
+
+// Initilization, this should be the first function that should be called before any other.
 + (void)instanceWithAPIKey:(NSString *)apiKey
 				  siteName:(NSString *)siteName
 			   application:(UIApplication *)application
@@ -40,6 +43,9 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 				recommended approach is to use FBSDKLoginBehaviorSystemAccount
 	@param controller - view controller where social login take place should not be nil
 	@param handler - code block executed after completion
+ 
+	@note Params are only valid when native login is configured, otherwise the settings configured in the user account
+		are taken
  */
 
 + (void) socialLoginWithProvider:(NSString*)provider

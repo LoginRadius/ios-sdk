@@ -15,6 +15,11 @@
 
 @implementation LoginRadiusSDK
 
+- (void)setUseNativeSocialLogin:(BOOL)useNativeSocialLogin {
+	_useNativeSocialLogin = useNativeSocialLogin;
+	[LoginRadiusSocialLoginManager sharedInstance].useNativeLogin = useNativeSocialLogin;
+}
+
 + (instancetype)sharedInstance {
 	static dispatch_once_t onceToken;
 	static LoginRadiusSDK *instance;
@@ -30,6 +35,7 @@
 	[LoginRadiusSDK sharedInstance].siteName = siteName;
 	[LoginRadiusSocialLoginManager instanceWithApplication:application launchOptions:launchOptions];
 	[LoginRadiusRegistrationManager instanceWithApplication:application launchOptions:launchOptions];
+	[LoginRadiusSDK sharedInstance].useNativeSocialLogin = NO;
 }
 
 + (void) socialLoginWithProvider:(NSString*)provider
