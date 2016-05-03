@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Examples/Social Login/Social Login.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:LRSDK/LRSDK.xcodeproj">
    </FileRef>
 </Workspace>
