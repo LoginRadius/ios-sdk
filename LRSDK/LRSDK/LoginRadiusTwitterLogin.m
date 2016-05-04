@@ -8,13 +8,23 @@
 #import "LoginRadiusSDK.h"
 #import "IDTwitterAccountChooserViewController.h"
 #import "LoginRadiusREST.h"
+#import "LoginRadiusUtilities.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import "OAuth+Additions.h"
+#import "TWTAPIManager.h"
+#import "TWTSignedRequest.h"
+#import "NSDictionary+LRDictionary.h"
 
 @interface LoginRadiusTwitterLogin()
-@property (nonatomic, retain) ACAccountStore *accountStore;
-@property (nonatomic, retain) ACAccountType *accountType;
+@property (nonatomic) ACAccountStore *accountStore;
+@property (nonatomic) ACAccountType *accountType;
 @property (nonatomic, copy) LRServiceCompletionHandler handler;
+
+@property (nonatomic, strong) TWTAPIManager *apiManager;
+@property (nonatomic, strong) NSArray *accounts;
+@property (nonatomic, strong) UIButton *reverseAuthBtn;
+
 @property BOOL isConfigured;
 
 @end
@@ -22,6 +32,16 @@
 @implementation LoginRadiusTwitterLogin
 
 @synthesize accountStore, accountType;
+
+- (instancetype)init{
+
+	self = [super init];
+	if (self) {
+		accountStore = [[ACAccountStore alloc] init];
+		_apiManager = [[TWTAPIManager alloc] init];
+	}
+	return self;
+}
 
 + (instancetype)instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
 	static dispatch_once_t onceToken;
@@ -34,7 +54,6 @@
 
 -(void)login:(LRServiceCompletionHandler)handler {
 	self.handler = handler;
-	accountStore = [[ACAccountStore alloc] init];
 	accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 	[accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
 		if(granted) {
@@ -64,44 +83,28 @@
 	}];
 }
 
-- (NSString *)getNativeAccessToken: (ACAccount *)twAccount {
-	NSString *username = [[NSString alloc] init];
-
-	SLRequest *twitterInfoRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://api.twitter.com/1.1/users/show.json"] parameters:[NSDictionary dictionaryWithObject:username forKey:@"screen_name"]];
-	[twitterInfoRequest setAccount:twAccount];
-
-	NSURLRequest * reqTemp = [twitterInfoRequest preparedURLRequest];
-	NSDictionary * dictHeaders = [reqTemp allHTTPHeaderFields];
-
-	NSString * authString = dictHeaders[@"Authorization"];
-	NSArray * arrayAuth = [authString componentsSeparatedByString:@","];
-	NSString * accessToken;
-	for( NSString * val in arrayAuth ) {
-		if( [val rangeOfString:@"oauth_token"].length > 0 ) {
-			accessToken =
-			[val stringByReplacingOccurrencesOfString:@"\""
-										   withString:@""];
-			accessToken =
-			[accessToken stringByReplacingOccurrencesOfString:@"oauth_token="
-												   withString:@""];
-
-			return accessToken;
-		}
-	}
-
-	return @"Error, can not get Twitter Native Access Token";
-}
-
 - (void)takeActions: (ACAccount *)twAccount {
-	if (_isConfigured) {
-		//Exchange for LoginRadius Access Token and go to specified page
-		NSString *twAccessToken = [self getNativeAccessToken:twAccount];
-		NSLog(@"Twitter Native Access Token is: %@", twAccessToken);
+	[_apiManager performReverseAuthForAccount:twAccount withHandler:^(NSData *responseData, NSError *error) {
+		if (responseData) {
+			NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+			NSDictionary * params = [NSDictionary dictionaryWithQueryString:responseStr];
 
-		// Get loginradius access token for twitter access token 
-	} else {
-		
-	}
+			// Get loginradius access token for twitter access token
+			[[LoginRadiusREST sharedInstance] callAPIEndpoint:@"api/v2/access_token/twitter"
+													   method:@"GET"
+													   params:@{@"key": [LoginRadiusSDK apiKey],
+																@"tw_access_token" : params[@"oauth_token"],
+																@"tw_token_secret":params[@"oauth_token_secret"]
+																}
+											completionHandler:^(NSDictionary *data, NSError *error) {
+				NSString *token = [data objectForKey:@"access_token"];
+				[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
+				[self finishLogin:YES withError:nil];
+			}];
+		} else {
+			[self finishLogin:NO withError:error];
+		}
+	}];
 }
 
 - (void)finishLogin:(BOOL) success withError:(NSError*) error {
@@ -109,4 +112,5 @@
 		self.handler(success, error);
 	}
 }
+
 @end

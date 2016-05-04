@@ -14,6 +14,7 @@
 				6884DF931CCA06610071EFFB /* ShellScript */,
 			);
 			dependencies = (
+				68E7ACC01CD9F61300A9E73E /* PBXTargetDependency */,
 			);
 			name = LoginRadius;
 			productName = LoginRadius;
@@ -53,10 +54,27 @@
 		688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20151CD33D770052CEA4 /* LRErrorCode.h */; };
 		688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20161CD33D770052CEA4 /* NSError+LRError.h */; };
 		688A201A1CD33D770052CEA4 /* NSError+LRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 688A20171CD33D770052CEA4 /* NSError+LRError.m */; };
+		68E7ACC91CD9F73600A9E73E /* TWTAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7ACC11CD9F73600A9E73E /* TWTAPIManager.h */; };
+		68E7ACCA1CD9F73600A9E73E /* TWTAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACC21CD9F73600A9E73E /* TWTAPIManager.m */; };
+		68E7ACCD1CD9F73600A9E73E /* TWTSignedRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7ACC51CD9F73600A9E73E /* TWTSignedRequest.h */; };
+		68E7ACCE1CD9F73600A9E73E /* TWTSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACC61CD9F73600A9E73E /* TWTSignedRequest.m */; };
+		68E7ACD51CD9F74A00A9E73E /* OAuth+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7ACD11CD9F74A00A9E73E /* OAuth+Additions.h */; };
+		68E7ACD61CD9F74A00A9E73E /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACD21CD9F74A00A9E73E /* OAuth+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68E7ACD71CD9F74A00A9E73E /* OAuthCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7ACD31CD9F74A00A9E73E /* OAuthCore.h */; };
+		68E7ACD81CD9F74A00A9E73E /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACD41CD9F74A00A9E73E /* OAuthCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68E7ACDB1CD9F75100A9E73E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7ACD91CD9F75100A9E73E /* NSData+Base64.h */; };
+		68E7ACDC1CD9F75100A9E73E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACDA1CD9F75100A9E73E /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		6884DF441CC9FC8A0071EFFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6884DF2F1CC9FC8A0071EFFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6884DF371CC9FC8A0071EFFB;
+			remoteInfo = LRSDK;
+		};
+		68E7ACBF1CD9F61300A9E73E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6884DF2F1CC9FC8A0071EFFB /* Project object */;
 			proxyType = 1;
@@ -101,6 +119,16 @@
 		688A20151CD33D770052CEA4 /* LRErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRErrorCode.h; sourceTree = "<group>"; };
 		688A20161CD33D770052CEA4 /* NSError+LRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+LRError.h"; sourceTree = "<group>"; };
 		688A20171CD33D770052CEA4 /* NSError+LRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+LRError.m"; sourceTree = "<group>"; };
+		68E7ACC11CD9F73600A9E73E /* TWTAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAPIManager.h; sourceTree = "<group>"; };
+		68E7ACC21CD9F73600A9E73E /* TWTAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAPIManager.m; sourceTree = "<group>"; };
+		68E7ACC51CD9F73600A9E73E /* TWTSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSignedRequest.h; sourceTree = "<group>"; };
+		68E7ACC61CD9F73600A9E73E /* TWTSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSignedRequest.m; sourceTree = "<group>"; };
+		68E7ACD11CD9F74A00A9E73E /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		68E7ACD21CD9F74A00A9E73E /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		68E7ACD31CD9F74A00A9E73E /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		68E7ACD41CD9F74A00A9E73E /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		68E7ACD91CD9F75100A9E73E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		68E7ACDA1CD9F75100A9E73E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,8 +236,13 @@
 		6884DFB31CCA0EA60071EFFB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				6884DFA71CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h */,
-				6884DFA81CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m */,
+				68E7ACD11CD9F74A00A9E73E /* OAuth+Additions.h */,
+				68E7ACD21CD9F74A00A9E73E /* OAuth+Additions.m */,
+				68E7ACD31CD9F74A00A9E73E /* OAuthCore.h */,
+				68E7ACD41CD9F74A00A9E73E /* OAuthCore.m */,
+				68E7ACD91CD9F75100A9E73E /* NSData+Base64.h */,
+				68E7ACDA1CD9F75100A9E73E /* NSData+Base64.m */,
+				68E7AD1D1CDA152F00A9E73E /* Twitter Reverse OAuth */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -237,6 +270,19 @@
 			name = RaaS;
 			sourceTree = "<group>";
 		};
+		68E7AD1D1CDA152F00A9E73E /* Twitter Reverse OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				68E7ACC11CD9F73600A9E73E /* TWTAPIManager.h */,
+				68E7ACC21CD9F73600A9E73E /* TWTAPIManager.m */,
+				68E7ACC51CD9F73600A9E73E /* TWTSignedRequest.h */,
+				68E7ACC61CD9F73600A9E73E /* TWTSignedRequest.m */,
+				6884DFA71CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h */,
+				6884DFA81CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m */,
+			);
+			name = "Twitter Reverse OAuth";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -244,20 +290,25 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E7ACD71CD9F74A00A9E73E /* OAuthCore.h in Headers */,
 				6884DFA51CCA0E850071EFFB /* LoginRadiusTwitterLogin.h in Headers */,
 				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 				6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */,
 				6884DFB11CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h in Headers */,
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
+				68E7ACCD1CD9F73600A9E73E /* TWTSignedRequest.h in Headers */,
 				6884DFD41CCA295F0071EFFB /* LoginRadiusRaaSViewController.h in Headers */,
 				6884DFA01CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h in Headers */,
 				6884DFAF1CCA0E930071EFFB /* LoginRadiusFacebookLogin.h in Headers */,
 				6884DFC31CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h in Headers */,
+				68E7ACC91CD9F73600A9E73E /* TWTAPIManager.h in Headers */,
 				6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */,
+				68E7ACDB1CD9F75100A9E73E /* NSData+Base64.h in Headers */,
 				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
 				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
 				688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */,
 				688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */,
+				68E7ACD51CD9F74A00A9E73E /* OAuth+Additions.h in Headers */,
 				6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,13 +449,18 @@
 				6884DFB71CCA0F0E0071EFFB /* LoginRadiusUtilities.m in Sources */,
 				6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */,
 				688A201A1CD33D770052CEA4 /* NSError+LRError.m in Sources */,
+				68E7ACCA1CD9F73600A9E73E /* TWTAPIManager.m in Sources */,
+				68E7ACD61CD9F74A00A9E73E /* OAuth+Additions.m in Sources */,
 				6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */,
 				6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */,
 				6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */,
 				6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */,
 				6884DFB21CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m in Sources */,
+				68E7ACD81CD9F74A00A9E73E /* OAuthCore.m in Sources */,
 				6884DFB01CCA0E930071EFFB /* LoginRadiusFacebookLogin.m in Sources */,
+				68E7ACDC1CD9F75100A9E73E /* NSData+Base64.m in Sources */,
 				6884DFAE1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.m in Sources */,
+				68E7ACCE1CD9F73600A9E73E /* TWTSignedRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +479,11 @@
 			isa = PBXTargetDependency;
 			target = 6884DF371CC9FC8A0071EFFB /* LRSDK */;
 			targetProxy = 6884DF441CC9FC8A0071EFFB /* PBXContainerItemProxy */;
+		};
+		68E7ACC01CD9F61300A9E73E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6884DF371CC9FC8A0071EFFB /* LRSDK */;
+			targetProxy = 68E7ACBF1CD9F61300A9E73E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -528,6 +589,7 @@
 				);
 				INFOPLIST_FILE = LRSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.LRSDK;
@@ -549,6 +611,7 @@
 				);
 				INFOPLIST_FILE = LRSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.LRSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";

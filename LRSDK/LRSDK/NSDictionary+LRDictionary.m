@@ -57,7 +57,7 @@ static NSString * URLEncodedString(NSString *urlString) {
 	return queryString;
 }
 
-- (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString {
++ (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString {
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 	NSArray *pairs = [queryString componentsSeparatedByString:@"&"];
 

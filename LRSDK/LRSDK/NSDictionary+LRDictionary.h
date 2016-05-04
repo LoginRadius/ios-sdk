@@ -7,4 +7,5 @@
 
 @interface NSDictionary (LRDictionary)
 - (NSString *)queryString;
++ (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString;
 @end
