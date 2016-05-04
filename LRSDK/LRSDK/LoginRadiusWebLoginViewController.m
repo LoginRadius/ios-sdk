@@ -7,6 +7,7 @@
 #import "LoginRadiusWebLoginViewController.h"
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusUtilities.h"
+#import "NSDictionary+LRDictionary.h"
 
 @interface LoginRadiusWebLoginViewController () <UIWebViewDelegate> {
 	UIWebView * _webView;
@@ -64,7 +65,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	if ([request.URL.absoluteString rangeOfString:@"token"].location != NSNotFound && [request.URL.path isEqualToString:@"/mobile.aspx"]) {
 
-		NSDictionary *parameters = [LoginRadiusUtilities dictionaryWithQueryString:request.URL.query];
+		NSDictionary *parameters = [NSDictionary dictionaryWithQueryString:request.URL.query];
 		NSString *token = [parameters objectForKey:@"token"];
 
 		if( token ) {

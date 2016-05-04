@@ -39,33 +39,6 @@
  */
 + (NSData *)parseDatatoJsonData :(NSMutableDictionary *)data;
 
-
-/*!
-    @function URLEncodedString
-    @brief Encode the string of url into URL friendly form
-    @param urlString The string that wants to be encodded
-    @return URL friendly NSString
- */
-+ (NSString *)URLEncodedString :(NSString *)urlString;
-
-
-/*!
-    @function URLDecodedString
-    @brief Decode the string of url into normal NSString
-    @param urlString The string that wants to be decoded
-    @return normal NSString
- */
-+ (NSString *)URLDecodedString :(NSString *)urlString;
-
-
-/*!
-    @function dictionaryWithQueryString
-    @brief Parse the queryString from format http://example.com?key1=value1&key2=value2 into NSdictionary
-    @param urlString The string that wants to be parsed
-    @return NSDictionary containing the pair values
- */
-+ (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString;
-
 + (BOOL)lrSaveUserData :(NSMutableDictionary *)userProfile lrToken:(NSString *)token;
 
 + (BOOL)lrSaveUserRaaSData :(NSString *)token APIKey:(NSString *)key;

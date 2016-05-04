@@ -5,29 +5,7 @@
 //
 
 #import "NSDictionary+LRDictionary.h"
-
-static NSString * URLDecodedString(NSString *urlString) {
-	__autoreleasing NSString *decodedString;
-	decodedString = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
-																										  NULL,
-																										  (__bridge CFStringRef)urlString,
-																										  CFSTR(""),
-																										  kCFStringEncodingUTF8
-																										  );
-	return decodedString;
-}
-
-static NSString * URLEncodedString(NSString *urlString) {
-	__autoreleasing NSString *encodedString;
-	encodedString = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
-																						  NULL,
-																						  (__bridge CFStringRef)urlString,
-																						  NULL,
-																						  (CFStringRef)@":!*();@/&?#[]+$,='%’\"",
-																						  kCFStringEncodingUTF8
-																						  );
-	return encodedString;
-}
+#import "NSString+LRString.h"
 
 @implementation NSDictionary (LRDictionary)
 
@@ -47,9 +25,9 @@ static NSString * URLEncodedString(NSString *urlString) {
 			}
 
 			if (nil != key && nil != value) {
-				[queryString appendFormat:@"%@=%@", URLEncodedString(key), URLEncodedString(value)];
+				[queryString appendFormat:@"%@=%@", [key URLEncodedString], [value URLEncodedString]];
 			} else if (nil != key) {
-				[queryString appendFormat:@"%@", URLEncodedString(key)];
+				[queryString appendFormat:@"%@", [key URLEncodedString]];
 			}
 		}
 	}
@@ -58,6 +36,10 @@ static NSString * URLEncodedString(NSString *urlString) {
 }
 
 + (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString {
+	if (queryString.length == 0) {
+		return @{};
+	}
+
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 	NSArray *pairs = [queryString componentsSeparatedByString:@"&"];
 
@@ -68,8 +50,8 @@ static NSString * URLEncodedString(NSString *urlString) {
 		{
 			NSString *key = elements[0];
 			NSString *value = elements[1];
-			NSString *decodedKey = URLDecodedString(key);
-			NSString *decodedValue = URLDecodedString(value);
+			NSString *decodedKey = [key URLDecodedString];
+			NSString *decodedValue = [value URLDecodedString];
 
 			if (![key isEqualToString:decodedKey])
 				key = decodedKey;

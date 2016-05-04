@@ -7,6 +7,7 @@
 #import "LoginRadiusRaaSViewController.h"
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusUtilities.h"
+#import "NSDictionary+LRDictionary.h"
 
 @interface LoginRadiusRaaSViewController () <UIWebViewDelegate> {
 	UIWebView *_webView;
@@ -65,7 +66,7 @@
 #pragma - Web View Delegates
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
-	NSDictionary *params = [LoginRadiusUtilities dictionaryWithQueryString:request.URL.query];
+	NSDictionary *params = [NSDictionary dictionaryWithQueryString:request.URL.query];
 	NSString *returnAction = [params objectForKey:@"action"];
 
 	if( [returnAction isEqualToString:@"registration"]) {
