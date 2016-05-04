@@ -212,6 +212,8 @@
 		6884DF991CCA09550071EFFB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				688A20161CD33D770052CEA4 /* NSError+LRError.h */,
+				688A20171CD33D770052CEA4 /* NSError+LRError.m */,
 				6884DFC11CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h */,
 				6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */,
 				6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */,
@@ -257,8 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				688A20151CD33D770052CEA4 /* LRErrorCode.h */,
-				688A20161CD33D770052CEA4 /* NSError+LRError.h */,
-				688A20171CD33D770052CEA4 /* NSError+LRError.m */,
 				6884DFB41CCA0F0E0071EFFB /* LoginRadiusUtilities.h */,
 				6884DFB51CCA0F0E0071EFFB /* LoginRadiusUtilities.m */,
 			);
