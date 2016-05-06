@@ -1,3 +1,9 @@
+//
+//  LoginRadiusREST.m
+//
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//
+
 #import "LoginRadiusREST.h"
 #import "NSDictionary+LRDictionary.h"
 

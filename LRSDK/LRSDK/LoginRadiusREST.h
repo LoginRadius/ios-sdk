@@ -1,3 +1,9 @@
+//
+//  LoginRadiusREST.h
+//
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//
+
 #import <Foundation/Foundation.h>
 #import "LoginRadiusSDK.h"
 

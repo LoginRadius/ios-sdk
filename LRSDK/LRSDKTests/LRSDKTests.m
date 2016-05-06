@@ -1,8 +1,6 @@
 //
 //  LRSDKTests.m
-//  LRSDKTests
 //
-//  Created by Raviteja Ghanta on 22/04/16.
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 

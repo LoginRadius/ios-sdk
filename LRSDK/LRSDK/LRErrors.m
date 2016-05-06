@@ -2,7 +2,6 @@
 //  LRErrors.m
 //  LRSDK
 //
-//  Created by Raviteja Ghanta on 05/05/16.
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
