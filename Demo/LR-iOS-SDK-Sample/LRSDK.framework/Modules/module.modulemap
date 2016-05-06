@@ -1,0 +1,6 @@
+framework module LRSDK {
+  umbrella header "LRSDK.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,116 @@
+//
+//  LRErrors.m
+//  LRSDK
+//
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//
+
+#import "LRErrors.h"
+#import "NSError+LRError.h"
+
+@implementation LRErrors
+
++ (NSError*)serviceCancelled:(NSString*)action {
+	return [NSError errorWithCode:LRErrorCodeRaaSCancelled
+					  description:@"User Registration Service cancelled"
+					failureReason:[NSString stringWithFormat:@"User registration with action: %@ cancelled", action]];
+}
+
++ (NSError*)userRegistraionFailed {
+	return [NSError errorWithCode:LRErrorCodeRaaSUserRegistrationFailed
+					  description:@"User registration failed"
+					failureReason:@"User registration failed with no status"];
+}
+
++ (NSError*)userLoginFailed {
+	return [NSError errorWithCode:LRErrorCodeRaaSUserLoginFailed
+					  description:@"User login failed"
+					failureReason:@"User login failed since token not recieved"];
+}
+
++ (NSError*)userForgotPasswordFailed {
+	return  [NSError errorWithCode:LRErrorCodeRaaSUserForgotPasswordFailed
+					   description:@"User forgot password failed"
+					 failureReason:@"User forgot password failed with no status"];
+}
+
++ (NSError*)userEmailVerificationFailed {
+	return  [NSError errorWithCode:LRErrorCodeRaaSUserEmailVerificationFailed
+					   description:@"User email verification failed"
+					 failureReason:@"User email verification failed with no status"];
+}
+
++ (NSError*)userSocialLoginFailed {
+	return  [NSError errorWithCode:LRErrorCodeRaaSUserSocialLoginFailed
+					   description:@"User social login failed"
+					 failureReason:@"User social login failed since token not recieved"];
+}
+
++ (NSError*)userResetPasswordFailed {
+	return  [NSError errorWithCode:LRErrorCodeRaaSUserResetPasswordFailed
+					   description:@"User reset password failed"
+					 failureReason:@"User reset password failed failed with no status"];
+
+}
+
++ (NSError*)tokenEmpty {
+	return [NSError errorWithCode:LRErrorCodeAccessTokenEmpty
+					  description:@"User profile fetching failed"
+					failureReason:@"Access token is empty or null"];
+}
+
++ (NSError*)userProfieWithErrorCode:(NSString*)errorCode {
+	return [NSError errorWithCode:LRErrorCodeUserProfileError
+					  description:@"User profile error"
+					failureReason:[NSString stringWithFormat:@"User profile error with error code %@", errorCode]];
+}
+
++ (NSError*)userProfileError {
+	return [NSError errorWithCode:LRErrorCodeUserProfileError
+			   description:@"User profile error"
+			 failureReason:@"User profile is either bloked or returned with an errorCode"];
+}
+
++ (NSError *)socialLoginCancelled:(NSString*) provider {
+	return [NSError errorWithCode:LRErrorCodeWebSocialLoginCancelled
+					  description:@"Social Login cancelled"
+					failureReason:[NSString stringWithFormat:@"Social login with %@ is cancelled", provider]];
+}
+
++ (NSError *)socialLoginFailed:(NSString*) provider {
+	return [NSError errorWithCode:LRErrorCodeWebSocialLoginFailed
+								description:@"Social Login failed"
+							  failureReason:[NSString stringWithFormat:@"Social login with %@ is failed since token is not recieved", provider]];
+}
+
++ (NSError*)nativeTwitterLoginCancelled {
+	return [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginCancelled
+					  description:@"Twitter login cancelled"
+					failureReason:@"Native twitter login is cancelled by user"];
+}
+
++ (NSError*)nativeTwitterLoginFailed {
+	return [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginFailed
+					  description:@"Twitter login failed"
+					failureReason:@"Native twitter login is not granted by user"];
+}
+
++ (NSError*)nativeFacebookLoginCancelled {
+	return [NSError errorWithCode:LRErrorCodeNativeFacebookLoginCancelled
+					  description:@"Facebook Login cancelled"
+					failureReason:@"Faceook native login is cancelled"];
+
+}
+
++ (NSError*)nativeFacebookLoginFailed {
+	return [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed 
+					  description:@"Facebook login failed"
+					failureReason:@"Your app should only ask for read permissions for first time login"];
+}
+
++ (NSError*)nativeFacebookLoginFailedMixedPermissions {
+	return [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed
+					  description:@"Facebook login failed"
+					failureReason:@"Your app can't ask for both read and write permissions"];
+}
+@end
