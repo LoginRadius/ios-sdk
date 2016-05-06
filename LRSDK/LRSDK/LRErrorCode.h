@@ -9,7 +9,7 @@
 
 typedef NS_ENUM(NSInteger, LRErrorCode) {
 	// User Registration Service cancelled
-	LRErrorCodeRaaSCancelled = 0,
+	LRErrorCodeRaaSCancelled,
 
 	// RaaS user registation failed
 	LRErrorCodeRaaSUserRegistrationFailed,

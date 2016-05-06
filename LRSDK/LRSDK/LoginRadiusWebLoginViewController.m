@@ -23,6 +23,7 @@
 	self = [super init];
 	if (self) {
 		_provider = provider;
+		_handler = handler;
 	}
 	return self;
 }
