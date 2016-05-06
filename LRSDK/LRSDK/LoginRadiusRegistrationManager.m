@@ -5,7 +5,7 @@
 //
 
 #import "LoginRadiusRegistrationManager.h"
-#import "LoginRadiusRaaSViewController.h"
+#import "LoginRadiusRSViewController.h"
 
 @implementation LoginRadiusRegistrationManager
 
@@ -31,7 +31,7 @@
 }
 
 - (void) registrationWithAction:(NSString*) action inController:(UIViewController*)controller completionHandler:(LRServiceCompletionHandler)handler {
-	LoginRadiusRaaSViewController *webVC = [[LoginRadiusRaaSViewController alloc] initWithAction:action completionHandler:handler];
+	LoginRadiusRSViewController *webVC = [[LoginRadiusRSViewController alloc] initWithAction:action completionHandler:handler];
 	UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
 	[controller presentViewController:navVC animated:YES completion:nil];
 }

@@ -15,6 +15,7 @@
 #import "TWTAPIManager.h"
 #import "TWTSignedRequest.h"
 #import "NSDictionary+LRDictionary.h"
+#import "LRErrors.h"
 
 @interface LoginRadiusTwitterLogin()
 @property (nonatomic) ACAccountStore *accountStore;
@@ -65,8 +66,7 @@
 				[chooser setCompletionHandler:^(ACAccount *twAccount) {
 					// if user cancels the chooser then 'account' will be set to nil
 					if (!twAccount) {
-						NSError *err = [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginCancelled description:@"Twitter login cancelled" failureReason:@"Native twitter login is cancelled by user"];
-						[self finishLogin:NO withError:err];
+						[self finishLogin:NO withError:[LRErrors nativeTwitterLoginCancelled]];
 					}
 					else {
 						[self takeActions:twAccount];
@@ -76,8 +76,7 @@
 				[self takeActions:[accounts objectAtIndex:0]];
 			}
 		} else {
-			NSError *err = [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginFailed description:@"Twitter login failed" failureReason:@"Native twitter login is not granted by user"];
-			[self finishLogin:NO withError:err];
+			[self finishLogin:NO withError:[LRErrors nativeTwitterLoginFailed]];
 			_isConfigured = false;
 		}
 	}];

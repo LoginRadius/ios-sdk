@@ -47,8 +47,8 @@
 		6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */; };
 		6884DFCC1CCA14CC0071EFFB /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */; };
 		6884DFCD1CCA14CC0071EFFB /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */; };
-		6884DFD41CCA295F0071EFFB /* LoginRadiusRaaSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD01CCA295F0071EFFB /* LoginRadiusRaaSViewController.h */; };
-		6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */; };
+		6884DFD41CCA295F0071EFFB /* LoginRadiusRSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD01CCA295F0071EFFB /* LoginRadiusRSViewController.h */; };
+		6884DFD51CCA295F0071EFFB /* LoginRadiusRSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD11CCA295F0071EFFB /* LoginRadiusRSViewController.m */; };
 		6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */; };
 		6884DFD71CCA295F0071EFFB /* LoginRadiusRegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */; };
 		688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20151CD33D770052CEA4 /* LRErrorCode.h */; };
@@ -66,6 +66,8 @@
 		68E7ACDC1CD9F75100A9E73E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACDA1CD9F75100A9E73E /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68E7AD201CDA3A7F00A9E73E /* NSString+LRString.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7AD1E1CDA3A7F00A9E73E /* NSString+LRString.h */; };
 		68E7AD211CDA3A7F00A9E73E /* NSString+LRString.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7AD1F1CDA3A7F00A9E73E /* NSString+LRString.m */; };
+		68E7AD271CDB640200A9E73E /* LRErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7AD251CDB640100A9E73E /* LRErrors.h */; };
+		68E7AD281CDB640200A9E73E /* LRErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7AD261CDB640200A9E73E /* LRErrors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,8 +116,8 @@
 		6884DFC21CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+LRMutableDictionary.m"; sourceTree = "<group>"; };
 		6884DFCA1CCA14CC0071EFFB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6884DFCB1CCA14CC0071EFFB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		6884DFD01CCA295F0071EFFB /* LoginRadiusRaaSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusRaaSViewController.h; sourceTree = "<group>"; };
-		6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRaaSViewController.m; sourceTree = "<group>"; };
+		6884DFD01CCA295F0071EFFB /* LoginRadiusRSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusRSViewController.h; sourceTree = "<group>"; };
+		6884DFD11CCA295F0071EFFB /* LoginRadiusRSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRSViewController.m; sourceTree = "<group>"; };
 		6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRadiusRegistrationManager.h; sourceTree = "<group>"; };
 		6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRadiusRegistrationManager.m; sourceTree = "<group>"; };
 		688A20151CD33D770052CEA4 /* LRErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRErrorCode.h; sourceTree = "<group>"; };
@@ -133,6 +135,8 @@
 		68E7ACDA1CD9F75100A9E73E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		68E7AD1E1CDA3A7F00A9E73E /* NSString+LRString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LRString.h"; sourceTree = "<group>"; };
 		68E7AD1F1CDA3A7F00A9E73E /* NSString+LRString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LRString.m"; sourceTree = "<group>"; };
+		68E7AD251CDB640100A9E73E /* LRErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRErrors.h; sourceTree = "<group>"; };
+		68E7AD261CDB640200A9E73E /* LRErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRErrors.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +184,7 @@
 				6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */,
 				6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */,
 				6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */,
-				6884DFD81CCA29640071EFFB /* RaaS */,
+				6884DFD81CCA29640071EFFB /* Registration Service */,
 				6884DFA21CCA0DAF0071EFFB /* Social Login */,
 				6884DF981CCA09170071EFFB /* Network */,
 				6884DFB81CCA0F160071EFFB /* Util */,
@@ -261,19 +265,21 @@
 				688A20151CD33D770052CEA4 /* LRErrorCode.h */,
 				6884DFB41CCA0F0E0071EFFB /* LoginRadiusUtilities.h */,
 				6884DFB51CCA0F0E0071EFFB /* LoginRadiusUtilities.m */,
+				68E7AD251CDB640100A9E73E /* LRErrors.h */,
+				68E7AD261CDB640200A9E73E /* LRErrors.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
 		};
-		6884DFD81CCA29640071EFFB /* RaaS */ = {
+		6884DFD81CCA29640071EFFB /* Registration Service */ = {
 			isa = PBXGroup;
 			children = (
-				6884DFD01CCA295F0071EFFB /* LoginRadiusRaaSViewController.h */,
-				6884DFD11CCA295F0071EFFB /* LoginRadiusRaaSViewController.m */,
+				6884DFD01CCA295F0071EFFB /* LoginRadiusRSViewController.h */,
+				6884DFD11CCA295F0071EFFB /* LoginRadiusRSViewController.m */,
 				6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */,
 				6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */,
 			);
-			name = RaaS;
+			name = "Registration Service";
 			sourceTree = "<group>";
 		};
 		68E7AD1D1CDA152F00A9E73E /* Twitter Reverse OAuth */ = {
@@ -297,13 +303,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				68E7ACD71CD9F74A00A9E73E /* OAuthCore.h in Headers */,
+				68E7AD271CDB640200A9E73E /* LRErrors.h in Headers */,
 				6884DFA51CCA0E850071EFFB /* LoginRadiusTwitterLogin.h in Headers */,
 				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 				6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */,
 				6884DFB11CCA0E930071EFFB /* LoginRadiusWebLoginViewController.h in Headers */,
 				6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */,
 				68E7ACCD1CD9F73600A9E73E /* TWTSignedRequest.h in Headers */,
-				6884DFD41CCA295F0071EFFB /* LoginRadiusRaaSViewController.h in Headers */,
+				6884DFD41CCA295F0071EFFB /* LoginRadiusRSViewController.h in Headers */,
 				6884DFA01CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.h in Headers */,
 				6884DFAF1CCA0E930071EFFB /* LoginRadiusFacebookLogin.h in Headers */,
 				6884DFC31CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.h in Headers */,
@@ -458,9 +465,10 @@
 				688A201A1CD33D770052CEA4 /* NSError+LRError.m in Sources */,
 				68E7ACCA1CD9F73600A9E73E /* TWTAPIManager.m in Sources */,
 				68E7AD211CDA3A7F00A9E73E /* NSString+LRString.m in Sources */,
+				68E7AD281CDB640200A9E73E /* LRErrors.m in Sources */,
 				68E7ACD61CD9F74A00A9E73E /* OAuth+Additions.m in Sources */,
 				6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */,
-				6884DFD51CCA295F0071EFFB /* LoginRadiusRaaSViewController.m in Sources */,
+				6884DFD51CCA295F0071EFFB /* LoginRadiusRSViewController.m in Sources */,
 				6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */,
 				6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */,
 				6884DFB21CCA0E930071EFFB /* LoginRadiusWebLoginViewController.m in Sources */,

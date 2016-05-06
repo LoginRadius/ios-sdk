@@ -8,6 +8,7 @@
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusUtilities.h"
 #import "NSDictionary+LRDictionary.h"
+#import "LRErrors.h"
 
 @interface LoginRadiusWebLoginViewController () <UIWebViewDelegate> {
 	UIWebView * _webView;
@@ -46,10 +47,7 @@
 }
 
 - (void) cancelPressed {
-	NSError *error = [NSError errorWithCode:LRErrorCodeWebSocialLoginCancelled
-								description:@"Social Login cancelled"
-							  failureReason:[NSString stringWithFormat:@"Social login with %@ failed is cancelled", _provider]];
-	[self finishSocialLogin:NO withError:error];
+	[self finishSocialLogin:NO withError:[LRErrors socialLoginCancelled:_provider]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,10 +70,7 @@
 			[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
 			[self finishSocialLogin:YES	withError:nil];
 		} else {
-			NSError *error = [NSError errorWithCode:LRErrorCodeWebSocialLoginFailed
-										description:@"Social Login failed"
-									  failureReason:@"login failed since token is not received"];
-			[self finishSocialLogin:NO withError:error];
+			[self finishSocialLogin:NO withError:[LRErrors socialLoginFailed:_provider]];
 		}
 		return YES;
 	}

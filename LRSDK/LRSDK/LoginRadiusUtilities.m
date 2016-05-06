@@ -86,6 +86,7 @@
 			//Save user profile as lrUserProfile
 			if (![userProfile objectForKey:@"errorCode"]) {
 				[lrUser setObject:userProfile forKey:@"lrUserProfile"];
+				isSaved = TRUE;
 			}
 
 			NSString *uid = [userProfile objectForKey:@"Uid"];
@@ -104,8 +105,8 @@
 			[lrUser setInteger:true forKey:@"lrUserBlocked"];
 		}
 
-		isSaved = TRUE;
 	}
+	
 	return isSaved;
 }
 

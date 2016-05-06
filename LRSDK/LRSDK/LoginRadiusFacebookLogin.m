@@ -7,6 +7,7 @@
 #import "LoginRadiusFacebookLogin.h"
 #import "LoginRadiusREST.h"
 #import "LoginRadiusUtilities.h"
+#import "LRErrors.h"
 
 @interface LoginRadiusFacebookLogin ()
 @property(nonatomic, copy) LRServiceCompletionHandler handler;
@@ -78,8 +79,7 @@
 		} else if (publishPermissionFound && readPermissionFound) {
 			// Mix of permissions, not allowed
 			permissionsAllowed = NO;
-			NSError *err = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed description:@"Facebook login failed" failureReason:@"Your app can't ask for both read and write permissions"];
-			[self finishLogin:NO withError:err];
+			[self finishLogin:NO withError:[LRErrors nativeFacebookLoginFailedMixedPermissions]];
 		} else if (publishPermissionFound) {
 			// Only publish permissions
 			[login logInWithPublishPermissions:permissions fromViewController:controller handler:handleLogin];
@@ -93,27 +93,17 @@
 			[login logInWithReadPermissions:permissions fromViewController:controller handler:handleLogin];
 		} else {
 			permissionsAllowed = NO;
-			NSError *err = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed description:@"Facebook login failed" failureReason:@"You can only ask for read permissions initially"];
-			[self finishLogin:NO withError:err];
+			[self finishLogin:NO withError:[LRErrors nativeFacebookLoginFailed]];
 		}
-	}
-
-	if (!permissionsAllowed) {
-		NSError *err = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginFailed description:@"Facebook login failed" failureReason:@"You can only ask for read permissions initially"];
-		[self finishLogin:NO withError:err];
 	}
 }
 
 - (void) onLoginResult:(FBSDKLoginManagerLoginResult *) result
 				 error:(NSError *)error {
-
 	if (error) {
 		[self finishLogin:NO withError:error];
 	} else if (result.isCancelled) {
-		NSError *error = [NSError errorWithCode:LRErrorCodeNativeFacebookLoginCancelled
-									description:@"Facebook Login cancelled"
-								  failureReason:@"Faceook native login is cancelled"];
-		[self finishLogin:NO withError:error];
+		[self finishLogin:NO withError:[LRErrors nativeFacebookLoginCancelled]];
 	} else {
 		// all other cases are handled by the access token notification
 		NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];

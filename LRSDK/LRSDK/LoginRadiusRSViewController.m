@@ -4,19 +4,20 @@
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
-#import "LoginRadiusRaaSViewController.h"
+#import "LoginRadiusRSViewController.h"
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusUtilities.h"
 #import "NSDictionary+LRDictionary.h"
+#import "LRErrors.h"
 
-@interface LoginRadiusRaaSViewController () <UIWebViewDelegate> {
+@interface LoginRadiusRSViewController () <UIWebViewDelegate> {
 	UIWebView *_webView;
 	NSString *_action;
 }
 @property(nonatomic, copy) LRServiceCompletionHandler handler;
 @end
 
-@implementation LoginRadiusRaaSViewController
+@implementation LoginRadiusRSViewController
 
 -(instancetype)initWithAction:(NSString *)action completionHandler:(LRServiceCompletionHandler)handler {
 	self = [super init];
@@ -50,12 +51,9 @@
 }
 
 - (void)cancelPressed {
-	NSError *error = [NSError errorWithCode:LRErrorCodeRaaSCancelled
-								description:@"User Registration Service cancelled"
-							  failureReason:[NSString stringWithFormat:@"User registration with action: %@ cancelled", _action]];
 	[self dismissViewControllerAnimated:YES completion:nil];
 	if (self.handler) {
-		self.handler(NO, error);
+		self.handler(NO, [LRErrors serviceCancelled:_action]);
 	}
 }
 
@@ -70,40 +68,71 @@
 	NSString *returnAction = [params objectForKey:@"action"];
 
 	if( [returnAction isEqualToString:@"registration"]) {
+
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction];
+			[self finishRaasAction:YES withError:nil];
+		} else {
+			[self finishRaasAction:NO withError:[LRErrors userRegistraionFailed]];
 		}
+
 	} else if( [returnAction isEqualToString:@"login"] ) {
+
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
-			[LoginRadiusUtilities lrSaveUserData:nil lrToken:lrtoken];
-			[LoginRadiusUtilities lrSaveUserRaaSData:lrtoken APIKey:[LoginRadiusSDK apiKey]];
-			[self finishRaasAction];
+			BOOL userSaved = [LoginRadiusUtilities lrSaveUserData:nil lrToken:lrtoken];
+			if (userSaved) {
+				[self finishRaasAction:YES withError:nil];
+			} else {
+				[self finishRaasAction:NO withError:[LRErrors userProfileError]];
+			}
+		} else {
+			[self finishRaasAction:NO withError:[LRErrors userLoginFailed]];
 		}
+
 	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
+
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction];
+			[self finishRaasAction:YES withError:nil];
+		} else {
+			[self finishRaasAction:NO withError:[LRErrors userForgotPasswordFailed]];
 		}
+
 	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
+
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
-			[LoginRadiusUtilities lrSaveUserData:nil lrToken:lrtoken];
-			[LoginRadiusUtilities lrSaveUserRaaSData:lrtoken APIKey:[LoginRadiusSDK apiKey]];
-			[self finishRaasAction];
+			BOOL userSaved = [LoginRadiusUtilities lrSaveUserData:nil lrToken:lrtoken];
+			if (userSaved) {
+				[self finishRaasAction:YES withError:nil];
+			} else {
+				[self finishRaasAction:NO withError:[LRErrors userProfileError]];
+			}
+		} else {
+			[self finishRaasAction:NO withError:[LRErrors userSocialLoginFailed]];
 		}
+
 	}  else if ( [returnAction isEqualToString:@"emailverification"] ) {
+
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction];
+			[self finishRaasAction:YES withError:nil];
+		} else {
+			[self finishRaasAction:NO withError:[LRErrors userEmailVerificationFailed]];
 		}
+
 	} else if ( [returnAction isEqualToString:@"resetpassword"] ) {
+
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction];
+			[self finishRaasAction:YES withError:nil];
+		} else {
+			[self finishRaasAction:NO withError:[LRErrors userResetPasswordFailed]];
 		}
+
 	}
+
 	return YES;
 }
 
-- (void) finishRaasAction {
+- (void) finishRaasAction:(BOOL)success withError:(NSError*)error {
 	if (self.handler) {
 		self.handler(YES, nil);
 	}
