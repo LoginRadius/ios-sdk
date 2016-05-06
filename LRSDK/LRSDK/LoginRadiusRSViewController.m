@@ -51,10 +51,7 @@
 }
 
 - (void)cancelPressed {
-	[self dismissViewControllerAnimated:YES completion:nil];
-	if (self.handler) {
-		self.handler(NO, [LRErrors serviceCancelled:_action]);
-	}
+	[self finishRaasAction:NO withError:[LRErrors serviceCancelled:_action]];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -71,10 +68,7 @@
 
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
 			[self finishRaasAction:YES withError:nil];
-		} else {
-			[self finishRaasAction:NO withError:[LRErrors userRegistraionFailed]];
 		}
-
 	} else if( [returnAction isEqualToString:@"login"] ) {
 
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
@@ -85,16 +79,12 @@
 			} else {
 				[self finishRaasAction:NO withError:[LRErrors userProfileError]];
 			}
-		} else {
-			[self finishRaasAction:NO withError:[LRErrors userLoginFailed]];
 		}
 
 	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
 
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
 			[self finishRaasAction:YES withError:nil];
-		} else {
-			[self finishRaasAction:NO withError:[LRErrors userForgotPasswordFailed]];
 		}
 
 	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
@@ -107,24 +97,18 @@
 			} else {
 				[self finishRaasAction:NO withError:[LRErrors userProfileError]];
 			}
-		} else {
-			[self finishRaasAction:NO withError:[LRErrors userSocialLoginFailed]];
 		}
 
 	}  else if ( [returnAction isEqualToString:@"emailverification"] ) {
 
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
 			[self finishRaasAction:YES withError:nil];
-		} else {
-			[self finishRaasAction:NO withError:[LRErrors userEmailVerificationFailed]];
 		}
 
 	} else if ( [returnAction isEqualToString:@"resetpassword"] ) {
 
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
 			[self finishRaasAction:YES withError:nil];
-		} else {
-			[self finishRaasAction:NO withError:[LRErrors userResetPasswordFailed]];
 		}
 
 	}

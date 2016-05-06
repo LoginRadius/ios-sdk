@@ -78,12 +78,12 @@
 }
 
 - (void)finishSocialLogin:(BOOL)success withError:(NSError*) error {
-	[self dismissViewControllerAnimated:YES completion:nil];
 	if (self.handler) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.handler(success, error);
 		});
 	}
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
