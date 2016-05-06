@@ -17,7 +17,7 @@ This release have breaking changes from the previous SDK. Please refer to CHANGE
 ## Install
 
  1. Download the SDK and unzip the archive
- 2. Drag the LRSDK.framework to Frameworks in Project Navigator.
+ 2. Select your proejct and drag the LRSDK.framework to Embedded Binaries in General Tab.
 
 ## Before Getting Started
 Import the module in your source code.
