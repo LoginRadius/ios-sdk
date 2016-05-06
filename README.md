@@ -30,7 +30,17 @@ Import the module in your source code.
 
 ## Initilization
 
+#### Application is launched
+
+Initilize the SDK with your API key and Site name in your `AppDelegate.m`
+
+Details on obtaining Site name [here](http://support.loginradius.com/hc/en-us/articles/204614109-How-do-I-get-my-LoginRadius-Site-Name-) and API key [here](http://apidocs.loginradius.com/docs/get-api-key-and-secret)
+
+
 ```objc
+#import <LRSDK/LRSDK.h>
+//  AppDelegate.m
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[LoginRadiusSDK instanceWithAPIKey:<your api key>
 	                          siteName:<your site name>
@@ -44,7 +54,12 @@ Import the module in your source code.
 
 #### Application is asked to open URL
 
+Call is to handle URL's for social login to work properly in your `AppDelegate.m`
+
 ```objc
+#import <LRSDK/LRSDK.h>
+//  AppDelegate.m
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return  [[LoginRadiusSDK sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
@@ -87,7 +102,7 @@ Check the demo app for social login.
 
 > By default all social authentication will be done using Safari, if you want native integration set useNativeSocialLogin to YES after SDK initilisation
 >`[LoginRadiusSDK sharedInstance].useNativeSocialLogin = YES;`
-> LoginRadius iOS SDK only supports Facebook & Twitter native login, for detailed documentation please refer to [LoginRadius API docs](apidocs.loginradius.com/docs/ios-library).
+> LoginRadius iOS SDK only supports Facebook & Twitter native login, for detailed documentation please refer to [LoginRadius API docs](http://apidocs.loginradius.com/docs/ios-library).
 
 ### Logout
 Log out the user.
@@ -100,7 +115,7 @@ You can find the full documentation for this library on that [LoginRadius API do
 
 ## Author
 
-[LoginRadius](loginradius.com)
+[LoginRadius](https://www.loginradius.com/)
 
 ## License
 
