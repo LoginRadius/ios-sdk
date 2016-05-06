@@ -48,9 +48,9 @@
 													completionHandler:handler];
 }
 
-+ (void) userRegistrationWithAction:(NSString*) action
-					   inController:(UIViewController*)controller
-				  completionHandler:(LRServiceCompletionHandler)handler {
++ (void) registrationServiceWithAction:(NSString*) action
+						  inController:(UIViewController*)controller
+					 completionHandler:(LRServiceCompletionHandler)handler {
 	[[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:action
 															   inController:controller
 														  completionHandler:handler];

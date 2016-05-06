@@ -6,8 +6,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "NSError+LRError.h"
-#import "LRErrorCode.h"
 
 typedef void (^LRAPIResponseHandler)(NSDictionary *data, NSError *error);
 typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
@@ -54,14 +52,14 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 			   completionHandler:(LRServiceCompletionHandler)handler;
 
 /*
-	User Registration with the action 
+	Registration Service with the action
 	@param action - user registration action should be one of these @"login", @"registration", @"forgotpassword", @"sociallogin", @"resetpassword", @"emailverification"
 	@param controller - view controller where user registration actions take place should not be nil
 	@param handler - code block executed after completion
  */
-+ (void) userRegistrationWithAction:(NSString*) action
-					   inController:(UIViewController*)controller
-				  completionHandler:(LRServiceCompletionHandler)handler;
++ (void) registrationServiceWithAction:(NSString*) action
+						  inController:(UIViewController*)controller
+					 completionHandler:(LRServiceCompletionHandler)handler;
 
 /*
 	Logouts the user
