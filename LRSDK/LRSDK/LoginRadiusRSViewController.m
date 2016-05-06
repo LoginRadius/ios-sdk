@@ -134,7 +134,9 @@
 
 - (void) finishRaasAction:(BOOL)success withError:(NSError*)error {
 	if (self.handler) {
-		self.handler(YES, nil);
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.handler(success, error);
+		});
 	}
 	[self dismissViewControllerAnimated:YES completion:nil];
 }

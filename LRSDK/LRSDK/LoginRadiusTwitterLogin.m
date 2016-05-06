@@ -108,7 +108,9 @@
 
 - (void)finishLogin:(BOOL) success withError:(NSError*) error {
 	if (self.handler) {
-		self.handler(success, error);
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.handler(success, error);
+		});
 	}
 }
 

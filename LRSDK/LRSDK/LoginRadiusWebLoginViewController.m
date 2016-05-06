@@ -80,7 +80,9 @@
 - (void)finishSocialLogin:(BOOL)success withError:(NSError*) error {
 	[self dismissViewControllerAnimated:YES completion:nil];
 	if (self.handler) {
-		self.handler(success, error);
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.handler(success, error);
+		});
 	}
 }
 
