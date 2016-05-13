@@ -7,6 +7,17 @@
 #import <UIKit/UIKit.h>
 #import "LoginRadiusSDK.h"
 
+/**
+ * Web social login
+ */
 @interface LoginRadiusWebLoginViewController : UIViewController
+
+#pragma mark - Init
+
+/**
+ *  Init
+ *
+ *  @return singleton instance
+ */
 - (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRServiceCompletionHandler)handler;
 @end
