@@ -111,7 +111,7 @@ Log out the user.
 [LoginRadiusSDK logout];
 ```
 ## Documentation
-You can find the full documentation for this library on that [LoginRadius API docs](apidocs.loginradius.com/docs/ios-library).
+You can find the full documentation for this library on that [LoginRadius API docs](http://apidocs.loginradius.com/docs/ios-library).
 
 ## Author
 

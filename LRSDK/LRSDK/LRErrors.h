@@ -7,10 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "LRErrorCode.h"
-
+/**
+ *  Wrapper class for error objects
+ */
 @interface LRErrors : NSObject
 
-// User Registration Service
+#pragma mark - User Registration Service
 + (NSError*)serviceCancelled:(NSString*)action;
 + (NSError*)userRegistraionFailed;
 + (NSError*)userLoginFailed;
@@ -19,16 +21,16 @@
 + (NSError*)userSocialLoginFailed;
 + (NSError*)userResetPasswordFailed;
 
-// User Profile
+#pragma mark - User profile
 + (NSError*)tokenEmpty;
 + (NSError*)userProfieWithErrorCode:(NSString*)errorCode;
 + (NSError*)userProfileError;
 
-// Social Login
+#pragma mark - Social Login
 + (NSError *)socialLoginCancelled:(NSString*) provider;
 + (NSError *)socialLoginFailed:(NSString*) provider;
 
-// Native Social Login
+#pragma mark - Native Social Login
 + (NSError*)nativeTwitterLoginCancelled;
 + (NSError*)nativeTwitterLoginFailed;
 + (NSError*)nativeFacebookLoginCancelled;
