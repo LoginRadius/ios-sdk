@@ -23,6 +23,13 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
  */
 @property (nonatomic) BOOL useNativeSocialLogin;
 
+/**
+ *  Set language for the loginradius hosted pages for user registration service, currently we support english, spanish,
+ *  german, french should be one of these[@"es", @"de", @"fr"]
+ *  Default is english
+ */
+@property (nonatomic, copy) NSString* appLanguage;
+
 #pragma mark - Initilizers
 /**
  *  Initilization, this should be the first function that should be called before any other call to LoginRadiusSDK.
@@ -80,7 +87,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 /**
  *  Registration Service with the action
  *
- *  @param action     user registration action should be one of these @"login", @"registration", @"forgotpassword", @"sociallogin", @"resetpassword", @"emailverification"
+ *  @param action     user registration action should be one of these @"login", @"registration", @"forgotpassword", @"social"
  *  @param controller view controller where user registration actions take place should not be nil
  *  @param handler    code block executed after completion
  */

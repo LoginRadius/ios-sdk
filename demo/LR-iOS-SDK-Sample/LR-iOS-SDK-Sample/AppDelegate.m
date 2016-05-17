@@ -21,7 +21,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
 	[LoginRadiusSDK instanceWithAPIKey:API_KEY siteName:CLIENT_SITENAME application:application launchOptions:launchOptions];
-//	[LoginRadiusSDK sharedInstance].useNativeSocialLogin = YES;
+    
+    /* Uncomment this to use native social login.
+     you need follow social login guide to add the neccessary keys to info.plist file
+     http://apidocs.loginradius.com/v2.0/docs/ios-library-v3#section-native-social-login
+    */
+    
+    //[LoginRadiusSDK sharedInstance].useNativeSocialLogin = YES;
+    
+    /* uncomment and set the desired language for user registration service
+     default is english
+     only supports spanish @"es" , german - @"de" && french - @"fr" 
+    */
+    
+    // [LoginRadiusSDK sharedInstance].appLanguage = @"es";
 	return YES;
 }
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

@@ -4,17 +4,29 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/LRErrorCode.h</key>
+		<data>
+		RdMRdSpnhez1HlCXdNL4JZbzzKI=
+		</data>
+		<key>Headers/LRErrors.h</key>
+		<data>
+		6zd45d2zFfkQp4+4CXfnbmq8jao=
+		</data>
 		<key>Headers/LRSDK.h</key>
 		<data>
-		D68jWbaTNAYxJnUhWb9Ait7zuWc=
+		tnI21vjb53lJZyzooeKadfn1gNE=
+		</data>
+		<key>Headers/LoginRadiusREST.h</key>
+		<data>
+		zck0spiJhJlkhXdx4S7bzm4SveA=
 		</data>
 		<key>Headers/LoginRadiusSDK.h</key>
 		<data>
-		Xx7/irYTA/V9EV5Yw4iIk+kVq9g=
+		l3JPS+pTACbHWOiClya/ZSpzz/0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		2Zv1KYJPNnbdLOo3hCk8IraTqgA=
+		zYMnMOZqawLl/o7vvLTTF7bVP9o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -23,18 +35,72 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/LRErrorCode.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			RdMRdSpnhez1HlCXdNL4JZbzzKI=
+			</data>
+			<key>hash2</key>
+			<data>
+			7FyEhgex/3+ovWpzGjQHHkwQ70LjJGkSYWuNLrmQ0tM=
+			</data>
+		</dict>
+		<key>Headers/LRErrors.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			6zd45d2zFfkQp4+4CXfnbmq8jao=
+			</data>
+			<key>hash2</key>
+			<data>
+			y1pxw3ge3knf+9rq5dkrJ1yziKF4lSDHJXK1eWJ58Nk=
+			</data>
+		</dict>
 		<key>Headers/LRSDK.h</key>
-		<data>
-		D68jWbaTNAYxJnUhWb9Ait7zuWc=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			tnI21vjb53lJZyzooeKadfn1gNE=
+			</data>
+			<key>hash2</key>
+			<data>
+			fhI+wpLFK0zViFzkTFI7CatwZ08jWkoDZN8hSfLx/jg=
+			</data>
+		</dict>
+		<key>Headers/LoginRadiusREST.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			zck0spiJhJlkhXdx4S7bzm4SveA=
+			</data>
+			<key>hash2</key>
+			<data>
+			foxMknY6FjIF/UP1pl6+f/gqjHT9yw2E9gKm6w82S2o=
+			</data>
+		</dict>
 		<key>Headers/LoginRadiusSDK.h</key>
-		<data>
-		Xx7/irYTA/V9EV5Yw4iIk+kVq9g=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			l3JPS+pTACbHWOiClya/ZSpzz/0=
+			</data>
+			<key>hash2</key>
+			<data>
+			eo2ia/f27A6ZCOSfbQdFEJwN34yxXcYLpqTFmAx4hNE=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		1EpZaeD8IUKn6n+cQ1BaIL/fEDY=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			1EpZaeD8IUKn6n+cQ1BaIL/fEDY=
+			</data>
+			<key>hash2</key>
+			<data>
+			snZtEzny9m51Mfne/5m7DLD7QU/+8JAJZxeEeu35UJY=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>

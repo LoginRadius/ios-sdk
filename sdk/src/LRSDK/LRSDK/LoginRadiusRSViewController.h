@@ -16,7 +16,7 @@
 /**
  *  Initilizer
  *
- *  @param action  service action should be one of these[@"login", @"registration", @"forgotpassword", @"sociallogin", @"resetpassword", @"emailverification"]
+ *  @param action  service action should be one of these[@"login", @"registration", @"forgotpassword", @"social"]
  *  @param handler service completion handler
  *  @return view controller instance
  */

@@ -12,14 +12,14 @@
 		686434971CD0C8B900D6DC46 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686434941CD0C8B900D6DC46 /* FBSDKLoginKit.framework */; };
 		686434981CD0C8B900D6DC46 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 686434941CD0C8B900D6DC46 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		68BC6E6A1CDCC63900F914BB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BC6E691CDCC63900F914BB /* DetailViewController.m */; };
-		68BC6EF51CDCEF0300F914BB /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BC6EF41CDCEF0300F914BB /* LRSDK.framework */; };
-		68BC6EF61CDCEF0300F914BB /* LRSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 68BC6EF41CDCEF0300F914BB /* LRSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		68DA9E761CAE7D2900FE2605 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DA9E751CAE7D2400FE2605 /* main.m */; };
 		68DA9E791CAE7D2F00FE2605 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DA9E781CAE7D2F00FE2605 /* AppDelegate.m */; };
 		68DA9E7C1CAE7D3100FE2605 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DA9E7B1CAE7D3000FE2605 /* ViewController.m */; };
 		68DA9E7F1CAE7D3400FE2605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68DA9E7D1CAE7D3400FE2605 /* Main.storyboard */; };
 		68DA9E811CAE7D3600FE2605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68DA9E801CAE7D3600FE2605 /* Assets.xcassets */; };
 		68DA9E841CAE7D3600FE2605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68DA9E821CAE7D3600FE2605 /* LaunchScreen.storyboard */; };
+		68F5A43B1CEB602E009F6B0E /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F5A43A1CEB602E009F6B0E /* LRSDK.framework */; };
+		68F5A43C1CEB602E009F6B0E /* LRSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 68F5A43A1CEB602E009F6B0E /* LRSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +31,7 @@
 			files = (
 				686434981CD0C8B900D6DC46 /* FBSDKLoginKit.framework in Embed Frameworks */,
 				686434961CD0C8B900D6DC46 /* FBSDKCoreKit.framework in Embed Frameworks */,
-				68BC6EF61CDCEF0300F914BB /* LRSDK.framework in Embed Frameworks */,
+				68F5A43C1CEB602E009F6B0E /* LRSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,7 +43,6 @@
 		686434941CD0C8B900D6DC46 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		68BC6E681CDCC63800F914BB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		68BC6E691CDCC63900F914BB /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		68BC6EF41CDCEF0300F914BB /* LRSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LRSDK.framework; path = ../LRSDK.framework; sourceTree = "<group>"; };
 		68DA9E711CAE7D1C00FE2605 /* LR-iOS-SDK-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LR-iOS-SDK-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68DA9E751CAE7D2400FE2605 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		68DA9E771CAE7D2E00FE2605 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		68DA9E801CAE7D3600FE2605 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68DA9E831CAE7D3600FE2605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68DA9E851CAE7D3700FE2605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68F5A43A1CEB602E009F6B0E /* LRSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LRSDK.framework; path = ../LRSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 			files = (
 				686434971CD0C8B900D6DC46 /* FBSDKLoginKit.framework in Frameworks */,
 				686434951CD0C8B900D6DC46 /* FBSDKCoreKit.framework in Frameworks */,
-				68BC6EF51CDCEF0300F914BB /* LRSDK.framework in Frameworks */,
+				68F5A43B1CEB602E009F6B0E /* LRSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +73,7 @@
 		6884E0081CCA4BA30071EFFB /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				68BC6EF41CDCEF0300F914BB /* LRSDK.framework */,
+				68F5A43A1CEB602E009F6B0E /* LRSDK.framework */,
 				686434931CD0C8B900D6DC46 /* FBSDKCoreKit.framework */,
 				686434941CD0C8B900D6DC46 /* FBSDKLoginKit.framework */,
 			);
@@ -163,6 +163,7 @@
 				TargetAttributes = {
 					68DA9E701CAE7D1B00FE2605 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9DR359HYC7;
 					};
 				};
 			};
@@ -315,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LR-iOS-SDK-Sample",
@@ -332,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LR-iOS-SDK-Sample",

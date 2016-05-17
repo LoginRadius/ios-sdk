@@ -27,7 +27,7 @@
 		6884DF481CC9FC8A0071EFFB /* LRSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF471CC9FC8A0071EFFB /* LRSDKTests.m */; };
 		6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF8B1CCA04580071EFFB /* LoginRadiusSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF8E1CCA04580071EFFB /* LoginRadiusSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF8C1CCA04580071EFFB /* LoginRadiusSDK.m */; };
-		6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF941CCA09110071EFFB /* LoginRadiusREST.h */; };
+		6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF941CCA09110071EFFB /* LoginRadiusREST.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF971CCA09110071EFFB /* LoginRadiusREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF951CCA09110071EFFB /* LoginRadiusREST.m */; };
 		6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF9A1CCA09720071EFFB /* NSDictionary+LRDictionary.h */; };
 		6884DF9D1CCA09720071EFFB /* NSDictionary+LRDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF9B1CCA09720071EFFB /* NSDictionary+LRDictionary.m */; };
@@ -51,7 +51,7 @@
 		6884DFD51CCA295F0071EFFB /* LoginRadiusRSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD11CCA295F0071EFFB /* LoginRadiusRSViewController.m */; };
 		6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DFD21CCA295F0071EFFB /* LoginRadiusRegistrationManager.h */; };
 		6884DFD71CCA295F0071EFFB /* LoginRadiusRegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DFD31CCA295F0071EFFB /* LoginRadiusRegistrationManager.m */; };
-		688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20151CD33D770052CEA4 /* LRErrorCode.h */; };
+		688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20151CD33D770052CEA4 /* LRErrorCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */ = {isa = PBXBuildFile; fileRef = 688A20161CD33D770052CEA4 /* NSError+LRError.h */; };
 		688A201A1CD33D770052CEA4 /* NSError+LRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 688A20171CD33D770052CEA4 /* NSError+LRError.m */; };
 		68E7ACC91CD9F73600A9E73E /* TWTAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7ACC11CD9F73600A9E73E /* TWTAPIManager.h */; };
@@ -66,7 +66,7 @@
 		68E7ACDC1CD9F75100A9E73E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7ACDA1CD9F75100A9E73E /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68E7AD201CDA3A7F00A9E73E /* NSString+LRString.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7AD1E1CDA3A7F00A9E73E /* NSString+LRString.h */; };
 		68E7AD211CDA3A7F00A9E73E /* NSString+LRString.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7AD1F1CDA3A7F00A9E73E /* NSString+LRString.m */; };
-		68E7AD271CDB640200A9E73E /* LRErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7AD251CDB640100A9E73E /* LRErrors.h */; };
+		68E7AD271CDB640200A9E73E /* LRErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E7AD251CDB640100A9E73E /* LRErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68E7AD281CDB640200A9E73E /* LRErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7AD261CDB640200A9E73E /* LRErrors.m */; };
 /* End PBXBuildFile section */
 
@@ -303,7 +303,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				68E7ACD71CD9F74A00A9E73E /* OAuthCore.h in Headers */,
+				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
 				68E7AD271CDB640200A9E73E /* LRErrors.h in Headers */,
+				688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */,
 				6884DFA51CCA0E850071EFFB /* LoginRadiusTwitterLogin.h in Headers */,
 				6884DF8D1CCA04580071EFFB /* LoginRadiusSDK.h in Headers */,
 				6884DFB61CCA0F0E0071EFFB /* LoginRadiusUtilities.h in Headers */,
@@ -317,10 +319,8 @@
 				68E7ACC91CD9F73600A9E73E /* TWTAPIManager.h in Headers */,
 				6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */,
 				68E7ACDB1CD9F75100A9E73E /* NSData+Base64.h in Headers */,
-				6884DF961CCA09110071EFFB /* LoginRadiusREST.h in Headers */,
 				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
 				688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */,
-				688A20181CD33D770052CEA4 /* LRErrorCode.h in Headers */,
 				68E7AD201CDA3A7F00A9E73E /* NSString+LRString.h in Headers */,
 				68E7ACD51CD9F74A00A9E73E /* OAuth+Additions.h in Headers */,
 				6884DFD61CCA295F0071EFFB /* LoginRadiusRegistrationManager.h in Headers */,

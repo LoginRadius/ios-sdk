@@ -41,11 +41,20 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
+    NSDictionary * langMap = @{@"es": @"spanish", @"de": @"german", @"fr":@"french"};
+
 	UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
 
 	self.navigationItem.leftBarButtonItem = cancelItem;
-
-	NSString *url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",[LoginRadiusSDK apiKey], [LoginRadiusSDK siteName], _action];
+    NSString *url_address;
+    NSString *lang = [LoginRadiusSDK sharedInstance].appLanguage;
+    
+    if (lang) {
+        url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-%@/index.html?apikey=%@&sitename=%@&action=%@",langMap[lang], [LoginRadiusSDK apiKey], [LoginRadiusSDK siteName], _action];
+    } else {
+        url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",[LoginRadiusSDK apiKey], [LoginRadiusSDK siteName], _action];
+    }
+	
 	NSURL *url = [NSURL URLWithString:url_address];
 	[_webView loadRequest:[NSURLRequest requestWithURL: url]];
 }

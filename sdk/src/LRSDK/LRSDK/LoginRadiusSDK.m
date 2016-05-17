@@ -14,6 +14,7 @@
 @end
 
 @implementation LoginRadiusSDK
+@synthesize appLanguage;
 
 - (void)setUseNativeSocialLogin:(BOOL)useNativeSocialLogin {
 	_useNativeSocialLogin = useNativeSocialLogin;

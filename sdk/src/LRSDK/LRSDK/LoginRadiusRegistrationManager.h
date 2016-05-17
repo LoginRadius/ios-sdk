@@ -24,7 +24,7 @@
 /**
  *  Start registation service with action
  *
- *  @param action     should be one of these[@"login", @"registration", @"forgotpassword", @"sociallogin", @"resetpassword", @"emailverification"]
+ *  @param action     should be one of these[@"login", @"registration", @"forgotpassword", @"social"]
  *  @param controller view controller where user registration actions take place should not be nil
  *  @param handler    code block executed after completion
  */
