@@ -17,7 +17,8 @@ This release have breaking changes from the previous SDK. Please refer to CHANGE
 ## Install
 
  1. Download the SDK and unzip the archive
- 2. Select your proejct and drag the LRSDK.framework to Embedded Binaries in General Tab.
+ 2. Drag the LRSDK.framework to Embedded Frameworks in Project Navigator.
+ 
 
 ## Before Getting Started
 Import the module in your source code.
@@ -69,7 +70,7 @@ Call is to handle URL's for social login to work properly in your `AppDelegate.m
 ### Registration Service
 Registration service supports traditional registration and login methods using hosted pages.
 
-Supported actions are __login__, __registration__, __forgotpassword__, __sociallogin__, __forgotpassword__, __emailverification__
+Supported actions are __login__, __registration__, __forgotpassword__, __social__
 
 ```
 [LoginRadiusSDK registrationServiceWithAction:@"login" inController:self

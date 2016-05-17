@@ -59,7 +59,7 @@
 }
 
 - (IBAction)registerWithEmail:(id)sender {
-	[LoginRadiusSDK registrationServiceWithAction:@"social" inController:self completionHandler:^(BOOL success, NSError *error) {
+	[LoginRadiusSDK registrationServiceWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
 		if (success) {
 			NSLog(@"successfully registered");
 			[self showProfileController];
