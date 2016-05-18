@@ -20,148 +20,69 @@
 
     <section class="main-content">
       <h1>
-<a id="loginradius-ios-sdk" class="anchor" href="#loginradius-ios-sdk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LoginRadius iOS SDK</h1>
+<a id="ios-sdk" class="anchor" href="#ios-sdk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ios-sdk</h1>
 
-<p><img src="https://d2lvlj7xfpldmj.cloudfront.net/support/github/banner-1544x500.png" alt="Home Image"></p>
+<p>This repo contains the following</p>
+
+<ul>
+<li>
+<p>User Registration Service Project (Swift)</p>
+
+<ul>
+<li>path: <strong>ios-sdk/demo-app/CustomerIdentity/Swift-Dev/</strong>
+</li>
+</ul>
+</li>
+<li>
+<p>User Registration Service Project (Objective-C)</p>
+
+<ul>
+<li>path: <strong>ios-sdk/demo-app/CustomerIdentity/BasicDemo-UR-ClientSideAPI/</strong>
+</li>
+</ul>
+</li>
+<li>
+<p>Social Login Project (Objective-C)</p>
+
+<ul>
+<li>path: <strong>ios-sdk/demo-app/SocialLogin/</strong>
+</li>
+</ul>
+</li>
+<li>
+<p>LoginRadius.framework (Compiled)</p>
+
+<ul>
+<li>path: <strong>ios-sdk/framework/compiled/</strong>
+</li>
+</ul>
+</li>
+<li>
+<p>LoginRadius.framework (Source Code)</p>
+
+<ul>
+<li>path: <strong>ios-sdk/framework/src/</strong>
+</li>
+</ul>
+</li>
+</ul>
 
 <h2>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
-
-<p>LoginRadius is an Identity Management Platform that simplifies user registration while securing data. LoginRadius Platform simplifies and secures your user registration process, increases conversion with Social Login that combines 30 major social platforms, and offers a full solution with Traditional Customer Registration. You can gather a wealth of user profile data from Social Login or Traditional Customer Registration.</p>
-
-<p>LoginRadius centralizes it all in one place, making it easy to manage and access. Easily integrate LoginRadius with all of your third-party applications, like MailChimp, Google Analytics, Livefyre and many more, making it easy to utilize the data you are capturing.</p>
-
-<p>LoginRadius helps businesses boost user engagement on their web/mobile platform, manage online identities, utilize social media for marketing, capture accurate consumer data, and get unique social insight into their customer base.</p>
-
-<p>Please visit <a href="http://www.loginradius.com/">here</a> for more information.</p>
-
-<h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
-
-<p>You'll need iOS 8 or later.
-This release have breaking changes from the previous SDK. Please refer to CHANGELOG.md.</p>
-
-<h2>
-<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
 
 <ol>
-<li>Download the SDK and unzip the archive</li>
-<li>Select your proejct and drag the LRSDK.framework to Embedded Binaries in General Tab.</li>
+<li>Git clone the repo into your local directory.</li>
+<li>Open any of the desired demo projects into x-code</li>
+<li>Drag in the required LoginRadius.framework to Frameworks group from path:<strong>ios-sdk/framework/compiled/</strong>
+</li>
+<li>Fill in your credentials in LoginRadiusConfiguration.h</li>
+<li>For Native Login Fill in your Facebook details into Info.plist</li>
 </ol>
 
 <h2>
-<a id="before-getting-started" class="anchor" href="#before-getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Before Getting Started</h2>
+<a id="further-documentation" class="anchor" href="#further-documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Further Documentation</h2>
 
-<p>Import the module in your source code.</p>
-
-<pre><code>#import &lt;LRSDK/LRSDK.h&gt;
-</code></pre>
-
-<blockquote>
-<p>For Swift projects, you need to create a Objective-C Bridging Header, please check the <a href="https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">wiki</a></p>
-</blockquote>
-
-<h2>
-<a id="initilization" class="anchor" href="#initilization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initilization</h2>
-
-<h4>
-<a id="application-is-launched" class="anchor" href="#application-is-launched" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application is launched</h4>
-
-<p>Initilize the SDK with your API key and Site name in your <code>AppDelegate.m</code></p>
-
-<p>Details on obtaining Site name <a href="http://support.loginradius.com/hc/en-us/articles/204614109-How-do-I-get-my-LoginRadius-Site-Name-">here</a> and API key <a href="http://apidocs.loginradius.com/docs/get-api-key-and-secret">here</a></p>
-
-<div class="highlight highlight-source-objc"><pre>#<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">&lt;</span>LRSDK/LRSDK.h<span class="pl-pds">&gt;</span></span>
-<span class="pl-c">//  AppDelegate.m</span>
-
-- (<span class="pl-k">BOOL</span>)application:(UIApplication *)application didFinishLaunchingWithOptions:(<span class="pl-c1">NSDictionary</span> *)launchOptions {
-    [LoginRadiusSDK <span class="pl-c1">instanceWithAPIKey:</span>&lt;your api key&gt;
-                              <span class="pl-c1">siteName:</span>&lt;your site name&gt;
-                           <span class="pl-c1">application:</span>application
-                         <span class="pl-c1">launchOptions:</span>launchOptions];
-    <span class="pl-c">//Your code</span>
-    <span class="pl-k">return</span> <span class="pl-c1">YES</span>;
-}</pre></div>
-
-<h4>
-<a id="application-is-asked-to-open-url" class="anchor" href="#application-is-asked-to-open-url" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application is asked to open URL</h4>
-
-<p>Call is to handle URL's for social login to work properly in your <code>AppDelegate.m</code></p>
-
-<div class="highlight highlight-source-objc"><pre>#<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">&lt;</span>LRSDK/LRSDK.h<span class="pl-pds">&gt;</span></span>
-<span class="pl-c">//  AppDelegate.m</span>
-
-- (<span class="pl-k">BOOL</span>)application:(UIApplication *)application openURL:(<span class="pl-c1">NSURL</span> *)url sourceApplication:(<span class="pl-c1">NSString</span> *)sourceApplication annotation:(<span class="pl-k">id</span>)annotation {
-    <span class="pl-k">return</span>  [[LoginRadiusSDK <span class="pl-c1">sharedInstance</span>] <span class="pl-c1">application:</span>application <span class="pl-c1">openURL:</span>url <span class="pl-c1">sourceApplication:</span>sourceApplication <span class="pl-c1">annotation:</span>annotation];
-}</pre></div>
-
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
-
-<h3>
-<a id="registration-service" class="anchor" href="#registration-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Registration Service</h3>
-
-<p>Registration service supports traditional registration and login methods using hosted pages.</p>
-
-<p>Supported actions are <strong>login</strong>, <strong>registration</strong>, <strong>forgotpassword</strong>, <strong>sociallogin</strong>, <strong>forgotpassword</strong>, <strong>emailverification</strong></p>
-
-<pre><code>[LoginRadiusSDK registrationServiceWithAction:@"login" inController:self
-completionHandler:^(BOOL success, NSError *error) {
-    if (success) {
-        NSLog(@"successfully logged in");
-    } else {
-        NSLog(@"Error: %@", [error description]);
-    }
-}];
-</code></pre>
-
-<p>Check the demo apps for user registration service.</p>
-
-<h3>
-<a id="social-login" class="anchor" href="#social-login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Social Login</h3>
-
-<p>Social Login with the given provider.</p>
-
-<pre><code>[LoginRadiusSDK socialLoginWithProvider:@"facebook" parameters:nil inController:self completionHandler:^(BOOL success, NSError *error) {
-    if (success) {
-        NSLog(@"successfully logged in with facebook");
-    } else {
-        NSLog(@"Error: %@", [error description]);
-    }
-}];
-
-</code></pre>
-
-<p>Check the demo app for social login.</p>
-
-<blockquote>
-<p>By default all social authentication will be done using Safari, if you want native integration set useNativeSocialLogin to YES after SDK initilisation
-<code>[LoginRadiusSDK sharedInstance].useNativeSocialLogin = YES;</code>
-LoginRadius iOS SDK only supports Facebook &amp; Twitter native login, for detailed documentation please refer to <a href="http://apidocs.loginradius.com/docs/ios-library">LoginRadius API docs</a>.</p>
-</blockquote>
-
-<h3>
-<a id="logout" class="anchor" href="#logout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Logout</h3>
-
-<p>Log out the user.</p>
-
-<pre><code>[LoginRadiusSDK logout];
-</code></pre>
-
-<h2>
-<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
-
-<p>You can find the full documentation for this library on that <a href="apidocs.loginradius.com/docs/ios-library">LoginRadius API docs</a>.</p>
-
-<h2>
-<a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h2>
-
-<p><a href="https://www.loginradius.com/">LoginRadius</a></p>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
-
-<p>This project is licensed under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
+<p><a href="http://apidocs.loginradius.com/v2.0/docs/ios-library">http://apidocs.loginradius.com/v2.0/docs/ios-library</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/LoginRadius/ios-sdk">ios-sdk</a> is maintained by <a href="https://github.com/LoginRadius">LoginRadius</a>.</span>
