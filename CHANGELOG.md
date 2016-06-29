@@ -1,3 +1,14 @@
+3.0.1 Release notes (2016-06-29)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+### Bugfixes
+
+* Fixed webview's getting stuck if there is any network issue
+
 3.0 Release notes (2016-05-19)
 =============================================================
 
