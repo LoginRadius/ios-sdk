@@ -13,8 +13,8 @@
 		682D11681CEC5314009274E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682D11671CEC5314009274E2 /* Assets.xcassets */; };
 		682D116B1CEC5314009274E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682D11691CEC5314009274E2 /* LaunchScreen.storyboard */; };
 		6830081F1CECF78A000E43DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6830081E1CECF78A000E43DC /* DetailViewController.swift */; };
-		6858C9A91CEDED4300CCDD2B /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6858C9A81CEDED4300CCDD2B /* LRSDK.framework */; };
-		6858C9AA1CEDED4300CCDD2B /* LRSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6858C9A81CEDED4300CCDD2B /* LRSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		68840E221D23B3C400CFACE1 /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68840E211D23B3C400CFACE1 /* LRSDK.framework */; };
+		68840E231D23B3C400CFACE1 /* LRSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 68840E211D23B3C400CFACE1 /* LRSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6858C9AA1CEDED4300CCDD2B /* LRSDK.framework in Embed Frameworks */,
+				68840E231D23B3C400CFACE1 /* LRSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,7 +41,7 @@
 		682D116C1CEC5314009274E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		682D11721CEC5370009274E2 /* SwiftDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6830081E1CECF78A000E43DC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		6858C9A81CEDED4300CCDD2B /* LRSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LRSDK.framework; sourceTree = "<group>"; };
+		68840E211D23B3C400CFACE1 /* LRSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LRSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6858C9A91CEDED4300CCDD2B /* LRSDK.framework in Frameworks */,
+				68840E221D23B3C400CFACE1 /* LRSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 		682D11541CEC5314009274E2 = {
 			isa = PBXGroup;
 			children = (
-				6858C9A81CEDED4300CCDD2B /* LRSDK.framework */,
+				68840E211D23B3C400CFACE1 /* LRSDK.framework */,
 				682D115F1CEC5314009274E2 /* SwiftDemo */,
 				682D115E1CEC5314009274E2 /* Products */,
 				682D11721CEC5370009274E2 /* SwiftDemo-Bridging-Header.h */,
@@ -121,7 +121,6 @@
 				TargetAttributes = {
 					682D115C1CEC5314009274E2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = ALKGCW9CD6;
 					};
 				};
 			};
