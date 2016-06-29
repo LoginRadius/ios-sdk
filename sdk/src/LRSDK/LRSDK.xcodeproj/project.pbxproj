@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		68840DD51D23A86B00CFACE1 /* ReachabilityCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 68840DD31D23A86B00CFACE1 /* ReachabilityCheck.h */; };
+		68840DD61D23A86B00CFACE1 /* ReachabilityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 68840DD41D23A86B00CFACE1 /* ReachabilityCheck.m */; };
 		6884DF3C1CC9FC8A0071EFFB /* LRSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6884DF431CC9FC8A0071EFFB /* LRSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6884DF381CC9FC8A0071EFFB /* LRSDK.framework */; };
 		6884DF481CC9FC8A0071EFFB /* LRSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6884DF471CC9FC8A0071EFFB /* LRSDKTests.m */; };
@@ -88,6 +90,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68840DD31D23A86B00CFACE1 /* ReachabilityCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityCheck.h; sourceTree = "<group>"; };
+		68840DD41D23A86B00CFACE1 /* ReachabilityCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityCheck.m; sourceTree = "<group>"; };
 		6884DF381CC9FC8A0071EFFB /* LRSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LRSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6884DF3B1CC9FC8A0071EFFB /* LRSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRSDK.h; sourceTree = "<group>"; };
 		6884DF3D1CC9FC8A0071EFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 		6884DFB31CCA0EA60071EFFB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				68840DD31D23A86B00CFACE1 /* ReachabilityCheck.h */,
+				68840DD41D23A86B00CFACE1 /* ReachabilityCheck.m */,
 				68E7ACD11CD9F74A00A9E73E /* OAuth+Additions.h */,
 				68E7ACD21CD9F74A00A9E73E /* OAuth+Additions.m */,
 				68E7ACD31CD9F74A00A9E73E /* OAuthCore.h */,
@@ -320,6 +326,7 @@
 				6884DFAD1CCA0E930071EFFB /* IDTwitterAccountChooserViewController.h in Headers */,
 				68E7ACDB1CD9F75100A9E73E /* NSData+Base64.h in Headers */,
 				6884DF9C1CCA09720071EFFB /* NSDictionary+LRDictionary.h in Headers */,
+				68840DD51D23A86B00CFACE1 /* ReachabilityCheck.h in Headers */,
 				688A20191CD33D770052CEA4 /* NSError+LRError.h in Headers */,
 				68E7AD201CDA3A7F00A9E73E /* NSString+LRString.h in Headers */,
 				68E7ACD51CD9F74A00A9E73E /* OAuth+Additions.h in Headers */,
@@ -468,6 +475,7 @@
 				68E7AD211CDA3A7F00A9E73E /* NSString+LRString.m in Sources */,
 				68E7AD281CDB640200A9E73E /* LRErrors.m in Sources */,
 				68E7ACD61CD9F74A00A9E73E /* OAuth+Additions.m in Sources */,
+				68840DD61D23A86B00CFACE1 /* ReachabilityCheck.m in Sources */,
 				6884DFC41CCA10100071EFFB /* NSMutableDictionary+LRMutableDictionary.m in Sources */,
 				6884DFD51CCA295F0071EFFB /* LoginRadiusRSViewController.m in Sources */,
 				6884DFA11CCA0DAB0071EFFB /* LoginRadiusSocialLoginManager.m in Sources */,
