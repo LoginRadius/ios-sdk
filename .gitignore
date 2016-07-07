@@ -17,6 +17,9 @@ DerivedData/
 ##Documentation
 /docs
 
+##CocoaPods
+Pods/
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
