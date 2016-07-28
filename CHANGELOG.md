@@ -1,3 +1,18 @@
+3.1 Release notes (2016-07-28)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+* Support for Cocoapods installation
+
+### Bugfixes
+
+* SDK is no longer distributed as a universal framework, since it is
+  causing issues while the app the uploaded to itunesconnect
+
+
 3.0.1 Release notes (2016-06-29)
 =============================================================
 

@@ -12,22 +12,37 @@ Please visit [here](http://www.loginradius.com/) for more information.
 
 ## Requirements
 You'll need iOS 8 or later.
-This release have breaking changes from the previous SDK. Please refer to CHANGELOG.md.
+> This release have breaking changes from the SDK v2.0. Please refer to CHANGELOG.md.
 
-## Install
+## Installation
+We recommend to use CocoaPods for installing the library in a project.
 
- 1. Download the SDK and unzip the archive
- 2. Drag the LRSDK.framework to Embedded Frameworks in Project Navigator.
- 
+## Installation with CocoaPods
 
-## Before Getting Started
-Import the module in your source code.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like AFNetworking in your projects. See the ["Getting Started" guide for more information](https://github.com/AFNetworking/AFNetworking/wiki/Getting-Started-with-AFNetworking). You can install it with the following command:
 
-```
-#import <LRSDK/LRSDK.h>
+```bash
+$ gem install cocoapods
 ```
 
-> For Swift projects, you need to create a Objective-C Bridging Header, please check the [wiki](https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html)
+#### Podfile
+
+To integrate LRSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+target 'TargetName' do
+pod 'LRSDK', '~> 3.1'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ## Initilization
 
