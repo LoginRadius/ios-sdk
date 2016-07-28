@@ -6,21 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		6884DF8F1CCA063B0071EFFB /* LoginRadius */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 6884DF901CCA063C0071EFFB /* Build configuration list for PBXAggregateTarget "LoginRadius" */;
-			buildPhases = (
-				6884DF931CCA06610071EFFB /* ShellScript */,
-			);
-			dependencies = (
-				68E7ACC01CD9F61300A9E73E /* PBXTargetDependency */,
-			);
-			name = LoginRadius;
-			productName = LoginRadius;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		6896D6F61D2E6C4800937820 /* LRSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6896D6F51D2E6C4800937820 /* LRSDK.podspec */; };
 		6896D7291D2E6D9500937820 /* LoginRadiusREST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6896D6F81D2E6D9500937820 /* LoginRadiusREST.h */; };
@@ -68,16 +53,6 @@
 		6896D7641D2E700900937820 /* OAuthCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6896D75E1D2E700900937820 /* OAuthCore.h */; };
 		6896D7651D2E700900937820 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6896D75F1D2E700900937820 /* OAuthCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		68E7ACBF1CD9F61300A9E73E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6884DF2F1CC9FC8A0071EFFB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6884DF371CC9FC8A0071EFFB;
-			remoteInfo = LRSDK;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6884DF381CC9FC8A0071EFFB /* LRSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LRSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,9 +300,6 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = ALKGCW9CD6;
 					};
-					6884DF8F1CCA063B0071EFFB = {
-						CreatedOnToolsVersion = 7.2;
-					};
 				};
 			};
 			buildConfigurationList = 6884DF321CC9FC8A0071EFFB /* Build configuration list for PBXProject "LRSDK" */;
@@ -343,7 +315,6 @@
 			projectRoot = "";
 			targets = (
 				6884DF371CC9FC8A0071EFFB /* LRSDK */,
-				6884DF8F1CCA063B0071EFFB /* LoginRadius */,
 			);
 		};
 /* End PBXProject section */
@@ -360,19 +331,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6884DF931CCA06610071EFFB /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script is based on Jacob Van Order's answer on apple dev forums https://devforums.apple.com/message/971277\n# See also http://spin.atomicobject.com/2011/12/13/building-a-universal-framework-for-ios/ for the start\n\n\n# To get this to work with a Xcode 6 Cocoa Touch Framework, create Framework\n# Then create a new Aggregate Target. Throw this script into a Build Script Phrase on the Aggregate\n\n\n######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=true\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator | echo\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -target ${PROJECT_NAME} -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n#xcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" | echo\n\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make fat universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n\n######################\n# On Release, copy the result to desktop folder\n######################\n\n\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nDIR=\"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nif [ -d \"$DIR\" ]; then\nprintf '%s\\n' \"Removing Lock ($DIR)\"\nrm -rf \"$DIR\"\nfi\nmkdir \"$DIR\"\ncp -r \"${FRAMEWORK}\" \"$DIR\"\nfi\n\n\n######################\n# If needed, open the Framework folder\n######################\n\nif [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\nif [ \"${CONFIGURATION}\" == \"Release\" ]; then\nopen \"${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nelse\nopen \"${UNIVERSAL_LIBRARY_DIR}/\"\nfi\nfi";
-		};
 		6884DFC91CCA12E40071EFFB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,14 +377,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		68E7ACC01CD9F61300A9E73E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6884DF371CC9FC8A0071EFFB /* LRSDK */;
-			targetProxy = 68E7ACBF1CD9F61300A9E73E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		6884DF4A1CC9FC8A0071EFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -465,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -506,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -563,20 +513,6 @@
 			};
 			name = Release;
 		};
-		6884DF911CCA063C0071EFFB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		6884DF921CCA063C0071EFFB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -594,15 +530,6 @@
 			buildConfigurations = (
 				6884DF4D1CC9FC8A0071EFFB /* Debug */,
 				6884DF4E1CC9FC8A0071EFFB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6884DF901CCA063C0071EFFB /* Build configuration list for PBXAggregateTarget "LoginRadius" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6884DF911CCA063C0071EFFB /* Debug */,
-				6884DF921CCA063C0071EFFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
