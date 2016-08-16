@@ -161,7 +161,7 @@
 			[self finishRaasAction:YES withError:nil];
 		}
 
-	} else if ( [returnAction isEqualToString:@"sociallogsin"] ) {
+	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
 
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];

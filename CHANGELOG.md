@@ -1,3 +1,16 @@
+3.1.1 Release notes (2016-08-16)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+* Added example for calling Social API
+
+### Bugfixes
+
+* Fixed a redirection bug in Social login through Registration Hosted pages.
+
 3.1 Release notes (2016-07-28)
 =============================================================
 
