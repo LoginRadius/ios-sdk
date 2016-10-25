@@ -1,3 +1,16 @@
+3.2.0 Release notes (2016-10-25)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+* Upgraded the Facebook SDK pod dependency to support iOS 10.
+
+### Bugfixes
+
+* Fixed category issue with NSMutableDictionary.
+
 3.1.1 Release notes (2016-08-16)
 =============================================================
 
