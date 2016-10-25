@@ -34,7 +34,7 @@
 
 		// Get Json, Parse Json, Remove Null Keys
 		NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-
+        
 		return json;
 
 	} else {
@@ -64,21 +64,18 @@
 	NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
 
 	if (!token || [token isEqualToString:@""]) {
-		NSLog(@"Error Token is Nil or empty");
 		[lrUser setInteger:false forKey:@"isLoggedIn"];
 		isSaved = FALSE;
-	}else {
+	} else {
 
 		if (!userProfile) {
 			userProfile = [self lrGetUserProfile:token];
 		}
 
 		long lrUserBlocked = [[userProfile objectForKey:@"IsDeleted"] integerValue];
-		//NSLog(@"User social profile => %@", userProfile);
 
 		//User is not blocked
 		if(lrUserBlocked == 0) {
-			NSLog(@"User is NOT blocked");
 			[lrUser setInteger:true forKey:@"isLoggedIn"];
 			[lrUser setInteger:false forKey:@"lrUserBlocked"];
 			[lrUser setObject:token forKey:@"lrAccessToken"];
@@ -100,8 +97,6 @@
 			}
 
 		} else {
-			NSLog(@"Error User is blocked");
-			NSLog(@"Delete value => %li", lrUserBlocked);
 			[lrUser setInteger:true forKey:@"lrUserBlocked"];
 		}
 
@@ -132,31 +127,24 @@
 
 + (NSMutableDictionary *)lrGetUserProfile :(NSString *)token {
 	static NSString * const profile_url = @"https://api.loginradius.com/api/v2/userprofile?access_token=%@";
-	NSMutableDictionary *userProfile = [self sendSyncGetRequest:[[NSString alloc] initWithFormat:profile_url, token]];
+	NSMutableDictionary *userProfile = [[self sendSyncGetRequest:[[NSString alloc] initWithFormat:profile_url, token]] mutableCopy];
 	userProfile = [userProfile replaceNullWithBlank];
-	//    NSLog(@"User Profile is => %@", userProfile);
-
 	return userProfile;
 }
 
 + (NSMutableArray *)lrGetUserLinkedProfile :(NSString *)token APIKey:(NSString *)key{
 	static NSString * const profile_url = @"https://api.loginradius.com/raas/client/auth/linkedprofiles?appkey=%@&access_token=%@";
-	NSMutableDictionary *userProfile = [self sendSyncGetRequest:[[NSString alloc] initWithFormat:profile_url, key, token]];
-
-	//    NSLog(@"user profile list => %@", userProfile);
+	NSMutableDictionary *userProfile = [[self sendSyncGetRequest:[[NSString alloc] initWithFormat:profile_url, key, token]] mutableCopy];
 	id userProfileArray = [[NSMutableArray alloc] init];
-	NSLog(@"class name is %@", [userProfileArray class]);
-
 
 	if([userProfileArray isKindOfClass:[NSArray class]]) {
 		for (id object in userProfile) {
-			[userProfileArray addObject:[(NSMutableDictionary *)object replaceNullWithBlank]];
+			[userProfileArray addObject:[[object mutableCopy] replaceNullWithBlank]];
 		}
 		return userProfileArray;
 	} else {
 		return nil;
 	}
-
 }
 
 @end

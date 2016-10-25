@@ -6,6 +6,7 @@
 
 #import "LoginRadiusREST.h"
 #import "NSDictionary+LRDictionary.h"
+#import "NSError+LRError.h"
 
 NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 
@@ -45,12 +46,13 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-	NSURLSession * session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-	[[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
-		// TODO: Pass all the error logging functionality to a separate class
+    NSURLSession * session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
 		if (error) {
-			NSLog(@"Network error: %@", error);
+            completion(nil, error);
 			return;
 		}
 
@@ -60,13 +62,15 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 				NSError *parseError;
 				id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 				if (!responseObject) {
-					NSLog(@"JSON parse error: %@", parseError);
 					completion(nil, parseError);
 				} else {
 					completion(responseObject, nil);
 				}
 			} else {
-				NSLog(@"Expected responseCode == 200; received %ld", (long)statusCode);
+                NSError *err = [NSError errorWithCode:statusCode
+                                          description:@"Request Failed"
+                                        failureReason:[NSString stringWithFormat:@"Request Failed since %@", [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]];
+                completion(nil, err);
 			}
 		}
 	}] resume];
@@ -75,11 +79,11 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 - (void)sendGET :(NSURL *)url completionHandler:(LRAPIResponseHandler)completion {
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	NSURLSession * session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-	[[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
-		// TODO: Pass all the error logging functionality to a separate class
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
 		if (error) {
-			NSLog(@"Network error: %@", error);
+			completion(nil, error);
 			return;
 		}
 
@@ -89,14 +93,15 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 				NSError *parseError;
 				id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 				if (!responseObject) {
-					NSLog(@"JSON parse error: %@", parseError);
 					completion(nil, parseError);
 				} else {
 					completion(responseObject, nil);
 				}
 			} else {
-				// TODO: pass this to logging system
-				NSLog(@"Expected responseCode == 200; received %ld", (long)statusCode);
+                NSError *err = [NSError errorWithCode:statusCode
+                                          description:@"Request Failed"
+                                        failureReason:[NSString stringWithFormat:@"Request Failed since %@", [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]];
+                completion(nil, err);
 			}
 		}
 	}] resume];
