@@ -133,8 +133,12 @@
 		NSString *token = [parameters objectForKey:@"token"];
 
 		if( token ) {
-			[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
-			[self finishSocialLogin:YES	withError:nil];
+            BOOL userSaved = [LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
+            if (userSaved) {
+                [self finishSocialLogin:YES	withError:nil];
+            } else {
+                [self finishSocialLogin:YES	withError:[LRErrors userProfileError]];
+            }
 		} else {
 			[self finishSocialLogin:NO withError:[LRErrors socialLoginFailed:_provider]];
 		}
