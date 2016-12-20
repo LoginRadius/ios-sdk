@@ -1,3 +1,14 @@
+3.2.1 Release notes (2016-10-25)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+### Bugfixes
+
+* Fixed JSON parsing issue while Yahoo login
+
 3.2.0 Release notes (2016-10-25)
 =============================================================
 
