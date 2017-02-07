@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-s.name         = 'LRSDK'
+s.name         = 'LoginRadiusSDK'
 s.version      = '3.2.1'
 s.summary      = 'Official LoginRadius SDK for iOS to integrate User Registration Service or Social Login in your app.'
 
@@ -24,11 +24,14 @@ s.ios.deployment_target = '8.0'
 
 s.source       = { :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag => "#{s.version}" }
 
-s.source_files = 'LRSDK/**/*.{h,m}'
+s.source_files = ['Core/*.{h,m}', 'FacebookNative/*.{h,m}', 'RegistrationService/*.{h,m}', 'SocialLogin/*.{h,m}', 'TwitterNative/**/*.{h,m}']
 
 s.dependency 'FBSDKLoginKit', '~> 4.16'
 
 s.ios.frameworks = 'Foundation', 'UIKit', 'SystemConfiguration', 'Social', 'Accounts'
 
-s.requires_arc = ['LRSDK/Classes/*.{h,m}', 'LRSDK/FacebookNative/*.{h,m}', 'LRSDK/RegistrationService/*.{h,m}', 'LRSDK/SocialLogin/*.{h,m}', 'LRSDK/TwitterNative/*.{h,m}']
+s.requires_arc = ['Core/*.{h,m}', 'FacebookNative/*.{h,m}', 'RegistrationService/*.{h,m}', 'SocialLogin/*.{h,m}', 'TwitterNative/*.{h,m}']
+
+s.deprecated_in_favor_of = 'LRSDK'
+
 end

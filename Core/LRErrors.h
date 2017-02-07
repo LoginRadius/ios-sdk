@@ -1,6 +1,6 @@
 //
 //  LRErrors.h
-//  LRSDK
+//  LoginRadiusSDK
 //
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
