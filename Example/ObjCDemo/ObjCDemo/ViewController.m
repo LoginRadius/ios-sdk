@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <LRSDK/LRSDK.h>
+#import <LoginRadiusSDK/LoginRadius.h>
 #import "DetailViewController.h"
 
 @interface ViewController ()

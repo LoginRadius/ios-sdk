@@ -1,8 +1,15 @@
-workspace 'LRSDK'
+use_frameworks!
+
+workspace 'LoginRadiusSDK'
 
 platform :ios, '8.0'
 
-project 'Example/ObjCDemo/ObjCDemo'
 target 'ObjCDemo' do
-  pod 'LRSDK', :path => './'
+  xcodeproj 'Example/ObjCDemo/ObjCDemo.xcodeproj'
+  pod 'LoginRadiusSDK', :path => './'
+end
+
+target 'SwiftDemo' do
+   xcodeproj 'Example/SwiftDemo/SwiftDemo.xcodeproj'
+   pod 'LoginRadiusSDK', :path => './'
 end

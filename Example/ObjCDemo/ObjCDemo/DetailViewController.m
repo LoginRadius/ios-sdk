@@ -7,8 +7,7 @@
 //
 
 #import "DetailViewController.h"
-#import <LRSDK/LRSDK.h>
-
+#import <LoginRadiusSDK/LoginRadius.h>
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *name;
 @end

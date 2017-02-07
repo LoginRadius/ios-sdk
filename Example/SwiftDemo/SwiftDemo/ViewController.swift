@@ -6,6 +6,7 @@
 //  Copyright © 2016 Raviteja Ghanta. All rights reserved.
 //
 
+import LoginRadiusSDK
 
 class ViewController: UIViewController {
     
@@ -13,68 +14,74 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Check if already login
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let user = defaults.integerForKey("isLoggedIn")
+        let defaults = UserDefaults.standard
+        let user = defaults.integer(forKey: "isLoggedIn")
         if (user == 1) {
-            self.performSegueWithIdentifier("profile", sender: self);
+            self.performSegue(withIdentifier: "profile", sender: self);
         }
     }
     
-    @IBAction func loginWithTwitter(sender: UIButton) {
-        LoginRadiusSDK.socialLoginWithProvider("twitter", parameters: nil, inController: self) { (success:Bool, error:NSError!) in
+    @IBAction func loginWithTwitter(_ sender: UIButton) {
+        LoginRadiusSDK.socialLogin(withProvider: "twitter", parameters: nil, in: self, completionHandler: { (success, error) in
             if (success) {
-                NSLog("successfully logged in with twitter");
+                print("successfully logged in with twitter");
                 self.showProfileController();
             } else {
-                NSLog("Error: %@", error.description);
+
             }
-        }
+        });
     }
-    
-    @IBAction func loginWithFacebook(sender: UIButton) {
-        LoginRadiusSDK.socialLoginWithProvider("facebook", parameters: nil, inController: self) { (success:Bool, error:NSError!) in
+
+    var a:LRServiceCompletionHandler!;
+
+    @IBAction func loginWithFacebook(_ sender: UIButton) {
+        LoginRadiusSDK.socialLogin(withProvider: "facebook", parameters: nil, in: self, completionHandler: { (success, error) in
             if (success) {
-                NSLog("successfully logged in with facebook");
+                print("successfully logged in with facebook");
                 self.showProfileController();
             } else {
-                NSLog("Error: %@", error.description);
+
             }
-        }
+        });
     }
     
-    @IBAction func loginWithLinkedin(sender: UIButton) {
-        LoginRadiusSDK.socialLoginWithProvider("linkedin", parameters: nil, inController: self) { (success:Bool, error:NSError!) in
+    @IBAction func loginWithLinkedin(_ sender: UIButton) {
+        LoginRadiusSDK.socialLogin(withProvider: "linkedin", parameters: nil, in: self, completionHandler: { (success, error) in
             if (success) {
-                NSLog("successfully logged in with linkedin");
+                print("successfully logged in with linkedin");
                 self.showProfileController();
             } else {
-                NSLog("Error: %@", error.description);
+
             }
-        }
+        });
     }
     
-    @IBAction func signupWithEmail(sender: UIButton) {
-        LoginRadiusSDK.registrationServiceWithAction("registration", inController: self) { (success:Bool, error:NSError!) in
-            if (success) {
-                NSLog("successfully registered");
-            } else {
-                NSLog("Error: %@", error.description);
-            }
-        }
+    @IBAction func signupWithEmail(_ sender: UIButton) {
+        LoginRadiusSDK.registrationService(withAction: "registration", in: self, completionHandler:
+            { (success, error) in
+                if (success) {
+                    print("successfully registered");
+                    self.showProfileController();
+                } else {
+
+                }
+        });
     }
     
-    @IBAction func loginWithEmail(sender: UIButton) {
-        LoginRadiusSDK.registrationServiceWithAction("login", inController: self) { (success:Bool, error:NSError!) in
-            if (success) {
-                NSLog("successfully logged in");
-            } else {
-                NSLog("Error: %@", error.description);
-            }
-        }
+    @IBAction func loginWithEmail(_ sender: UIButton) {
+        LoginRadiusSDK.registrationService(withAction: "login", in: self, completionHandler:
+            { (success, error) in
+                if (success) {
+                    print("successfully logged in");
+                    self.showProfileController();
+                } else {
+
+                }
+        });
     }
     
     func showProfileController () {
-        self.performSegueWithIdentifier("profile", sender: self);
+        self.performSegue(withIdentifier: "profile", sender: self);
     }
 }
 
