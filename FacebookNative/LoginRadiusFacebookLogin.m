@@ -108,7 +108,7 @@
 		// all other cases are handled by the access token notification
 		NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
 		// Get loginradius access_token for facebook access_token
-		[[LoginRadiusREST sharedInstance] callAPIEndpoint:@"api/v2/access_token/facebook" method:@"GET" params:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
+        [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
 			NSString *token = [data objectForKey:@"access_token"];
 			[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
 			[self finishLogin:YES withError:nil];

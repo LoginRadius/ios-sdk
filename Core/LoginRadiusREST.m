@@ -10,6 +10,10 @@
 
 NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 
+@interface LoginRadiusREST()
+@property(nonatomic, strong) AFHTTPSessionManager *manager;
+@end
+
 @implementation LoginRadiusREST
 
 + (instancetype) sharedInstance {
@@ -17,93 +21,54 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 	static LoginRadiusREST *_instance;
 	dispatch_once(&onceToken, ^{
 		_instance = [[LoginRadiusREST alloc]init];
-	});
+    });
 	return _instance;
 }
 
-- (void)callAPIEndpoint:(NSString*)endpoint
-				 method:(NSString*)httpMethod
-				 params:(NSDictionary*)params
-	  completionHandler:(LRAPIResponseHandler)completion {
-
-	NSURL* url = [self clientURLRequest:endpoint params:params];
-	if ([httpMethod isEqualToString:@"GET"]) {
-		[self sendGET:url completionHandler:completion];
-	} else if ([httpMethod isEqualToString:@"POST"]) {
-		[self sendPOST:url completionHandler:completion];
-	}
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:API_BASE_URL]];
+    }
+    return self;
 }
 
-- (NSURL*)clientURLRequest:(NSString*)path params:(NSDictionary*) params {
-	NSString* str = [API_BASE_URL stringByAppendingString:path];
-	#pragma GCC diagnostic push
-	#pragma GCC diagnostic ignored "-Wdeprecated"
-	return [NSURL URLWithString:[[str stringByAppendingString:[params queryString]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	#pragma GCC diagnostic pop
+- (void)sendGET:(NSString *)url queryParams:(id)queryParams completionHandler:(LRAPIResponseHandler)completion {
+    [self.manager GET:url parameters:queryParams progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
 }
 
-- (void)sendPOST :(NSURL *)url completionHandler:(LRAPIResponseHandler)completion {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-	[request setHTTPMethod:@"POST"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+- (void)sendPOST:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
+    NSString *requestUrl = queryParams ? [url stringByAppendingString:[queryParams queryString]]: url;
 
-    NSURLSession * session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-
-    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-
-		if (error) {
-            completion(nil, error);
-			return;
-		}
-
-		if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-			NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-			if (200 <= statusCode && statusCode <= 299) {
-				NSError *parseError;
-				id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-				if (!responseObject) {
-					completion(nil, parseError);
-				} else {
-					completion(responseObject, nil);
-				}
-			} else {
-                NSError *err = [NSError errorWithCode:statusCode
-                                          description:@"Request Failed"
-                                        failureReason:[NSString stringWithFormat:@"Request Failed since %@", [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]];
-                completion(nil, err);
-			}
-		}
-	}] resume];
+    [self.manager POST:requestUrl parameters:body progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
 }
 
-- (void)sendGET :(NSURL *)url completionHandler:(LRAPIResponseHandler)completion {
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	NSURLSession * session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+- (void)sendPUT:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
+    NSString *requestUrl = queryParams ? [url stringByAppendingString:[queryParams queryString]]: url;
 
-    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-
-		if (error) {
-			completion(nil, error);
-			return;
-		}
-
-		if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-			NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-			if (200 <= statusCode && statusCode <= 299) {
-				NSError *parseError;
-				id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-				if (!responseObject) {
-					completion(nil, parseError);
-				} else {
-					completion(responseObject, nil);
-				}
-			} else {
-                NSError *err = [NSError errorWithCode:statusCode
-                                          description:@"Request Failed"
-                                        failureReason:[NSString stringWithFormat:@"Request Failed since %@", [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]];
-                completion(nil, err);
-			}
-		}
-	}] resume];
+    [self.manager PUT:requestUrl parameters:body success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
 }
+
+- (void)sendDELETE:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
+    NSString *requestUrl = queryParams ? [url stringByAppendingString:[queryParams queryString]]: url;
+
+    [self.manager DELETE:requestUrl parameters:body success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
+}
+
 @end

@@ -89,12 +89,11 @@
 			NSDictionary * params = [NSDictionary dictionaryWithQueryString:responseStr];
 
 			// Get loginradius access token for twitter access token
-			[[LoginRadiusREST sharedInstance] callAPIEndpoint:@"api/v2/access_token/twitter"
-													   method:@"GET"
-													   params:@{@"key": [LoginRadiusSDK apiKey],
-																@"tw_access_token" : params[@"oauth_token"],
-																@"tw_token_secret":params[@"oauth_token_secret"]
-																}
+            [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/twitter"
+                                          queryParams:@{@"key": [LoginRadiusSDK apiKey],
+                                                        @"tw_access_token" : params[@"oauth_token"],
+                                                        @"tw_token_secret":params[@"oauth_token_secret"]
+                                                        }
 											completionHandler:^(NSDictionary *data, NSError *error) {
 				NSString *token = [data objectForKey:@"access_token"];
 				[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];

@@ -27,6 +27,7 @@ s.source       = { :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag =>
 s.source_files = ['Core/*.{h,m}', 'FacebookNative/*.{h,m}', 'RegistrationService/*.{h,m}', 'SocialLogin/*.{h,m}', 'TwitterNative/**/*.{h,m}']
 
 s.dependency 'FBSDKLoginKit', '~> 4.16'
+s.dependency 'AFNetworking', '~> 3.1'
 
 s.ios.frameworks = 'Foundation', 'UIKit', 'SystemConfiguration', 'Social', 'Accounts'
 

@@ -23,16 +23,14 @@
     NSString * access_token =  [lrUser objectForKey:@"lrAccessToken"];
     NSString * fullname = [NSString stringWithFormat:@"%@ %@ %@", profile[@"FirstName"], profile[@"MiddleName"], profile[@"LastName"]];
     [self.name setText:fullname];
-  
-  [[LoginRadiusREST sharedInstance] callAPIEndpoint:@"api/v2/company"
-                                             method:@"GET"
-                                             params:@{
-                                                      @"access_token": access_token
-                                                     }
-                                  completionHandler:^(NSDictionary *data, NSError *error) {
-                                      NSLog(@"error %@  data %@", error, data);
-                                  }];
-  
+
+    [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/company"
+                                  queryParams:@{
+                                                @"access_token": access_token
+                                               }
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                    NSLog(@"error %@  data %@", error, data);
+                            }];
 }
 
 - (IBAction)logoutPressed:(id)sender {

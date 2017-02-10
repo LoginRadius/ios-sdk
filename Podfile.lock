@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -10,6 +25,7 @@ PODS:
   - FBSDKLoginKit (4.18.0):
     - FBSDKCoreKit
   - LoginRadiusSDK (3.2.1):
+    - AFNetworking (~> 3.1)
     - FBSDKLoginKit (~> 4.16)
 
 DEPENDENCIES:
@@ -20,10 +36,11 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
-  LoginRadiusSDK: 1fb3f3c97a649493622e39b80725bf6e06691685
+  LoginRadiusSDK: b9973cc3e6bbd55b4b44ef39ce0601bda5ff2b6d
 
 PODFILE CHECKSUM: ae3e1a6658f702a6b836b8ef342b77dc4792e423
 

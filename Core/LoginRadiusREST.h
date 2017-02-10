@@ -6,6 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginRadiusSDK.h"
+#import <AFNetworking/AFNetworking.h>
 
 /**
  *  REST client
@@ -23,18 +24,9 @@
 
 #pragma mark - Methods
 
-/**
- *  Call API end point
- *
- *  @param endpoint   API end point
- *  @param httpMethod HTTP method {GET, POST, DELETE}
- *  @param params     Necessary params for the end point
- *  @param completion API service reponse handler
- */
-
-- (void)callAPIEndpoint:(NSString*)endpoint
-				 method:(NSString*)httpMethod
-				 params:(NSDictionary*)params
-	  completionHandler:(LRAPIResponseHandler)completion;
+- (void)sendGET:(NSString *)url queryParams:(id)queryParams completionHandler:(LRAPIResponseHandler)completion;
+- (void)sendPOST:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion;
+- (void)sendPUT:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion;
+- (void)sendDELETE:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion;
 
 @end
