@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithTwitter(_ sender: UIButton) {
-        LoginRadiusSDK.socialLogin(withProvider: "twitter", parameters: nil, in: self, completionHandler: { (success, error) in
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "twitter", parameters: nil, in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with twitter");
                 self.showProfileController();
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     var a:LRServiceCompletionHandler!;
 
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        LoginRadiusSDK.socialLogin(withProvider: "facebook", parameters: nil, in: self, completionHandler: { (success, error) in
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "facebook", parameters: nil, in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with facebook");
                 self.showProfileController();
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithLinkedin(_ sender: UIButton) {
-        LoginRadiusSDK.socialLogin(withProvider: "linkedin", parameters: nil, in: self, completionHandler: { (success, error) in
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "linkedin", parameters: nil, in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with linkedin");
                 self.showProfileController();
@@ -57,27 +57,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signupWithEmail(_ sender: UIButton) {
-        LoginRadiusSDK.registrationService(withAction: "registration", in: self, completionHandler:
-            { (success, error) in
-                if (success) {
-                    print("successfully registered");
-                    self.showProfileController();
-                } else {
 
-                }
-        });
     }
     
     @IBAction func loginWithEmail(_ sender: UIButton) {
-        LoginRadiusSDK.registrationService(withAction: "login", in: self, completionHandler:
-            { (success, error) in
-                if (success) {
-                    print("successfully logged in");
-                    self.showProfileController();
-                } else {
-
-                }
-        });
     }
     
     func showProfileController () {

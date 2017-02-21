@@ -20,21 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        LoginRadiusSDK.instance(withAPIKey: API_KEY, siteName: CLIENT_SITENAME, application: application, launchOptions: launchOptions);
-        
-        /* Uncomment the below line to use native social login.
-         you need follow social login guide to add the neccessary keys to info.plist file
-         http://apidocs.loginradius.com/v2.0/docs/ios-library#section-native-social-login
-         */
-        
-        //LoginRadiusSDK.sharedInstance().useNativeSocialLogin = YES;
-        
-        /* Uncomment the below line and set the desired language for user registration service
-         default is english
-         only supports spanish @"es" , german - @"de" && french - @"fr"
-         */
-        
-        //LoginRadiusSDK.sharedInstance().appLanguage = @"es";
+
+        let sdk:LoginRadiusSDK = LoginRadiusSDK.instance();
+        sdk.applicationLaunched(options: launchOptions);
+
         return true
     }
 
