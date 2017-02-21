@@ -8,53 +8,78 @@
 #import "LoginRadiusSocialLoginManager.h"
 #import "LoginRadiusRegistrationManager.h"
 
-@interface LoginRadiusSDK()
-@property(nonatomic, copy) NSString* apiKey;
-@property(nonatomic, copy) NSString* siteName;
+static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
+static NSString * const LoginRadiusAPIKey = @"ApiKey";
+static NSString * const LoginRadiusSiteName = @"SiteName";
+static NSString * const LoginRadiusEmailVerificationUrl = @"EmailVerificationUrl";
+static NSString * const LoginRadiusEmailTemplate = @"EmailTemplate";
+
+static NSString * const LoginRadiusUsernameLogin = @"UsernameLogin";
+static NSString * const LoginRadiusSMSTemplate = @"SMSTemplate";
+static NSString * const LoginRadiusPromptPasswordOnSocialLogin = @"PromptPasswordOnSocialLogin";
+
+static NSString * const LoginRadiusNativeFacebookLogin = @"NativeFacebookLogin";
+static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
+
+@interface LoginRadiusSDK ()
+@property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
+@property (strong, nonatomic) LoginRadiusSocialLoginManager *socialLoginManager;
+@end
+
+@interface LoginRadiusSDK ()
+
 @end
 
 @implementation LoginRadiusSDK
-@synthesize appLanguage;
 
-- (void)setUseNativeSocialLogin:(BOOL)useNativeSocialLogin {
-	_useNativeSocialLogin = useNativeSocialLogin;
-	[LoginRadiusSocialLoginManager sharedInstance].useNativeLogin = useNativeSocialLogin;
+- (instancetype)init {
+    NSString *path = [[NSBundle mainBundle] pathForResource:LoginRadiusPlistFileName ofType:@"plist"];
+    NSDictionary* values = [NSDictionary dictionaryWithContentsOfFile:path];
+    NSString *apiKey = values[LoginRadiusAPIKey];
+    NSString *siteName = values[LoginRadiusSiteName];
+    NSString *emailVerificationUrl = values[LoginRadiusEmailVerificationUrl];
+    NSString *emailTemplate = values[LoginRadiusEmailTemplate];
+    BOOL usernameLogin = [values[LoginRadiusUsernameLogin] boolValue];
+    NSString *smsTemplate = values[LoginRadiusSMSTemplate];
+    BOOL promptPasswordOnSocialLogin = [values[LoginRadiusPromptPasswordOnSocialLogin] boolValue];
+    BOOL useNativeFacebookLogin = [values[LoginRadiusNativeFacebookLogin] boolValue];
+    BOOL useNativeTwitterLogin = [values[LoginRadiusNativeTwitterLogin] boolValue];
+
+    NSAssert(apiKey, @"ApiKey cannot be null in LoginRadius.plist");
+    NSAssert(siteName, @"SiteName cannot be null in LoginRadius.plist");
+
+    self = [super init];
+
+    if (self) {
+        _apiKey = apiKey;
+        _siteName = siteName;
+        _emailVerificationUrl = emailVerificationUrl;
+        _emailTemplate = emailTemplate;
+        _usernameLogin = usernameLogin;
+        _smsTemplate = smsTemplate;
+        _promptPasswordOnSocialLogin = promptPasswordOnSocialLogin;
+        _useNativeFacebookLogin = useNativeFacebookLogin;
+        _useNativeTwitterLogin = useNativeTwitterLogin;
+		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
+		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
+    }
+
+    return self;
 }
 
 + (instancetype)sharedInstance {
 	static dispatch_once_t onceToken;
 	static LoginRadiusSDK *instance;
 	dispatch_once(&onceToken, ^{
-		instance = [[LoginRadiusSDK alloc] init];
+		instance = [LoginRadiusSDK instance];
 	});
 
 	return instance;
 }
 
-+ (void)instanceWithAPIKey:(NSString *)apiKey siteName:(NSString *)siteName application:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
-	[LoginRadiusSDK sharedInstance].apiKey = apiKey;
-	[LoginRadiusSDK sharedInstance].siteName = siteName;
-	[LoginRadiusSocialLoginManager instanceWithApplication:application launchOptions:launchOptions];
-	[LoginRadiusRegistrationManager instanceWithApplication:application launchOptions:launchOptions];
-	[LoginRadiusSDK sharedInstance].useNativeSocialLogin = NO;
-}
++ (instancetype)instance {
 
-+ (void) socialLoginWithProvider:(NSString*)provider
-					  parameters:(NSDictionary*)params
-					inController:(UIViewController*)controller
-			   completionHandler:(LRServiceCompletionHandler)handler {
-	[[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider
-														   parameters:params
-														 inController:controller
-													completionHandler:handler];
-}
-
-+ (void) registrationServiceWithAction:(NSString*) action
-						  inController:(UIViewController*)controller
-					 completionHandler:(LRServiceCompletionHandler)handler {
-	[[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:action
-															   inController:controller
-														  completionHandler:handler];
+    return [[LoginRadiusSDK alloc] init];
 }
 
 + (void) logout {
@@ -82,6 +107,12 @@
 }
 
 #pragma mark Application Delegate methods
+
+- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
+	return [self.socialLoginManager applicationLaunchedWithOptions:launchOptions] &&
+	[self.registrationManager applicationLaunchedWithOptions:launchOptions];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 	if ([[LoginRadiusSocialLoginManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]) {
 		return YES;

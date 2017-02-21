@@ -34,7 +34,7 @@
 }
 
 - (IBAction)loginWithTwitter:(id)sender {
-    [LoginRadiusSDK socialLoginWithProvider:@"twitter" parameters:nil inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:@"twitter" parameters:nil inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully logged in with twitter");
             [self showProfileController];
@@ -45,7 +45,7 @@
 }
 
 - (IBAction)loginWithFacebook:(id)sender {
-    [LoginRadiusSDK socialLoginWithProvider:@"facebook" parameters:@{@"facebookPermissions": @[@"public_profile", @"user_likes"]} inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:@"facebook" parameters:@{@"facebookPermissions": @[@"public_profile", @"user_likes"]} inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully logged in with facebook");
             [self showProfileController];
@@ -56,7 +56,7 @@
 }
 
 - (IBAction)loginWithLinkedin:(id)sender {
-    [LoginRadiusSDK socialLoginWithProvider:@"linkedin" parameters:nil inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:@"linkedin" parameters:nil inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully lo gged in with linkedin");
             [self showProfileController];
@@ -67,25 +67,9 @@
 }
 
 - (IBAction)registerWithEmail:(id)sender {
-    [LoginRadiusSDK registrationServiceWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully registered");
-            [self showProfileController];
-        } else {
-            NSLog(@"Error: %@", [error description]);
-        }
-    }];
 }
 
 - (IBAction)loginWithEmail:(id)sender {
-    [LoginRadiusSDK registrationServiceWithAction:@"login" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully logged in");
-            [self showProfileController];
-        } else {
-            NSLog(@"Error: %@", [error description]);
-        }
-    }];
 }
 
 - (void) showProfileController {

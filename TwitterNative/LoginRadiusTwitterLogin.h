@@ -14,12 +14,6 @@
 
 #pragma mark - Init
 
-/**
- *  Initializer
- *  @return singleton instance
- */
-+ (instancetype)instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions;
-
 #pragma mark - Methods
 
 /**

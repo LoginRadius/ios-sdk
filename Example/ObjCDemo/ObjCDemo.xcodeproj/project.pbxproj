@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		681005501E5C0E780097BE26 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6810054F1E5C0E780097BE26 /* LoginRadius.plist */; };
 		682D11381CEC500B009274E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D11371CEC500B009274E2 /* main.m */; };
 		682D113B1CEC500B009274E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D113A1CEC500B009274E2 /* AppDelegate.m */; };
 		682D113E1CEC500B009274E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D113D1CEC500B009274E2 /* ViewController.m */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		35633FECADEED01634770818 /* Pods_ObjCDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjCDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6810054F1E5C0E780097BE26 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
 		682D11331CEC500B009274E2 /* ObjCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682D11371CEC500B009274E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		682D11391CEC500B009274E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				682D11441CEC500B009274E2 /* LaunchScreen.storyboard */,
 				682D11471CEC500B009274E2 /* Info.plist */,
 				682D11361CEC500B009274E2 /* Supporting Files */,
+				6810054F1E5C0E780097BE26 /* LoginRadius.plist */,
 			);
 			path = ObjCDemo;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				681005501E5C0E780097BE26 /* LoginRadius.plist in Resources */,
 				682D11461CEC500B009274E2 /* LaunchScreen.storyboard in Resources */,
 				682D11431CEC500B009274E2 /* Assets.xcassets in Resources */,
 				682D11411CEC500B009274E2 /* Main.storyboard in Resources */,
@@ -363,6 +367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -382,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

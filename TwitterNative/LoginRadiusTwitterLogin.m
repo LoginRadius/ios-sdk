@@ -8,7 +8,7 @@
 #import "LoginRadiusSDK.h"
 #import "IDTwitterAccountChooserViewController.h"
 #import "LoginRadiusREST.h"
-#import "LoginRadiusUtilities.h"
+#import "LRClient.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "OAuth+Additions.h"
@@ -34,7 +34,7 @@
 
 @synthesize accountStore, accountType;
 
-- (instancetype)init{
+- (instancetype)init {
 
 	self = [super init];
 	if (self) {
@@ -42,15 +42,6 @@
 		_apiManager = [[TWTAPIManager alloc] init];
 	}
 	return self;
-}
-
-+ (instancetype)instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
-	static dispatch_once_t onceToken;
-	static LoginRadiusTwitterLogin *instance;
-	dispatch_once(&onceToken, ^{
-		instance = [[LoginRadiusTwitterLogin alloc] init];
-	});
-	return instance;
 }
 
 -(void)login:(LRServiceCompletionHandler)handler {
@@ -96,8 +87,10 @@
                                                         }
 											completionHandler:^(NSDictionary *data, NSError *error) {
 				NSString *token = [data objectForKey:@"access_token"];
-				[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
-				[self finishLogin:YES withError:nil];
+				[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+					[self finishLogin:YES withError:error];
+				}];
+
 			}];
 		} else {
 			[self finishLogin:NO withError:error];

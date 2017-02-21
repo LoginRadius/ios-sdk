@@ -25,7 +25,6 @@
  *  Initializer
  *  @return singleton instance
  */
-+ (instancetype)instanceWithApplication:(UIApplication*)application launchOptions:(NSDictionary*)launchOptions;
 + (instancetype)sharedInstance;
 
 #pragma mark - Methods
@@ -47,12 +46,24 @@
 			inController:(UIViewController*)controller
 	   completionHandler:(LRServiceCompletionHandler)handler;
 
+-(void)nativeFacebookLoginWithPermissions:(NSDictionary*)params
+							 inController:(UIViewController*)controller
+						completionHandler:(LRServiceCompletionHandler)handler;
+
+-(void)nativeTwitterLoginWithPermissions:(NSDictionary*)params
+							 inController:(UIViewController*)controller
+						completionHandler:(LRServiceCompletionHandler)handler;
+
+
+
 /**
  *  Log out the user
  */
 - (void)logout;
 
 #pragma mark - AppDelegate methods
+
+- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
 
 /**
  *  Call this for native social login to work properly

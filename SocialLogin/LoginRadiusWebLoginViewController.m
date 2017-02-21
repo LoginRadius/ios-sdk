@@ -6,10 +6,10 @@
 
 #import "LoginRadiusWebLoginViewController.h"
 #import "LoginRadiusSDK.h"
-#import "LoginRadiusUtilities.h"
 #import "NSDictionary+LRDictionary.h"
 #import "LRErrors.h"
 #import "ReachabilityCheck.h"
+#import "LRClient.h"
 
 @interface LoginRadiusWebLoginViewController () <UIWebViewDelegate>
 
@@ -133,12 +133,10 @@
 		NSString *token = [parameters objectForKey:@"token"];
 
 		if( token ) {
-            BOOL userSaved = [LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
-            if (userSaved) {
-                [self finishSocialLogin:YES	withError:nil];
-            } else {
-                [self finishSocialLogin:YES	withError:[LRErrors userProfileError]];
-            }
+			[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+				[self finishSocialLogin:YES	withError:error];
+			}];
+
 		} else {
 			[self finishSocialLogin:NO withError:[LRErrors socialLoginFailed:_provider]];
 		}

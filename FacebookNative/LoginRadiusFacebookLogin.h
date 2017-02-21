@@ -15,15 +15,6 @@
 
 #pragma mark - Init
 
-/**
- *  Init
- *
- *  @return singleton instance
- */
-+ (instancetype)sharedInstance;
-+ (instancetype)instanceWithApplication:(UIApplication *)application
-						  launchOptions:(NSDictionary *)launchOptions;
-
 #pragma mark - Methods
 
 /**
@@ -45,6 +36,9 @@
 
 
 #pragma mark - AppDelegate methods
+
+- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
+
 /**
  *  Call this for facebook login to work properly
  */

@@ -6,7 +6,7 @@
 
 #import "LoginRadiusFacebookLogin.h"
 #import "LoginRadiusREST.h"
-#import "LoginRadiusUtilities.h"
+#import "LRClient.h"
 #import "LRErrors.h"
 
 @interface LoginRadiusFacebookLogin ()
@@ -14,26 +14,6 @@
 @end
 
 @implementation LoginRadiusFacebookLogin
-+ (instancetype) sharedInstance {
-	return [LoginRadiusFacebookLogin instanceWithApplication:nil launchOptions:nil];
-}
-
-+ (instancetype)instanceWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
-	static dispatch_once_t onceToken;
-	static LoginRadiusFacebookLogin *instance;
-	dispatch_once(&onceToken, ^{
-		instance = [[LoginRadiusFacebookLogin alloc] initWithApplication:application launchOptions:launchOptions];
-	});
-	return instance;
-}
-
-- (instancetype)initWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions {
-	self = [super init];
-	if(self) {
-		[(FBSDKApplicationDelegate *)[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-	}
-	return self;
-}
 
 - (void)loginfromViewController:(UIViewController*)controller
 					 parameters:(NSDictionary*)params
@@ -110,8 +90,9 @@
 		// Get loginradius access_token for facebook access_token
         [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
 			NSString *token = [data objectForKey:@"access_token"];
-			[LoginRadiusUtilities lrSaveUserData:nil lrToken:token];
-			[self finishLogin:YES withError:nil];
+			[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+                [self finishLogin:YES withError:error];
+            }];
 		}];
 	}
 }
@@ -146,6 +127,10 @@
 			self.handler(success, error);
 		});
 	}
+}
+
+- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
+	[(FBSDKApplicationDelegate *)[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
