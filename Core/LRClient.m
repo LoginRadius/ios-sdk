@@ -7,7 +7,7 @@
 //
 
 #import "LRClient.h"
-#import "LRUserProfile.h"
+#import "LRSession.h"
 
 @implementation LRClient
 
@@ -27,21 +27,11 @@
                                                 @"access_token": token
                                                 }
                             completionHandler:^(NSDictionary *userProfile, NSError *error) {
-
-		LRUserProfile *profile = [[LRUserProfile alloc] initWithDictionary:userProfile];
-		NSString *uid = [userProfile objectForKey:@"Uid"];
-
-		if (uid && ![uid isEqualToString: @""]) {
-			[[LoginRadiusREST sharedInstance] sendGET:@"raas/client/auth/linkedprofiles"
-										  queryParams:@{
-														@"appkey": [LoginRadiusSDK apiKey],
-														@"access_token": token
-														}
-									completionHandler:^(NSDictionary *data, NSError *error) {
-
-									}];
+        if (error) {
+            completion(nil, error);
 		} else {
-			completion(profile, nil);
+            LRSession *session = [[LRSession alloc] initWithAccessToken:token userProfile:userProfile];
+			completion(session, nil);
 		}
     }];
 }

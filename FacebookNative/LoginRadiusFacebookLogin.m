@@ -23,6 +23,7 @@
 	NSArray *permissions;
 	self.handler = handler;
 
+    
 	if (params[@"facebookPermissions"]) {
 		permissions = params[@"facebookPermissions"];
 	} else {

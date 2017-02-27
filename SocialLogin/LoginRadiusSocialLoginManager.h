@@ -12,13 +12,6 @@
  */
 @interface LoginRadiusSocialLoginManager : NSObject
 
-#pragma mark - Properties
-
-/**
- *  set this to YES for native social login
- */
-@property BOOL useNativeLogin;
-
 #pragma mark - Init
 
 /**
@@ -53,8 +46,6 @@
 -(void)nativeTwitterLoginWithPermissions:(NSDictionary*)params
 							 inController:(UIViewController*)controller
 						completionHandler:(LRServiceCompletionHandler)handler;
-
-
 
 /**
  *  Log out the user
