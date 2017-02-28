@@ -47,6 +47,9 @@
 							 inController:(UIViewController*)controller
 						completionHandler:(LRServiceCompletionHandler)handler;
 
+-(void)nativeGoolgleLoginWithAccessToken:(NSString*)access_token
+                       completionHandler:(LRServiceCompletionHandler)handler;
+
 /**
  *  Log out the user
  */

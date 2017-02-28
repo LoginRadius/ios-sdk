@@ -10,6 +10,8 @@
 #import "LoginRadiusWebLoginViewController.h"
 #import "LoginRadiusSafariLogin.h"
 #import <SafariServices/SafariServices.h>
+#import "LoginRadiusREST.h"
+#import "LRClient.h"
 
 @interface LoginRadiusSocialLoginManager() {}
 @property(nonatomic, strong) LoginRadiusTwitterLogin * twitterLogin;
@@ -73,6 +75,21 @@
 							 inController:(UIViewController *)controller
 						completionHandler:(LRServiceCompletionHandler)handler {
 	[self.twitterLogin login:handler];
+}
+
+- (void)nativeGoolgleLoginWithAccessToken:(NSString *)access_token completionHandler:(LRServiceCompletionHandler)handler {
+    [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/google" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"google_access_token" : access_token} completionHandler:^(NSDictionary *data, NSError *error) {
+        NSString *token = [data objectForKey:@"access_token"];
+        [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+            if (error) {
+                handler(YES, error);
+                return;
+            }
+
+            handler(YES, nil);
+        }];
+    }];
+
 }
 
 - (void)logout {
