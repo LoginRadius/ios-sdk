@@ -1,30 +1,30 @@
 PODS:
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
-  - FBSDKCoreKit (4.13.1):
+  - Bolts/Tasks (1.8.4)
+  - FBSDKCoreKit (4.19.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.13.1):
+  - FBSDKLoginKit (4.19.0):
     - FBSDKCoreKit
-  - LRSDK (3.0.1):
-    - FBSDKLoginKit (~> 4.13)
+  - LRSDK (3.2.1):
+    - FBSDKLoginKit (~> 4.16)
 
 DEPENDENCIES:
   - LRSDK (from `./`)
 
 EXTERNAL SOURCES:
   LRSDK:
-    :path: "./"
+    :path: ./
 
 SPEC CHECKSUMS:
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
-  FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
-  LRSDK: c4bdba73eeea17d7b9f3f011d1e49d44103af426
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  LRSDK: 07a3396b015c691d36fab73389a12ab9181e6fc7
 
 PODFILE CHECKSUM: 7c7bee75ba8dfcdfc2e5c21f8a192108720bceae
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0
