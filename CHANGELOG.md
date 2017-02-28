@@ -1,3 +1,14 @@
+3.2.1 Release notes (2017-02-28)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+### Bugfixes
+
+* Fixed Facbook login with webview issue while loading facebook auth page.
+
 3.2.1 Release notes (2016-10-25)
 =============================================================
 

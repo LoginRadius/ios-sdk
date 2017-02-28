@@ -34,7 +34,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LRSDK', '~> 3.2.0'
+pod 'LRSDK', '~> 3.2.2'
 end
 ```
 
