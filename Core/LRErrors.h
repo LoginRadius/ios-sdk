@@ -37,4 +37,8 @@
 + (NSError*)nativeFacebookLoginFailedMixedPermissions;
 + (NSError*)nativeFacebookLoginFailed;
 
+#pragma mark - Touch ID
++ (NSError*)touchIDNotAvailable;
++ (NSError*)touchIDNotDeviceOwner;
+
 @end

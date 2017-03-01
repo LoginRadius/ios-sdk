@@ -113,4 +113,16 @@
 					  description:@"Facebook login failed"
 					failureReason:@"Your app can't ask for both read and write permissions"];
 }
+
++ (NSError*)touchIDNotAvailable {
+    return [NSError errorWithCode:LRErrorCodeTouchIDNotAvailable
+                      description:@"Touch ID authentication failed"
+                    failureReason:@"The User's device cannot be authenticated using TouchID"];
+}
+
++ (NSError*)touchIDNotDeviceOwner {
+    return [NSError errorWithCode:LRErrorCodeTouchIDNotAvailable
+                      description:@"Touch ID authentication failed"
+                    failureReason:@"TouchID Authentiction failed since the user is not the device's owner"];
+}
 @end

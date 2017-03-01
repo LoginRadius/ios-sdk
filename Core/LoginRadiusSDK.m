@@ -7,6 +7,7 @@
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusSocialLoginManager.h"
 #import "LoginRadiusRegistrationManager.h"
+#import "LRTouchIDAuth.h"
 
 static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
 static NSString * const LoginRadiusAPIKey = @"ApiKey";
@@ -24,6 +25,7 @@ static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
 @property (strong, nonatomic) LoginRadiusSocialLoginManager *socialLoginManager;
+@property (strong, nonatomic) LRTouchIDAuth *touchIDManager;
 @end
 
 @interface LoginRadiusSDK ()
@@ -62,6 +64,7 @@ static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
         _useNativeTwitterLogin = useNativeTwitterLogin;
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
 		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
+        _touchIDManager = [[LRTouchIDAuth alloc] init];
     }
 
     return self;

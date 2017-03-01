@@ -12,6 +12,7 @@ FOUNDATION_EXPORT const unsigned char LoginRadiusSDKVersionString[];
 #import <LoginRadiusSDK/LoginRadiusSDK.h>
 #import <LoginRadiusSDK/LoginRadiusRegistrationManager.h>
 #import <LoginRadiusSDK/LoginRadiusSocialLoginManager.h>
+#import <LoginRadiusSDK/LRTouchIDAuth.h>
 #import <LoginRadiusSDK/LoginRadiusREST.h>
 #import <LoginRadiusSDK/LRErrorCode.h>
 #import <LoginRadiusSDK/LRErrors.h>

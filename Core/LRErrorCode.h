@@ -94,7 +94,12 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
     /**
      *  user profile error
      */
-    LRErrorCodeUserProfileError
+    LRErrorCodeUserProfileError,
+    /**
+     *  TouchID error
+     */
+    LRErrorCodeTouchIDNotAvailable
+
 };
 
 #endif /* LRErrorCode_h */
