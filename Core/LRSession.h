@@ -10,6 +10,9 @@
 
 @interface LRSession : NSObject
 
+@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSDictionary *userProfile;
+
 - (instancetype)initWithAccessToken:(NSString *)token userProfile:(NSDictionary*)userProfile;
 
 @end
