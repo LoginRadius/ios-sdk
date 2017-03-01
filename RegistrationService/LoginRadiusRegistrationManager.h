@@ -23,17 +23,19 @@
 #pragma mark - Methods
 
 - (void)authAddEmail:(NSString *)email
-		   emailType:(NSString *)emailType
-		 accessToken:(NSString *)accessToken
-	 verificationUrl:(NSString *)verificationUrl
-	   emailTemplate:(NSString *)emailTemplate
+           emailType:(NSString *)emailType
+         accessToken:(NSString *)accessToken
+     verificationUrl:(NSString *)verificationUrl
+       emailTemplate:(NSString *)emailTemplate
    completionHandler:(LRAPIResponseHandler)completion;
 
+// Forgot Password
 - (void)authForgotPasswordWithEmail:(NSString *)email
 				   resetPasswordUrl:(NSString *)resetPasswordUrl
 					  emailTemplate:(NSString *)emailTemplate
 				  completionHandler:(LRAPIResponseHandler)completion;
 
+// Register User
 - (void)authRegistrationWithEmails:(NSArray *)emails
 					  withPassword:(NSString *)password
                           withSott:(NSString*)sott
@@ -122,6 +124,34 @@
 								 provider:(NSString*)provider
 							   providerID:(NSString*)providerID
 						completionHandler:(LRAPIResponseHandler)completion;
+
+// Custom Object API
+
+- (void)createCustomObjectWithAccessToken:(NSString*)token
+                        customObjectName:(NSString*)objectName
+                        customObjectData:(NSDictionary*)data
+                       completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)getCustomObjectWithAccessToken:(NSString*)token
+                  customObjectRecordID:(NSString*)objectRecordID
+                      customObjectName:(NSString*)objectName
+                     completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)getCustomObjectWithAccessToken:(NSString*)token
+                      customObjectName:(NSString*)objectName
+                     completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)updateCustomObjectWithToken:(NSString*)accessToken
+               customObjectRecordID:(NSString*)objectRecordID
+                   customObjectName:(NSString*)objectName
+                   customObjectDate:(NSDictionary*)data
+                  completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)DeleteCustomObjectWithToken:(NSString*)accessToken
+               customObjectRecordID:(NSString*)objectRecordID
+                   customObjectName:(NSString*)objectName
+                   customObjectDate:(NSDictionary*)data
+                  completionHandler:(LRAPIResponseHandler)completion;
 
 #pragma mark - AppDelegate methods
 

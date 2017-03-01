@@ -6,6 +6,7 @@
 
 #import "LoginRadiusRegistrationManager.h"
 #import "LoginRadiusREST.h"
+#import "LRSession.h"
 
 @implementation LoginRadiusRegistrationManager
 
@@ -38,7 +39,13 @@
 												 @"Type": emailType,
 												 @"Email": email
 												 }
-							 completionHandler:completion];
+                             completionHandler:^(NSDictionary *data, NSError *error) {
+                                 if (error || data[@"IsPosted"] != true) {
+                                     completion(nil, error);
+                                 } else {
+                                     completion(data, nil);
+                                 }
+                             }];
 }
 
 - (void)authForgotPasswordWithEmail:(NSString *)email
@@ -55,7 +62,13 @@
 										  body:@{
 												 @"email": email
 												 }
-							 completionHandler:completion];
+                             completionHandler:^(NSDictionary *data, NSError *error) {
+                                 if (error || data[@"IsPosted"] != true) {
+                                     completion(nil, error);
+                                 } else {
+                                     completion(data, nil);
+                                 }
+                             }];
 }
 
 - (void)authRegistrationWithEmails:(NSArray *)emails
@@ -76,7 +89,13 @@
 												 @"Password": password,
 												 @"Email": emails
 												 }
-							 completionHandler:completion];
+							 completionHandler:^(NSDictionary *data, NSError *error) {
+                                 if (error || data[@"IsPosted"] != true) {
+                                     completion(nil, error);
+                                 } else {
+                                     completion(data, nil);
+                                 }
+                             }];
 }
 
 - (void)authCheckEmailAvailability:(NSString*)email
@@ -87,7 +106,13 @@
 												@"apikey": [LoginRadiusSDK apiKey],
 												@"email": email
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsExist"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authUserNameAvailability:(NSString*)email
@@ -98,7 +123,13 @@
 												@"apikey": [LoginRadiusSDK apiKey],
 												@"email": email
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsExist"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 
@@ -118,7 +149,18 @@
 												@"verificationUrl": verificationUrl,
 												@"emailTemplate": emailTemplate
 												}
-							completionHandler:completion];
+							completionHandler:^(NSDictionary *data, NSError *error) {
+
+                                if (error) {
+                                    completion(nil, error);
+                                    return;
+                                }
+
+                                if (data[@"access_token"]) {
+                                    LRSession *session = [[LRSession alloc] initWithAccessToken:data[@"access_token"] userProfile:data[@"Profile"]];
+                                    completion(session, nil);
+                                }
+                            }];
 }
 
 - (void)authLoginWithUserName:(NSString*)userName
@@ -137,7 +179,18 @@
 												@"verificationUrl": verificationUrl,
 												@"emailTemplate": emailTemplate
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+
+                                if (error) {
+                                    completion(nil, error);
+                                    return;
+                                }
+
+                                if (data[@"access_token"]) {
+                                    LRSession *session = [[LRSession alloc] initWithAccessToken:data[@"access_token"] userProfile:data[@"Profile"]];
+                                    completion(session, nil);
+                                }
+                            }];
 }
 
 - (void)authProfilesByToken:(NSString*)accessToken
@@ -174,7 +227,13 @@
 												@"verificationtoken": verificationtoken,
 												@"url": url
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authChangePasswordWithAcessToken:(NSString*)accessToken
@@ -191,7 +250,13 @@
 												@"oldpassword": oldPassword,
 												@"newpassword": newPassword
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authLinkSocialIdentityWithAcessToken:(NSString*)accessToken
@@ -206,7 +271,13 @@
 										 body:@{
 												@"candidateToken": candidateToken
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authResendEmailVerification:(NSString*)email
@@ -223,7 +294,13 @@
 										 body:@{
 												@"email": email
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authResetPasswordWithResetToken:(NSString*)resetToken
@@ -238,7 +315,13 @@
 												@"password": password,
 												@"resettoken": resetToken
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authResetPasswordWithSecurityQuestion:(NSDictionary*)securityQuestion
@@ -255,7 +338,13 @@
 												@"password": password,
 												@"userid": userid
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 
@@ -271,7 +360,13 @@
 										 body:@{
 												@"username": username,
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authUpdateProfilebyToken:(NSString*)accessToken
@@ -288,7 +383,13 @@
 												@"emailTemplate": emailTemplate
 												}
 										 body:userData
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authUpdateSecurityQuestionWithAccessToken:(NSString*)accessToken
@@ -303,7 +404,13 @@
 										 body:@{
 												@"SecurityQuestionAnswer":securityQuestion
 												}
-							completionHandler:completion];
+                            completionHandler:^(NSDictionary *data, NSError *error) {
+                                if (error || data[@"IsPosted"] != true) {
+                                    completion(nil, error);
+                                } else {
+                                    completion(data, nil);
+                                }
+                            }];
 }
 
 - (void)authDeleteAccountWithToken:(NSString*)accessToken
@@ -319,7 +426,13 @@
 												   @"emailTemplate": emailTemplate
 												   }
 											body:nil
-							   completionHandler:completion];
+                               completionHandler:^(NSDictionary *data, NSError *error) {
+                                   if (error || data[@"IsDeleteRequestAccepted"] != true) {
+                                       completion(nil, error);
+                                   } else {
+                                       completion(data, nil);
+                                   }
+                               }];
 }
 
 - (void)authDeleteEmailWithToken:(NSString*)accessToken
@@ -334,7 +447,13 @@
 											body:@{
 												   @"email": email
 												   }
-							   completionHandler:completion];
+                               completionHandler:^(NSDictionary *data, NSError *error) {
+                                   if (error || data[@"IsDeleted"] != true) {
+                                       completion(nil, error);
+                                   } else {
+                                       completion(data, nil);
+                                   }
+                               }];
 }
 
 - (void)authUnlinkSocialIdentityWithToken:(NSString*)accessToken
@@ -351,8 +470,100 @@
 												   @"provider": provider,
 												   @"providerID": providerID
 												   }
-							   completionHandler:completion];
+                               completionHandler:^(NSDictionary *data, NSError *error) {
+                                   if (error || data[@"IsDeleted"] != true) {
+                                       completion(nil, error);
+                                   } else {
+                                       completion(data, nil);
+                                   }
+                               }];
 }
+
+
+- (void)createCustomObjectWithAccessToken:(NSString*)token
+                        customObjectName:(NSString*)objectName
+                        customObjectData:(NSDictionary*)data
+                       completionHandler:(LRAPIResponseHandler)completion {
+
+    [[LoginRadiusREST sharedInstance] sendPOST:@"identity/v2/auth/customobject"
+                                   queryParams:@{
+                                                 @"apikey": [LoginRadiusSDK apiKey],
+                                                 @"access_token": token,
+                                                 @"objectname": objectName
+                                                 }
+                                          body:data
+                             completionHandler:completion];
+}
+
+- (void)getCustomObjectWithAccessToken:(NSString*)token
+                  customObjectRecordID:(NSString*)objectRecordID
+                      customObjectName:(NSString*)objectName
+               completionHandler:(LRAPIResponseHandler)completion {
+
+    [[LoginRadiusREST sharedInstance] sendGET:@"identity/v2/auth/customobject"
+                                  queryParams:@{
+                                                @"apikey": [LoginRadiusSDK apiKey],
+                                                @"access_token": token,
+                                                @"objectrecordid": objectRecordID,
+                                                @"objectname": objectName
+                                                }
+                            completionHandler:completion];
+}
+
+- (void)getCustomObjectWithAccessToken:(NSString*)token
+                      customObjectName:(NSString*)objectName
+                     completionHandler:(LRAPIResponseHandler)completion {
+
+    [[LoginRadiusREST sharedInstance] sendGET:@"identity/v2/auth/customobject"
+                                  queryParams:@{
+                                                @"apikey": [LoginRadiusSDK apiKey],
+                                                @"access_token": token,
+                                                @"objectname": objectName
+                                                }
+                            completionHandler:completion];
+}
+
+- (void)updateCustomObjectWithToken:(NSString*)accessToken
+               customObjectRecordID:(NSString*)objectRecordID
+                   customObjectName:(NSString*)objectName
+                   customObjectDate:(NSDictionary*)data
+                  completionHandler:(LRAPIResponseHandler)completion {
+
+    [[LoginRadiusREST sharedInstance] sendPUT:@"identity/v2/auth/customobject"
+                                  queryParams:@{
+                                                @"apikey": [LoginRadiusSDK apiKey],
+                                                @"access_token": accessToken,
+                                                @"objectrecordid": objectRecordID,
+                                                @"objectname": objectName
+                                                }
+                                         body:data
+                            completionHandler:completion];
+}
+
+
+- (void)DeleteCustomObjectWithToken:(NSString*)accessToken
+               customObjectRecordID:(NSString*)objectRecordID
+                   customObjectName:(NSString*)objectName
+                   customObjectDate:(NSDictionary*)data
+                  completionHandler:(LRAPIResponseHandler)completion {
+
+    [[LoginRadiusREST sharedInstance] sendDELETE:@"identity/v2/auth/customobject"
+                                     queryParams:@{
+                                                   @"apikey": [LoginRadiusSDK apiKey],
+                                                   @"access_token": accessToken,
+                                                   @"objectrecordid": objectRecordID,
+                                                   @"objectname": objectName
+                                                   }
+                                            body:nil
+                               completionHandler:^(NSDictionary *data, NSError *error) {
+                                   if (error || data[@"IsDeleted"] != true) {
+                                       completion(nil, error);
+                                   } else {
+                                       completion(data, nil);
+                                   }
+                               }];
+}
+
 
 - (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
 	return YES;
