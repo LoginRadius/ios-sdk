@@ -90,6 +90,7 @@
     
     self.serviceURL = url;
     [_webView loadRequest:[NSURLRequest requestWithURL: url]];
+    [self startMonitoringNetwork];
 }
 
 - (void) cancelPressed {
@@ -146,6 +147,21 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+
+    /* Facebook Auth fails with the following error.
+        Error Domain=NSURLErrorDomain Code=-999 "(null)"
+        UserInfo={NSErrorFailingURLStringKey=https://m.facebook.com/intern/common/referer_frame.php,
+                    NSErrorFailingURLKey=https://m.facebook.com/intern/common/referer_frame.php}
+
+        As per Facebook SDK, we should ignore these warnings.
+        Ref: https://github.com/facebook/facebook-ios-sdk/blob/4b4bd9504d70d99d6c6b1ca670f486ac8f494f17/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.m#L141-L145
+     */
+
+    if (([error.domain isEqualToString:@"NSURLErrorDomain"] && error.code == -999) ||
+          ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
+        return;
+    }
+
     if (error.code == NSURLErrorTimedOut || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet) {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
         self.retryLabel.text = @"Please check your network connection and try again.";
