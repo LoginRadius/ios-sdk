@@ -20,7 +20,7 @@
 	return _instance;
 }
 
-- (BOOL)getUserProfileWithAccessToken:(NSString *)token completionHandler:(LRAPIResponseHandler) completion {
+- (void)getUserProfileWithAccessToken:(NSString *)token completionHandler:(LRAPIResponseHandler) completion {
 
     [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/userprofile"
                                   queryParams:@{
@@ -31,7 +31,7 @@
             completion(nil, error);
 		} else {
             LRSession *session = [[LRSession alloc] initWithAccessToken:token userProfile:userProfile];
-			completion(session, nil);
+			completion(session.userProfile, nil);
 		}
     }];
 }

@@ -18,6 +18,6 @@
  */
 + (instancetype) sharedInstance;
 
-- (BOOL)getUserProfileWithAccessToken:(NSString *)token completionHandler:(LRAPIResponseHandler) completion;
+- (void)getUserProfileWithAccessToken:(NSString *)token completionHandler:(LRAPIResponseHandler) completion;
 
 @end

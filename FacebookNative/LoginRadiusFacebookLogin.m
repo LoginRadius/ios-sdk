@@ -131,7 +131,7 @@
 }
 
 - (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
-	[(FBSDKApplicationDelegate *)[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
+	return [(FBSDKApplicationDelegate *)[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
