@@ -38,7 +38,7 @@
 
 #pragma mark - AppDelegate methods
 
-- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
+- (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
 
 /**
  *  Call this for facebook login to work properly

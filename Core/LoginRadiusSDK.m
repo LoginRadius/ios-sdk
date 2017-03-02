@@ -111,8 +111,8 @@ static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
 
 #pragma mark Application Delegate methods
 
-- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
-	return [self.socialLoginManager applicationLaunchedWithOptions:launchOptions] &&
+- (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
+    [self.socialLoginManager applicationLaunchedWithOptions:launchOptions];
 	[self.registrationManager applicationLaunchedWithOptions:launchOptions];
 }
 

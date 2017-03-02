@@ -46,7 +46,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 /** Application Delegate methods
  */
 
-- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
+- (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

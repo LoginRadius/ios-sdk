@@ -96,8 +96,8 @@
 }
 
 #pragma mark Application delegate methods
-- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
-	return [self.facebookLogin applicationLaunchedWithOptions:launchOptions];
+- (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
+    [self.facebookLogin applicationLaunchedWithOptions:launchOptions];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

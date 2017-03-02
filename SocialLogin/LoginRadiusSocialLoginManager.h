@@ -58,7 +58,7 @@
 
 #pragma mark - AppDelegate methods
 
-- (BOOL)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
+- (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
 
 /**
  *  Call this for native social login to work properly
