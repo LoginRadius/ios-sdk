@@ -28,10 +28,9 @@ s.source_files = ['Core/**/*.{h,m}', 'FacebookNative/*.{h,m}', 'RegistrationServ
 
 s.dependency 'FBSDKLoginKit', '~> 4.16'
 s.dependency 'AFNetworking', '~> 3.1'
+s.dependency 'OAuthCore', '~> 0.0.1'
 
 s.ios.frameworks = 'Foundation', 'UIKit', 'SystemConfiguration', 'Social', 'Accounts', 'SafariServices'
-
-s.requires_arc = ['Core/**/*.{h,m}', 'FacebookNative/*.{h,m}', 'RegistrationService/*.{h,m}', 'SocialLogin/*.{h,m}', 'TwitterNative/*.{h,m}', 'TouchID/*.{h,m}']
 
 s.deprecated_in_favor_of = 'LRSDK'
 

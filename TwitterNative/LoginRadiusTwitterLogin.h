@@ -21,5 +21,8 @@
  *
  *  @param handler service completion handler
  */
--(void)login:(LRServiceCompletionHandler)handler;
+-(void)loginWithConsumerKey:(NSString*)consumerKey
+           andConumerSecret:(NSString*)consumerSecret
+               inController:(UIViewController*)controller
+                 completion:(LRServiceCompletionHandler)handler;
 @end

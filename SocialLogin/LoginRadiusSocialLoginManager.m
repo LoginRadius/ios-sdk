@@ -71,10 +71,8 @@
 	[self.facebookLogin loginfromViewController:controller parameters:params handler:handler];
 }
 
-- (void)nativeTwitterLoginWithPermissions:(NSDictionary *)params
-							 inController:(UIViewController *)controller
-						completionHandler:(LRServiceCompletionHandler)handler {
-	[self.twitterLogin login:handler];
+- (void)nativeTwitterWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completionHandler:(LRServiceCompletionHandler)handler {
+    [self.twitterLogin loginWithConsumerKey:consumerKey andConumerSecret:consumerSecret inController:controller completion:handler];
 }
 
 - (void)nativeGoolgleLoginWithAccessToken:(NSString *)access_token completionHandler:(LRServiceCompletionHandler)handler {

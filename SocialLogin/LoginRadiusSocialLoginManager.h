@@ -43,9 +43,10 @@
 							 inController:(UIViewController*)controller
 						completionHandler:(LRServiceCompletionHandler)handler;
 
--(void)nativeTwitterLoginWithPermissions:(NSDictionary*)params
-							 inController:(UIViewController*)controller
-						completionHandler:(LRServiceCompletionHandler)handler;
+-(void)nativeTwitterWithConsumerKey:(NSString*)consumerKey
+                     consumerSecret:(NSString*)consumerSecret
+                       inController:(UIViewController*)controller
+                  completionHandler:(LRServiceCompletionHandler)handler;
 
 -(void)nativeGoolgleLoginWithAccessToken:(NSString*)access_token
                        completionHandler:(LRServiceCompletionHandler)handler;
