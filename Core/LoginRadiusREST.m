@@ -7,6 +7,7 @@
 #import "LoginRadiusREST.h"
 #import "NSDictionary+LRDictionary.h"
 #import "NSError+LRError.h"
+#import "LRResponseSerializer.h"
 
 NSString *const API_BASE_URL = @"https://api.loginradius.com/";
 
@@ -29,6 +30,8 @@ NSString *const API_BASE_URL = @"https://api.loginradius.com/";
     self = [super init];
     if (self) {
         _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:API_BASE_URL]];
+        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        _manager.responseSerializer = [LRResponseSerializer serializer];
     }
     return self;
 }

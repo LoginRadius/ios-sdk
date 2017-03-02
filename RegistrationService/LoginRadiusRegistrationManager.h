@@ -22,32 +22,28 @@
 
 #pragma mark - Methods
 
-- (void)authAddEmail:(NSString *)email
-           emailType:(NSString *)emailType
-         accessToken:(NSString *)accessToken
-     verificationUrl:(NSString *)verificationUrl
-       emailTemplate:(NSString *)emailTemplate
-   completionHandler:(LRAPIResponseHandler)completion;
+#pragma mark - Registration
 
-// Forgot Password
-- (void)authForgotPasswordWithEmail:(NSString *)email
-				   resetPasswordUrl:(NSString *)resetPasswordUrl
-					  emailTemplate:(NSString *)emailTemplate
-				  completionHandler:(LRAPIResponseHandler)completion;
+- (void)authRegistrationWithData:(NSDictionary*)data
+                        withSott:(NSString*)sott
+                 verificationUrl:(NSString *)verificationUrl
+                   emailTemplate:(NSString *)emailTemplate
+               completionHandler:(LRAPIResponseHandler)completion;
 
-// Register User
-- (void)authRegistrationWithEmails:(NSArray *)emails
-					  withPassword:(NSString *)password
-                          withSott:(NSString*)sott
-				   verificationUrl:(NSString *)verificationUrl
-					 emailTemplate:(NSString *)emailTemplate
-				 completionHandler:(LRAPIResponseHandler)completion;
+- (void)authResendEmailVerification:(NSString*)email
+                      emailTemplate:(NSString*)emailTemplate
+                    verificationUrl:(NSString*)verificationUrl
+                  completionHandler:(LRAPIResponseHandler)completion;
+
+#pragma mark - Check Email/UserName Availability
 
 - (void)authCheckEmailAvailability:(NSString*)email
 				 completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)authUserNameAvailability:(NSString*)email
 			   completionHandler:(LRAPIResponseHandler)completion;
+
+#pragma mark - Login
 
 - (void)authLoginWithEmail:(NSString*)email
 			  withPassword:(NSString*)password
@@ -63,6 +59,28 @@
 				emailTemplate:(NSString*)emailTemplate
 			completionHandler:(LRAPIResponseHandler)completion;
 
+#pragma mark - Password
+- (void)authForgotPasswordWithEmail:(NSString *)email
+                   resetPasswordUrl:(NSString *)resetPasswordUrl
+                      emailTemplate:(NSString *)emailTemplate
+                  completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)authChangePasswordWithAcessToken:(NSString*)accessToken
+                             oldPassword:(NSString*)oldPassword
+                             newPassword:(NSString*)newPassword
+                       completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)authResetPasswordWithResetToken:(NSString*)resetToken
+                               password:(NSString*)password
+                      completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)authAddEmail:(NSString *)email
+           emailType:(NSString *)emailType
+         accessToken:(NSString *)accessToken
+     verificationUrl:(NSString *)verificationUrl
+       emailTemplate:(NSString *)emailTemplate
+   completionHandler:(LRAPIResponseHandler)completion;
+
 - (void)authProfilesByToken:(NSString*)accessToken
 		  completionHandler:(LRAPIResponseHandler)completion;
 
@@ -74,23 +92,11 @@
 							 url:(NSString*)url
 			   completionHandler:(LRAPIResponseHandler)completion;
 
-- (void)authChangePasswordWithAcessToken:(NSString*)accessToken
-							 oldPassword:(NSString*)oldPassword
-							 newPassword:(NSString*)newPassword
-					   completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)authLinkSocialIdentityWithAcessToken:(NSString*)accessToken
 							  candidateToken:(NSString*)candidateToken
 						   completionHandler:(LRAPIResponseHandler)completion;
 
-- (void)authResendEmailVerification:(NSString*)email
-					  emailTemplate:(NSString*)emailTemplate
-					verificationUrl:(NSString*)verificationUrl
-				  completionHandler:(LRAPIResponseHandler)completion;
-
-- (void)authResetPasswordWithResetToken:(NSString*)resetToken
-							   password:(NSString*)password
-					  completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)authResetPasswordWithSecurityQuestion:(NSDictionary*)securityQuestion
 									   userid:(NSString*)userid // if phone no login then phone no and if email login then email id
