@@ -17,14 +17,6 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 
 @property (strong, readonly, nonatomic) NSString* apiKey;
 @property (strong, readonly, nonatomic) NSString* siteName;
-@property (strong, readonly, nonatomic) NSString* emailVerificationUrl;
-@property (strong, readonly, nonatomic) NSString* emailTemplate;
-@property (assign, readonly, nonatomic) BOOL usernameLogin;
-@property (strong, readonly, nonatomic) NSString* smsTemplate;
-@property (assign, readonly, nonatomic) BOOL promptPasswordOnSocialLogin;
-
-@property (assign, readonly, nonatomic) BOOL useNativeFacebookLogin;
-@property (assign, readonly, nonatomic) BOOL useNativeTwitterLogin;
 
 #pragma mark - Initilizers
 

@@ -12,15 +12,6 @@
 static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
 static NSString * const LoginRadiusAPIKey = @"ApiKey";
 static NSString * const LoginRadiusSiteName = @"SiteName";
-static NSString * const LoginRadiusEmailVerificationUrl = @"EmailVerificationUrl";
-static NSString * const LoginRadiusEmailTemplate = @"EmailTemplate";
-
-static NSString * const LoginRadiusUsernameLogin = @"UsernameLogin";
-static NSString * const LoginRadiusSMSTemplate = @"SMSTemplate";
-static NSString * const LoginRadiusPromptPasswordOnSocialLogin = @"PromptPasswordOnSocialLogin";
-
-static NSString * const LoginRadiusNativeFacebookLogin = @"NativeFacebookLogin";
-static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
 
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
@@ -39,14 +30,6 @@ static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
     NSDictionary* values = [NSDictionary dictionaryWithContentsOfFile:path];
     NSString *apiKey = values[LoginRadiusAPIKey];
     NSString *siteName = values[LoginRadiusSiteName];
-    NSString *emailVerificationUrl = values[LoginRadiusEmailVerificationUrl];
-    NSString *emailTemplate = values[LoginRadiusEmailTemplate];
-    BOOL usernameLogin = [values[LoginRadiusUsernameLogin] boolValue];
-    NSString *smsTemplate = values[LoginRadiusSMSTemplate];
-    BOOL promptPasswordOnSocialLogin = [values[LoginRadiusPromptPasswordOnSocialLogin] boolValue];
-    BOOL useNativeFacebookLogin = [values[LoginRadiusNativeFacebookLogin] boolValue];
-    BOOL useNativeTwitterLogin = [values[LoginRadiusNativeTwitterLogin] boolValue];
-
     NSAssert(apiKey, @"ApiKey cannot be null in LoginRadius.plist");
     NSAssert(siteName, @"SiteName cannot be null in LoginRadius.plist");
 
@@ -55,13 +38,6 @@ static NSString * const LoginRadiusNativeTwitterLogin = @"NativeTwitterLogin";
     if (self) {
         _apiKey = apiKey;
         _siteName = siteName;
-        _emailVerificationUrl = emailVerificationUrl;
-        _emailTemplate = emailTemplate;
-        _usernameLogin = usernameLogin;
-        _smsTemplate = smsTemplate;
-        _promptPasswordOnSocialLogin = promptPasswordOnSocialLogin;
-        _useNativeFacebookLogin = useNativeFacebookLogin;
-        _useNativeTwitterLogin = useNativeTwitterLogin;
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
 		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
