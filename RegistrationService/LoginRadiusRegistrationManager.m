@@ -64,7 +64,7 @@
                    emailTemplate:(NSString *)emailTemplate
                completionHandler:(LRAPIResponseHandler)completion {
 
-	[[LoginRadiusREST sharedInstance] sendPOST:@"identity/v2/auth/email"
+	[[LoginRadiusREST sharedInstance] sendPOST:@"identity/v2/auth/register"
 								   queryParams:@{
 												 @"apikey": [LoginRadiusSDK apiKey],
 												 @"sott": sott,
@@ -119,7 +119,7 @@
                                     completion(nil, error);
                                 } else {
                                     LRSession *session = [[LRSession alloc] initWithAccessToken:data[@"access_token"] userProfile:data[@"Profile"]];
-                                    completion(session, nil);
+                                    completion(session.userProfile, nil);
                                 }
                             }];
 }
@@ -145,7 +145,7 @@
                                     completion(nil, error);
                                 } else {
                                     LRSession *session = [[LRSession alloc] initWithAccessToken:data[@"access_token"] userProfile:data[@"Profile"]];
-                                    completion(session, nil);
+                                    completion(session.userProfile, nil);
                                 }
                             }];
 }
