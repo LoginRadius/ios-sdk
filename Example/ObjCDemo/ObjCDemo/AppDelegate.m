@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import <LoginRadiusSDK/LoginRadius.h>
-#define CLIENT_SITENAME @"<your-site-name>"
-#define API_KEY @"<your-api-key>"
 
 @interface AppDelegate ()
 
