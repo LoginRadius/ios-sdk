@@ -12,7 +12,6 @@
 @interface LoginRadiusSafariLogin : NSObject
 
 -(void)loginWithProvider:(NSString*)provider
-              parameters:(NSDictionary*)params
             inController:(UIViewController*)controller
        completionHandler:(LRServiceCompletionHandler)handler;
 

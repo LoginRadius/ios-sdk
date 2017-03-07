@@ -26,19 +26,24 @@
  *  Login with the given provider
  *
  *  @param provider   provider name in small case (e.g facebook, twitter, google, linkedin, yahoo etc)
- *  @param params     dict of parameters
-                            These are the valid keys
-                            - facebookPermissions : should be an array of strings
-                            - facebookLoginBehavior : should be FBSDKLoginBehaviorNative / FBSDKLoginBehaviorBrowser / FBSDKLoginBehaviorSystemAccount / FBSDKLoginBehaviorWeb
-                            recommended approach is to use FBSDKLoginBehaviorSystemAccount
  *  @param controller view controller where social login take place should not be nil
  *  @param handler    code block executed after completion
  */
 -(void)loginWithProvider:(NSString*)provider
-			  parameters:(NSDictionary*)params
 			inController:(UIViewController*)controller
 	   completionHandler:(LRServiceCompletionHandler)handler;
 
+/**
+ *  Native Facebook Login
+ *
+ *  @param params     dict of parameters
+ These are the valid keys
+ - facebookPermissions : should be an array of strings
+ - facebookLoginBehavior : should be FBSDKLoginBehaviorNative / FBSDKLoginBehaviorBrowser / FBSDKLoginBehaviorSystemAccount / FBSDKLoginBehaviorWeb
+ recommended approach is to use FBSDKLoginBehaviorSystemAccount
+ *  @param controller view controller where social login take place should not be nil
+ *  @param handler    code block executed after completion
+ */
 -(void)nativeFacebookLoginWithPermissions:(NSDictionary*)params
 							 inController:(UIViewController*)controller
 						completionHandler:(LRServiceCompletionHandler)handler;

@@ -46,14 +46,13 @@
 
 #pragma mark Login Methods
 -(void)loginWithProvider:(NSString*)provider
-			  parameters:(NSDictionary*)params
 			inController:(UIViewController*)controller
 	   completionHandler:(LRServiceCompletionHandler)handler {
 
     // Use SFSafariViewController if available by defualt. Recommended approach
     if ([SFSafariViewController class] != nil) {
         _isSafariLogin = YES;
-        [self.safariLogin loginWithProvider:provider parameters:params inController:controller completionHandler:handler];
+        [self.safariLogin loginWithProvider:provider inController:controller completionHandler:handler];
         return;
     }
 
