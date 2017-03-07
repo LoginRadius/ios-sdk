@@ -65,10 +65,10 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
             NSArray *accounts = [accountStore accountsWithAccountType:accountType];
             if ([accounts count] > 1) {
 
-                UIAlertController * alertC = [UIAlertController alertControllerWithTitle:@"Choose Account" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                UIAlertController * alertC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
                 for (ACAccount *account in accounts) {
-                    UIAlertAction *action = [UIAlertAction actionWithTitle:account.username style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"@%@", account.username] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [self takeActions:account];
                     }];
                     [alertC addAction:action];
@@ -81,8 +81,10 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
                 [alertC addAction:cancelAction];
 
                 [controller presentViewController:alertC animated:YES completion:nil];
-            } else {
+            } else if ([accounts count] == 1) {
                 [self takeActions:[accounts objectAtIndex:0]];
+            } else {
+                [self finishLogin:NO withError:[LRErrors nativeTwitterLoginNoAccount]];
             }
         } else {
             [self finishLogin:NO withError:[LRErrors nativeTwitterLoginFailed]];
@@ -108,7 +110,6 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 				[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
 					[self finishLogin:YES withError:error];
 				}];
-
 			}];
 		} else {
 			[self finishLogin:NO withError:error];

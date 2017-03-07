@@ -31,6 +31,7 @@
 + (NSError *)socialLoginFailed:(NSString*) provider;
 
 #pragma mark - Native Social Login
++ (NSError*)nativeTwitterLoginNoAccount;
 + (NSError*)nativeTwitterLoginCancelled;
 + (NSError*)nativeTwitterLoginFailed;
 + (NSError*)nativeFacebookLoginCancelled;

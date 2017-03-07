@@ -66,16 +66,21 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
      *  Native facebook login failed
      */
     LRErrorCodeNativeFacebookLoginFailed,
-    
+
     /**
      *  Native twitter login cancelled
      */
-    LRErrorCodeNativeTwiiterLoginCancelled,
-    
+    LRErrorCodeNativeTwitterLoginCancelled,
+
+    /**
+     *  Native twitter login not available
+     */
+    LRErrorCodeNativeTwitterLoginNotAvailable,
+
     /**
      *  Native twitter login failed
      */
-    LRErrorCodeNativeTwiiterLoginFailed,
+    LRErrorCodeNativeTwitterLoginFailed,
     
     /**
      *  Access Token Invalid

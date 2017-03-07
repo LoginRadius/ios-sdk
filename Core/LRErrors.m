@@ -71,26 +71,32 @@
 			 failureReason:@"User profile is either bloked or returned with an errorCode"];
 }
 
-+ (NSError *)socialLoginCancelled:(NSString*) provider {
++ (NSError*)socialLoginCancelled:(NSString*) provider {
 	return [NSError errorWithCode:LRErrorCodeWebSocialLoginCancelled
 					  description:@"Social Login cancelled"
 					failureReason:[NSString stringWithFormat:@"Social login with %@ is cancelled", provider]];
 }
 
-+ (NSError *)socialLoginFailed:(NSString*) provider {
++ (NSError*)socialLoginFailed:(NSString*) provider {
 	return [NSError errorWithCode:LRErrorCodeWebSocialLoginFailed
 								description:@"Social Login failed"
 							  failureReason:[NSString stringWithFormat:@"Social login with %@ is failed since token is not recieved", provider]];
 }
 
++ (NSError*)nativeTwitterLoginNoAccount {
+    return [NSError errorWithCode:LRErrorCodeNativeTwitterLoginCancelled
+                      description:@"Twitter login not available"
+                    failureReason:@"Native Twitter login is not available since user doesn't have a configured twitter account"];
+}
+
 + (NSError*)nativeTwitterLoginCancelled {
-	return [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginCancelled
+	return [NSError errorWithCode:LRErrorCodeNativeTwitterLoginNotAvailable
 					  description:@"Twitter login cancelled"
 					failureReason:@"Native twitter login is cancelled by user"];
 }
 
 + (NSError*)nativeTwitterLoginFailed {
-	return [NSError errorWithCode:LRErrorCodeNativeTwiiterLoginFailed
+	return [NSError errorWithCode:LRErrorCodeNativeTwitterLoginFailed
 					  description:@"Twitter login failed"
 					failureReason:@"Native twitter login is not granted by user"];
 }
