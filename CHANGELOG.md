@@ -1,4 +1,29 @@
-3.2.1 Release notes (2017-02-28)
+3.3 Release notes (2017-03-08)
+=============================================================
+
+### API breaking changes
+
+* SDK is renamed to LoginRadiusSDK
+* SDK needs to be initialized by creating a LoginRadius.plist and adding the appropriate key/values.
+* All the classes are restructed, hence the method calls for Registration Service, Social Login,
+  Native Social Login are changed.
+
+### Enhancements
+
+* Cocoapods upgrade
+* Using AFNetworking for networking tasks.
+* Changed the way application delegate methods are propagated
+* Registration and Social Login are accessible from their respective classes instead of LoginRadiusSDK
+* Basic TouchID Support
+* Using SFSafariViewController for webview social login.
+* Better Error messages from LoginRadius API
+
+### Bugfixes
+
+* Twitter Native Login issue when no accounts are configured.
+* Fix LoginRadiusREST bugs
+
+3.2.2 Release notes (2017-02-28)
 =============================================================
 
 ### API breaking changes

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = 'LoginRadiusSDK'
-s.version      = '3.2.2'
+s.version      = '3.3'
 s.summary      = 'Official LoginRadius SDK for iOS to integrate User Registration Service or Social Login in your app.'
 
 s.description  = <<-DESC
@@ -31,7 +31,5 @@ s.dependency 'AFNetworking', '~> 3.1'
 s.dependency 'OAuthCore', '~> 0.0.1'
 
 s.ios.frameworks = 'Foundation', 'UIKit', 'SystemConfiguration', 'Social', 'Accounts', 'SafariServices'
-
-s.deprecated_in_favor_of = 'LRSDK'
 
 end
