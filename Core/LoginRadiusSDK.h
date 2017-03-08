@@ -17,12 +17,6 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 
 @property (strong, readonly, nonatomic) NSString* apiKey;
 @property (strong, readonly, nonatomic) NSString* siteName;
-/**
- *  Set language for the loginradius hosted pages for user registration service, currently we support english, spanish,
- *  german, french should be one of these[@"es", @"de", @"fr"]
- *  Default is english
- */
-@property (nonatomic, copy) NSString* appLanguage;
 
 #pragma mark - Initilizers
 
