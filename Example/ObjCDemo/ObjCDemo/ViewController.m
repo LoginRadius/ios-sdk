@@ -67,42 +67,25 @@
 }
 
 - (IBAction)registerWithEmail:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] authRegistrationWithData:@{
-                                                                                @"Email": @[
-                                                                                          @{
-                                                                                              @"Type": @"Primary",
-                                                                                              @"Value": @"test@gmail.com"
-                                                                                          }
-                                                                                          ],
-                                                                                @"Password": @"password"
-                                                                                }
-                                                                     withSott:@"<your sott here>"
-                                                              verificationUrl:@"<your verification url>"
-                                                                emailTemplate:@""
-                                                            completionHandler:^(NSDictionary *data, NSError *error) {
-                                                                                    if (!error) {
-                                                                                        // Registration only registers the user. Call login to set the session
-                                                                                        NSLog(@"successfully reg %@", data);
-                                                                                    } else {
-                                                                                        NSLog(@"Error: %@", [error description]);
-                                                                                    }
-                                                                                }];
+    [[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"successfully registered");
+            [self showProfileController];
+        } else {
+            NSLog(@"Error: %@", [error description]);
+        }
+    }];
 }
 
 - (IBAction)loginWithEmail:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] authLoginWithEmail:@"test@gmail.com"
-                                                           withPassword:@"password"
-                                                               loginUrl:@""
-                                                        verificationUrl:@""
-                                                          emailTemplate:@""
-                                                      completionHandler:^(NSDictionary *data, NSError *error) {
-                                                        if (!error) {
-                                                            NSLog(@"successfully logged in %@", data);
-                                                            [self showProfileController];
-                                                        } else {
-                                                            NSLog(@"Error: %@", [error description]);
-                                                        }
-                                                    }];
+    [[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:@"login" inController:self completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"successfully logged in");
+            [self showProfileController];
+        } else {
+            NSLog(@"Error: %@", [error description]);
+        }
+    }];
 }
 
 - (void) showProfileController {
