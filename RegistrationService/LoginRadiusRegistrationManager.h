@@ -131,34 +131,6 @@
 							   providerID:(NSString*)providerID
 						completionHandler:(LRAPIResponseHandler)completion;
 
-// Custom Object API
-
-- (void)createCustomObjectWithAccessToken:(NSString*)token
-                        customObjectName:(NSString*)objectName
-                        customObjectData:(NSDictionary*)data
-                       completionHandler:(LRAPIResponseHandler)completion;
-
-- (void)getCustomObjectWithAccessToken:(NSString*)token
-                  customObjectRecordID:(NSString*)objectRecordID
-                      customObjectName:(NSString*)objectName
-                     completionHandler:(LRAPIResponseHandler)completion;
-
-- (void)getCustomObjectWithAccessToken:(NSString*)token
-                      customObjectName:(NSString*)objectName
-                     completionHandler:(LRAPIResponseHandler)completion;
-
-- (void)updateCustomObjectWithToken:(NSString*)accessToken
-               customObjectRecordID:(NSString*)objectRecordID
-                   customObjectName:(NSString*)objectName
-                   customObjectDate:(NSDictionary*)data
-                  completionHandler:(LRAPIResponseHandler)completion;
-
-- (void)DeleteCustomObjectWithToken:(NSString*)accessToken
-               customObjectRecordID:(NSString*)objectRecordID
-                   customObjectName:(NSString*)objectName
-                   customObjectDate:(NSDictionary*)data
-                  completionHandler:(LRAPIResponseHandler)completion;
-
 #pragma mark - AppDelegate methods
 
 - (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
