@@ -1,3 +1,15 @@
+4.0.0-beta Release notes (2017-03-08)
+=============================================================
+
+### API breaking changes
+
+* Registration through hosted pages is removed, it is done through API.
+* Registration Service uses LoginRadius APIv2.
+
+### Enhancements
+
+### Bugfixes
+
 3.3 Release notes (2017-03-08)
 =============================================================
 

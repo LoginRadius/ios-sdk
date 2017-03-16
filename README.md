@@ -36,7 +36,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LoginRadiusSDK', '~> 3.3'
+pod 'LoginRadiusSDK', :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag => '4.0.0-beta'
 end
 ```
 Then, run the following command:
@@ -107,22 +107,77 @@ Call this to handle URL's for social login to work properly in your `AppDelegate
 
 
 ###Integrate Registration Service
-Registration service supports traditional registration and login methods using hosted pages.
+Registration service supports traditional registration and login methods.
 
-Supported actions are __login__, __registration__, __forgotpassword__, __social__
+Registration Service is done through Authentication API.
+
+Registration requires a parameter called SOTT. You can create the SOTT token by following this [doc](http://apidocs.loginradius.com/v2.0/user-registration/sott)
+
+**Registration by Email:**
 
 ```
-[LoginRadiusSDK registrationServiceWithAction:@"login" inController:self
-completionHandler:^(BOOL success, NSError *error) {
-  if (success) {
-    NSLog(@"successfully logged in");
-  } else {
-    NSLog(@"Error: %@", [error description]);
-  }
-}];
+[[LoginRadiusRegistrationManager sharedInstance] authRegistrationWithData:@{
+                                                                            @"Email": @[
+                                                                                      @{
+                                                                                          @"Type": @"Primary",
+                                                                                          @"Value": @"test@gmail.com"
+                                                                                      }
+                                                                                      ],
+                                                                            @"Password": @"password"
+                                                                            }
+                                                                 withSott:@"<your sott here>"
+                                                          verificationUrl:@"<your verification url>"
+                                                            emailTemplate:@""
+                                                        completionHandler:^(NSDictionary *data, NSError *error) {
+                                                                                if (!error) {
+                                                                                    // Registration only registers the user. Call login to set the session
+                                                                                    NSLog(@"successfully reg %@", data);
+                                                                                } else {
+                                                                                    NSLog(@"Error: %@", [error description]);
+                                                                                }
+                                                                            }];
 ```
 
-Check the demo apps for user registration service.
+> Registration API will only creates an userprofile. To retrieve access_token and set session, please call
+> Login API.
+
+For all the possible Data Fields. Please check the User Registration by Email [API](http://apidocs.loginradius.com/v2.0/user-registration/AuthUserRegistrationbyEmail)
+
+
+**Login by Email:**
+
+Call this function to Login in the User and set the session.
+
+```
+[[LoginRadiusRegistrationManager sharedInstance] authLoginWithEmail:@"test@gmail.com"
+                                                       withPassword:@"password"
+                                                           loginUrl:@""
+                                                    verificationUrl:@""
+                                                      emailTemplate:@""
+                                                  completionHandler:^(NSDictionary *data, NSError *error) {
+                                                    if (!error) {
+                                                        NSLog(@"successfully logged in %@", data);
+
+                                                    } else {
+                                                        NSLog(@"Error: %@", [error description]);
+                                                    }
+                                                }];
+```
+
+After successfull login you can fetch the token, user profile like this,
+
+```
+// Check for `isLoggedIn` on app launch to check if the user is logged in.
+
+NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
+NSDictionary *profile =  [lrUser objectForKey:@"lrUserProfile"];
+NSString *access_token =  [lrUser objectForKey:@"lrAccessToken"];
+NSString *alreadyLoggedIn =  [lrUser objectForKey:@"isLoggedIn"];
+
+```
+
+For all available API's in iOS SDK, please check `LoginRadiusRegistrationManager.h`.
+For all available LoginRadius API's, please check [API Docs](http://apidocs.loginradius.com/v2.0/getting-started/introduction).
 
 ###Integrate Social Login
 
@@ -261,7 +316,7 @@ Steps to setup Demo apps.
 - For Native social login to work follow the Social Login guide above.
 
 ## Documentation
-You can find the full documentation for this library on that [LoginRadius API docs](https://apidocs.loginradius.com/v1.0/mobile-libraries/ios-library).
+You can find the full documentation for this library on that [LoginRadius API docs](https://apidocs.loginradius.com/v2.0/mobile-libraries/ios-library).
 
 ## Author
 
