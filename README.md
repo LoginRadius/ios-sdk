@@ -59,7 +59,7 @@ $ pod install
 
   > Obtaining Sitename and API key
 
-  > Details on obtaining Sitename [here](http://support.loginradius.com/hc/en-us/articles/204614109-How-do-I-get-my-LoginRadius-Site-Name-) and API key [here](/v1.0/getting-started/get-api-key-and-secret)
+  > Details on obtaining Sitename [here](http://support.loginradius.com/hc/en-us/articles/204614109-How-do-I-get-my-LoginRadius-Site-Name-) and API key [here](https://docs.loginradius.com/account-settings/get-api-key-and-secret)
 
 
 1. Import the module in your source code.
