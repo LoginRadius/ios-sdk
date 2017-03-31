@@ -91,11 +91,25 @@
     NSString *url_address;
     NSString *lang = [LoginRadiusSDK sharedInstance].appLanguage;
 
+    // Base version
+    NSString *baseUrl = @"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3/index.html";
+
     if (lang) {
-        url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-%@/index.html?apikey=%@&sitename=%@&action=%@",langMap[lang], [LoginRadiusSDK apiKey], [LoginRadiusSDK siteName], self.action];
-    } else {
-        url_address = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile/index.html?apikey=%@&sitename=%@&action=%@",[LoginRadiusSDK apiKey], [LoginRadiusSDK siteName], self.action];
+       baseUrl = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3-%@/index.html",langMap[lang]];
     }
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                  @"apikey": [LoginRadiusSDK apiKey],
+                                                                                  @"sitename": [LoginRadiusSDK siteName],
+                                                                                  @"action": self.action
+                                                                                  }];
+    if ([LoginRadiusSDK v2RecaptchaSiteKey]) {
+        [params setObject:[LoginRadiusSDK v2RecaptchaSiteKey] forKey:@"recaptchakey"];
+    }
+
+    NSString *urlParams = [[params copy] queryString];
+    url_address = [[NSString alloc] initWithFormat:@"%@%@", baseUrl, urlParams];
+
 
     NSURL *url = [NSURL URLWithString:url_address];
     self.serviceURL = url;

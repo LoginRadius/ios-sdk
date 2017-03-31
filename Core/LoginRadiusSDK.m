@@ -12,6 +12,7 @@
 static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
 static NSString * const LoginRadiusAPIKey = @"ApiKey";
 static NSString * const LoginRadiusSiteName = @"SiteName";
+static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
 
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
@@ -30,6 +31,8 @@ static NSString * const LoginRadiusSiteName = @"SiteName";
     NSDictionary* values = [NSDictionary dictionaryWithContentsOfFile:path];
     NSString *apiKey = values[LoginRadiusAPIKey];
     NSString *siteName = values[LoginRadiusSiteName];
+    NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
+
     NSAssert(apiKey, @"ApiKey cannot be null in LoginRadius.plist");
     NSAssert(siteName, @"SiteName cannot be null in LoginRadius.plist");
 
@@ -38,6 +41,7 @@ static NSString * const LoginRadiusSiteName = @"SiteName";
     if (self) {
         _apiKey = apiKey;
         _siteName = siteName;
+        _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
 		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
@@ -83,6 +87,10 @@ static NSString * const LoginRadiusSiteName = @"SiteName";
 
 + (NSString*) siteName {
 	return [LoginRadiusSDK sharedInstance].siteName;
+}
+
++ (NSString*) v2RecaptchaSiteKey {
+    return [LoginRadiusSDK sharedInstance].v2RecaptchaSiteKey;
 }
 
 #pragma mark Application Delegate methods
