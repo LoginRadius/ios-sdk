@@ -35,10 +35,19 @@
     self.handler = handler;
 }
 
+#pragma mark - Web View Delegates
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.handler(NO, [LRErrors socialLoginCancelled:_provider]);
+    });
+}
+
+#pragma mark - Application Delegate
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 
-    //<site-name>://#lr-token=<access_token>
-    // verify the URL is intended as a callback for social login and have access_token
+    /*  <site-name>://#lr-token=<access_token>
+        verify the URL is intended as a callback for social login and have access_token
+     */
 
     BOOL isLoginRadiusURL = [[url scheme] isEqualToString:[LoginRadiusSDK siteName]] && [[url host] isEqualToString:@"auth"];
     BOOL haveAccessToken = [[url fragment] hasPrefix:@"lr-token"];
