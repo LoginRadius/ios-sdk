@@ -14,11 +14,18 @@
 #pragma mark - Init
 
 /**
- *  Initializer
- *  @return singleton instance
+ Initializer
+
+ @return singleton instance
  */
 + (instancetype)sharedInstance;
 
+
+/**
+ Local Touch ID Authentication
+
+ @param handler Code block executed after service completion
+ */
 -(void)localAuthenticationWithTouchID:(LRServiceCompletionHandler)handler;
 
 @end
