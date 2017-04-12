@@ -22,10 +22,10 @@
 
             if (!jsonError) { // HTTP Not acceptable errorCode. Deserialize LoginRadius Error if payload present
 
-                if([payload[@"IsProviderError"] boolValue]) {
-                    loginRadiusError = [NSError errorWithCode:[payload[@"ErrorCode"] integerValue] description:payload[@"Provider Error"] failureReason:payload[@"ProviderErrorResponse"]];
+                if([payload[@"isProviderError"] boolValue]) {
+                    loginRadiusError = [NSError errorWithCode:[payload[@"errorCode"] integerValue] description:payload[@"description"] failureReason:payload[@"providerErrorResponse"]];
                 } else {
-                    loginRadiusError = [NSError errorWithCode:[payload[@"ErrorCode"] integerValue] description:payload[@"Description"] failureReason:payload[@"Message"]];
+                    loginRadiusError = [NSError errorWithCode:[payload[@"errorCode"] integerValue] description:payload[@"description"] failureReason:payload[@"message"]];
                 }
 
                 (*error) = loginRadiusError;
