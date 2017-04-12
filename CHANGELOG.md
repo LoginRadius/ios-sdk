@@ -1,3 +1,19 @@
+3.3.1 Release notes (2017-04-12)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+* Added support for Google ReCaptcha.
+* Using Hosted Pages v3.
+* Handling Done button in Safari based login
+* Improved documentation
+
+### Bugfixes
+
+* Fixed error response serializer for v1 API's
+
 3.3 Release notes (2017-03-08)
 =============================================================
 
