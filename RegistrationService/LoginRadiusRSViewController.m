@@ -78,6 +78,7 @@
     self.retryView = retryView;
     self.retryLabel = retryLabel;
     self.retryButton = retryButton;
+    [self showActivityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -162,7 +163,9 @@
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
             if (lrtoken) {
+                [self showActivityIndicator];
                 [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken completionHandler:^(NSDictionary *data, NSError *error) {
+                    [self hideActivityIndicator];
                     [self finishRaasAction:YES	withError:error];
                 }];
 
@@ -183,7 +186,9 @@
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
 
             if (lrtoken) {
+                [self showActivityIndicator];
                 [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken completionHandler:^(NSDictionary *data, NSError *error) {
+                    [self hideActivityIndicator];
                     [self finishRaasAction:YES	withError:error];
                 }];
             } else {
@@ -219,6 +224,10 @@
     self.retryView.hidden = NO;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self hideActivityIndicator];
+}
+
 - (void) finishRaasAction:(BOOL)success withError:(NSError*)error {
 	if (self.handler) {
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -226,6 +235,17 @@
 		});
 	}
 	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showActivityIndicator {
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.color = self.navigationController.navigationBar.tintColor;
+    [indicator startAnimating];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:indicator] animated:YES];
+}
+
+- (void)hideActivityIndicator {
+    [self.navigationItem setRightBarButtonItem:nil animated:NO];
 }
 @end
 
