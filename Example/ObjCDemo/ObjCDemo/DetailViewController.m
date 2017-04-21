@@ -9,6 +9,8 @@
 #import "DetailViewController.h"
 #import <LoginRadiusSDK/LoginRadius.h>
 @interface DetailViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *email;
+@property (weak, nonatomic) IBOutlet UITextView *uid;
 @property (weak, nonatomic) IBOutlet UITextView *name;
 @end
 
@@ -20,17 +22,11 @@
 
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
     NSDictionary * profile =  [lrUser objectForKey:@"lrUserProfile"];
-    NSString * access_token =  [lrUser objectForKey:@"lrAccessToken"];
     NSString * fullname = [NSString stringWithFormat:@"%@ %@ %@", profile[@"FirstName"], profile[@"MiddleName"], profile[@"LastName"]];
     [self.name setText:fullname];
-
-    [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/company"
-                                  queryParams:@{
-                                                @"access_token": access_token
-                                               }
-                            completionHandler:^(NSDictionary *data, NSError *error) {
-                                    NSLog(@"error %@  data %@", error, data);
-                            }];
+    [self.uid setText:[profile objectForKey:@"Uid"]];
+    NSDictionary *email = [(NSArray*)[profile objectForKey:@"Email"] objectAtIndex:0];
+    [self.email setText:[email objectForKey:@"Value"]];
 }
 
 - (IBAction)logoutPressed:(id)sender {

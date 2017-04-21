@@ -89,7 +89,12 @@
 }
 
 - (void) showProfileController {
-    [self performSegueWithIdentifier:@"profile" sender:self];
+    NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
+    NSString * access_token =  [lrUser objectForKey:@"lrAccessToken"];
+
+    if (access_token) {
+        [self performSegueWithIdentifier:@"profile" sender:self];
+    }
 }
 
 @end
