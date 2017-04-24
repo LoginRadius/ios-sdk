@@ -3,7 +3,7 @@
 //  SwiftDemo
 //
 //  Created by Raviteja Ghanta on 19/05/16.
-//  Copyright © 2016 Raviteja Ghanta. All rights reserved.
+//  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
 import LoginRadiusSDK
