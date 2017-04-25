@@ -22,49 +22,65 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithTwitter(_ sender: UIButton) {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "twitter", parameters: nil, in: self, completionHandler: { (success, error) in
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with twitter");
                 self.showProfileController();
             } else {
-
+                print(error!.localizedDescription)
             }
         });
     }
 
-    var a:LRServiceCompletionHandler!;
-
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "facebook", parameters: nil, in: self, completionHandler: { (success, error) in
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "facebook", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with facebook");
                 self.showProfileController();
             } else {
-
+                print(error!.localizedDescription)
             }
         });
     }
     
     @IBAction func loginWithLinkedin(_ sender: UIButton) {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "linkedin", parameters: nil, in: self, completionHandler: { (success, error) in
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "linkedin", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with linkedin");
                 self.showProfileController();
             } else {
-
+                print(error!.localizedDescription)
             }
         });
     }
     
     @IBAction func signupWithEmail(_ sender: UIButton) {
-
+        LoginRadiusRegistrationManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
+            if (success) {
+                print("successfully registered");
+                self.showProfileController();
+            } else {
+                print(error!.localizedDescription)
+            }
+        });
     }
     
     @IBAction func loginWithEmail(_ sender: UIButton) {
+        LoginRadiusRegistrationManager.sharedInstance().registration(withAction: "login", in: self, completionHandler: { (success, error) in
+            if (success) {
+                print("successfully logged in");
+                self.showProfileController();
+            } else {
+                print(error!.localizedDescription)
+            }
+        });
     }
     
     func showProfileController () {
-        self.performSegue(withIdentifier: "profile", sender: self);
+        let defaults = UserDefaults.standard
+        if let _:String = defaults.object(forKey: "lrAccessToken") as? String {
+            self.performSegue(withIdentifier: "profile", sender: self);
+        }
     }
 }
 

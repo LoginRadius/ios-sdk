@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oNx-14-lI5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oNx-14-lI5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -130,13 +130,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rXF-Fp-dnn">
-                                <rect key="frame" x="99" y="308" width="268" height="26"/>
+                                <rect key="frame" x="79" y="308" width="290" height="26"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dft-yu-Rp9">
-                                <rect key="frame" x="99" y="262" width="268" height="26"/>
+                                <rect key="frame" x="79" y="262" width="290" height="26"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="ISi-jF-ocM"/>
@@ -145,7 +145,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GUk-6w-hbq">
-                                <rect key="frame" x="99" y="353" width="268" height="26"/>
+                                <rect key="frame" x="79" y="353" width="290" height="26"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -153,11 +153,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.33338716403216123" green="0.74322790954552898" blue="0.76092918882978722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dft-yu-Rp9" firstAttribute="leading" secondItem="Q6i-d0-fbZ" secondAttribute="trailing" constant="34" id="1BV-Gf-G60"/>
+                            <constraint firstItem="dft-yu-Rp9" firstAttribute="leading" secondItem="Q6i-d0-fbZ" secondAttribute="trailing" constant="14" id="1BV-Gf-G60"/>
                             <constraint firstItem="bQo-u0-X44" firstAttribute="centerY" secondItem="rXF-Fp-dnn" secondAttribute="centerY" id="23C-47-7Rj"/>
                             <constraint firstItem="rXF-Fp-dnn" firstAttribute="leading" secondItem="GUk-6w-hbq" secondAttribute="leading" id="2Ir-M4-dYG"/>
                             <constraint firstItem="Ica-d4-G71" firstAttribute="top" secondItem="GUk-6w-hbq" secondAttribute="bottom" constant="83" id="3G3-45-HOa"/>
-                            <constraint firstItem="GUk-6w-hbq" firstAttribute="leading" secondItem="1dX-Oy-qp6" secondAttribute="trailing" constant="31" id="Aef-Cv-ZGV"/>
+                            <constraint firstItem="GUk-6w-hbq" firstAttribute="leading" secondItem="1dX-Oy-qp6" secondAttribute="trailing" constant="11" id="Aef-Cv-ZGV"/>
                             <constraint firstItem="rXF-Fp-dnn" firstAttribute="trailing" secondItem="GUk-6w-hbq" secondAttribute="trailing" id="BSb-Ks-kuR"/>
                             <constraint firstItem="Ica-d4-G71" firstAttribute="centerX" secondItem="ir9-lk-YMA" secondAttribute="centerX" id="Bpv-zg-Lq1"/>
                             <constraint firstItem="Q6i-d0-fbZ" firstAttribute="bottom" secondItem="dft-yu-Rp9" secondAttribute="bottom" id="C3R-BZ-w8O"/>
@@ -169,7 +169,7 @@
                             <constraint firstItem="bQo-u0-X44" firstAttribute="leading" secondItem="1dX-Oy-qp6" secondAttribute="leading" id="ehg-bC-lNu"/>
                             <constraint firstItem="GUk-6w-hbq" firstAttribute="top" secondItem="rXF-Fp-dnn" secondAttribute="bottom" constant="19" id="iFu-sb-XbU"/>
                             <constraint firstItem="dft-yu-Rp9" firstAttribute="leading" secondItem="rXF-Fp-dnn" secondAttribute="leading" id="mbY-Zt-gvr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dft-yu-Rp9" secondAttribute="trailing" constant="-8" id="rVg-r8-5FD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dft-yu-Rp9" secondAttribute="trailing" constant="-10" id="rVg-r8-5FD"/>
                             <constraint firstItem="rXF-Fp-dnn" firstAttribute="top" secondItem="dft-yu-Rp9" secondAttribute="bottom" constant="20" id="xrj-h2-cKp"/>
                             <constraint firstItem="bQo-u0-X44" firstAttribute="leading" secondItem="ir9-lk-YMA" secondAttribute="leadingMargin" constant="7" id="zAe-vG-Mdq"/>
                             <constraint firstItem="1dX-Oy-qp6" firstAttribute="top" secondItem="bQo-u0-X44" secondAttribute="bottom" constant="24" id="zMd-Eo-wXM"/>

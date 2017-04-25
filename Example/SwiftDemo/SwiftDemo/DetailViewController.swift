@@ -11,6 +11,9 @@ import LoginRadiusSDK
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var name: UITextView!
+    @IBOutlet weak var uid: UITextView!
+    @IBOutlet weak var email: UITextView!
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -23,17 +26,27 @@ class DetailViewController: UIViewController {
         var first:String = ""
         var middle:String = ""
         var last:String = ""
-        
+        var uid:String = ""
+        var emails: [Dictionary<String, String>] = []
+        var email:String = ""
+
         let defaults = UserDefaults.standard
         if let user:NSDictionary = defaults.object(forKey: "lrUserProfile") as? NSDictionary {
             print(user)
             first = user.object(forKey: "FirstName")! as! String
             middle = user.object(forKey: "MiddleName")! as! String
             last = user.object(forKey: "LastName")! as! String
+            uid = user.object(forKey: "Uid")! as! String
+            emails = user.object(forKey: "Email")! as! Array
+            if let value:String = emails[0]["Value"] {
+                email = value
+            }
         }
-        
+
         let fullname = String(format: "%@ %@ %@", first, middle, last)
         self.name.text = fullname
+        self.uid.text = uid
+        self.email.text = email
     }
     
     @IBAction func logoutPressed(_ sender: AnyObject) {
