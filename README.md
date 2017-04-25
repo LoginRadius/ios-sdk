@@ -29,7 +29,7 @@ $ gem install cocoapods
 
 __Podfile__
 
-To integrate LRSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate LoginRadiusSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
