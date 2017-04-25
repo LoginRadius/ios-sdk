@@ -1,4 +1,4 @@
-3.3.1 Release notes (2017-04-12)
+3.3.1 Release notes (2017-04-25)
 =============================================================
 
 ### API breaking changes
@@ -9,10 +9,13 @@
 * Using Hosted Pages v3.
 * Handling Done button in Safari based login
 * Improved documentation
+* Activity Indicator in UIWebView
 
 ### Bugfixes
 
 * Fixed error response serializer for v1 API's
+* Corrected Login flow in the demo
+* Fixed invalid apikey error while doing social login through hosted pages
 
 3.3 Release notes (2017-03-08)
 =============================================================
