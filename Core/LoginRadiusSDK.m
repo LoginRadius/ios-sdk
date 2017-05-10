@@ -32,6 +32,7 @@ static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
     NSString *apiKey = values[LoginRadiusAPIKey];
     NSString *siteName = values[LoginRadiusSiteName];
     NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
 
     NSAssert(apiKey, @"ApiKey cannot be null in LoginRadius.plist");
     NSAssert(siteName, @"SiteName cannot be null in LoginRadius.plist");
@@ -45,6 +46,7 @@ static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
 		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
+        _appLanguage = language;
     }
 
     return self;

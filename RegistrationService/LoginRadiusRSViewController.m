@@ -95,7 +95,7 @@
     // Base version
     NSString *baseUrl = @"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3/index.html";
 
-    if (lang) {
+    if (langMap[lang]) {
        baseUrl = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3-%@/index.html",langMap[lang]];
     }
 
