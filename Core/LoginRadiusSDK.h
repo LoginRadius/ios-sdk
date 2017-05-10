@@ -49,11 +49,9 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 @property (strong, readonly, nonatomic) NSString* v2RecaptchaSiteKey;
 
 /**
- *  Set language for the loginradius hosted pages for user registration service, currently we support english, spanish,
- *  german, french should be one of these[@"es", @"de", @"fr"]
- *  Default is english. Please contact support for customizing the hosted pages.
+ Hosted Page URL
  */
-@property (nonatomic, copy) NSString* appLanguage;
+@property (nonatomic, copy) NSString* hostedPageURL;
 
 #pragma mark - Initilizers
 

@@ -98,7 +98,8 @@
 }
 
 - (void)startMonitoringNetwork {
-    ReachabilityCheck* reach = [ReachabilityCheck reachabilityWithHostname:@"cdn.loginradius.com"];
+    ReachabilityCheck* reach = [ReachabilityCheck reachabilityWithHostname:[[LoginRadiusSDK sharedInstance] hostedPageURL]];
+    
     reach.unreachableBlock = ^(ReachabilityCheck*reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.retryLabel.text = @"Please check your network connection and try again.";

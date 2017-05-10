@@ -40,16 +40,10 @@
             inController:(UIViewController*)controller
        completionHandler:(LRServiceCompletionHandler)handler {
 
-    NSDictionary * langMap = @{@"es": @"spanish", @"de": @"german", @"fr":@"french"};
-    NSString *lang = [LoginRadiusSDK sharedInstance].appLanguage;
     NSString *url_address;
 
     // Base version
-    NSString *baseUrl = @"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3/index.html";
-
-    if (langMap[lang]) {
-       baseUrl = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3-%@/index.html",langMap[lang]];
-    }
+    NSString *baseUrl = [[LoginRadiusSDK sharedInstance] hostedPageURL];
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"action": action,

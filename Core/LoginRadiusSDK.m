@@ -13,6 +13,7 @@ static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
 static NSString * const LoginRadiusAPIKey = @"ApiKey";
 static NSString * const LoginRadiusSiteName = @"SiteName";
 static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
+static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
 
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
@@ -32,7 +33,8 @@ static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
     NSString *apiKey = values[LoginRadiusAPIKey];
     NSString *siteName = values[LoginRadiusSiteName];
     NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *hostedPageURL = (values[LoginRadiusHostedPageURL])?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
+
 
     NSAssert(apiKey, @"ApiKey cannot be null in LoginRadius.plist");
     NSAssert(siteName, @"SiteName cannot be null in LoginRadius.plist");
@@ -43,10 +45,10 @@ static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
         _apiKey = apiKey;
         _siteName = siteName;
         _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
+        _hostedPageURL = hostedPageURL;
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
 		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
-        _appLanguage = language;
     }
 
     return self;

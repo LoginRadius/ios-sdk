@@ -90,14 +90,9 @@
 
 	self.navigationItem.leftBarButtonItem = cancelItem;
     NSString *url_address;
-    NSString *lang = [LoginRadiusSDK sharedInstance].appLanguage;
 
     // Base version
-    NSString *baseUrl = @"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3/index.html";
-
-    if (langMap[lang]) {
-       baseUrl = [[NSString alloc] initWithFormat:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v3-%@/index.html",langMap[lang]];
-    }
+    NSString *baseUrl = [[LoginRadiusSDK sharedInstance] hostedPageURL];
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"action": self.action,
@@ -111,7 +106,6 @@
     NSString *urlParams = [[params copy] queryString];
     url_address = [[NSString alloc] initWithFormat:@"%@%@", baseUrl, urlParams];
 
-
     NSURL *url = [NSURL URLWithString:url_address];
     self.serviceURL = url;
     [self.webView loadRequest:[NSURLRequest requestWithURL: self.serviceURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:5]];
@@ -124,7 +118,8 @@
 }
 
 - (void)startMonitoringNetwork {
-    ReachabilityCheck* reach = [ReachabilityCheck reachabilityWithHostname:@"cdn.loginradius.com"];
+    ReachabilityCheck* reach = [ReachabilityCheck reachabilityWithHostname:[[LoginRadiusSDK sharedInstance] hostedPageURL]];
+    
     reach.unreachableBlock = ^(ReachabilityCheck*reach) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.retryLabel.text = @"Please check your network connection and try again.";
