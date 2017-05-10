@@ -14,6 +14,10 @@
 -(void)loginWithProvider:(NSString*)provider
             inController:(UIViewController*)controller
        completionHandler:(LRServiceCompletionHandler)handler;
+    
+-(void)   initWithAction:(NSString*)action
+            inController:(UIViewController*)controller
+       completionHandler:(LRServiceCompletionHandler)handler;
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 @end
