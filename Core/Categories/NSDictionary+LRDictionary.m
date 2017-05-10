@@ -12,7 +12,15 @@
 - (NSString *)queryString
 {
 	NSMutableString *queryString = nil;
-	NSArray *keys = [self allKeys];
+	NSMutableArray *keys = [[self allKeys] mutableCopy];
+    
+    //some weird behaviour happening when apikey is not at the front of the query string
+    NSUInteger apikeyIndex = [keys indexOfObject:@"apikey"];
+    if(apikeyIndex != NSNotFound)
+    {
+        [keys removeObjectAtIndex:apikeyIndex];
+        [keys insertObject:@"apikey" atIndex:0];
+    }
 
 	if ([keys count] > 0) {
 		for (id key in keys) {
