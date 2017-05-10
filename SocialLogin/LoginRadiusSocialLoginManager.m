@@ -49,7 +49,7 @@
 			inController:(UIViewController*)controller
 	   completionHandler:(LRServiceCompletionHandler)handler {
 
-    // Use SFSafariViewController if available by defualt. Recommended approach
+    // Use SFSafariViewController if available by default. Recommended approach
     if ([SFSafariViewController class] != nil) {
         _isSafariLogin = YES;
         [self.safariLogin loginWithProvider:provider inController:controller completionHandler:handler];
