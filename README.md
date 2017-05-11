@@ -13,9 +13,7 @@ Please visit [here](http://www.loginradius.com/) for more information.
 ## Requirements
 You'll need iOS 8 or later.
 
-> **This release has breaking changes from the previous SDK.**
-
-> This version is a complete revamp of the previous SDK. Please refer to the [changelog](https://github.com/LoginRadius/ios-sdk/blob/master/CHANGELOG.md)
+> LoginRadiusSDK is a complete revamp of the previous LRSDK. Please refer to the [changelog](https://github.com/LoginRadius/ios-sdk/blob/master/CHANGELOG.md)
  for a complete list of changes and improvements.
 
 ## Installation
@@ -36,7 +34,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LoginRadiusSDK', '~> 3.3.1'
+pod 'LoginRadiusSDK', '~> 3.3.2'
 end
 ```
 Then, run the following command:

@@ -1,3 +1,16 @@
+3.3.2 Release notes (2017-05-11)
+=============================================================
+
+### API breaking changes
+
+### Enhancements
+
+### Bugfixes
+
+* Fixed error response serializer for v1 & v2 API's
+* Corrected openURl handling
+* Fixed Twitter native login crash happening with some accounts.
+
 3.3.1 Release notes (2017-04-25)
 =============================================================
 

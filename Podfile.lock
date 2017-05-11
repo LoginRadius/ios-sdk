@@ -24,7 +24,7 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.19.0):
     - FBSDKCoreKit
-  - LoginRadiusSDK (3.3.1):
+  - LoginRadiusSDK (3.3.2):
     - AFNetworking (~> 3.1)
     - FBSDKLoginKit (~> 4.16)
     - OAuthCore (~> 0.0.1)
@@ -44,10 +44,10 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
   FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
-  LoginRadiusSDK: 07abface753f5f92e54c23b7806ecfacb39f4b5d
+  LoginRadiusSDK: dab07de79ac44ce7d306c53db19133205b0d24b5
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
 
 PODFILE CHECKSUM: b5e0c4ab8b73b4d00051e400dab1d52def67ac84
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
