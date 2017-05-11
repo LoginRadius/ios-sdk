@@ -95,7 +95,9 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 
 - (void)takeActions: (ACAccount *)twAccount {
 	[self performReverseAuthForAccount:twAccount withHandler:^(NSData *responseData, NSError *error) {
-		if (responseData) {
+		if (error) {
+			[self finishLogin:NO withError:error];
+		} else {
 			NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 			NSDictionary * params = [NSDictionary dictionaryWithQueryString:responseStr];
 
@@ -111,8 +113,6 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 					[self finishLogin:YES withError:error];
 				}];
 			}];
-		} else {
-			[self finishLogin:NO withError:error];
 		}
 	}];
 }
