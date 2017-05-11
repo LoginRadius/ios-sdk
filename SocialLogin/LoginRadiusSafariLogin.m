@@ -48,7 +48,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"action": action,
                                                                                   @"sitename": [LoginRadiusSDK siteName],
-                                                                                  @"apikey": [LoginRadiusSDK apiKey]
+                                                                                  @"apikey": [LoginRadiusSDK apiKey],
+                                                                                  @"customRedirect": @"true"
                                                                                   }];
     if ([LoginRadiusSDK v2RecaptchaSiteKey]) {
         [params setObject:[LoginRadiusSDK v2RecaptchaSiteKey] forKey:@"recaptchakey"];
@@ -80,23 +81,29 @@
         verify the URL is intended as a callback for social login and have access_token
      */
 
-    BOOL isLoginRadiusURL = [[url scheme] isEqualToString:[LoginRadiusSDK siteName]] && [[url host] isEqualToString:@"auth"];
-    BOOL haveAccessToken = [[url fragment] hasPrefix:@"lr-token"];
-    NSString *token = [[url fragment] substringFromIndex:9];
+    BOOL isLoginRadiusURL = [[url scheme] isEqualToString:[LoginRadiusSDK siteName]];
+    
+    NSArray *queryParams = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO].queryItems;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == 'lrtoken'"];
 
+    NSURLQueryItem *lrtokenObj = [queryParams filteredArrayUsingPredicate:predicate].firstObject;
+    
+    BOOL haveAccessToken = (lrtokenObj != nil);
+    
     if( haveAccessToken ) {
-        [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-            [self finishSocialLogin:YES	withError:error];
+        [[LRClient sharedInstance] getUserProfileWithAccessToken: [lrtokenObj value] completionHandler:^(NSDictionary *data, NSError *error) {
+            [self finishAuthentication:YES	withError:error];
         }];
 
     } else {
-        [self finishSocialLogin:NO withError:[LRErrors socialLoginFailed:self.provider]];
+        [self finishAuthentication:NO withError:[LRErrors socialLoginFailed:self.provider]];
     }
 
     return isLoginRadiusURL && haveAccessToken;
 }
 
-- (void)finishSocialLogin:(BOOL)success withError:(NSError*) error {
+- (void)finishAuthentication:(BOOL)success withError:(NSError*) error {
     [self.viewController dismissViewControllerAnimated:YES completion: ^{
         if (self.handler) {
             dispatch_async(dispatch_get_main_queue(), ^{

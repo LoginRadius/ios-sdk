@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithTwitter(_ sender: UIButton) {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
+        LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with twitter");
                 self.showProfileController();
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "facebook", in: self, completionHandler: { (success, error) in
+        LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "facebook", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with facebook");
                 self.showProfileController();
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithLinkedin(_ sender: UIButton) {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: "linkedin", in: self, completionHandler: { (success, error) in
+        LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "linkedin", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with linkedin");
                 self.showProfileController();

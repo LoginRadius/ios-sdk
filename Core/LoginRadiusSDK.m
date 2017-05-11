@@ -5,7 +5,6 @@
 //
 
 #import "LoginRadiusSDK.h"
-#import "LoginRadiusSocialLoginManager.h"
 #import "LoginRadiusRegistrationManager.h"
 #import "LRTouchIDAuth.h"
 
@@ -17,7 +16,6 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
 
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
-@property (strong, nonatomic) LoginRadiusSocialLoginManager *socialLoginManager;
 @property (strong, nonatomic) LRTouchIDAuth *touchIDManager;
 @end
 
@@ -47,7 +45,6 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
         _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
         _hostedPageURL = hostedPageURL;
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
-		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
     }
 
@@ -70,7 +67,7 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
 }
 
 + (void) logout {
-	[[LoginRadiusSocialLoginManager sharedInstance] logout];
+	[[LoginRadiusRegistrationManager sharedInstance] logout];
 	// Clearing all stored tokens userprofiles for loginradius
 	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	for (NSHTTPCookie *cookie in [storage cookies]) {
@@ -100,13 +97,12 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
 #pragma mark Application Delegate methods
 
 - (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
-    [self.socialLoginManager applicationLaunchedWithOptions:launchOptions];
 	[self.registrationManager applicationLaunchedWithOptions:launchOptions];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 	
-	return [[LoginRadiusSocialLoginManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+	return [[LoginRadiusRegistrationManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
