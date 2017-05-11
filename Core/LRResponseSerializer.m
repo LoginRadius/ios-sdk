@@ -9,7 +9,14 @@
 #import "LRResponseSerializer.h"
 #import "NSError+LRError.h"
 
+static NSString * const errorCode = @"errorCode";
+static NSString * const isProviderError = @"isProviderError";
+static NSString * const description = @"description";
+static NSString * const providerErrorResponse = @"providerErrorResponse";
+static NSString * const message = @"message";
+
 @implementation LRResponseSerializer
+
 
 - (id)responseObjectForResponse:(NSURLResponse *)response data:(NSData *)data error:(NSError **)error {
     id responseObject = nil;
@@ -20,12 +27,26 @@
             NSDictionary *payload = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
             NSError *loginRadiusError;
 
-            if (!jsonError) { // HTTP Not acceptable errorCode. Deserialize LoginRadius Error if payload present
-
-                if([payload[@"isProviderError"] boolValue]) {
-                    loginRadiusError = [NSError errorWithCode:[payload[@"errorCode"] integerValue] description:payload[@"description"] failureReason:payload[@"providerErrorResponse"]];
-                } else {
-                    loginRadiusError = [NSError errorWithCode:[payload[@"errorCode"] integerValue] description:payload[@"description"] failureReason:payload[@"message"]];
+            // HTTP Not acceptable errorCode. Deserialize LoginRadius Error if payload present
+            if (!jsonError)
+            {
+                //Check if its from v1 or v2 server
+                if(payload[errorCode])
+                {
+                    //v1 notation
+                    if([payload[isProviderError] boolValue]) {
+                        loginRadiusError = [NSError errorWithCode:[payload[errorCode] integerValue] description:payload[description] failureReason:payload[providerErrorResponse]];
+                    } else {
+                        loginRadiusError = [NSError errorWithCode:[payload[errorCode] integerValue] description:payload[description] failureReason:payload[message]];
+                    }
+                }else if (payload[[errorCode capitalizedString]])
+                {
+                    //v2 notation
+                    if([payload[[isProviderError capitalizedString]] boolValue]) {
+                        loginRadiusError = [NSError errorWithCode:[payload[[errorCode capitalizedString]] integerValue] description:payload[[description capitalizedString]] failureReason:payload[[providerErrorResponse capitalizedString]]];
+                    } else {
+                        loginRadiusError = [NSError errorWithCode:[payload[[errorCode capitalizedString]] integerValue] description:payload[[description capitalizedString]] failureReason:payload[[message capitalizedString]]];
+                    }
                 }
 
                 (*error) = loginRadiusError;
