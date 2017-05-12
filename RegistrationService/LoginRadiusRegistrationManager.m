@@ -125,7 +125,7 @@
         return [self.safariLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     }
 
-    return YES;
+    return NO;
 }
 
 @end
