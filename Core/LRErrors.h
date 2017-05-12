@@ -14,7 +14,7 @@
 
 #pragma mark - User Registration Service
 + (NSError*)serviceCancelled:(NSString*)action;
-+ (NSError*)userRegistraionFailed;
++ (NSError*)userRegistrationFailed;
 + (NSError*)userLoginFailed;
 + (NSError*)userForgotPasswordFailed;
 + (NSError*)userEmailVerificationFailed;

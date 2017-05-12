@@ -16,7 +16,7 @@
 					failureReason:[NSString stringWithFormat:@"User registration with action: %@ cancelled", action]];
 }
 
-+ (NSError*)userRegistraionFailed {
++ (NSError*)userRegistrationFailed {
 	return [NSError errorWithCode:LRErrorCodeRaaSUserRegistrationFailed
 					  description:@"User registration failed"
 					failureReason:@"User registration failed with no status"];

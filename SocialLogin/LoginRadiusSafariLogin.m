@@ -83,42 +83,101 @@
 
     BOOL isLoginRadiusURL = [[url scheme] isEqualToString:[LoginRadiusSDK siteName]];
     
-    //Check if its from hosted page
-    NSArray *queryParams = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO].queryItems;
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == 'lrtoken'"];
-    NSURLQueryItem *lrtokenObj = [queryParams filteredArrayUsingPredicate:predicate].firstObject;
-    BOOL haveAccessTokenFromHostedPage = (lrtokenObj != nil);
-
-    //Check if its from hub page
-    BOOL haveAccessTokenFromHubPage = [[url fragment] hasPrefix:@"lr-token"];
-    NSString *tokenFromHub = [[url fragment] substringFromIndex:9];
-
-    NSString *token = nil;
-    
-    if (haveAccessTokenFromHostedPage)
+    if ([url fragment] != nil)
     {
-        token = [lrtokenObj value];
-    }else if (haveAccessTokenFromHubPage)
+        //Check if its from hub page
+        [self handleResponseFromHubPage: url];
+    }else if ([url host] != nil && [url query] != nil)
     {
-        token = tokenFromHub;
+        //Check if its from hosted page
+        [self handleResponseFromHostedPage:url withAction:[url host]];
     }
     
-    BOOL haveAccessToken = (token != nil);
-    
-    if( haveAccessToken ) {
-        [[LRClient sharedInstance] getUserProfileWithAccessToken: token completionHandler:^(NSDictionary *data, NSError *error) {
-            [self finishAuthentication:YES	withError:error];
-        }];
-
-    } else {
-        [self finishAuthentication:NO withError:[LRErrors socialLoginFailed:self.provider]];
-    }
-
-    return isLoginRadiusURL && haveAccessToken;
+    return isLoginRadiusURL;
 }
 
-- (void)finishAuthentication:(BOOL)success withError:(NSError*) error {
+- (void)handleResponseFromHubPage:(NSURL *) url
+{
+    BOOL haveAccessTokenFromHubPage = [[url fragment] hasPrefix:@"lr-token"];
+    
+    if (haveAccessTokenFromHubPage)
+    {
+        NSString *tokenFromHub = [[url fragment] substringFromIndex:9];
+        [self fetchUserProfileWithToken:tokenFromHub];
+    }else{
+        [self finishRaasAction:NO withError:[LRErrors userLoginFailed]];
+    }
+}
+
+- (void)handleResponseFromHostedPage:(NSURL *) url
+                          withAction:(NSString *) returnAction
+{
+	NSDictionary *params = [NSDictionary dictionaryWithQueryString:url.query];
+    //TODO: re-implement using do try catch error
+    if( [returnAction isEqualToString:@"registration"]) {
+    
+        BOOL success = [[params objectForKey:@"success"] boolValue];
+        
+        if (success) {
+            [self finishRaasAction:YES withError:nil];
+        } else {
+            [self finishRaasAction:NO withError:[LRErrors userRegistrationFailed]];
+        }
+	} else if( [returnAction isEqualToString:@"login"] ) {
+
+		if ([url.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
+			NSString *lrtoken = [params objectForKey:@"lrtoken"];
+            if (lrtoken) {
+                [self fetchUserProfileWithToken:lrtoken];
+            } else {
+                [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+            }
+		}else{
+            [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+        }
+
+	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
+
+		if ([url.absoluteString rangeOfString:@"status"].location != NSNotFound) {
+			[self finishRaasAction:YES withError:nil];
+		}
+
+	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
+
+		if ([url.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
+			NSString *lrtoken = [params objectForKey:@"lrtoken"];
+
+            if (lrtoken) {
+                [self fetchUserProfileWithToken: lrtoken];
+            } else {
+                [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+            }
+		}else{
+            [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+        }
+
+	}  else if ( [returnAction isEqualToString:@"emailverification"] ) {
+
+		if ([url.absoluteString rangeOfString:@"status"].location != NSNotFound) {
+			[self finishRaasAction:YES withError:nil];
+		}
+
+	} else if ( [returnAction isEqualToString:@"resetpassword"] ) {
+
+		if ([url.absoluteString rangeOfString:@"status"].location != NSNotFound) {
+			[self finishRaasAction:YES withError:nil];
+		}
+	}
+}
+
+- (void)fetchUserProfileWithToken:(NSString*)token
+{
+    [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+        [self finishRaasAction:YES	withError:error];
+    }];
+}
+
+- (void)finishRaasAction:(BOOL)success withError:(NSError*) error {
     [self.viewController dismissViewControllerAnimated:YES completion: ^{
         if (self.handler) {
             dispatch_async(dispatch_get_main_queue(), ^{
