@@ -138,9 +138,13 @@
 
 	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
 
-		if ([url.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
-		}
+		BOOL success = [[params objectForKey:@"success"] boolValue];
+        
+        if (success) {
+            [self finishRaasAction:YES withError:nil];
+        } else {
+            [self finishRaasAction:NO withError:[LRErrors userForgotPasswordFailed]];
+        }
 
 	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
 
@@ -156,17 +160,9 @@
             [self finishRaasAction:NO withError:[LRErrors userProfileError]];
         }
 
-	}  else if ( [returnAction isEqualToString:@"emailverification"] ) {
-
-		if ([url.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
-		}
-
-	} else if ( [returnAction isEqualToString:@"resetpassword"] ) {
-
-		if ([url.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
-		}
+	}  else {
+    
+        [self finishRaasAction:NO withError:[LRErrors unsupportedAction]];
 	}
 }
 

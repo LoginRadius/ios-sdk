@@ -42,4 +42,7 @@
 + (NSError*)touchIDNotAvailable;
 + (NSError*)touchIDNotDeviceOwner;
 
+#pragma mark - Unknown Errors
++ (NSError*)unsupportedAction;
+
 @end

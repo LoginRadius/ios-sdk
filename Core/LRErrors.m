@@ -53,6 +53,13 @@
 
 }
 
++ (NSError*)unsupportedAction {
+	return  [NSError errorWithCode:LRErrorCodeUnsupportedAction
+					   description:@"Receiving unsupported action"
+					 failureReason:@"App received an unsupported action"];
+
+}
+
 + (NSError*)tokenEmpty {
 	return [NSError errorWithCode:LRErrorCodeAccessTokenEmpty
 					  description:@"User profile fetching failed"

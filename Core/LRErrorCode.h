@@ -103,7 +103,12 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
     /**
      *  TouchID error
      */
-    LRErrorCodeTouchIDNotAvailable
+    LRErrorCodeTouchIDNotAvailable,
+    
+    /**
+     *  Receiving unsupported actions
+     */
+    LRErrorCodeUnsupportedAction
 
 };
 
