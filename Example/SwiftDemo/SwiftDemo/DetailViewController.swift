@@ -27,7 +27,6 @@ class DetailViewController: UIViewController {
         var middle:String = ""
         var last:String = ""
         var uid:String = ""
-        var emails: [Dictionary<String, String>] = []
         var email:String = ""
 
         let defaults = UserDefaults.standard
