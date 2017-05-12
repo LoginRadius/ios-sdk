@@ -37,8 +37,11 @@ class DetailViewController: UIViewController {
             middle = user.object(forKey: "MiddleName")! as! String
             last = user.object(forKey: "LastName")! as! String
             uid = user.object(forKey: "Uid")! as! String
-            emails = user.object(forKey: "Email")! as! Array
-            if let value:String = emails[0]["Value"] {
+            
+            //Need to unwrap properly, some social providers doesnt give the email
+            if  let emailArr = user.object(forKey: ("Email" as Any)) as? Array<Dictionary<String,String>>,
+                let value = emailArr[0]["Value"]
+            {
                 email = value
             }
         }
