@@ -27,7 +27,7 @@
        completionHandler:(LRServiceCompletionHandler)handler {
 
     self.provider = provider;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.hub.loginradius.com/RequestHandlor.aspx?same_window=1&is_access_token=1&apikey=%@&callbacktype=hash&provider=%@&callback=%@://auth", [LoginRadiusSDK siteName], [LoginRadiusSDK apiKey], provider, [LoginRadiusSDK siteName]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.hub.loginradius.com/RequestHandlor.aspx?same_window=1&is_access_token=1&apikey=%@&callbacktype=hash&provider=%@&callback=%@://", [LoginRadiusSDK siteName], [LoginRadiusSDK apiKey], provider, [LoginRadiusSDK siteName]]];
     SFSafariViewController *sfcontroller = [[SFSafariViewController alloc] initWithURL:url];
     sfcontroller.delegate = self;
     [controller presentViewController:sfcontroller animated:NO completion:nil];
@@ -83,16 +83,31 @@
 
     BOOL isLoginRadiusURL = [[url scheme] isEqualToString:[LoginRadiusSDK siteName]];
     
+    //Check if its from hosted page
     NSArray *queryParams = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO].queryItems;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == 'lrtoken'"];
-
     NSURLQueryItem *lrtokenObj = [queryParams filteredArrayUsingPredicate:predicate].firstObject;
+    BOOL haveAccessTokenFromHostedPage = (lrtokenObj != nil);
+
+    //Check if its from hub page
+    BOOL haveAccessTokenFromHubPage = [[url fragment] hasPrefix:@"lr-token"];
+    NSString *tokenFromHub = [[url fragment] substringFromIndex:9];
+
+    NSString *token = nil;
     
-    BOOL haveAccessToken = (lrtokenObj != nil);
+    if (haveAccessTokenFromHostedPage)
+    {
+        token = [lrtokenObj value];
+    }else if (haveAccessTokenFromHubPage)
+    {
+        token = tokenFromHub;
+    }
+    
+    BOOL haveAccessToken = (token != nil);
     
     if( haveAccessToken ) {
-        [[LRClient sharedInstance] getUserProfileWithAccessToken: [lrtokenObj value] completionHandler:^(NSDictionary *data, NSError *error) {
+        [[LRClient sharedInstance] getUserProfileWithAccessToken: token completionHandler:^(NSDictionary *data, NSError *error) {
             [self finishAuthentication:YES	withError:error];
         }];
 
