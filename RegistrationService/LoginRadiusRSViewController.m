@@ -190,18 +190,9 @@
             }
 		}
 
-	}  else if ( [returnAction isEqualToString:@"emailverification"] ) {
-
-		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
-		}
-
-	} else if ( [returnAction isEqualToString:@"resetpassword"] ) {
-
-		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
-		}
-
+	}  else {
+    
+        [self finishRaasAction:NO withError:[LRErrors unsupportedAction]];
 	}
 
 	return YES;
