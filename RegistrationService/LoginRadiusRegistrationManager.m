@@ -81,7 +81,17 @@
 						 completionHandler:(LRServiceCompletionHandler)handler {
 
     _isFacebookNativeLogin = YES;
-	[self.facebookLogin loginfromViewController:controller parameters:params handler:handler];
+    
+    if ([controller presentedViewController] == nil)
+    {
+        //if user have a native button to perform native facebook
+    	[self.facebookLogin loginfromViewController:controller parameters:params handler:handler];
+    }else{
+    
+        //if user clicked from hosted page to perform native facebook, we have to dismiss it first
+        [controller dismissViewControllerAnimated:false completion: ^{[self.facebookLogin loginfromViewController:controller parameters:params handler:handler];}];
+    }
+    
 }
 
 - (void)nativeTwitterWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completionHandler:(LRServiceCompletionHandler)handler {
@@ -115,17 +125,32 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 
-    if (_isFacebookNativeLogin) {
+    BOOL canOpen = NO;
+    
+    //Handles action call from hosted page to perform native login
+    if ([url.scheme isEqual: [LoginRadiusSDK siteName]] && [url host] != nil)
+    {
+        NSString* urlHost = [url host];
+        
+        if ([urlHost  isEqual: @"googleNative"] || [urlHost  isEqual: @"facebookNative"])
+        {
+            canOpen = true;
+            
+            //use userInfo to pass extra parameters on event
+            [[NSNotificationCenter defaultCenter]
+              postNotificationName:urlHost
+              object:self
+              userInfo: nil];
+        }
+    }else if (_isFacebookNativeLogin) {
         _isFacebookNativeLogin = NO;
-        return [self.facebookLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    }
-
-    if (_safariLogin) {
+        canOpen = [self.facebookLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    }else if (_isSafariLogin) {
         _isSafariLogin = NO;
-        return [self.safariLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+        canOpen = [self.safariLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     }
 
-    return NO;
+    return canOpen;
 }
 
 @end

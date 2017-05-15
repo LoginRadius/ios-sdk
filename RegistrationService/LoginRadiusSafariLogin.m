@@ -43,7 +43,7 @@
     NSString *url_address;
 
     // Base version
-    NSString *baseUrl = [[LoginRadiusSDK sharedInstance] hostedPageURL];
+    NSString *baseUrl = [LoginRadiusSDK hostedPageURL];
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"action": action,
@@ -53,6 +53,14 @@
                                                                                   }];
     if ([LoginRadiusSDK v2RecaptchaSiteKey]) {
         [params setObject:[LoginRadiusSDK v2RecaptchaSiteKey] forKey:@"recaptchakey"];
+    }
+    
+    if ([LoginRadiusSDK useGoogleNativeLogin]) {
+        [params setObject: @"true" forKey:@"googleNative"];
+    }
+    
+    if ([LoginRadiusSDK useFacebookNativeLogin]) {
+        [params setObject: @"true" forKey:@"facebookNative"];
     }
 
     NSString *urlParams = [[params copy] queryString];

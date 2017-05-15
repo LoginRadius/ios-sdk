@@ -13,6 +13,9 @@ static NSString * const LoginRadiusAPIKey = @"ApiKey";
 static NSString * const LoginRadiusSiteName = @"SiteName";
 static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
 static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
+static NSString * const LoginRadiusUseGoogleNative = @"UseGoogleNativeLogin";
+static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin";
+
 
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
@@ -31,6 +34,8 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
     NSString *apiKey = values[LoginRadiusAPIKey];
     NSString *siteName = values[LoginRadiusSiteName];
     NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
+    BOOL googleNativeLogin = [values[LoginRadiusUseGoogleNative] boolValue] ;
+    BOOL facebookNativeLogin = [values[LoginRadiusUseFacebookNative] boolValue] ;
     NSString *hostedPageURL = (values[LoginRadiusHostedPageURL])?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
 
 
@@ -43,6 +48,8 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
         _apiKey = apiKey;
         _siteName = siteName;
         _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
+        _useGoogleNativeLogin = googleNativeLogin;
+        _useFacebookNativeLogin = facebookNativeLogin;
         _hostedPageURL = hostedPageURL;
 		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
@@ -92,6 +99,18 @@ static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
 
 + (NSString*) v2RecaptchaSiteKey {
     return [LoginRadiusSDK sharedInstance].v2RecaptchaSiteKey;
+}
+
++ (NSString*) hostedPageURL {
+    return [LoginRadiusSDK sharedInstance].hostedPageURL;
+}
+
++ (BOOL) useFacebookNativeLogin {
+    return [LoginRadiusSDK sharedInstance].useFacebookNativeLogin;
+}
+
++ (BOOL) useGoogleNativeLogin {
+    return [LoginRadiusSDK sharedInstance].useGoogleNativeLogin;
 }
 
 #pragma mark Application Delegate methods

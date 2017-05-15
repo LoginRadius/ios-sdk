@@ -19,8 +19,9 @@ class ViewController: UIViewController {
         if (user == 1) {
             self.performSegue(withIdentifier: "profile", sender: self);
         }
+        
     }
-    
+
     @IBAction func loginWithTwitter(_ sender: UIButton) {
         LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
             if (success) {
@@ -75,6 +76,7 @@ class ViewController: UIViewController {
             }
         });
     }
+
     
     func showProfileController () {
         let defaults = UserDefaults.standard

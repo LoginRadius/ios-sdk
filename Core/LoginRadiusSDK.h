@@ -51,7 +51,17 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 /**
  Hosted Page URL
  */
-@property (nonatomic, copy) NSString* hostedPageURL;
+@property (strong, readonly, nonatomic) NSString* hostedPageURL;
+
+/**
+ Google Native Key
+ */
+@property (readonly, nonatomic) BOOL useGoogleNativeLogin;
+
+/**
+ Facebook Native Key
+ */
+@property (readonly, nonatomic) BOOL useFacebookNativeLogin;
 
 #pragma mark - Initilizers
 
@@ -91,6 +101,27 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
  @return Returns Google v2Recaptcha key
  */
 + (NSString*)v2RecaptchaSiteKey;
+
+/**
+ Hosted Page URL
+
+ @return Returns Hosted Page URL
+ */
++ (NSString*)hostedPageURL;
+
+/**
+ Configuration on using google native login
+
+ @return Returns whether to use google native login
+ */
++ (BOOL)useGoogleNativeLogin;
+
+/**
+ Configuration on using facebook native login
+
+ @return Returns whether to use facebook native login
+ */
++ (BOOL)useFacebookNativeLogin;
 
 #pragma mark - Application Delegate methods
 
