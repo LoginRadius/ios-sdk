@@ -105,11 +105,11 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
     return [LoginRadiusSDK sharedInstance].hostedPageURL;
 }
 
-+ (BOOL) useFacebookNativeLogin {
++ (BOOL) enableFacebookNativeInHosted {
     return [LoginRadiusSDK sharedInstance].enableFacebookNativeInHosted;
 }
 
-+ (BOOL) useGoogleNativeLogin {
++ (BOOL) enableGoogleNativeInHosted {
     return [LoginRadiusSDK sharedInstance].enableGoogleNativeInHosted;
 }
 

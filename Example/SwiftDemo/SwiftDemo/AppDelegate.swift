@@ -8,12 +8,12 @@
 
 import UIKit
 import LoginRadiusSDK
+import GoogleSignIn
+import Google
 
-var API_KEY = "<your api key>"
-var CLIENT_SITENAME = "<your sitename>"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
@@ -23,6 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let sdk:LoginRadiusSDK = LoginRadiusSDK.instance();
         sdk.applicationLaunched(options: launchOptions);
+        
+        
+        if LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted
+        {
+            var configureError: NSError?
+            GGLContext.sharedInstance().configureWithError(&configureError)
+            assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
+        
+            GIDSignIn.sharedInstance().delegate = self
+        }
 
         return true
     }
@@ -52,6 +62,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
     {
         return LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    
+        if let err = error
+        {
+            print("Error: \(err.localizedDescription)")
+        }
+        else
+        {
+            let idToken: String = user.authentication.accessToken
+            LoginRadiusManager.sharedInstance().nativeGoogleLogin(withAccessToken: idToken, completionHandler: {(_ success: Bool, _ error: Error?) -> Void in
+                if success {
+                    print("successfully logged in with google")
+                    if let lrtoken = UserDefaults.standard.object(forKey: "lrAccessToken") as? String
+                    {
+                        NotificationCenter.default.post(name: Notification.Name("userAuthenticated"), object: nil, userInfo: ["token":lrtoken])
+                    }
+                }
+                else {
+                    print("Error: \(String(describing: error?.localizedDescription))")
+                }
+            })
+        }
     }
 
 

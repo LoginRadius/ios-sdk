@@ -12,4 +12,6 @@ end
 target 'SwiftDemo' do
    project 'Example/SwiftDemo/SwiftDemo.xcodeproj'
    pod 'LoginRadiusSDK', :path => './'
+   pod 'Eureka'
+   pod 'Google/SignIn'
 end

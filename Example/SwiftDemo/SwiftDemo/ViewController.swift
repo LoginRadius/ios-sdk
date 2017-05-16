@@ -7,8 +7,9 @@
 //
 
 import LoginRadiusSDK
+import Eureka
 
-class ViewController: UIViewController {
+class ViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,42 +21,61 @@ class ViewController: UIViewController {
             self.performSegue(withIdentifier: "profile", sender: self);
         }
         
-    }
-
-    @IBAction func loginWithTwitter(_ sender: UIButton) {
-        LoginRadiusManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully logged in with twitter");
-                self.showProfileController();
-            } else {
-                print(error!.localizedDescription)
+        self.tabBarController?.navigationItem.title = "Login Radius iOS pod 3.4.0"
+        self.form = Form()
+        
+        //Create UI forms
+        form +++ Section("Traditional Login")
+            <<< ButtonRow("Login LR API")
+            {
+                $0.title = "Login"
+                }.onCellSelection{ cell, row in
+                    self.traditionalLogin()
             }
-        });
-    }
-
-    @IBAction func loginWithFacebook(_ sender: UIButton) {
-        LoginRadiusManager.sharedInstance().login(withProvider: "facebook", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully logged in with facebook");
-                self.showProfileController();
-            } else {
-                print(error!.localizedDescription)
+            <<< ButtonRow("Register LR API")
+            {
+                $0.title = "Register"
+                }.onCellSelection{ cell, row in
+                    self.traditionalRegistration()
             }
-        });
+            <<< ButtonRow("Forgot LR API")
+            {
+                $0.title = "Register"
+                }.onCellSelection{ row in
+                    self.forgotPassword()
+            }
+        
+            +++ Section("Direct Social Logins")
+            <<< ButtonRow("Google")
+            {
+                $0.title = $0.tag
+                }.onCellSelection{ cell, row in
+                    self.showSocialLogins(provider:"google")
+            }
+            <<< ButtonRow("Facebook")
+            {
+                $0.title = $0.tag
+                }.onCellSelection{ cell, row in
+                    self.showSocialLogins(provider:"facebook")
+            }
+            <<< ButtonRow("Twitter")
+            {
+                $0.title = $0.tag
+                }.onCellSelection{ cell, row in
+                    self.showSocialLogins(provider:"twitter")
+            }
+        
+            +++ Section("Only Social Hosted Page")
+            <<< ButtonRow("Social Hosted Page")
+            {
+                $0.title = $0.tag
+                }.onCellSelection{ cell, row in
+                    self.showSocialLogins(provider:"twitter")
+            }
+
     }
     
-    @IBAction func loginWithLinkedin(_ sender: UIButton) {
-        LoginRadiusManager.sharedInstance().login(withProvider: "linkedin", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully logged in with linkedin");
-                self.showProfileController();
-            } else {
-                print(error!.localizedDescription)
-            }
-        });
-    }
-    
-    @IBAction func signupWithEmail(_ sender: UIButton) {
+    func traditionalRegistration() {
         LoginRadiusManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully registered");
@@ -66,7 +86,7 @@ class ViewController: UIViewController {
         });
     }
     
-    @IBAction func loginWithEmail(_ sender: UIButton) {
+    func traditionalLogin() {
         LoginRadiusManager.sharedInstance().registration(withAction: "login", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in");
@@ -76,12 +96,53 @@ class ViewController: UIViewController {
             }
         });
     }
-
+    
+    func forgotPassword() {
+        LoginRadiusManager.sharedInstance().registration(withAction: "forgotpassword", in: self, completionHandler: { (success, error) in
+            if (success) {
+                print("successfully request forgot password");
+                self.showProfileController();
+            } else {
+                print(error!.localizedDescription)
+            }
+        });
+    }
+    
+    func showSocialLogins(provider:String)
+    {
+        LoginRadiusManager.sharedInstance().login(withProvider: provider, in: self, completionHandler: { (success, error) in
+            if (success) {
+                //this needs to be handled from app delegate call, see AppDelegate.swift
+                print("successfully logged in with \(provider)");
+            } else {
+                
+            }
+        });
+    }
+    
+    func showSocialOnly() {
+        LoginRadiusManager.sharedInstance().registration(withAction: "social", in: self, completionHandler: { (success, error) in
+            if (success) {
+                print("successfully logged in with social hosted page");
+                self.showProfileController();
+            } else {
+                print(error!.localizedDescription)
+            }
+        });
+    }
     
     func showProfileController () {
         let defaults = UserDefaults.standard
         if let _:String = defaults.object(forKey: "lrAccessToken") as? String {
             self.performSegue(withIdentifier: "profile", sender: self);
+        }else
+        {
+            DispatchQueue.main.async
+            {
+                let alert = UIAlertController(title: "Not Authenticated", message: "Login Radius Access Token is missing", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+                self.present(alert, animated: true, completion:nil)
+            }
         }
     }
 }
