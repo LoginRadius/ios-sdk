@@ -49,6 +49,7 @@
 
     // If SafariVC exist show the traditional login and social in safari
     if ([SFSafariViewController class] != nil) {
+        _isSafariLogin = YES;
         [self.safariLogin initWithAction:action inController:controller completionHandler:handler];
         return;
     }
@@ -128,7 +129,13 @@
     BOOL canOpen = NO;
     
     //Handles action call from hosted page to perform native login
-    if ([url.scheme isEqual: [LoginRadiusSDK siteName]] && [url host] != nil)
+    if (_isFacebookNativeLogin) {
+        _isFacebookNativeLogin = NO;
+        canOpen = [self.facebookLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    }else if (_isSafariLogin) {
+        _isSafariLogin = NO;
+        canOpen = [self.safariLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    }else if ([url.scheme isEqual: [LoginRadiusSDK siteName]] && [url host] != nil)
     {
         NSString* urlHost = [url host];
         
@@ -142,12 +149,6 @@
               object:self
               userInfo: nil];
         }
-    }else if (_isFacebookNativeLogin) {
-        _isFacebookNativeLogin = NO;
-        canOpen = [self.facebookLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    }else if (_isSafariLogin) {
-        _isSafariLogin = NO;
-        canOpen = [self.safariLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     }
 
     return canOpen;

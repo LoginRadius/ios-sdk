@@ -31,16 +31,18 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
 - (instancetype)init {
     NSString *path = [[NSBundle mainBundle] pathForResource:LoginRadiusPlistFileName ofType:@"plist"];
     NSDictionary* values = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSString *apiKey = values[LoginRadiusAPIKey];
-    NSString *siteName = values[LoginRadiusSiteName];
+    NSString *apiKey = (values[LoginRadiusAPIKey]&&[values[LoginRadiusAPIKey] length] != 0)?values[LoginRadiusAPIKey]:nil;
+    NSString *siteName = (values[LoginRadiusSiteName]&&[values[LoginRadiusSiteName] length] != 0)?values[LoginRadiusSiteName]:nil;
     NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
-    BOOL enableGoogleNativeInHosted = [values[LoginRadiusEnableGoogleNativeInHosted] boolValue] ;
-    BOOL enableFacebookNativeInHosted = [values[LoginRadiusEnableFacebookNativeInHosted] boolValue] ;
-    NSString *hostedPageURL = (values[LoginRadiusHostedPageURL])?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
+    BOOL enableGoogleNativeInHosted = [values[LoginRadiusEnableGoogleNativeInHosted] boolValue];
+    BOOL enableFacebookNativeInHosted = [values[LoginRadiusEnableFacebookNativeInHosted] boolValue];
+    NSString *hostedPageURL = (values[LoginRadiusHostedPageURL]&&[values[LoginRadiusHostedPageURL] length]!= 0)?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
+    NSURL *validateURL = [NSURL URLWithString:hostedPageURL];
+    BOOL isHostedPageURLValid = (validateURL && validateURL.scheme && validateURL.host);
 
-
-    NSAssert(apiKey, @"ApiKey cannot be null in LoginRadius.plist");
-    NSAssert(siteName, @"SiteName cannot be null in LoginRadius.plist");
+    NSAssert(apiKey, @"ApiKey cannot be null or empty in LoginRadius.plist");
+    NSAssert(siteName, @"SiteName cannot be null or empty in LoginRadius.plist");
+    NSAssert(isHostedPageURLValid, @"HostedPageURL is invalid in LoginRadius.plist");
 
     self = [super init];
 

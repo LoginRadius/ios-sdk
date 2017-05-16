@@ -154,7 +154,7 @@
             [self finishRaasAction:NO withError:[LRErrors userForgotPasswordFailed]];
         }
 
-	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
+	} else if ( [returnAction isEqualToString:@"sociallogin"] || [returnAction isEqualToString:@"social"] ) {
 
 		if ([url.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
