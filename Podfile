@@ -14,4 +14,6 @@ target 'SwiftDemo' do
    pod 'LoginRadiusSDK', :path => './'
    pod 'Eureka'
    pod 'Google/SignIn'
+   pod 'SwiftyJSON',       :git => 'https://github.com/IBM-Swift/SwiftyJSON.git', :branch => 'master'
+
 end

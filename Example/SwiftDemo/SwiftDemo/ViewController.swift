@@ -21,7 +21,7 @@ class ViewController: FormViewController {
             self.performSegue(withIdentifier: "profile", sender: self);
         }
         
-        self.tabBarController?.navigationItem.title = "Login Radius iOS pod 3.4.0"
+        self.navigationController?.navigationBar.topItem?.title = "Login Radius iOS pod 3.4.0"
         self.form = Form()
         
         //Create UI forms
@@ -40,7 +40,7 @@ class ViewController: FormViewController {
             }
             <<< ButtonRow("Forgot LR API")
             {
-                $0.title = "Register"
+                $0.title = "Forgot Password"
                 }.onCellSelection{ row in
                     self.forgotPassword()
             }
@@ -70,7 +70,7 @@ class ViewController: FormViewController {
             {
                 $0.title = $0.tag
                 }.onCellSelection{ cell, row in
-                    self.showSocialLogins(provider:"twitter")
+                    self.showSocialOnly()
             }
 
     }
@@ -143,6 +143,14 @@ class ViewController: FormViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
                 self.present(alert, animated: true, completion:nil)
             }
+        }
+    }
+    
+    //to eliminate "< Back" button showing up when user already logged in
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profile"
+        {
+            segue.destination.navigationItem.hidesBackButton = true
         }
     }
 }
