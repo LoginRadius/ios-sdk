@@ -24,7 +24,7 @@ s.ios.deployment_target = '8.0'
 
 s.source       = { :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag => "#{s.version}" }
 
-s.source_files = ['Core/**/*.{h,m}', 'FacebookNative/*.{h,m}', 'RegistrationService/*.{h,m}', 'SocialLogin/*.{h,m}', 'TwitterNative/**/*.{h,m}', 'TouchID/*.{h,m}']
+s.source_files = ['Sources/**/*.{h,m}']
 
 s.dependency 'FBSDKLoginKit', '~> 4.16'
 s.dependency 'AFNetworking', '~> 3.1'
