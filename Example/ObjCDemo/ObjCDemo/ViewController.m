@@ -34,7 +34,7 @@
 }
 
 - (IBAction)loginWithTwitter:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] loginWithProvider:@"twitter" inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusManager sharedInstance] loginWithProvider:@"twitter" inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully logged in with twitter");
             [self showProfileController];
@@ -45,7 +45,7 @@
 }
 
 - (IBAction)loginWithFacebook:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] loginWithProvider:@"facebook" inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusManager sharedInstance] loginWithProvider:@"facebook" inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully logged in with facebook");
             [self showProfileController];
@@ -56,7 +56,7 @@
 }
 
 - (IBAction)loginWithLinkedin:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] loginWithProvider:@"linkedin" inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusManager sharedInstance] loginWithProvider:@"linkedin" inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully logged in with linkedin");
             [self showProfileController];
@@ -67,7 +67,7 @@
 }
 
 - (IBAction)registerWithEmail:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully registered");
             [self showProfileController];
@@ -78,7 +78,7 @@
 }
 
 - (IBAction)loginWithEmail:(id)sender {
-    [[LoginRadiusRegistrationManager sharedInstance] registrationWithAction:@"login" inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"login" inController:self completionHandler:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"successfully logged in");
             [self showProfileController];

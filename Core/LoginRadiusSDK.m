@@ -5,7 +5,7 @@
 //
 
 #import "LoginRadiusSDK.h"
-#import "LoginRadiusRegistrationManager.h"
+#import "LoginRadiusManager.h"
 #import "LRTouchIDAuth.h"
 
 static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
@@ -18,7 +18,7 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
 
 
 @interface LoginRadiusSDK ()
-@property (strong, nonatomic) LoginRadiusRegistrationManager *registrationManager;
+@property (strong, nonatomic) LoginRadiusManager *manager;
 @property (strong, nonatomic) LRTouchIDAuth *touchIDManager;
 @end
 
@@ -51,7 +51,7 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
         _useGoogleNativeLogin = googleNativeLogin;
         _useFacebookNativeLogin = facebookNativeLogin;
         _hostedPageURL = hostedPageURL;
-		_registrationManager = [[LoginRadiusRegistrationManager alloc] init];
+		_manager = [[LoginRadiusManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
     }
 
@@ -74,7 +74,7 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
 }
 
 + (void) logout {
-	[[LoginRadiusRegistrationManager sharedInstance] logout];
+	[[LoginRadiusManager sharedInstance] logout];
 	// Clearing all stored tokens userprofiles for loginradius
 	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	for (NSHTTPCookie *cookie in [storage cookies]) {
@@ -116,12 +116,12 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
 #pragma mark Application Delegate methods
 
 - (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
-	[self.registrationManager applicationLaunchedWithOptions:launchOptions];
+	[self.manager applicationLaunchedWithOptions:launchOptions];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 	
-	return [[LoginRadiusRegistrationManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+	return [[LoginRadiusManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

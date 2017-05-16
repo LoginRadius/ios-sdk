@@ -10,7 +10,7 @@
 /**
  Social Login Manager
  */
-@interface LoginRadiusRegistrationManager : NSObject
+@interface LoginRadiusManager : NSObject
 
 #pragma mark - Init
 

@@ -1,10 +1,10 @@
 //
-//  LoginRadiusRegistrationManager.m
+//  LoginRadiusManager.m
 //
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
-#import "LoginRadiusRegistrationManager.h"
+#import "LoginRadiusManager.h"
 #import "LoginRadiusTwitterLogin.h"
 #import "LoginRadiusFacebookLogin.h"
 #import "LoginRadiusRSViewController.h"
@@ -14,7 +14,7 @@
 #import "LoginRadiusREST.h"
 #import "LRClient.h"
 
-@interface LoginRadiusRegistrationManager() {}
+@interface LoginRadiusManager() {}
 @property(nonatomic, strong) LoginRadiusTwitterLogin * twitterLogin;
 @property(nonatomic, strong) LoginRadiusFacebookLogin * facebookLogin;
 @property(nonatomic, strong) LoginRadiusSafariLogin * safariLogin;
@@ -22,14 +22,14 @@
 @property (assign, readonly, nonatomic) BOOL isFacebookNativeLogin;
 @end
 
-@implementation LoginRadiusRegistrationManager
+@implementation LoginRadiusManager
 
 + (instancetype)sharedInstance {
 	static dispatch_once_t onceToken;
-	static LoginRadiusRegistrationManager *instance;
+	static LoginRadiusManager *instance;
 
 	dispatch_once(&onceToken, ^{
-		instance = [[LoginRadiusRegistrationManager alloc] init];
+		instance = [[LoginRadiusManager alloc] init];
 	});
 
 	return instance;

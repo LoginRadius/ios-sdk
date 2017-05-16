@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithTwitter(_ sender: UIButton) {
-        LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
+        LoginRadiusManager.sharedInstance().login(withProvider: "twitter", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with twitter");
                 self.showProfileController();
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "facebook", in: self, completionHandler: { (success, error) in
+        LoginRadiusManager.sharedInstance().login(withProvider: "facebook", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with facebook");
                 self.showProfileController();
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithLinkedin(_ sender: UIButton) {
-        LoginRadiusRegistrationManager.sharedInstance().login(withProvider: "linkedin", in: self, completionHandler: { (success, error) in
+        LoginRadiusManager.sharedInstance().login(withProvider: "linkedin", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in with linkedin");
                 self.showProfileController();
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signupWithEmail(_ sender: UIButton) {
-        LoginRadiusRegistrationManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
+        LoginRadiusManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully registered");
                 self.showProfileController();
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithEmail(_ sender: UIButton) {
-        LoginRadiusRegistrationManager.sharedInstance().registration(withAction: "login", in: self, completionHandler: { (success, error) in
+        LoginRadiusManager.sharedInstance().registration(withAction: "login", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully logged in");
                 self.showProfileController();
