@@ -54,14 +54,14 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 @property (strong, readonly, nonatomic) NSString* hostedPageURL;
 
 /**
- Google Native Key
+ Enable Google Native in Hosted Page
  */
-@property (readonly, nonatomic) BOOL useGoogleNativeLogin;
+@property (readonly, nonatomic) BOOL enableGoogleNativeInHosted;
 
 /**
- Facebook Native Key
+ Enable Facebook Native in Hosted Page
  */
-@property (readonly, nonatomic) BOOL useFacebookNativeLogin;
+@property (readonly, nonatomic) BOOL enableFacebookNativeInHosted;
 
 #pragma mark - Initilizers
 
@@ -114,14 +114,14 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
 
  @return Returns whether to use google native login
  */
-+ (BOOL)useGoogleNativeLogin;
++ (BOOL)enableGoogleNativeInHosted;
 
 /**
  Configuration on using facebook native login
 
  @return Returns whether to use facebook native login
  */
-+ (BOOL)useFacebookNativeLogin;
++ (BOOL)enableFacebookNativeInHosted;
 
 #pragma mark - Application Delegate methods
 

@@ -55,11 +55,11 @@
         [params setObject:[LoginRadiusSDK v2RecaptchaSiteKey] forKey:@"recaptchakey"];
     }
     
-    if ([LoginRadiusSDK useGoogleNativeLogin]) {
+    if ([LoginRadiusSDK enableGoogleNativeInHosted]) {
         [params setObject: @"true" forKey:@"googleNative"];
     }
     
-    if ([LoginRadiusSDK useFacebookNativeLogin]) {
+    if ([LoginRadiusSDK enableFacebookNativeInHosted]) {
         [params setObject: @"true" forKey:@"facebookNative"];
     }
 

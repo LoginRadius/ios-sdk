@@ -13,8 +13,8 @@ static NSString * const LoginRadiusAPIKey = @"ApiKey";
 static NSString * const LoginRadiusSiteName = @"SiteName";
 static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
 static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
-static NSString * const LoginRadiusUseGoogleNative = @"UseGoogleNativeLogin";
-static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin";
+static NSString * const LoginRadiusEnableGoogleNativeInHosted = @"EnableGoogleNativeInHosted";
+static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebookNativeInHosted";
 
 
 @interface LoginRadiusSDK ()
@@ -34,8 +34,8 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
     NSString *apiKey = values[LoginRadiusAPIKey];
     NSString *siteName = values[LoginRadiusSiteName];
     NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
-    BOOL googleNativeLogin = [values[LoginRadiusUseGoogleNative] boolValue] ;
-    BOOL facebookNativeLogin = [values[LoginRadiusUseFacebookNative] boolValue] ;
+    BOOL enableGoogleNativeInHosted = [values[LoginRadiusEnableGoogleNativeInHosted] boolValue] ;
+    BOOL enableFacebookNativeInHosted = [values[LoginRadiusEnableFacebookNativeInHosted] boolValue] ;
     NSString *hostedPageURL = (values[LoginRadiusHostedPageURL])?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
 
 
@@ -48,8 +48,8 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
         _apiKey = apiKey;
         _siteName = siteName;
         _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
-        _useGoogleNativeLogin = googleNativeLogin;
-        _useFacebookNativeLogin = facebookNativeLogin;
+        _enableGoogleNativeInHosted = enableGoogleNativeInHosted;
+        _enableFacebookNativeInHosted = enableFacebookNativeInHosted;
         _hostedPageURL = hostedPageURL;
 		_manager = [[LoginRadiusManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
@@ -106,11 +106,11 @@ static NSString * const LoginRadiusUseFacebookNative = @"UseFacebookNativeLogin"
 }
 
 + (BOOL) useFacebookNativeLogin {
-    return [LoginRadiusSDK sharedInstance].useFacebookNativeLogin;
+    return [LoginRadiusSDK sharedInstance].enableFacebookNativeInHosted;
 }
 
 + (BOOL) useGoogleNativeLogin {
-    return [LoginRadiusSDK sharedInstance].useGoogleNativeLogin;
+    return [LoginRadiusSDK sharedInstance].enableGoogleNativeInHosted;
 }
 
 #pragma mark Application Delegate methods
