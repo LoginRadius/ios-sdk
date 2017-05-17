@@ -1,3 +1,21 @@
+3.4.0 Release notes (2017-05-17)
+=============================================================
+
+### API breaking changes
+* Merged LoginRadiusRegistrationManager and LoginRadiusSocialLoginManager into LoginRadiusManager
+
+### Enhancements
+
+* Use SafariViewController on traditional login
+* Improved Swift Demo
+* Update Mobile Hosted Page to v4
+* Add Custom Mobile Hosted Page functionality
+* Add Mobile Hosted Page intercation with Native Login
+
+### Bugfixes
+
+* Normal social login for google is now fixed
+
 3.3.2 Release notes (2017-05-12)
 =============================================================
 
