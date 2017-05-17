@@ -62,7 +62,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
     {
-        return LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        var canOpen = false
+        
+        if (LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted)
+        {
+            canOpen = (canOpen || GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
+        }
+    
+        canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
+    
+        return canOpen
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -79,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                     print("successfully logged in with google")
                     if let lrtoken = UserDefaults.standard.object(forKey: "lrAccessToken") as? String
                     {
-                        NotificationCenter.default.post(name: Notification.Name("userAuthenticated"), object: nil, userInfo: ["token":lrtoken])
+                        NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: ["token":lrtoken])
                     }
                 }
                 else {

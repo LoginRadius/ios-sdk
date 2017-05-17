@@ -8,8 +8,9 @@
 
 import LoginRadiusSDK
 import Eureka
+import GoogleSignIn
 
-class ViewController: FormViewController {
+class ViewController: FormViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class ViewController: FormViewController {
         if (user == 1) {
             self.performSegue(withIdentifier: "profile", sender: self);
         }
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
         
         self.navigationController?.navigationBar.topItem?.title = "Login Radius iOS pod 3.4.0"
         self.form = Form()
@@ -72,7 +75,54 @@ class ViewController: FormViewController {
                 }.onCellSelection{ cell, row in
                     self.showSocialOnly()
             }
+        
+            let socialNativeLoginEnabled = LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted ||  LoginRadiusSDK.sharedInstance().enableFacebookNativeInHosted
+        
+            if(socialNativeLoginEnabled)
+            {
+                let nativeSocialLoginSection = Section("Native Social Login")
+                form +++ nativeSocialLoginSection
+                
+                //WARNING FOR DEV/Testers:
+                //whenever the googleNative is set to true or facebookNative to true,
+                //it is set to true the safariViewController will save it on a cookie
+                //so if you immediately set the googleNative to false in the plist, and run the app
+                //it won't reflect the changes on the cookie of the default cdn site. (meaning it still thinks you had googleNative set to true)
+                //the workaround is to reset safari's cache, so on the Simulator go to Preferences > Safari > Clear History and Website Data
+                
+                if (LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted)
+                {
+                    NotificationCenter.default.addObserver(self, selector: #selector(self.showProfileController), name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil)
+                    NotificationCenter.default.addObserver(self, selector: #selector(self.showNativeGoogleLogin), name: Notification.Name("googleNative"), object: nil)
 
+                    nativeSocialLoginSection <<< ButtonRow("Native Google")
+                    {
+                        $0.title = "Google"
+                        }.onCellSelection{ cell, row in
+                            self.showNativeGoogleLogin()
+                    }
+                }
+                
+                if (LoginRadiusSDK.sharedInstance().enableFacebookNativeInHosted)
+                {
+                    NotificationCenter.default.addObserver(self, selector: #selector(self.showNativeFacebookLogin), name: Notification.Name("facebookNative"), object: nil)
+
+                    nativeSocialLoginSection <<< ButtonRow("Native Facebook")
+                    {
+                        $0.title = "Facebook"
+                        }.onCellSelection{ cell, row in
+                            self.showNativeFacebookLogin()
+                    }
+                }
+
+                
+            }
+
+    }
+    
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func traditionalRegistration() {
@@ -101,7 +151,12 @@ class ViewController: FormViewController {
         LoginRadiusManager.sharedInstance().registration(withAction: "forgotpassword", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully request forgot password");
-                self.showProfileController();
+                DispatchQueue.main.async
+            {
+                let alert = UIAlertController(title: "Success", message: "Forgot Password Requested, check your email inbox to reset", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+                self.present(alert, animated: true, completion:nil)
+                }
             } else {
                 print(error!.localizedDescription)
             }
@@ -129,6 +184,31 @@ class ViewController: FormViewController {
                 print(error!.localizedDescription)
             }
         });
+    }
+    
+    func showNativeGoogleLogin()
+    {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func showNativeFacebookLogin()
+    {
+        LoginRadiusManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile"]], in: self, completionHandler:  {(_ success: Bool, _ error: Error?) -> Void in
+            
+            if success
+            {
+                self.showProfileController()
+            }else if let err = error
+            {
+                DispatchQueue.main.async
+                {
+                    let alert = UIAlertController(title: "ERROR", message: err.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+                    self.present(alert, animated: true, completion:nil)
+                }
+            }
+        })
+
     }
     
     func showProfileController () {
