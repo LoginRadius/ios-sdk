@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = 'LoginRadiusSDK'
-s.version      = '3.3.2'
+s.version      = '3.4.0'
 s.summary      = 'Official LoginRadius SDK for iOS to integrate User Registration Service or Social Login in your app.'
 
 s.description  = <<-DESC
@@ -20,7 +20,7 @@ s.license      = 'MIT'
 s.authors             = { 'LoginRadius' => 'support@loginradius.com'}, { 'Raviteja Ghanta' => 'ravi@loginradius.com' }
 s.social_media_url   = 'https://twitter.com/LoginRadius'
 
-s.ios.deployment_target = '8.0'
+s.ios.deployment_target = '9.0'
 
 s.source       = { :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag => "#{s.version}" }
 
