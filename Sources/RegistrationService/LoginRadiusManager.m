@@ -135,7 +135,9 @@
     }else if (_isSafariLogin) {
         _isSafariLogin = NO;
         canOpen = [self.safariLogin application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    }else if ([url.scheme isEqual: [LoginRadiusSDK siteName]] && [url host] != nil)
+    }
+    
+    if ([url.scheme isEqual: [LoginRadiusSDK siteName]] && [url host] != nil)
     {
         NSString* urlHost = [url host];
         
