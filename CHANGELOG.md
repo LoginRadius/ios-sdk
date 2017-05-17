@@ -3,6 +3,7 @@
 
 ### API breaking changes
 * Merged LoginRadiusRegistrationManager and LoginRadiusSocialLoginManager into LoginRadiusManager
+* Remove Support for iOS 8.0, minimum deployment is 9.0
 
 ### Enhancements
 

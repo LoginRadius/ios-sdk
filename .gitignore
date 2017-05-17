@@ -1,6 +1,9 @@
 # LoginRadius
 LoginRadius.plist
 
+# Google
+GoogleService-Info.plist
+
 # OS generated
 .DS_Store*
 ._*
