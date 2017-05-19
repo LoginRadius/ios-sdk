@@ -12,4 +12,6 @@
 
 - (NSString *) URLEncodedString;
 
+- (NSString *) capitalizedFirst;
+
 @end

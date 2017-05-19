@@ -8,6 +8,7 @@
 
 #import "LRResponseSerializer.h"
 #import "NSError+LRError.h"
+#import "NSString+LRString.h"
 
 static NSString * const errorCode = @"errorCode";
 static NSString * const isProviderError = @"isProviderError";
@@ -39,13 +40,13 @@ static NSString * const message = @"message";
                     } else {
                         loginRadiusError = [NSError errorWithCode:[payload[errorCode] integerValue] description:payload[description] failureReason:payload[message]];
                     }
-                }else if (payload[[errorCode capitalizedString]])
+                }else if (payload[[errorCode capitalizedFirst]])
                 {
                     //v2 notation
-                    if([payload[[isProviderError capitalizedString]] boolValue]) {
-                        loginRadiusError = [NSError errorWithCode:[payload[[errorCode capitalizedString]] integerValue] description:payload[[description capitalizedString]] failureReason:payload[[providerErrorResponse capitalizedString]]];
+                    if([payload[[isProviderError capitalizedFirst]] boolValue]) {
+                        loginRadiusError = [NSError errorWithCode:[payload[[errorCode capitalizedFirst]] integerValue] description:payload[[description capitalizedFirst]] failureReason:payload[[providerErrorResponse capitalizedFirst]]];
                     } else {
-                        loginRadiusError = [NSError errorWithCode:[payload[[errorCode capitalizedString]] integerValue] description:payload[[description capitalizedString]] failureReason:payload[[message capitalizedString]]];
+                        loginRadiusError = [NSError errorWithCode:[payload[[errorCode capitalizedFirst]] integerValue] description:payload[[description capitalizedFirst]] failureReason:payload[[message capitalizedFirst]]];
                     }
                 }
 
