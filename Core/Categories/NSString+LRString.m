@@ -32,9 +32,7 @@
 }
 
 - (NSString *) capitalizedFirst {
-	__autoreleasing NSString *txt;
-    txt = [txt stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[txt substringToIndex:1] uppercaseString]];
-	return txt;
+	return [self stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[self substringToIndex:1] uppercaseString]];
 }
 
 @end
