@@ -169,8 +169,9 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
             if (success) {
                 //this needs to be handled from app delegate call, see AppDelegate.swift
                 print("successfully logged in with \(provider)");
+                self.showProfileController()
             } else {
-                
+                print(error!.localizedDescription)
             }
         });
     }
