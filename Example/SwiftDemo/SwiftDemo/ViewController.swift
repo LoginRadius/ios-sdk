@@ -35,7 +35,7 @@ class ViewController: FormViewController
         self.form = Form()
         
         //Create UI forms
-        form +++ Section("Traditional Login")
+        form +++ Section("")
             <<< ButtonRow("Login LR API")
             {
                 $0.title = "Login"
@@ -54,35 +54,12 @@ class ViewController: FormViewController
                 }.onCellSelection{ row in
                     self.forgotPassword()
             }
-        
-            +++ Section("Direct Social Logins")
-            <<< ButtonRow("Google")
-            {
-                $0.title = $0.tag
-                }.onCellSelection{ cell, row in
-                    self.showSocialLogins(provider:"google")
-            }
-            <<< ButtonRow("Facebook")
-            {
-                $0.title = $0.tag
-                }.onCellSelection{ cell, row in
-                    self.showSocialLogins(provider:"facebook")
-            }
-            <<< ButtonRow("Twitter")
-            {
-                $0.title = $0.tag
-                }.onCellSelection{ cell, row in
-                    self.showSocialLogins(provider:"twitter")
-            }
-        
-            +++ Section("Only Social Hosted Page")
-            <<< ButtonRow("Social Hosted Page")
+            <<< ButtonRow("Social Login Only")
             {
                 $0.title = $0.tag
                 }.onCellSelection{ cell, row in
                     self.showSocialOnly()
             }
-        
             let socialNativeLoginEnabled = LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted ||  LoginRadiusSDK.sharedInstance().enableFacebookNativeInHosted
         
             if(socialNativeLoginEnabled)
@@ -136,7 +113,7 @@ class ViewController: FormViewController
         LoginRadiusManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully registered");
-                self.showAlert(title:"SUCCESS",message:"successfully registered")
+                self.showProfileController();
             } else if let err = error {
                 self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
@@ -160,19 +137,6 @@ class ViewController: FormViewController
                 print("successfully request forgot password");
                 self.showAlert(title: "SUCCESS", message: "Forgot Password Requested, check your email inbox to reset")
             } else if let err = error {
-                self.showAlert(title:"ERROR",message:err.localizedDescription)
-            }
-        });
-    }
-    
-    func showSocialLogins(provider:String)
-    {
-        LoginRadiusManager.sharedInstance().login(withProvider: provider, in: self, completionHandler: { (success, error) in
-            if (success) {
-                //this needs to be handled from app delegate call, see AppDelegate.swift
-                print("successfully logged in with \(provider)");
-                self.showProfileController()
-            } else if let err = error  {
                 self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         });

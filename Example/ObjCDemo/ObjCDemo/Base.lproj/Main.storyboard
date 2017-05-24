@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oNx-14-lI5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oNx-14-lI5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,65 +22,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9e-KK-sFg">
-                                <rect key="frame" x="122" y="280.5" width="131" height="30"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74901960779999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Sign in with Twitter">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginWithTwitter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oYV-ln-74Y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqZ-85-MN6">
-                                <rect key="frame" x="112.5" y="318.5" width="150" height="30"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74901960779999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Sign in with Facebook">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginWithFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PaT-tF-z4P"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6Y-RS-gDq">
-                                <rect key="frame" x="117.5" y="356.5" width="140" height="30"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.74901960779999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Sign in with Linkedin">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginWithLinkedin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="drk-Ip-ttZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEe-WQ-EEe">
-                                <rect key="frame" x="159" y="554" width="57" height="30"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <action selector="registerWithEmail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="40r-C3-XOt"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adz-Pv-jCA">
-                                <rect key="frame" x="168.5" y="606" width="38" height="30"/>
+                                <rect key="frame" x="168.5" y="89" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginWithEmail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ttq-u6-fRW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEe-WQ-EEe">
+                                <rect key="frame" x="159" y="144" width="57" height="30"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerWithEmail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="40r-C3-XOt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvC-ZC-kT6" userLabel="Forgot Password">
+                                <rect key="frame" x="129.5" y="199" width="115" height="30"/>
+                                <state key="normal" title="Forgot Password"/>
+                                <connections>
+                                    <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MEG-4q-cRv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arC-8g-K3L" userLabel="Social Login Only">
+                                <rect key="frame" x="128" y="254" width="118" height="30"/>
+                                <state key="normal" title="Social Login Only"/>
+                                <connections>
+                                    <action selector="socialLoginOnly:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b2K-DM-rLS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="q6Y-RS-gDq" firstAttribute="top" secondItem="JqZ-85-MN6" secondAttribute="bottom" constant="8" id="04t-gX-ZOP"/>
-                            <constraint firstItem="JqZ-85-MN6" firstAttribute="top" secondItem="W9e-KK-sFg" secondAttribute="bottom" constant="8" id="5aV-Ue-M4T"/>
+                            <constraint firstItem="arC-8g-K3L" firstAttribute="top" secondItem="uvC-ZC-kT6" secondAttribute="bottom" constant="25" id="1R4-EL-gMH"/>
                             <constraint firstItem="pEe-WQ-EEe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7A6-hv-yd3"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Adz-Pv-jCA" secondAttribute="bottom" constant="31" id="CsC-xe-krT"/>
-                            <constraint firstItem="JqZ-85-MN6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Dcw-8C-ENi"/>
-                            <constraint firstItem="JqZ-85-MN6" firstAttribute="top" secondItem="W9e-KK-sFg" secondAttribute="bottom" constant="8" id="Vyy-tA-tQb"/>
+                            <constraint firstItem="uvC-ZC-kT6" firstAttribute="top" secondItem="pEe-WQ-EEe" secondAttribute="bottom" constant="25" id="Q35-Cd-p3g"/>
                             <constraint firstItem="Adz-Pv-jCA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="agn-yF-ZED"/>
-                            <constraint firstItem="JqZ-85-MN6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hmx-6S-y7P"/>
-                            <constraint firstItem="Adz-Pv-jCA" firstAttribute="top" secondItem="pEe-WQ-EEe" secondAttribute="bottom" constant="22" id="jDV-PE-oGI"/>
-                            <constraint firstItem="W9e-KK-sFg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o63-6X-92F"/>
-                            <constraint firstItem="q6Y-RS-gDq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qpa-sX-bLS"/>
-                            <constraint firstItem="q6Y-RS-gDq" firstAttribute="top" secondItem="JqZ-85-MN6" secondAttribute="bottom" constant="8" id="sTR-49-ShV"/>
+                            <constraint firstItem="Adz-Pv-jCA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="mEt-rq-RQ2"/>
+                            <constraint firstItem="uvC-ZC-kT6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r4s-Bm-1gf"/>
+                            <constraint firstItem="pEe-WQ-EEe" firstAttribute="top" secondItem="Adz-Pv-jCA" secondAttribute="bottom" constant="25" id="ss9-Pg-RGN"/>
+                            <constraint firstItem="arC-8g-K3L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w5w-P6-OFm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kOy-Li-ibK"/>

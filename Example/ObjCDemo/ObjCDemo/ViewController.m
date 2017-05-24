@@ -33,38 +33,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginWithTwitter:(id)sender {
-    [[LoginRadiusManager sharedInstance] loginWithProvider:@"twitter" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully logged in with twitter");
-            [self showProfileController];
-        } else {
-            NSLog(@"Error: %@", [error description]);
-        }
-    }];
-}
-
-- (IBAction)loginWithFacebook:(id)sender {
-    [[LoginRadiusManager sharedInstance] loginWithProvider:@"facebook" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully logged in with facebook");
-            [self showProfileController];
-        } else {
-            NSLog(@"Error: %@", [error description]);
-        }
-    }];
-}
-
-- (IBAction)loginWithLinkedin:(id)sender {
-    [[LoginRadiusManager sharedInstance] loginWithProvider:@"linkedin" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully logged in with linkedin");
-            [self showProfileController];
-        } else {
-            NSLog(@"Error: %@", [error description]);
-        }
-    }];
-}
 
 - (IBAction)registerWithEmail:(id)sender {
     [[LoginRadiusManager sharedInstance] registrationWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
@@ -72,7 +40,7 @@
             NSLog(@"successfully registered");
             [self showProfileController];
         } else {
-            NSLog(@"Error: %@", [error description]);
+            [self showAlert:@"ERROR" message:[error localizedDescription]];
         }
     }];
 }
@@ -83,7 +51,29 @@
             NSLog(@"successfully logged in");
             [self showProfileController];
         } else {
-            NSLog(@"Error: %@", [error description]);
+            [self showAlert:@"ERROR" message:[error localizedDescription]];
+        }
+    }];
+}
+
+- (IBAction)forgotPassword:(id)sender {
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"forgotpassword" inController:self completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"forgot password success");
+            [self showAlert:@"SUCCESS" message:@"Forgot Password Requested, check your email inbox to reset"];
+        } else {
+            [self showAlert:@"ERROR" message:[error localizedDescription]];
+        }
+    }];
+}
+
+- (IBAction)socialLoginOnly:(id)sender {
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"social" inController:self completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"successfully logged in");
+            [self showProfileController];
+        } else {
+            [self showAlert:@"ERROR" message:[error localizedDescription]];
         }
     }];
 }
@@ -94,7 +84,23 @@
 
     if (access_token) {
         [self performSegueWithIdentifier:@"profile" sender:self];
+    }else{
+        [self showAlert:@"Not Authenticated" message:@"Login Radius Access Token is missing"];
     }
+}
+
+- (void) showAlert : (NSString*) title
+            message: (NSString*) message
+{
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        UIAlertController *alert = [UIAlertController
+        alertControllerWithTitle:title
+        message:message
+        preferredStyle:UIAlertControllerStyleAlert];
+
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
 }
 
 @end
