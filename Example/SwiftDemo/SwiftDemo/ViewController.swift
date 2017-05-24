@@ -136,7 +136,7 @@ class ViewController: FormViewController
         LoginRadiusManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully registered");
-                self.showProfileController();
+                self.showAlert(title:"SUCCESS",message:"successfully registered")
             } else if let err = error {
                 self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
