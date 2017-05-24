@@ -8,9 +8,14 @@
 
 import LoginRadiusSDK
 import Eureka
+/* Google Native SignIn
 import GoogleSignIn
-
-class ViewController: FormViewController, GIDSignInUIDelegate {
+*/
+class ViewController: FormViewController
+/* Google Native SignIn
+, GIDSignInUIDelegate
+*/
+{
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +27,9 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
             self.performSegue(withIdentifier: "profile", sender: self);
         }
         
+        /* Google Native SignIn
         GIDSignIn.sharedInstance().uiDelegate = self
+        */
         
         self.navigationController?.navigationBar.topItem?.title = "Login Radius iOS pod 3.4.0"
         self.form = Form()
@@ -130,8 +137,8 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
             if (success) {
                 print("successfully registered");
                 self.showProfileController();
-            } else {
-                print(error!.localizedDescription)
+            } else if let err = error {
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         });
     }
@@ -141,8 +148,8 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
             if (success) {
                 print("successfully logged in");
                 self.showProfileController();
-            } else {
-                print(error!.localizedDescription)
+            } else if let err = error {
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         });
     }
@@ -151,14 +158,9 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
         LoginRadiusManager.sharedInstance().registration(withAction: "forgotpassword", in: self, completionHandler: { (success, error) in
             if (success) {
                 print("successfully request forgot password");
-                DispatchQueue.main.async
-            {
-                let alert = UIAlertController(title: "Success", message: "Forgot Password Requested, check your email inbox to reset", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
-                self.present(alert, animated: true, completion:nil)
-                }
-            } else {
-                print(error!.localizedDescription)
+                self.showAlert(title: "SUCCESS", message: "Forgot Password Requested, check your email inbox to reset")
+            } else if let err = error {
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         });
     }
@@ -170,8 +172,8 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
                 //this needs to be handled from app delegate call, see AppDelegate.swift
                 print("successfully logged in with \(provider)");
                 self.showProfileController()
-            } else {
-                print(error!.localizedDescription)
+            } else if let err = error  {
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         });
     }
@@ -181,15 +183,17 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
             if (success) {
                 print("successfully logged in with social hosted page");
                 self.showProfileController();
-            } else {
-                print(error!.localizedDescription)
+            } else if let err = error {
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         });
     }
     
     func showNativeGoogleLogin()
     {
+        /*
         GIDSignIn.sharedInstance().signIn()
+        */
     }
     
     func showNativeFacebookLogin()
@@ -201,12 +205,7 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
                 self.showProfileController()
             }else if let err = error
             {
-                DispatchQueue.main.async
-                {
-                    let alert = UIAlertController(title: "ERROR", message: err.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
-                    self.present(alert, animated: true, completion:nil)
-                }
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         })
 
@@ -218,12 +217,17 @@ class ViewController: FormViewController, GIDSignInUIDelegate {
             self.performSegue(withIdentifier: "profile", sender: self);
         }else
         {
-            DispatchQueue.main.async
-            {
-                let alert = UIAlertController(title: "Not Authenticated", message: "Login Radius Access Token is missing", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
-                self.present(alert, animated: true, completion:nil)
-            }
+            self.showAlert(title:"Not Authenticated",message:"Login Radius Access Token is missing")
+        }
+    }
+    
+    fileprivate func showAlert(title:String, message:String)
+    {
+        DispatchQueue.main.async
+        {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+            self.present(alert, animated: true, completion:nil)
         }
     }
     

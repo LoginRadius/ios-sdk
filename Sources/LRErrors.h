@@ -17,6 +17,7 @@
 + (NSError*)userRegistrationFailed;
 + (NSError*)userLoginFailed;
 + (NSError*)userForgotPasswordFailed;
++ (NSError*)userEmailIsNotVerified;
 + (NSError*)userEmailVerificationFailed;
 + (NSError*)userSocialLoginFailed;
 + (NSError*)userResetPasswordFailed;

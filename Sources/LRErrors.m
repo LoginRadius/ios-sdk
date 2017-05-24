@@ -34,6 +34,12 @@
 					 failureReason:@"User forgot password failed with no status"];
 }
 
++ (NSError*)userEmailIsNotVerified {
+	return  [NSError errorWithCode:LRErrorCodeUserEmailIsNotVerified
+					   description:@"User Email is not verified"
+					 failureReason:@"User Email needs to be verified in order to proceed"];
+}
+
 + (NSError*)userEmailVerificationFailed {
 	return  [NSError errorWithCode:LRErrorCodeRaaSUserEmailVerificationFailed
 					   description:@"User email verification failed"

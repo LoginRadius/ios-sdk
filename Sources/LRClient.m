@@ -30,8 +30,15 @@
         if (error) {
             completion(nil, error);
 		} else {
-            LRSession *session = [[LRSession alloc] initWithAccessToken:token userProfile:userProfile];
-			completion(session.userProfile, nil);
+            if (![userProfile[@"EmailVerified"] boolValue])
+            {
+                completion(nil, [LRErrors userEmailIsNotVerified]);
+            }else
+            {
+                LRSession *session = [[LRSession alloc] initWithAccessToken:token userProfile:userProfile];
+                completion(session.userProfile, nil);
+            }
+        
 		}
     }];
 }

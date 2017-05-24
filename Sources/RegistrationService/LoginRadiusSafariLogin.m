@@ -176,8 +176,9 @@
 
 - (void)fetchUserProfileWithToken:(NSString*)token
 {
-    [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-        [self finishRaasAction:YES	withError:error];
+    [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error)
+    {
+        [self finishRaasAction:(error == nil)withError:error];
     }];
 }
 

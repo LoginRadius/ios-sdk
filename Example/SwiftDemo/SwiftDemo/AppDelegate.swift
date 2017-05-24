@@ -8,12 +8,17 @@
 
 import UIKit
 import LoginRadiusSDK
+
+/* Google Native SignIn
 import GoogleSignIn
 import Google
-
+*/
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate
+/* Google Native SignIn
+, GIDSignInDelegate
+*/
 {
 
     var window: UIWindow?
@@ -25,16 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         let sdk:LoginRadiusSDK = LoginRadiusSDK.instance();
         sdk.applicationLaunched(options: launchOptions);
         
+        /* Google Native SignIn
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
+    
+        GIDSignIn.sharedInstance().delegate = self
+        */
         
-        if LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted
-        {
-            var configureError: NSError?
-            GGLContext.sharedInstance().configureWithError(&configureError)
-            assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
-        
-            GIDSignIn.sharedInstance().delegate = self
-        }
-
         return true
     }
 
@@ -64,16 +67,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     {
         var canOpen = false
         
-        if (LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted)
-        {
-            canOpen = (canOpen || GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
-        }
-    
+        /* Google Native SignIn
+        canOpen = (canOpen || GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
+        */
         canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
     
         return canOpen
     }
     
+    /* Google Native SignIn
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     
         if let err = error
@@ -96,8 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 }
             })
         }
-    }
-
+    }*/
 
 }
 

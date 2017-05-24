@@ -108,7 +108,12 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
     /**
      *  Receiving unsupported actions
      */
-    LRErrorCodeUnsupportedAction
+    LRErrorCodeUnsupportedAction,
+    
+    /**
+     *  Email is not verified
+     */
+    LRErrorCodeUserEmailIsNotVerified
 
 };
 
