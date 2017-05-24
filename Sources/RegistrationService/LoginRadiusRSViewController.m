@@ -113,7 +113,7 @@
 }
 
 - (void)cancelPressed {
-	[self finishRaasAction:NO withError:[LRErrors serviceCancelled:self.action]];
+	[self finishRaasAction:NO withError:[LRErrors serviceCancelled]];
 }
 
 - (void)startMonitoringNetwork {

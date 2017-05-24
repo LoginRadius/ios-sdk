@@ -10,10 +10,10 @@
 
 @implementation LRErrors
 
-+ (NSError*)serviceCancelled:(NSString*)action {
++ (NSError*)serviceCancelled {
 	return [NSError errorWithCode:LRErrorCodeRaaSCancelled
-					  description:@"User Registration Service cancelled"
-					failureReason:[NSString stringWithFormat:@"User registration with action: %@ cancelled", action]];
+					  description:@"User Cancelled"
+					failureReason:[NSString stringWithFormat:@"User cancelled"]];
 }
 
 + (NSError*)userRegistrationFailed {

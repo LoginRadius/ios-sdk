@@ -13,7 +13,7 @@
 @interface LRErrors : NSObject
 
 #pragma mark - User Registration Service
-+ (NSError*)serviceCancelled:(NSString*)action;
++ (NSError*)serviceCancelled;
 + (NSError*)userRegistrationFailed;
 + (NSError*)userLoginFailed;
 + (NSError*)userForgotPasswordFailed;

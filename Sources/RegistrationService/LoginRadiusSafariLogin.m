@@ -78,7 +78,7 @@
 #pragma mark - Web View Delegates
 - (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.handler(NO, [LRErrors socialLoginCancelled:_provider]);
+        self.handler(NO, [LRErrors serviceCancelled]);
     });
 }
 
