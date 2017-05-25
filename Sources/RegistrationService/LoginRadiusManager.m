@@ -45,34 +45,33 @@
 	return self;
 }
 
-- (void) registrationWithAction:(NSString*) action inController:(UIViewController*)controller completionHandler:(LRServiceCompletionHandler)handler {
+- (void) registrationWithAction:(NSString*) action inController:(UIViewController*)controller {
 
     // If SafariVC exist show the traditional login and social in safari
     if ([SFSafariViewController class] != nil) {
         _isSafariLogin = YES;
-        [self.safariLogin initWithAction:action inController:controller completionHandler:handler];
+        [self.safariLogin initWithAction:action inController:controller];
         return;
     }
     
-	LoginRadiusRSViewController *webVC = [[LoginRadiusRSViewController alloc] initWithAction:action completionHandler:handler];
+	LoginRadiusRSViewController *webVC = [[LoginRadiusRSViewController alloc] initWithAction:action];
 	UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
 	[controller presentViewController:navVC animated:YES completion:nil];
 }
 
 #pragma mark Login Methods
 -(void)loginWithProvider:(NSString*)provider
-			inController:(UIViewController*)controller
-	   completionHandler:(LRServiceCompletionHandler)handler {
+			inController:(UIViewController*)controller {
 
     // Use SFSafariViewController if available by default. Recommended approach
     if ([SFSafariViewController class] != nil) {
         _isSafariLogin = YES;
-        [self.safariLogin loginWithProvider:provider inController:controller completionHandler:handler];
+        [self.safariLogin loginWithProvider:provider inController:controller];
         return;
     }
 
     // Use web login
-	LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider completionHandler:handler];
+	LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider];
 	UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
 	[controller presentViewController:navVC animated:YES completion:nil];
 }

@@ -15,3 +15,4 @@ FOUNDATION_EXPORT const unsigned char LoginRadiusSDKVersionString[];
 #import "LoginRadiusREST.h"
 #import "LRErrorCode.h"
 #import "LRErrors.h"
+#import "LoginRadiusNotificationName.h"

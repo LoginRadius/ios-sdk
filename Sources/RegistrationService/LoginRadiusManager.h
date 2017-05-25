@@ -27,11 +27,11 @@
 
  @param action should be one of these[@"login", @"registration", @"forgotpassword", @"social"]
  @param controller view controller where user registration actions take place should not be nil
- @param handler code block executed after completion
+
+ will post an event notification with [@"lr-login", @"lr-registration", @"lr-forgotpassword", @"lr-social"]
  */
 - (void) registrationWithAction:(NSString*) action
-				   inController:(UIViewController*)controller
-			  completionHandler:(LRServiceCompletionHandler)handler;
+				   inController:(UIViewController*)controller;
 
 
 /**
@@ -39,11 +39,9 @@
 
  @param provider provider name in small case (e.g facebook, twitter, google, linkedin, yahoo etc)
  @param controller view controller where social login take place should not be nil
- @param handler code block executed after completion
  */
 -(void)loginWithProvider:(NSString*)provider
-			inController:(UIViewController*)controller
-	   completionHandler:(LRServiceCompletionHandler)handler;
+			inController:(UIViewController*)controller;
 
 /**
  Native Facebook Login

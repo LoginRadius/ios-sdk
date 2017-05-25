@@ -26,28 +26,28 @@
                                 <rect key="frame" x="168.5" y="89" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="loginWithEmail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ttq-u6-fRW"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aq6-AK-kDW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEe-WQ-EEe">
                                 <rect key="frame" x="159" y="144" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="registerWithEmail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="40r-C3-XOt"/>
+                                    <action selector="registration:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ph6-9y-Jrb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvC-ZC-kT6" userLabel="Forgot Password">
-                                <rect key="frame" x="129.5" y="199" width="115" height="30"/>
+                                <rect key="frame" x="130" y="199" width="115" height="30"/>
                                 <state key="normal" title="Forgot Password"/>
                                 <connections>
-                                    <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MEG-4q-cRv"/>
+                                    <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VSu-4z-fTN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arC-8g-K3L" userLabel="Social Login Only">
-                                <rect key="frame" x="128" y="254" width="118" height="30"/>
+                                <rect key="frame" x="128.5" y="254" width="118" height="30"/>
                                 <state key="normal" title="Social Login Only"/>
                                 <connections>
-                                    <action selector="socialLoginOnly:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b2K-DM-rLS"/>
+                                    <action selector="socialLoginOnly:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zpt-iq-8wz"/>
                                 </connections>
                             </button>
                         </subviews>

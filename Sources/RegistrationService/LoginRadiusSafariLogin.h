@@ -12,12 +12,10 @@
 @interface LoginRadiusSafariLogin : NSObject
 
 -(void)loginWithProvider:(NSString*)provider
-            inController:(UIViewController*)controller
-       completionHandler:(LRServiceCompletionHandler)handler;
-    
+            inController:(UIViewController*)controller;
+
 -(void)   initWithAction:(NSString*)action
-            inController:(UIViewController*)controller
-       completionHandler:(LRServiceCompletionHandler)handler;
+            inController:(UIViewController*)controller;
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 @end

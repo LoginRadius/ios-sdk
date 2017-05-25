@@ -15,8 +15,6 @@
 
 @property(nonatomic, copy) NSString * action;
 @property(nonatomic, copy) NSURL * serviceURL;
-@property(nonatomic, copy) LRServiceCompletionHandler handler;
-
 @property(nonatomic, weak) UIWebView* webView;
 @property(nonatomic, weak) UIView *retryView;
 @property(nonatomic, weak) UILabel *retryLabel;
@@ -25,11 +23,10 @@
 
 @implementation LoginRadiusRSViewController
 
--(instancetype)initWithAction:(NSString *)action completionHandler:(LRServiceCompletionHandler)handler {
+-(instancetype)initWithAction:(NSString *)action {
     self = [super init];
 	if (self) {
 		_action = action;
-		_handler = handler;
 	}
 	return self;
 }
@@ -113,7 +110,7 @@
 }
 
 - (void)cancelPressed {
-	[self finishRaasAction:NO withError:[LRErrors serviceCancelled]];
+	[self finishRaasAction:@"usercancelled" withError:[LRErrors serviceCancelled]];
 }
 
 - (void)startMonitoringNetwork {
@@ -150,7 +147,7 @@
 	if( [returnAction isEqualToString:@"registration"]) {
 
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
+			[self finishRaasAction:returnAction withError:nil];
 		}
 	} else if( [returnAction isEqualToString:@"login"] ) {
 
@@ -160,21 +157,21 @@
                 [self showActivityIndicator];
                 [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken completionHandler:^(NSDictionary *data, NSError *error) {
                     [self hideActivityIndicator];
-                    [self finishRaasAction:YES	withError:error];
+                    [self finishRaasAction:returnAction	withError:error];
                 }];
 
             } else {
-                [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+                [self finishRaasAction:returnAction withError:[LRErrors userProfileError]];
             }
 		}
 
 	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
 
 		if ([request.URL.absoluteString rangeOfString:@"status"].location != NSNotFound) {
-			[self finishRaasAction:YES withError:nil];
+			[self finishRaasAction:returnAction withError:nil];
 		}
 
-	} else if ( [returnAction isEqualToString:@"sociallogin"] ) {
+	} else if ( [returnAction isEqualToString:@"sociallogin"] || [returnAction isEqualToString:@"social"]) {
 
 		if ([request.URL.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
@@ -183,16 +180,16 @@
                 [self showActivityIndicator];
                 [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken completionHandler:^(NSDictionary *data, NSError *error) {
                     [self hideActivityIndicator];
-                    [self finishRaasAction:YES	withError:error];
+                    [self finishRaasAction:@"social" withError:error];
                 }];
             } else {
-                [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+                [self finishRaasAction:@"social" withError:[LRErrors userProfileError]];
             }
 		}
 
 	}  else {
     
-        [self finishRaasAction:NO withError:[LRErrors unsupportedAction]];
+        [self finishRaasAction:returnAction withError:[LRErrors unsupportedAction]];
 	}
 
 	return YES;
@@ -227,13 +224,15 @@
     [self hideActivityIndicator];
 }
 
-- (void) finishRaasAction:(BOOL)success withError:(NSError*)error {
-	if (self.handler) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.handler(success, error);
-		});
-	}
-	[self dismissViewControllerAnimated:YES completion:nil];
+- (void)finishRaasAction:(NSString*)action withError:(NSError*) error {
+    [self dismissViewControllerAnimated:YES completion: ^{
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error forKey:@"error"];
+        
+        [[NSNotificationCenter defaultCenter]
+          postNotificationName:[NSString stringWithFormat:@"lr-%@", action]
+          object:self
+          userInfo: userInfo];
+    }];
 }
 
 - (void)showActivityIndicator {

@@ -19,5 +19,5 @@
  *
  *  @return singleton instance
  */
-- (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRServiceCompletionHandler)handler;
+- (instancetype)initWithProvider: (NSString*) provider;
 @end

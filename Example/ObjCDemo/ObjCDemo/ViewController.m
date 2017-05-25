@@ -26,6 +26,27 @@
     if (profile) {
             [self performSegueWithIdentifier:@"profile" sender:self];
     }
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(receiveRegistration:)
+    name:LoginRadiusRegistrationEvent
+    object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(receiveLogin:)
+    name:LoginRadiusLoginEvent
+    object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(receiveForgotPassword:)
+    name:LoginRadiusForgotPasswordEvent
+    object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(receiveSocialLogin:)
+    name:LoginRadiusSocialLoginEvent
+    object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,49 +55,76 @@
 }
 
 
-- (IBAction)registerWithEmail:(id)sender {
-    [[LoginRadiusManager sharedInstance] registrationWithAction:@"registration" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully registered");
-            [self showProfileController];
-        } else {
-            [self showAlert:@"ERROR" message:[error localizedDescription]];
-        }
-    }];
+- (IBAction)registration:(id)sender {
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"registration" inController:self];
 }
 
-- (IBAction)loginWithEmail:(id)sender {
-    [[LoginRadiusManager sharedInstance] registrationWithAction:@"login" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully logged in");
-            [self showProfileController];
-        } else {
-            [self showAlert:@"ERROR" message:[error localizedDescription]];
-        }
-    }];
+- (IBAction)login:(id)sender {
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"login" inController:self];
 }
 
 - (IBAction)forgotPassword:(id)sender {
-    [[LoginRadiusManager sharedInstance] registrationWithAction:@"forgotpassword" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"forgot password success");
-            [self showAlert:@"SUCCESS" message:@"Forgot Password Requested, check your email inbox to reset"];
-        } else {
-            [self showAlert:@"ERROR" message:[error localizedDescription]];
-        }
-    }];
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"forgotpassword" inController:self];
 }
 
 - (IBAction)socialLoginOnly:(id)sender {
-    [[LoginRadiusManager sharedInstance] registrationWithAction:@"social" inController:self completionHandler:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"successfully logged in");
-            [self showProfileController];
-        } else {
-            [self showAlert:@"ERROR" message:[error localizedDescription]];
-        }
-    }];
+    [[LoginRadiusManager sharedInstance] registrationWithAction:@"social" inController:self];
 }
+
+- (void) receiveRegistration:(NSNotification *) notification
+{
+    if([[notification userInfo][@"error"] isKindOfClass:[NSError class]])
+    {
+        NSError *error = (NSError *)[notification userInfo][@"error"];
+        [self showAlert:@"ERROR" message: [error localizedDescription]];
+    }else
+    {
+        NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
+        NSInteger profile =  [lrUser integerForKey:@"isLoggedIn"];
+        if (profile) {
+            [self showProfileController];
+        }else{
+            [self showAlert:@"SUCCESS" message: @"Registration Successful, check your email for verification"];
+        }
+    }
+}
+
+- (void) receiveLogin:(NSNotification *) notification
+{
+    if([[notification userInfo][@"error"] isKindOfClass:[NSError class]])
+    {
+        NSError *error = (NSError *)[notification userInfo][@"error"];
+        [self showAlert:@"ERROR" message: [error localizedDescription]];
+    }else
+    {
+        [self showProfileController];
+    }
+}
+
+- (void) receiveForgotPassword:(NSNotification *) notification
+{
+    if([[notification userInfo][@"error"] isKindOfClass:[NSError class]])
+    {
+        NSError *error = (NSError *)[notification userInfo][@"error"];
+        [self showAlert:@"ERROR" message: [error localizedDescription]];
+    }else
+    {
+        [self showAlert:@"SUCCESS" message: @"Forgot password link send to your email id, please reset your password"];
+    }
+}
+
+- (void) receiveSocialLogin:(NSNotification *) notification
+{
+    if([[notification userInfo][@"error"] isKindOfClass:[NSError class]])
+    {
+        NSError *error = (NSError *)[notification userInfo][@"error"];
+        [self showAlert:@"ERROR" message: [error localizedDescription]];
+    }else
+    {
+        [self showProfileController];
+    }
+}
+
 
 - (void) showProfileController {
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
@@ -101,6 +149,10 @@
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     });
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

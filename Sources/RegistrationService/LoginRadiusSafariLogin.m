@@ -14,7 +14,6 @@
 @interface LoginRadiusSafariLogin () <SFSafariViewControllerDelegate>
 @property (weak, nonatomic) SFSafariViewController *safariController;
 @property (weak, nonatomic) UIViewController *viewController;
-@property(nonatomic, copy) LRServiceCompletionHandler handler;
 @property(nonatomic, copy) NSString* provider;
 @end
 
@@ -24,8 +23,7 @@
 
 -(void)loginWithProvider:(NSString*)provider
             inController:(UIViewController*)controller
-       completionHandler:(LRServiceCompletionHandler)handler {
-
+{
     self.provider = provider;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.hub.loginradius.com/RequestHandlor.aspx?same_window=1&is_access_token=1&apikey=%@&callbacktype=hash&provider=%@&callback=%@://", [LoginRadiusSDK siteName], [LoginRadiusSDK apiKey], provider, [LoginRadiusSDK siteName]]];
     SFSafariViewController *sfcontroller = [[SFSafariViewController alloc] initWithURL:url];
@@ -33,12 +31,10 @@
     [controller presentViewController:sfcontroller animated:NO completion:nil];
     self.safariController = sfcontroller;
     self.viewController = controller;
-    self.handler = handler;
 }
 
 -(void)   initWithAction:(NSString*)action
-            inController:(UIViewController*)controller
-       completionHandler:(LRServiceCompletionHandler)handler {
+            inController:(UIViewController*)controller {
 
     NSString *url_address;
 
@@ -72,13 +68,12 @@
     [controller presentViewController:sfcontroller animated:NO completion:nil];
     self.safariController = sfcontroller;
     self.viewController = controller;
-    self.handler = handler;
 }
 
 #pragma mark - Web View Delegates
 - (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.handler(NO, [LRErrors serviceCancelled]);
+        [self finishRaasAction:@"usercancelled" withError:[LRErrors serviceCancelled] ];
     });
 }
 
@@ -111,9 +106,10 @@
     if (haveAccessTokenFromHubPage)
     {
         NSString *tokenFromHub = [[url fragment] substringFromIndex:9];
-        [self fetchUserProfileWithToken:tokenFromHub];
+        //on v1 hub usage is only social login
+        [self fetchUserProfileWithToken:tokenFromHub action:@"social"];
     }else{
-        [self finishRaasAction:NO withError:[LRErrors userLoginFailed]];
+        [self finishRaasAction:@"social" withError:[LRErrors userLoginFailed]];
     }
 }
 
@@ -127,21 +123,21 @@
         BOOL success = [[params objectForKey:@"success"] boolValue];
         
         if (success) {
-            [self finishRaasAction:YES withError:nil];
+            [self finishRaasAction:returnAction withError:nil];
         } else {
-            [self finishRaasAction:NO withError:[LRErrors userRegistrationFailed]];
+            [self finishRaasAction:returnAction withError:[LRErrors userRegistrationFailed]];
         }
 	} else if( [returnAction isEqualToString:@"login"] ) {
 
 		if ([url.absoluteString rangeOfString:@"lrtoken"].location != NSNotFound) {
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
             if (lrtoken) {
-                [self fetchUserProfileWithToken:lrtoken];
+                [self fetchUserProfileWithToken:lrtoken action:returnAction];
             } else {
-                [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+                [self finishRaasAction:returnAction withError:[LRErrors userProfileError]];
             }
 		}else{
-            [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+            [self finishRaasAction:returnAction withError:[LRErrors userProfileError]];
         }
 
 	} else if ( [returnAction isEqualToString:@"forgotpassword"] ) {
@@ -149,9 +145,9 @@
 		BOOL success = [[params objectForKey:@"success"] boolValue];
         
         if (success) {
-            [self finishRaasAction:YES withError:nil];
+            [self finishRaasAction:returnAction withError:nil];
         } else {
-            [self finishRaasAction:NO withError:[LRErrors userForgotPasswordFailed]];
+            [self finishRaasAction:returnAction withError:[LRErrors userForgotPasswordFailed]];
         }
 
 	} else if ( [returnAction isEqualToString:@"sociallogin"] || [returnAction isEqualToString:@"social"] ) {
@@ -160,35 +156,38 @@
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
 
             if (lrtoken) {
-                [self fetchUserProfileWithToken: lrtoken];
+                [self fetchUserProfileWithToken: lrtoken action:@"social"];
             } else {
-                [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+                [self finishRaasAction:@"social" withError:[LRErrors userProfileError]];
             }
 		}else{
-            [self finishRaasAction:NO withError:[LRErrors userProfileError]];
+            [self finishRaasAction:@"social" withError:[LRErrors userProfileError]];
         }
 
 	}  else {
     
-        [self finishRaasAction:NO withError:[LRErrors unsupportedAction]];
+        [self finishRaasAction:returnAction withError:[LRErrors unsupportedAction]];
 	}
 }
 
 - (void)fetchUserProfileWithToken:(NSString*)token
+                           action:(NSString*)action
 {
     [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error)
     {
-        [self finishRaasAction:(error == nil)withError:error];
+        [self finishRaasAction:action withError:error];
     }];
 }
 
-- (void)finishRaasAction:(BOOL)success withError:(NSError*) error {
+- (void)finishRaasAction:(NSString*)action withError:(NSError*) error {
     [self.viewController dismissViewControllerAnimated:YES completion: ^{
-        if (self.handler) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.handler(success, error);
-            });
-        }
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject: error ? error : [NSNull null]
+         forKey:@"error"];
+        
+        [[NSNotificationCenter defaultCenter]
+          postNotificationName:[NSString stringWithFormat:@"lr-%@", action]
+          object:self
+          userInfo: userInfo];
     }];
 }
 

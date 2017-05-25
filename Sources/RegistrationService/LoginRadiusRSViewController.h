@@ -17,8 +17,7 @@
  *  Initilizer
  *
  *  @param action  service action should be one of these[@"login", @"registration", @"forgotpassword", @"social"]
- *  @param handler service completion handler
  *  @return view controller instance
  */
-- (instancetype)initWithAction: (NSString*) action completionHandler:(LRServiceCompletionHandler)handler;
+- (instancetype)initWithAction: (NSString*) action;
 @end

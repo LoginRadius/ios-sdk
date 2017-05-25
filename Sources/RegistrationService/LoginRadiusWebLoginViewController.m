@@ -15,7 +15,6 @@
 
 @property(nonatomic, copy) NSString* provider;
 @property(nonatomic, copy) NSURL * serviceURL;
-@property(nonatomic, copy) LRServiceCompletionHandler handler;
 
 @property(nonatomic, weak) UIWebView* webView;
 @property(nonatomic, weak) UIView *retryView;
@@ -25,11 +24,10 @@
 
 @implementation LoginRadiusWebLoginViewController
 
-- (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRServiceCompletionHandler)handler{
+- (instancetype)initWithProvider: (NSString*) provider {
 	self = [super init];
 	if (self) {
 		_provider = provider;
-		_handler = handler;
 	}
 	return self;
 }
@@ -174,12 +172,14 @@
 }
 
 - (void)finishSocialLogin:(BOOL)success withError:(NSError*) error {
-	if (self.handler) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.handler(success, error);
-		});
-	}
-	[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion: ^{        
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error forKey:@"error"];
+        
+        [[NSNotificationCenter defaultCenter]
+          postNotificationName:@"lr-social"
+          object:self
+          userInfo: userInfo];
+    }];
 }
 
 @end
