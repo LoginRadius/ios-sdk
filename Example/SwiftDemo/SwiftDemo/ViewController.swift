@@ -31,6 +31,11 @@ class ViewController: FormViewController
         GIDSignIn.sharedInstance().uiDelegate = self
         */
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receiveRegistration), name: NSNotification.Name(rawValue: LoginRadiusRegistrationEvent), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receiveLogin), name: NSNotification.Name(rawValue: LoginRadiusLoginEvent), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receiveForgotPassword), name: NSNotification.Name(rawValue: LoginRadiusForgotPasswordEvent), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receiveSocialLogin), name: NSNotification.Name(rawValue: LoginRadiusSocialLoginEvent), object: nil)
+        
         self.navigationController?.navigationBar.topItem?.title = "Login Radius iOS pod 3.4.0"
         self.form = Form()
         
@@ -40,13 +45,13 @@ class ViewController: FormViewController
             {
                 $0.title = "Login"
                 }.onCellSelection{ cell, row in
-                    self.traditionalLogin()
+                    self.login()
             }
             <<< ButtonRow("Register LR API")
             {
                 $0.title = "Register"
                 }.onCellSelection{ cell, row in
-                    self.traditionalRegistration()
+                    self.registration()
             }
             <<< ButtonRow("Forgot LR API")
             {
@@ -58,7 +63,7 @@ class ViewController: FormViewController
             {
                 $0.title = $0.tag
                 }.onCellSelection{ cell, row in
-                    self.showSocialOnly()
+                    self.socialLoginOnly()
             }
             let socialNativeLoginEnabled = LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted ||  LoginRadiusSDK.sharedInstance().enableFacebookNativeInHosted
         
@@ -109,48 +114,74 @@ class ViewController: FormViewController
         NotificationCenter.default.removeObserver(self)
     }
     
-    func traditionalRegistration() {
-        LoginRadiusManager.sharedInstance().registration(withAction: "registration", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully registered");
-                self.showProfileController();
-            } else if let err = error {
-                self.showAlert(title:"ERROR",message:err.localizedDescription)
-            }
-        });
+    func registration() {
+        LoginRadiusManager.sharedInstance().registration(withAction: "registration", in: self)
     }
     
-    func traditionalLogin() {
-        LoginRadiusManager.sharedInstance().registration(withAction: "login", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully logged in");
-                self.showProfileController();
-            } else if let err = error {
-                self.showAlert(title:"ERROR",message:err.localizedDescription)
-            }
-        });
+    func login() {
+        LoginRadiusManager.sharedInstance().registration(withAction: "login", in: self)
     }
     
     func forgotPassword() {
-        LoginRadiusManager.sharedInstance().registration(withAction: "forgotpassword", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully request forgot password");
-                self.showAlert(title: "SUCCESS", message: "Forgot Password Requested, check your email inbox to reset")
-            } else if let err = error {
-                self.showAlert(title:"ERROR",message:err.localizedDescription)
-            }
-        });
+        LoginRadiusManager.sharedInstance().registration(withAction: "forgotpassword", in: self);
     }
     
-    func showSocialOnly() {
-        LoginRadiusManager.sharedInstance().registration(withAction: "social", in: self, completionHandler: { (success, error) in
-            if (success) {
-                print("successfully logged in with social hosted page");
-                self.showProfileController();
-            } else if let err = error {
-                self.showAlert(title:"ERROR",message:err.localizedDescription)
+    func socialLoginOnly() {
+        LoginRadiusManager.sharedInstance().registration(withAction: "social", in: self);
+    }
+    
+    func receiveRegistration(notification:Notification)
+    {
+        if let userInfo  = notification.userInfo,
+           let error  = userInfo["error"] as? Error
+        {
+            self.showAlert(title: "ERROR", message: error.localizedDescription)
+        }else
+        {
+            let lrUser = UserDefaults.standard
+            let profile = lrUser.integer(forKey: "isLoggedIn")
+            if (profile == 1) {
+                self.showProfileController()
+            }else{
+                self.showAlert(title: "SUCCESS", message: "Registration Successful, check your email for verification")
             }
-        });
+        }
+    }
+    
+    func receiveLogin(notification:Notification)
+    {
+        if let userInfo  = notification.userInfo,
+           let error  = userInfo["error"] as? Error
+        {
+            self.showAlert(title: "ERROR", message: error.localizedDescription)
+        }else
+        {
+            self.showProfileController()
+        }
+    }
+    
+    func receiveForgotPassword(notification:Notification)
+    {
+        if let userInfo  = notification.userInfo,
+           let error  = userInfo["error"] as? Error
+        {
+            self.showAlert(title: "ERROR", message: error.localizedDescription)
+        }else
+        {
+            self.showAlert(title: "SUCCESS", message: "Forgot password link send to your email id, please reset your password")
+        }
+    }
+    
+    func receiveSocialLogin(notification:Notification)
+    {
+        if let userInfo  = notification.userInfo,
+           let error  = userInfo["error"] as? Error
+        {
+            self.showAlert(title: "ERROR", message: error.localizedDescription)
+        }else
+        {
+            self.showProfileController()
+        }
     }
     
     func showNativeGoogleLogin()
