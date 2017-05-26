@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/* Google Native SignIn
+#import <Google/SignIn.h>
+*/
 @interface ViewController : UIViewController
-
+/* Google Native SignIn
+<GIDSignInUIDelegate>
+*/
 
 @end
 

@@ -22,7 +22,15 @@
     
     LoginRadiusSDK * sdk =  [LoginRadiusSDK instance];
     [sdk applicationLaunchedWithOptions:launchOptions];
+    
+    /* Google Native SignIn
+    NSError* configureError;
+    [[GGLContext sharedInstance] configureWithError: &configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
 
+    [GIDSignIn sharedInstance].delegate = self;
+    */
+    
     return YES;
 }
 
@@ -49,9 +57,49 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    return [[LoginRadiusSDK sharedInstance] application:app
+
+    BOOL canOpen = NO;
+    
+    /* Google Native SignIn
+    canOpen = (canOpen || [[GIDSignIn sharedInstance] handleURL:url
+                             sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                    annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]);
+    */
+    
+    canOpen = (canOpen || [[LoginRadiusSDK sharedInstance] application:app
                                                 openURL:url
                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]);
+    
+    return canOpen;
 }
+
+/* Google Native SignIn
+
+ - (void)signIn:(GIDSignIn *)signIn
+     didSignInForUser:(GIDGoogleUser *)user
+            withError:(NSError *)error {
+     
+    if (error != nil)
+    {
+        NSLog(@"Error: %@",error.localizedDescription);
+    }
+    else
+    {
+        NSString *idToken = user.authentication.accessToken;
+        [[LoginRadiusManager sharedInstance] nativeGoogleLoginWithAccessToken: idToken
+                                                                   completionHandler:^(BOOL success, NSError *error) {
+             if (success) {
+                NSLog(@"successfully logged in with google");
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"userAuthenticatedFromNativeGoogle" object:nil userInfo:nil];
+
+             } else {
+                 NSLog(@"Error: %@", [error description]);
+             }
+         }];
+    }
+     
+}
+*/
 @end

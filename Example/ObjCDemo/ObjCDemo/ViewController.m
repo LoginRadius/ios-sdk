@@ -11,7 +11,8 @@
 #import "DetailViewController.h"
 
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet UIButton *googleNativeButton;
+@property (weak, nonatomic) IBOutlet UIButton *facebookNativeButton;
 @end
 
 @implementation ViewController
@@ -26,7 +27,9 @@
     if (profile) {
             [self performSegueWithIdentifier:@"profile" sender:self];
     }
-
+    /* Google Native SignIn
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    */
     [[NSNotificationCenter defaultCenter] addObserver:self
     selector:@selector(receiveRegistration:)
     name:LoginRadiusRegistrationEvent
@@ -46,6 +49,30 @@
     selector:@selector(receiveSocialLogin:)
     name:LoginRadiusSocialLoginEvent
     object:nil];
+    
+    if([[LoginRadiusSDK sharedInstance] enableGoogleNativeInHosted])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(showProfileController)
+        name:@"userAuthenticatedFromNativeGoogle"
+        object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(showNativeGoogleLogin:)
+        name:@"googleNative"
+        object:nil];
+        
+        _googleNativeButton.hidden = NO;
+    }
+    
+    if([[LoginRadiusSDK sharedInstance] enableFacebookNativeInHosted])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(showNativeGoogleLogin:)
+        name:@"facebookNative"
+        object:nil];
+        
+        _facebookNativeButton.hidden = NO;
+    }
     
 }
 
@@ -69,6 +96,33 @@
 
 - (IBAction)socialLoginOnly:(id)sender {
     [[LoginRadiusManager sharedInstance] registrationWithAction:@"social" inController:self];
+}
+
+- (IBAction)showNativeGoogleLogin:(id)sender {
+    /* Google Native SignIn
+    [[GIDSignIn sharedInstance] signIn];
+    
+    if (self.presentedViewController != nil)
+    {
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showNativeGoogleLogin:self];}];
+        return;
+    }
+    
+    [[GIDSignIn sharedInstance] signIn];
+    */
+}
+
+- (IBAction)showNativeFacebookLogin:(id)sender {
+
+    [[LoginRadiusManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions": @[@"public_profile"]} inController:self completionHandler:^(BOOL success, NSError *error) {
+    
+        if (success) {
+            [self showProfileController];
+        } else {
+            [self showAlert:@"ERROR" message: [error localizedDescription]];
+        }
+    
+    }];
 }
 
 - (void) receiveRegistration:(NSNotification *) notification
@@ -127,6 +181,13 @@
 
 
 - (void) showProfileController {
+
+    if (self.presentedViewController != nil)
+    {
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showProfileController];}];
+        return;
+    }
+
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
     NSString * access_token =  [lrUser objectForKey:@"lrAccessToken"];
 

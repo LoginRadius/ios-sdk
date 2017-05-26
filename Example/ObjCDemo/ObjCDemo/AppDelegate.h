@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/* Google Native SignIn
+#import <Google/SignIn.h>
+*/
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+/* Google Native SignIn, GIDSignInDelegate>
+*/
 
 @property (strong, nonatomic) UIWindow *window;
 

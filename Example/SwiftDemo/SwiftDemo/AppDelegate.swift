@@ -88,10 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             LoginRadiusManager.sharedInstance().nativeGoogleLogin(withAccessToken: idToken, completionHandler: {(_ success: Bool, _ error: Error?) -> Void in
                 if success {
                     print("successfully logged in with google")
-                    if let lrtoken = UserDefaults.standard.object(forKey: "lrAccessToken") as? String
-                    {
-                        NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: ["token":lrtoken])
-                    }
+                    NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: nil)
+     
                 }
                 else {
                     print("Error: \(String(describing: error?.localizedDescription))")

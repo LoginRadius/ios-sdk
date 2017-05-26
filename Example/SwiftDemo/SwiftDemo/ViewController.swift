@@ -186,7 +186,13 @@ class ViewController: FormViewController
     
     func showNativeGoogleLogin()
     {
-        /*
+        /* Google Native SignIn
+        if let childVC = self.presentedViewController
+        {
+            childVC.dismiss(animated: false, completion: self.showNativeGoogleLogin)
+            return
+        }
+    
         GIDSignIn.sharedInstance().signIn()
         */
     }
@@ -207,6 +213,13 @@ class ViewController: FormViewController
     }
     
     func showProfileController () {
+        
+        if let childVC = self.presentedViewController
+        {
+            childVC.dismiss(animated: false, completion: self.showProfileController)
+            return
+        }
+        
         let defaults = UserDefaults.standard
         if let _:String = defaults.object(forKey: "lrAccessToken") as? String {
             self.performSegue(withIdentifier: "profile", sender: self);

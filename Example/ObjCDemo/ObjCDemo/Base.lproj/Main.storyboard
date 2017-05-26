@@ -50,21 +50,41 @@
                                     <action selector="socialLoginOnly:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zpt-iq-8wz"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eym-8p-U8C" userLabel="Google Native">
+                                <rect key="frame" x="113.5" y="309" width="148" height="30"/>
+                                <state key="normal" title="Google Native Sign In"/>
+                                <connections>
+                                    <action selector="showNativeGoogleLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ioH-Jp-DVd"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efP-9q-cem" userLabel="Facebook Native">
+                                <rect key="frame" x="105" y="364" width="165" height="30"/>
+                                <state key="normal" title="Facebook Native Sign In"/>
+                                <connections>
+                                    <action selector="showNativeFacebookLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="01H-qj-RLb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="arC-8g-K3L" firstAttribute="top" secondItem="uvC-ZC-kT6" secondAttribute="bottom" constant="25" id="1R4-EL-gMH"/>
+                            <constraint firstItem="eym-8p-U8C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4EQ-Uq-V7o"/>
                             <constraint firstItem="pEe-WQ-EEe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7A6-hv-yd3"/>
+                            <constraint firstItem="efP-9q-cem" firstAttribute="top" secondItem="eym-8p-U8C" secondAttribute="bottom" constant="25" id="PFx-kK-8wQ"/>
                             <constraint firstItem="uvC-ZC-kT6" firstAttribute="top" secondItem="pEe-WQ-EEe" secondAttribute="bottom" constant="25" id="Q35-Cd-p3g"/>
                             <constraint firstItem="Adz-Pv-jCA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="agn-yF-ZED"/>
+                            <constraint firstItem="eym-8p-U8C" firstAttribute="top" secondItem="arC-8g-K3L" secondAttribute="bottom" constant="25" id="iUe-s5-YCh"/>
                             <constraint firstItem="Adz-Pv-jCA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="mEt-rq-RQ2"/>
                             <constraint firstItem="uvC-ZC-kT6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r4s-Bm-1gf"/>
                             <constraint firstItem="pEe-WQ-EEe" firstAttribute="top" secondItem="Adz-Pv-jCA" secondAttribute="bottom" constant="25" id="ss9-Pg-RGN"/>
+                            <constraint firstItem="efP-9q-cem" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tq0-E2-cqF"/>
                             <constraint firstItem="arC-8g-K3L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w5w-P6-OFm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kOy-Li-ibK"/>
                     <connections>
+                        <outlet property="facebookNativeButton" destination="efP-9q-cem" id="gkt-JF-zmN"/>
+                        <outlet property="googleNativeButton" destination="eym-8p-U8C" id="J0H-eW-7VG"/>
                         <segue destination="fBw-aq-iS9" kind="show" identifier="profile" id="ogi-6m-5yz"/>
                     </connections>
                 </viewController>
@@ -171,7 +191,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oNx-14-lI5" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Ib-BA-K9M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Ib-BA-K9M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

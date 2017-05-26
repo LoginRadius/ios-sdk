@@ -34,7 +34,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LoginRadiusSDK', '~> 3.3.2'
+pod 'LoginRadiusSDK', '~> 3.4'
 end
 ```
 Then, run the following command:
