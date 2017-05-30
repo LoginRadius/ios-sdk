@@ -100,7 +100,6 @@
 
 - (IBAction)showNativeGoogleLogin:(id)sender {
     /* Google Native SignIn
-    [[GIDSignIn sharedInstance] signIn];
     
     if (self.presentedViewController != nil)
     {
