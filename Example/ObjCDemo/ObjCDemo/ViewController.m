@@ -67,7 +67,7 @@
     if([[LoginRadiusSDK sharedInstance] enableFacebookNativeInHosted])
     {
         [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(showNativeGoogleLogin:)
+        selector:@selector(showNativeFacebookLogin:)
         name:@"facebookNative"
         object:nil];
         
