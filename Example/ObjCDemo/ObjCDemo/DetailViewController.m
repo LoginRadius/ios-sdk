@@ -30,6 +30,9 @@
 }
 
 - (IBAction)logoutPressed:(id)sender {
+    /* Google Native SignIn
+    [[GIDSignIn sharedInstance] signOut];
+    */
     [LoginRadiusSDK logout];
     [self.navigationController popViewControllerAnimated:YES];
 }

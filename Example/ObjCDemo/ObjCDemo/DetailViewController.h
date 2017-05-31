@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/* Google Native SignIn
+#import <Google/SignIn.h>
+*/
 @interface DetailViewController : UIViewController
 
 @end

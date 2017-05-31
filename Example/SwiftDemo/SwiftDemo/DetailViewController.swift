@@ -9,7 +9,9 @@
 import LoginRadiusSDK
 import Eureka
 import SwiftyJSON
-
+/* Google Native SignIn
+import GoogleSignIn
+*/
 class DetailViewController: FormViewController {
 
     //List of countries provided from Apple's NSLocale class
@@ -108,6 +110,9 @@ class DetailViewController: FormViewController {
     }
     
     func logoutPressed() {
+        /* Google Native SignIn
+        GIDSignIn.sharedInstance().signOut()
+        */
         LoginRadiusSDK.logout()
         let _ = self.navigationController?.popViewController(animated: true)
     }
