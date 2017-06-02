@@ -38,11 +38,10 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
     BOOL enableFacebookNativeInHosted = [values[LoginRadiusEnableFacebookNativeInHosted] boolValue];
     NSString *hostedPageURL = (values[LoginRadiusHostedPageURL]&&[values[LoginRadiusHostedPageURL] length]!= 0)?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
     NSURL *validateURL = [NSURL URLWithString:hostedPageURL];
-    BOOL isHostedPageURLValid = (validateURL && validateURL.scheme && validateURL.host);
 
     NSAssert(apiKey, @"ApiKey cannot be null or empty in LoginRadius.plist");
     NSAssert(siteName, @"SiteName cannot be null or empty in LoginRadius.plist");
-    NSAssert(isHostedPageURLValid, @"HostedPageURL is invalid in LoginRadius.plist");
+    NSAssert((validateURL && validateURL.scheme && validateURL.host), @"HostedPageURL is invalid in LoginRadius.plist");
 
     self = [super init];
 
@@ -52,7 +51,7 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
         _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
         _enableGoogleNativeInHosted = enableGoogleNativeInHosted;
         _enableFacebookNativeInHosted = enableFacebookNativeInHosted;
-        _hostedPageURL = hostedPageURL;
+        _hostedPageURL = [validateURL absoluteString];
 		_manager = [[LoginRadiusManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
     }

@@ -9,26 +9,13 @@
 @implementation NSString (LRString)
 
 - (NSString *) URLDecodedString {
-	__autoreleasing NSString *decodedString;
-	decodedString = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
-																										  NULL,
-																										  (__bridge CFStringRef)self,
-																										  CFSTR(""),
-																										  kCFStringEncodingUTF8
-																										  );
-	return decodedString;
+	return [self stringByRemovingPercentEncoding];
 }
 
 - (NSString *) URLEncodedString {
-	__autoreleasing NSString *encodedString;
-	encodedString = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
-																						  NULL,
-																						  (__bridge CFStringRef)self,
-																						  NULL,
-																						  (CFStringRef)@":!*();@/&?#[]+$,='%’\"",
-																						  kCFStringEncodingUTF8
-																						  );
-	return encodedString;
+    NSMutableCharacterSet *allowedSet = [NSMutableCharacterSet characterSetWithCharactersInString:@":!*();@/&?#[]+$,='%’\""];
+    [allowedSet invert];
+	return [self stringByAddingPercentEncodingWithAllowedCharacters:[allowedSet copy]];;
 }
 
 - (NSString *) capitalizedFirst {
