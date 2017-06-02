@@ -1,21 +1,25 @@
-3.4.0 Release notes (2017-05-17)
+3.4.0 Release notes (2017-06-03)
 =============================================================
 
 ### API breaking changes
 * Merged LoginRadiusRegistrationManager and LoginRadiusSocialLoginManager into LoginRadiusManager
 * Remove Support for iOS 8.0, minimum deployment is 9.0
+* Use NSNotification to handle actions instead of callbacks (user can navigate to register/login/forgot in hosted page)
 
 ### Enhancements
 
 * Use SafariViewController on traditional login
 * Improved Swift Demo
+* Improved ObjC Demo 
 * Update Mobile Hosted Page to v4
 * Add Custom Mobile Hosted Page functionality
 * Add Mobile Hosted Page intercation with Native Login
+* Add more error messages and handling
 
 ### Bugfixes
 
 * Normal social login for google is now fixed
+* When user nagivates to regster/login in hosted page, it will call the right callback
 
 3.3.2 Release notes (2017-05-12)
 =============================================================
