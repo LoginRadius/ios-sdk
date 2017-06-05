@@ -1,4 +1,4 @@
-3.4.0 Release notes (2017-06-03)
+3.4.0 Release notes (2017-06-05)
 =============================================================
 
 ### API breaking changes
@@ -10,7 +10,7 @@
 
 * Use SafariViewController on traditional login
 * Improved Swift Demo
-* Improved ObjC Demo 
+* Improved ObjC Demo
 * Update Mobile Hosted Page to v4
 * Add Custom Mobile Hosted Page functionality
 * Add Mobile Hosted Page intercation with Native Login
@@ -19,7 +19,7 @@
 ### Bugfixes
 
 * Normal social login for google is now fixed
-* When user nagivates to regster/login in hosted page, it will call the right callback
+* When user nagivates to register/login in hosted page, it will call the right callback
 
 3.3.2 Release notes (2017-05-12)
 =============================================================

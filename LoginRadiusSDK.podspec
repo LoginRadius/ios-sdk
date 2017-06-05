@@ -17,7 +17,7 @@ DESC
 
 s.homepage     = 'https://github.com/LoginRadius/ios-sdk/'
 s.license      = 'MIT'
-s.authors             = { 'LoginRadius' => 'support@loginradius.com'}, { 'Raviteja Ghanta' => 'ravi@loginradius.com' }
+s.authors             = { 'LoginRadius' => 'support@loginradius.com'}, { 'Raviteja Ghanta' => 'ravi@loginradius.com' }, { 'Thompson Sanjoto' => 'thompson.sanjoto@loginradius.com' }
 s.social_media_url   = 'https://twitter.com/LoginRadius'
 
 s.ios.deployment_target = '9.0'

@@ -11,7 +11,7 @@ LoginRadius helps businesses boost user engagement on their web/mobile platform,
 Please visit [here](http://www.loginradius.com/) for more information.
 
 ## Requirements
-You'll need iOS 8 or later.
+You'll need iOS 9 or later.
 
 > LoginRadiusSDK is a complete revamp of the previous LRSDK. Please refer to the [changelog](https://github.com/LoginRadius/ios-sdk/blob/master/CHANGELOG.md)
  for a complete list of changes and improvements.
@@ -31,7 +31,7 @@ To integrate LoginRadiusSDK into your Xcode project using CocoaPods, specify it 
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'TargetName' do
 pod 'LoginRadiusSDK', '~> 3.4'
