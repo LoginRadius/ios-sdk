@@ -1,4 +1,4 @@
-4.0.0-beta Release notes (2017-03-08)
+4.0.0 Release notes
 =============================================================
 
 ### API breaking changes
