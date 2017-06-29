@@ -2,7 +2,7 @@
 //  LRTouchIDAuth.h
 //  Pods
 //
-//  Created by Raviteja Ghanta on 01/03/17.
+//  Created by LoginRadius Development Team on 01/03/17.
 //
 //
 
@@ -14,18 +14,12 @@
 #pragma mark - Init
 
 /**
- Initializer
-
- @return singleton instance
+ *  Initializer
+ *  @return singleton instance
  */
 + (instancetype)sharedInstance;
 
-
-/**
- Local Touch ID Authentication
-
- @param handler Code block executed after service completion
- */
--(void)localAuthenticationWithTouchID:(LRServiceCompletionHandler)handler;
+- (void)localAuthenticationWithFallbackTitle:(NSString *)localizedFallbackTitle
+                                             completion:(LRServiceCompletionHandler)handler;
 
 @end

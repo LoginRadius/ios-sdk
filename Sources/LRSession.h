@@ -10,9 +10,21 @@
 
 @interface LRSession : NSObject
 
-@property (nonatomic, copy) NSString *accessToken;
-@property (nonatomic, copy) NSDictionary *userProfile;
+@property (nonatomic, getter=accessToken, nullable) NSString *accessToken;
+@property (nonatomic, getter=userProfile, nullable) NSDictionary *userProfile;
+@property (nonatomic, getter=isLoggedIn) BOOL isLoggedIn;
 
-- (instancetype)initWithAccessToken:(NSString *)token userProfile:(NSDictionary*)userProfile;
+
+#pragma mark - Initilizers
+
++ (instancetype _Nonnull )instance;
++ (instancetype _Nonnull )sharedInstance;
+
+- (instancetype _Nonnull )initWithAccessToken:(NSString *_Nonnull)token userProfile:(NSDictionary*_Nonnull)userProfile;
+
+/**
+ *  Log out the user from session
+ */
+- (void) logout;
 
 @end

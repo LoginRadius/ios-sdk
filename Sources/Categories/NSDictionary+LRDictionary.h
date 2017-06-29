@@ -11,4 +11,6 @@
 
 + (NSDictionary *)dictionaryWithQueryString: (NSString *)queryString;
 
+- (NSDictionary *) dictionaryWithLowercaseKeys;
+
 @end

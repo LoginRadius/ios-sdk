@@ -1,3 +1,26 @@
+4.0.0-beta Release notes (2017-03-08)
+=============================================================
+
+### API breaking changes
+
+* Registration through hosted pages is removed, it is done through API.
+* Registration Service uses LoginRadius APIv2.
+* URL Scheme is now <sitename>.<app bundle id> to support mobile ios sso
+
+### Enhancements
+* Add LoginRadiusRegistrationSchema, LoginRadiusField, LoginRadiusFieldRule class
+* Add getSocialProvidersList API call to get dynamic list of configured social providers in LR dashboard
+* Add getRegistrationSchema API call to get dynamic list of configured registration field in LR dashboard
+* Add the option to store credentials in Apple's Keychain 
+* Have mobile iOS SSO as of result of using Apple's Keychain
+* Add dynamic registration fields in Swift Demo
+* Add missing fields handling in Swift Demo
+* API calls for custom objects and validate/invalidate access tokens
+* More error codes and handling
+
+### Bugfixes
+* More error handling in twitter native.
+
 3.4.0 Release notes (2017-06-05)
 =============================================================
 
@@ -20,38 +43,6 @@
 
 * Normal social login for google is now fixed
 * When user nagivates to register/login in hosted page, it will call the right callback
-
-3.3.2 Release notes (2017-05-12)
-=============================================================
-
-### API breaking changes
-
-### Enhancements
-
-### Bugfixes
-
-* Fixed error response serializer for v1 & v2 API's
-* Corrected openURl handling
-* Fixed Twitter native login crash happening with some accounts.
-
-3.3.1 Release notes (2017-04-25)
-=============================================================
-
-### API breaking changes
-
-### Enhancements
-
-* Added support for Google ReCaptcha.
-* Using Hosted Pages v3.
-* Handling Done button in Safari based login
-* Improved documentation
-* Activity Indicator in UIWebView
-
-### Bugfixes
-
-* Fixed error response serializer for v1 API's
-* Corrected Login flow in the demo
-* Fixed invalid apikey error while doing social login through hosted pages
 
 3.3 Release notes (2017-03-08)
 =============================================================

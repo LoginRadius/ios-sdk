@@ -2,7 +2,7 @@
 //  LRResponseSerializer.h
 //  Pods
 //
-//  Created by Raviteja Ghanta on 03/03/17.
+//  Created by LoginRadius Development Team on 03/03/17.
 //
 //
 

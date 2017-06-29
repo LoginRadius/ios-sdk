@@ -13,11 +13,11 @@
 @interface LRErrors : NSObject
 
 #pragma mark - User Registration Service
-+ (NSError*)serviceCancelled;
-+ (NSError*)userRegistrationFailed;
++ (NSError*)serviceCancelled:(NSString*)action;
++ (NSError*)userRegistraionFailed;
 + (NSError*)userLoginFailed;
 + (NSError*)userForgotPasswordFailed;
-+ (NSError*)userEmailIsNotVerified;
++ (NSError*)userIsNotVerified:(NSString*)field;
 + (NSError*)userEmailVerificationFailed;
 + (NSError*)userSocialLoginFailed;
 + (NSError*)userResetPasswordFailed;
@@ -26,8 +26,10 @@
 + (NSError*)tokenEmpty;
 + (NSError*)userProfieWithErrorCode:(NSString*)errorCode;
 + (NSError*)userProfileError;
++ (NSError*)userProfileRequireAdditionalFields;
 
 #pragma mark - Social Login
++ (NSError *)socialLoginFetchFailed;
 + (NSError *)socialLoginCancelled:(NSString*) provider;
 + (NSError *)socialLoginFailed:(NSString*) provider;
 
@@ -42,8 +44,5 @@
 #pragma mark - Touch ID
 + (NSError*)touchIDNotAvailable;
 + (NSError*)touchIDNotDeviceOwner;
-
-#pragma mark - Unknown Errors
-+ (NSError*)unsupportedAction;
 
 @end

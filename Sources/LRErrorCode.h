@@ -104,16 +104,18 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
      *  TouchID error
      */
     LRErrorCodeTouchIDNotAvailable,
-    
     /**
-     *  Receiving unsupported actions
+     *  User is not verified
      */
-    LRErrorCodeUnsupportedAction,
-    
+    LRErrorCodeUserIsNotVerified,
     /**
-     *  Email is not verified
+     *  Failed to fetch social login list
      */
-    LRErrorCodeUserEmailIsNotVerified
+    LRErrorCodeWebSocialLoginFetchFailed,
+    /**
+     *  User profile have Required Fields as null
+     */
+    LRErrorCodeUserRequireAdditionalFieldsError
 
 };
 

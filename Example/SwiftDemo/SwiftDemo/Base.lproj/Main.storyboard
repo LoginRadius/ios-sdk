@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="htO-F7-kr7">
-    <device id="retina4_0" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="htO-F7-kr7">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,18 +18,37 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="3r2-ZV-SB8"/>
                     <connections>
                         <segue destination="XXc-Cy-Qhj" kind="show" identifier="profile" id="qQB-IS-mKb"/>
+                        <segue destination="R0O-35-z4y" kind="show" identifier="missingfields" id="sak-vp-6X1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="978" y="453"/>
+        </scene>
+        <!--Missing Fields View Controller-->
+        <scene sceneID="b4D-Z0-Hxa">
+            <objects>
+                <viewController id="R0O-35-z4y" customClass="MissingFieldsViewController" customModule="SwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="atF-3R-6vh"/>
+                        <viewControllerLayoutGuide type="bottom" id="GaA-1e-ODq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zxK-Rz-6ib">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gWv-Na-fdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="977" y="1274"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="ms4-ZH-SVj">
@@ -40,34 +59,34 @@
                         <viewControllerLayoutGuide type="bottom" id="MNE-ah-uyB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Pb-f6-FrH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <connections>
-                        <segue destination="RWP-Or-6X9" kind="show" identifier="full profile" id="q0C-aV-9lv"/>
+                        <segue destination="HaU-gm-r2o" kind="show" identifier="full profile" id="iSS-5U-LPo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS3-sI-qi8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1770" y="452"/>
+            <point key="canvasLocation" x="1788" y="453"/>
         </scene>
         <!--Full Detail View Controller-->
-        <scene sceneID="IIr-Ab-lqV">
+        <scene sceneID="Ax7-cs-wAV">
             <objects>
-                <viewController id="RWP-Or-6X9" customClass="FullDetailViewController" customModule="SwiftDemo" sceneMemberID="viewController">
+                <viewController id="HaU-gm-r2o" customClass="FullDetailViewController" customModule="SwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6jE-MZ-mCu"/>
-                        <viewControllerLayoutGuide type="bottom" id="O0M-ef-mIp"/>
+                        <viewControllerLayoutGuide type="top" id="Nwa-k2-aC7"/>
+                        <viewControllerLayoutGuide type="bottom" id="zTi-Ip-jpT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xbh-5X-Slc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <view key="view" contentMode="scaleToFill" id="dxG-R2-wPj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ScH-ha-ceE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mB0-bn-Mpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2576" y="451"/>
+            <point key="canvasLocation" x="2554" y="453"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6wu-vD-IOe">

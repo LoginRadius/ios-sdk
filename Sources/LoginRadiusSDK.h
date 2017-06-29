@@ -6,150 +6,60 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "LRSession.h"
 
-/**
- API Response Completion Handler
-
- @param data API Response
- @param error API Error
- */
-typedef void (^LRAPIResponseHandler)(NSDictionary *data, NSError *error);
-
-
-/**
- LoginRadius Registration Service / Social Login Response Handler
-
- @param success Service success
- @param error Service Error
- */
-typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
+typedef void (^LRAPIResponseHandler)(NSDictionary * _Nullable data, NSError * _Nullable error);
+typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable error);
 
 /**
  *  This class is the entry point for all loginradius functionality
  */
 @interface LoginRadiusSDK : NSObject
 
-#pragma mark - Properties
-
-/**
- LoginRadius API Key
- */
-@property (strong, readonly, nonatomic) NSString* apiKey;
-
-
-/**
- LoginRadius SiteName
- */
-@property (strong, readonly, nonatomic) NSString* siteName;
-
-
-/**
- Google v2Recaptcha key
- */
-@property (strong, readonly, nonatomic) NSString* v2RecaptchaSiteKey;
-
-/**
- Hosted Page URL
- */
-@property (strong, readonly, nonatomic) NSString* hostedPageURL;
-
-/**
- Enable Google Native in Hosted Page
- */
-@property (readonly, nonatomic) BOOL enableGoogleNativeInHosted;
-
-/**
- Enable Facebook Native in Hosted Page
- */
-@property (readonly, nonatomic) BOOL enableFacebookNativeInHosted;
+@property (strong, readonly, nonatomic) NSString* _Nonnull apiKey;
+@property (strong, readonly, nonatomic) NSString* _Nonnull siteName;
+@property (strong, atomic) LRSession* _Nonnull session;
+@property (readonly, nonatomic) BOOL useKeychain;
+@property (readonly, nonatomic) BOOL askForRequiredFields;
+@property (readonly, nonatomic) BOOL askForVerifiedFields;
+@property (readonly, nonatomic) BOOL invalidateAndDeleteAccessTokenOnLogout;
 
 #pragma mark - Initilizers
 
 /**
  *  Initilization, this should be the first function that should be called before any other call to LoginRadiusSDK.
  */
-+ (instancetype)instance;
++ (instancetype _Nonnull )instance;
 
 /**
  *  LoginRadiusSDK singleton
  *
  *  @return LoginRadius singleton object
  */
-+ (instancetype)sharedInstance;
-
-#pragma mark - Class Methods to access Readonly Properties
-
-/**
- LoginRadius API Key
-
- @return Returns LoginRadius API key
- */
-+ (NSString*)apiKey;
-
-
-/**
- LoginRadius SiteName
-
- @return Returns LoginRadius SiteName
- */
-+ (NSString*)siteName;
-
-
-/**
- Google v2Recaptcha key
-
- @return Returns Google v2Recaptcha key
- */
-+ (NSString*)v2RecaptchaSiteKey;
-
-/**
- Hosted Page URL
-
- @return Returns Hosted Page URL
- */
-+ (NSString*)hostedPageURL;
-
-/**
- Configuration on using google native login
-
- @return Returns whether to use google native login
- */
-+ (BOOL)enableGoogleNativeInHosted;
-
-/**
- Configuration on using facebook native login
-
- @return Returns whether to use facebook native login
- */
-+ (BOOL)enableFacebookNativeInHosted;
++ (instancetype _Nonnull )sharedInstance;
++ (NSString*_Nonnull)apiKey;
++ (NSString*_Nonnull)siteName;
++ (BOOL)useKeychain;
++ (BOOL)askForRequiredFields;
++ (BOOL)askForVerifiedFields;
++ (BOOL)invalidateAndDeleteAccessTokenOnLogout;
 
 #pragma mark - Application Delegate methods
 
-/**
- App Launched Delegate method
+/** Application Delegate methods
  */
-- (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions;
 
+- (void)applicationLaunchedWithOptions:(NSDictionary *_Nullable)launchOptions;
 
-/**
- App Open URL Delegate method. Call this method in your AppDelegate for native social login to work properly
+- (BOOL)application:(UIApplication *_Nonnull)application
+            openURL:(NSURL *_Nonnull)url
+  sourceApplication:(NSString *_Nonnull)sourceApplication
+         annotation:(id _Nullable )annotation;
 
- @return If LoginRadius can handle the url it return YES otherwise NO.
- */
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation;
-
-
-/**
- App DidBecomeActive Delegate method
- */
-- (void)applicationDidBecomeActive:(UIApplication *)application;
+- (void)applicationDidBecomeActive:(UIApplication *_Nonnull)application;
 
 
 #pragma mark - Logout
-
 /**
  *  Log out the user
  */

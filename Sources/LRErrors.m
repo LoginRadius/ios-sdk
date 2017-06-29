@@ -10,13 +10,13 @@
 
 @implementation LRErrors
 
-+ (NSError*)serviceCancelled {
++ (NSError*)serviceCancelled:(NSString*)action {
 	return [NSError errorWithCode:LRErrorCodeRaaSCancelled
-					  description:@"User Cancelled"
-					failureReason:[NSString stringWithFormat:@"User cancelled"]];
+					  description:@"User Registration Service cancelled"
+					failureReason:[NSString stringWithFormat:@"User registration with action: %@ cancelled", action]];
 }
 
-+ (NSError*)userRegistrationFailed {
++ (NSError*)userRegistraionFailed {
 	return [NSError errorWithCode:LRErrorCodeRaaSUserRegistrationFailed
 					  description:@"User registration failed"
 					failureReason:@"User registration failed with no status"];
@@ -34,10 +34,10 @@
 					 failureReason:@"User forgot password failed with no status"];
 }
 
-+ (NSError*)userEmailIsNotVerified {
-	return  [NSError errorWithCode:LRErrorCodeUserEmailIsNotVerified
-					   description:@"User Email is not verified"
-					 failureReason:@"User Email needs to be verified in order to proceed"];
++ (NSError*)userIsNotVerified:(NSString*)field {
+	return  [NSError errorWithCode:LRErrorCodeUserIsNotVerified
+					   description:[NSString stringWithFormat:@"User %@ is not verified", field]
+					 failureReason:[NSString stringWithFormat:@"User need to verify %@ in order to proceed", field]];
 }
 
 + (NSError*)userEmailVerificationFailed {
@@ -59,13 +59,6 @@
 
 }
 
-+ (NSError*)unsupportedAction {
-	return  [NSError errorWithCode:LRErrorCodeUnsupportedAction
-					   description:@"Receiving unsupported action"
-					 failureReason:@"App received an unsupported action"];
-
-}
-
 + (NSError*)tokenEmpty {
 	return [NSError errorWithCode:LRErrorCodeAccessTokenEmpty
 					  description:@"User profile fetching failed"
@@ -82,6 +75,18 @@
 	return [NSError errorWithCode:LRErrorCodeUserProfileError
 			   description:@"User profile error"
 			 failureReason:@"User profile is either bloked or returned with an errorCode"];
+}
+
++ (NSError*)userProfileRequireAdditionalFields {
+	return [NSError errorWithCode:LRErrorCodeUserRequireAdditionalFieldsError
+			   description:@"User profile has incomplete required fields"
+			 failureReason:@"User profile has null fields that are required before registration/loggin in"];
+}
+
++ (NSError*)socialLoginFetchFailed {
+	return [NSError errorWithCode:LRErrorCodeWebSocialLoginFetchFailed
+					  description:@"Failed to fetch social login list"
+					failureReason:@"Failed to fetch social login list from server"];
 }
 
 + (NSError*)socialLoginCancelled:(NSString*) provider {

@@ -28,7 +28,7 @@
 
 - (void)loginfromViewController:(UIViewController*)controller
 					 parameters:(NSDictionary*)params
-						handler:(LRServiceCompletionHandler)handler;
+						handler:(LRAPIResponseHandler)handler;
 
 /**
  *  Log out the user

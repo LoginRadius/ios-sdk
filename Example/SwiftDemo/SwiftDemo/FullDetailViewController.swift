@@ -2,13 +2,14 @@
 //  FullDetailViewController.swift
 //  SwiftDemo
 //
-//  Created by Thompson Sanjoto on 2017-05-16.
-//  Copyright © 2017 Raviteja Ghanta. All rights reserved.
+//  Created by LoginRadius Development Team on 2017-05-16.
+//  Copyright © 2017 LoginRadius Inc. All rights reserved.
 //
 
 import Foundation
 import Eureka
 import SwiftyJSON
+import LoginRadiusSDK
 
 class FullDetailViewController: FormViewController {
     
@@ -18,18 +19,70 @@ class FullDetailViewController: FormViewController {
         return dateFormat
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+    var accessToken:String!
+    var userProfile:JSON!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let defaults = UserDefaults.standard
-        var user:JSON = JSON([])
+        //This is do when there are 2 apps sharing 1 LoginRadius sitename login
+        //If the other app logged out, this logs out too.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupForm), name:  NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
-        if let userDict = defaults.object(forKey: "lrUserProfile") as? NSDictionary
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //This is do when there are 2 apps sharing 1 LoginRadius sitename login
+        //If the other app logged out, this logs out too.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupForm), name:  NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        setupForm()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+
+    }
+    
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setupForm() {
+        
+        guard let userAccessToken = LoginRadiusSDK.sharedInstance().session.accessToken
+        else
         {
-            user = JSON(userDict)
+            //if logged out for some reason, go back. (e.g. shared keychain, and it logged out from another app, and this app enters from background)
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        if let oldToken = self.accessToken,
+            oldToken == userAccessToken
+        {
+            //same token, don't reload ui
+            return
+        }
+        
+        accessToken = userAccessToken
+                
+        if let userDict = LoginRadiusSDK.sharedInstance().session.userProfile
+        {
+            if let oldProfile = self.userProfile,
+                oldProfile == JSON(userDict)
+            {
+                //same userProfile, don't reload ui
+                return
+            }
+            
+            userProfile = JSON(userDict)
+        }else{
+            userProfile = JSON([])
         }
 
         self.form = Form()
@@ -37,7 +90,7 @@ class FullDetailViewController: FormViewController {
         self.navigationItem.title = "Full Profile"
     
         form  +++ Section("")
-        for (k,v) in user
+        for (k,v) in userProfile
         {
             addEurekaElement(key: k , userInfo: v)
         }
@@ -170,7 +223,7 @@ class FullDetailViewController: FormViewController {
                     {
                         for (dictkey, dictv) in newDict
                         {
-                            let k = dictkey as! String
+                            let k = dictkey 
                             let v = dictv as! String
                             
                             if k.contains("PhoneNumber")

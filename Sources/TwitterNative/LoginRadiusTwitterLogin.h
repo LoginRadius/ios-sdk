@@ -24,5 +24,5 @@
 -(void)loginWithConsumerKey:(NSString*)consumerKey
            andConumerSecret:(NSString*)consumerSecret
                inController:(UIViewController*)controller
-                 completion:(LRServiceCompletionHandler)handler;
+                 completion:(LRAPIResponseHandler)handler;
 @end

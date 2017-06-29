@@ -20,55 +20,14 @@
  *
  *  @return singleton instance of REST client
  */
-
-/**
- shared singleton
-
- @return singleton instance of REST client
- */
-+ (instancetype) sharedInstance;
++ (instancetype) apiInstance;
++ (instancetype) cdnInstance;
 
 #pragma mark - Methods
 
-/**
- HTTP GET Method
-
- @param url LoginRadius Endpoint
- @param queryParams Query Parameters
- @param completion API response completion Handler
- */
 - (void)sendGET:(NSString *)url queryParams:(id)queryParams completionHandler:(LRAPIResponseHandler)completion;
-
-/**
- HTTP POST Method
-
- @param url LoginRadius Endpoint
- @param queryParams Query Parameters
- @param body JSON Payload
- @param completion API response completion Handler
- */
 - (void)sendPOST:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion;
-
-/**
- HTTP PUT Method
-
- @param url LoginRadius Endpoint
- @param queryParams Query Parameters
- @param body JSON Payload
- @param completion API response completion Handler
- */
-
 - (void)sendPUT:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion;
-
-/**
- HTTP DELETE Method
-
- @param url LoginRadius Endpoint
- @param queryParams Query Parameters
- @param body JSON Payload
- @param completion API response completion Handler
- */
-
 - (void)sendDELETE:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion;
 
 @end

@@ -2,7 +2,7 @@
 //  LRTouchIDAuth.m
 //  Pods
 //
-//  Created by Raviteja Ghanta on 01/03/17.
+//  Created by LoginRadius Development Team on 01/03/17.
 //
 //
 
@@ -24,13 +24,16 @@
     return instance;
 }
 
-- (void)localAuthenticationWithTouchID:(LRServiceCompletionHandler)handler{
+- (void)localAuthenticationWithFallbackTitle:(NSString *)localizedFallbackTitle
+                                             completion:(LRServiceCompletionHandler)handler{
 
     LAContext *context = [[LAContext alloc] init];
     NSError *error = nil;
 
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
         // Authenticate User
+        context.localizedFallbackTitle = localizedFallbackTitle;
+        
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
                 localizedReason:@"Use TouchID to Authenticate"
                           reply:^(BOOL success, NSError *error) {

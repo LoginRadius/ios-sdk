@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  SwiftDemo
 //
-//  Created by Raviteja Ghanta on 18/05/16.
+//  Created by LoginRadius Development Team on 18/05/16.
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
@@ -22,14 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 {
 
     var window: UIWindow?
-
+    
+    // This is up to the customer to configure their app to enable native social logins.
+    static var useGoogleNative:Bool = false
+    static var useTwitterNative:Bool = false
+    static var useFacebookNative:Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         let sdk:LoginRadiusSDK = LoginRadiusSDK.instance();
         sdk.applicationLaunched(options: launchOptions);
-        
+
         /* Google Native SignIn
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
@@ -37,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
         GIDSignIn.sharedInstance().delegate = self
         */
-        
+
         return true
     }
 
@@ -70,11 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         /* Google Native SignIn
         canOpen = (canOpen || GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
         */
+        
+    
         canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
     
         return canOpen
     }
-    
+
     /* Google Native SignIn
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     
@@ -85,18 +91,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         else
         {
             let idToken: String = user.authentication.accessToken
-            LoginRadiusManager.sharedInstance().nativeGoogleLogin(withAccessToken: idToken, completionHandler: {(_ success: Bool, _ error: Error?) -> Void in
-                if success {
-                    print("successfully logged in with google")
-                    NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: nil)
-     
-                }
-                else {
-                    print("Error: \(String(describing: error?.localizedDescription))")
-                }
+
+            LoginRadiusSocialLoginManager.sharedInstance().nativeGoogleLogin(withAccessToken: idToken, completionHandler: {( data ,  error) -> Void in
+                NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: ["data":data as Any,"error":error as Any])
+
             })
         }
-    }*/
+    }
+    */
+
 
 }
 

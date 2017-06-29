@@ -12,15 +12,7 @@
 - (NSString *)queryString
 {
 	NSMutableString *queryString = nil;
-	NSMutableArray *keys = [[self allKeys] mutableCopy];
-    
-    //some weird behaviour happening when apikey is not at the front of the query string
-    NSUInteger apikeyIndex = [keys indexOfObject:@"apikey"];
-    if(apikeyIndex != NSNotFound)
-    {
-        [keys removeObjectAtIndex:apikeyIndex];
-        [keys insertObject:@"apikey" atIndex:0];
-    }
+	NSArray *keys = [self allKeys];
 
 	if ([keys count] > 0) {
 		for (id key in keys) {
@@ -74,5 +66,48 @@
 	return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
+-(NSDictionary *) dictionaryWithLowercaseKeys {
+    NSMutableDictionary         *result = [NSMutableDictionary dictionaryWithCapacity:0];
+    NSString                    *key;
+
+    for ( key in self ) {
+        if([[self objectForKey:key] isKindOfClass:[NSArray class]] )
+        {
+            NSArray *array = [self objectForKey:key];
+            [result setObject:[self lowercaseKeysAllDictionariesInArray:array] forKey:[key lowercaseString]];
+        }else if ([[self objectForKey:key] isKindOfClass:[NSDictionary class]])
+        {
+            [result setObject:[[self objectForKey:key] dictionaryWithLowercaseKeys] forKey:[key lowercaseString]];
+        }else
+        {
+            [result setObject:[self objectForKey:key] forKey:[key lowercaseString]];
+        }
+    }
+
+    return result;
+}
+
+-(NSArray *) lowercaseKeysAllDictionariesInArray:(NSArray *) array
+{
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:0];
+
+    for (id arr in array)
+    {
+        if([arr isKindOfClass:[NSArray class]] )
+        {
+            [result addObject:[self lowercaseKeysAllDictionariesInArray:arr]];
+
+        }else if ([arr isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary *dict = arr;
+            [result addObject:[dict dictionaryWithLowercaseKeys]];
+        }else
+        {
+            [result addObject:arr];
+        }
+    }
+    
+    return [result copy];
+}
 
 @end

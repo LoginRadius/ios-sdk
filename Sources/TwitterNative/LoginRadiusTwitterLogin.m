@@ -7,7 +7,7 @@
 #import "LoginRadiusTwitterLogin.h"
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusREST.h"
-#import "LRClient.h"
+#import "LoginRadiusRegistrationManager.h"
 #import "NSDictionary+LRDictionary.h"
 #import "LRErrors.h"
 #import "OAuthCore.h"
@@ -31,7 +31,7 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 
 @property (nonatomic) ACAccountStore *accountStore;
 @property (nonatomic) ACAccountType *accountType;
-@property (nonatomic, copy) LRServiceCompletionHandler handler;
+@property (nonatomic, copy) LRAPIResponseHandler handler;
 
 @property (nonatomic, strong) NSArray *accounts;
 @property (nonatomic, strong) UIButton *reverseAuthBtn;
@@ -54,7 +54,7 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 	return self;
 }
 
-- (void)loginWithConsumerKey:(NSString *)consumerKey andConumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completion:(LRServiceCompletionHandler)handler {
+- (void)loginWithConsumerKey:(NSString *)consumerKey andConumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completion:(LRAPIResponseHandler)handler {
     self.consumerKey = consumerKey;
     self.consumerSecret = consumerSecret;
     self.handler = handler;
@@ -76,7 +76,7 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                     // if user cancels
-                    [self finishLogin:NO withError:[LRErrors nativeTwitterLoginCancelled]];
+                    [self finishLogin:nil withError:[LRErrors nativeTwitterLoginCancelled]];
                 }];
                 [alertC addAction:cancelAction];
 
@@ -84,10 +84,10 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
             } else if ([accounts count] == 1) {
                 [self takeActions:[accounts objectAtIndex:0]];
             } else {
-                [self finishLogin:NO withError:[LRErrors nativeTwitterLoginNoAccount]];
+                [self finishLogin:nil withError:[LRErrors nativeTwitterLoginNoAccount]];
             }
         } else {
-            [self finishLogin:NO withError:[LRErrors nativeTwitterLoginFailed]];
+            [self finishLogin:nil withError:[LRErrors nativeTwitterLoginFailed]];
             _isConfigured = false;
         }
     }];
@@ -96,21 +96,21 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
 - (void)takeActions: (ACAccount *)twAccount {
 	[self performReverseAuthForAccount:twAccount withHandler:^(NSData *responseData, NSError *error) {
 		if (error) {
-			[self finishLogin:NO withError:error];
-		} else {
+            [self finishLogin:nil withError:error];
+        } else {
 			NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 			NSDictionary * params = [NSDictionary dictionaryWithQueryString:responseStr];
 
 			// Get loginradius access token for twitter access token
-            [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/twitter"
+            [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/twitter"
                                           queryParams:@{@"key": [LoginRadiusSDK apiKey],
                                                         @"tw_access_token" : params[@"oauth_token"],
                                                         @"tw_token_secret":params[@"oauth_token_secret"]
                                                         }
 											completionHandler:^(NSDictionary *data, NSError *error) {
 				NSString *token = [data objectForKey:@"access_token"];
-				[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-					[self finishLogin:YES withError:error];
+				[[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+					[self finishLogin:data withError:error];
 				}];
 			}];
 		}
@@ -126,12 +126,26 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
             });
         }
         else {
-            NSString *signedReverseAuthSignature = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            [self getTokens:account signature:signedReverseAuthSignature andHandler:^(NSData *responseData, NSError *error2) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(responseData, error2);
-                });
-            }];
+        
+            NSError *jsonerror;
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonerror];
+            
+            if (!jsonerror)
+            {
+                NSDictionary *twitterErrorObj = [jsonDict objectForKey:@"errors"][0];
+                int twitterErrorCode = (int)[twitterErrorObj objectForKey:@"code"];
+                NSString *twitterErrorMsg = [twitterErrorObj objectForKey:@"message"];
+                NSError *twitterErr = [[NSError alloc] initWithDomain:TWT_API_ROOT code:twitterErrorCode userInfo:@{NSLocalizedDescriptionKey:twitterErrorMsg}];
+                handler(nil, twitterErr);
+            }else
+            {
+                NSString *signedReverseAuthSignature = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                [self getTokens:account signature:signedReverseAuthSignature andHandler:^(NSData *responseData, NSError *error2) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        handler(responseData, error2);
+                    });
+                }];
+            }
         }
     }];
 }
@@ -177,10 +191,10 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
     }];
 }
 
-- (void)finishLogin:(BOOL) success withError:(NSError*) error {
+- (void)finishLogin:(NSDictionary*) data withError:(NSError*) error {
 	if (self.handler) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.handler(success, error);
+			self.handler(data, error);
 		});
 	}
 }

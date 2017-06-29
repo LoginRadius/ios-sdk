@@ -23,11 +23,11 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.loginradius.ObjCDemo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>&lt;your-sitename&gt;</string>
+				<string>&lt;Your site name&gt;.&lt;Your Bundle Identifier&gt;</string>
+				<string>&lt;Your Google&apos;s REVERSED_CLIENT_ID, if you are not using google native login delete this row&gt;</string>
+				<string>&lt;Your Facebook&apos;s fb{FacebookAppID}, if you are not using facebook native login delete this row &gt;</string>
 			</array>
 		</dict>
 	</array>
@@ -60,6 +60,17 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>FacebookDisplayName</key>
+	<string>&lt;Your Facebook App&apos;s display name, if you are not using facebook native login delete this row&gt;</string>
+	<key>FacebookAppID</key>
+	<string>&lt;Your Facebook App&apos;s App ID, if you are not using facebook native login delete this row&gt;</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
 </dict>
 </plist>

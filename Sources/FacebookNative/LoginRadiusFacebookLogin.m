@@ -6,18 +6,18 @@
 
 #import "LoginRadiusFacebookLogin.h"
 #import "LoginRadiusREST.h"
-#import "LRClient.h"
 #import "LRErrors.h"
+#import "LoginRadiusRegistrationManager.h"
 
 @interface LoginRadiusFacebookLogin ()
-@property(nonatomic, copy) LRServiceCompletionHandler handler;
+@property(nonatomic, copy) LRAPIResponseHandler handler;
 @end
 
 @implementation LoginRadiusFacebookLogin
 
 - (void)loginfromViewController:(UIViewController*)controller
 					 parameters:(NSDictionary*)params
-						handler:(LRServiceCompletionHandler)handler {
+						handler:(LRAPIResponseHandler)handler {
 
 	BOOL permissionsAllowed = YES;
 	NSArray *permissions;
@@ -56,11 +56,11 @@
 		}
 
 		if ([permissions count] == 0) {
-			[self finishLogin:YES withError:nil];
+			[self finishLogin:[[[LoginRadiusSDK sharedInstance] session] userProfile] withError:nil];
 		} else if (publishPermissionFound && readPermissionFound) {
 			// Mix of permissions, not allowed
 			permissionsAllowed = NO;
-			[self finishLogin:NO withError:[LRErrors nativeFacebookLoginFailedMixedPermissions]];
+			[self finishLogin:nil withError:[LRErrors nativeFacebookLoginFailedMixedPermissions]];
 		} else if (publishPermissionFound) {
 			// Only publish permissions
 			[login logInWithPublishPermissions:permissions fromViewController:controller handler:handleLogin];
@@ -74,7 +74,7 @@
 			[login logInWithReadPermissions:permissions fromViewController:controller handler:handleLogin];
 		} else {
 			permissionsAllowed = NO;
-			[self finishLogin:NO withError:[LRErrors nativeFacebookLoginFailed]];
+			[self finishLogin:nil withError:[LRErrors nativeFacebookLoginFailed]];
 		}
 	}
 }
@@ -82,17 +82,17 @@
 - (void) onLoginResult:(FBSDKLoginManagerLoginResult *) result
 				 error:(NSError *)error {
 	if (error) {
-		[self finishLogin:NO withError:error];
+		[self finishLogin:nil withError:error];
 	} else if (result.isCancelled) {
-		[self finishLogin:NO withError:[LRErrors nativeFacebookLoginCancelled]];
+		[self finishLogin:nil withError:[LRErrors nativeFacebookLoginCancelled]];
 	} else {
 		// all other cases are handled by the access token notification
 		NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
 		// Get loginradius access_token for facebook access_token
-        [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
+        [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
 			NSString *token = [data objectForKey:@"access_token"];
-			[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-                [self finishLogin:(error==nil) withError:error];
+			[[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+                [self finishLogin:data withError:error];
             }];
 		}];
 	}
@@ -122,10 +122,10 @@
 	return YES;
 }
 
-- (void)finishLogin:(BOOL)success withError:(NSError*)error {
+- (void)finishLogin:(NSDictionary *)data withError:(NSError*)error {
 	if (self.handler) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.handler(success, error);
+			self.handler(data, error);
 		});
 	}
 }

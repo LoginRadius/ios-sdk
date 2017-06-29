@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  ObjCDemo
 //
-//  Created by Raviteja Ghanta on 18/05/16.
+//  Created by LoginRadius Development Team on 18/05/16.
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
@@ -14,7 +14,9 @@
 @end
 
 @implementation AppDelegate
-
+static BOOL useGoogleNative      = NO;
+static BOOL useTwitterNative     = NO;
+static BOOL useFacebookNative    = NO;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -22,7 +24,7 @@
     
     LoginRadiusSDK * sdk =  [LoginRadiusSDK instance];
     [sdk applicationLaunchedWithOptions:launchOptions];
-    
+
     /* Google Native SignIn
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError: &configureError];
@@ -30,7 +32,7 @@
 
     [GIDSignIn sharedInstance].delegate = self;
     */
-    
+
     return YES;
 }
 
@@ -87,19 +89,32 @@
     else
     {
         NSString *idToken = user.authentication.accessToken;
-        [[LoginRadiusManager sharedInstance] nativeGoogleLoginWithAccessToken: idToken
-                                                                   completionHandler:^(BOOL success, NSError *error) {
-             if (success) {
-                NSLog(@"successfully logged in with google");
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"userAuthenticatedFromNativeGoogle" object:nil userInfo:nil];
+        [[LoginRadiusSocialLoginManager sharedInstance] nativeGoogleLoginWithAccessToken: idToken
+                                                                   completionHandler:^(NSDictionary *data, NSError *error) {
+            id safeData = (data) ? data : [NSNull null];
+            id safeError = (error) ? error : [NSNull null];
+ 
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userAuthenticatedFromNativeGoogle" object:nil userInfo:@{@"data":safeData,@"error":safeError}];
 
-             } else {
-                 NSLog(@"Error: %@", [error description]);
-             }
          }];
     }
      
 }
 */
+
++(BOOL) useGoogleNative
+{
+    return useGoogleNative;
+}
+
++(BOOL) useTwitterNative
+{
+    return useTwitterNative;
+}
+
++(BOOL) useFacebookNative
+{
+    return useFacebookNative;
+}
+
 @end
