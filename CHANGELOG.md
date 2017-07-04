@@ -5,7 +5,7 @@
 
 * Registration through hosted pages is removed, it is done through API.
 * Registration Service uses LoginRadius APIv2.
-* URL Scheme is now <sitename>.<app bundle id> to support mobile ios sso
+* URL Scheme is now ``<sitename>.<app bundle id>`` to support mobile ios sso
 
 ### Enhancements
 * Add LoginRadiusRegistrationSchema, LoginRadiusField, LoginRadiusFieldRule class
