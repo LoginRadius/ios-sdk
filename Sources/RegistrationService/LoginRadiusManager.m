@@ -101,7 +101,7 @@
 - (void)nativeGoogleLoginWithAccessToken:(NSString *)access_token completionHandler:(LRServiceCompletionHandler)handler {
     [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/google" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"google_access_token" : access_token} completionHandler:^(NSDictionary *data, NSError *error) {
         NSString *token = [data objectForKey:@"access_token"];
-        [[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+        [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
             if (error) {
                 handler(YES, error);
                 return;

@@ -109,7 +109,7 @@ typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, N
                                                         }
 											completionHandler:^(NSDictionary *data, NSError *error) {
 				NSString *token = [data objectForKey:@"access_token"];
-				[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+                [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
 					[self finishLogin:YES withError:error];
 				}];
 			}];

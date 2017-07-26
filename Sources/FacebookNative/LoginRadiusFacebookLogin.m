@@ -91,7 +91,7 @@
 		// Get loginradius access_token for facebook access_token
         [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
 			NSString *token = [data objectForKey:@"access_token"];
-			[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+            [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
                 [self finishLogin:(error==nil) withError:error];
             }];
 		}];

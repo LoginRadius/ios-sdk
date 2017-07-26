@@ -113,7 +113,12 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
     /**
      *  Email is not verified
      */
-    LRErrorCodeUserEmailIsNotVerified
+    LRErrorCodeUserEmailIsNotVerified,
+    
+    /**
+     *  User is not verified by social provider
+     */
+    LRErrorCodeUserIsNotVerifiedBySocialProvider
 
 };
 

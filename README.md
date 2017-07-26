@@ -1,5 +1,5 @@
 # LoginRadius iOS SDK
-![Home Image](http://docs.lrcontent.com/resources/github/banner-1544x500.png)
+![Home Image](https://d2lvlj7xfpldmj.cloudfront.net/support/github/banner-1544x500.png)
 
 ## Introduction ##
 LoginRadius is an Identity Management Platform that simplifies user registration while securing data. LoginRadius Platform simplifies and secures your user registration process, increases conversion with Social Login that combines 30 major social platforms, and offers a full solution with Traditional Customer Registration. You can gather a wealth of user profile data from Social Login or Traditional Customer Registration.

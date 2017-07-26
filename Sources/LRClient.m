@@ -20,7 +20,9 @@
 	return _instance;
 }
 
-- (void)getUserProfileWithAccessToken:(NSString *)token completionHandler:(LRAPIResponseHandler) completion {
+- (void)getUserProfileWithAccessToken:(NSString *) token
+                             isNative:(BOOL) isNative
+        completionHandler:(LRAPIResponseHandler) completion {
 
     [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/userprofile"
                                   queryParams:@{
@@ -30,7 +32,11 @@
         if (error) {
             completion(nil, error);
 		} else {
-            if (![userProfile[@"EmailVerified"] boolValue])
+            
+            if (isNative && ![userProfile[@"Verified"] boolValue] && ![userProfile[@"EmailVerified"] boolValue]){
+                completion(nil, [LRErrors userIsNotVerifiedByNativeSocialProvider]);
+            }else
+            if (!isNative && ![userProfile[@"EmailVerified"] boolValue])
             {
                 completion(nil, [LRErrors userEmailIsNotVerified]);
             }else

@@ -155,7 +155,7 @@
 			NSString *lrtoken = [params objectForKey:@"lrtoken"];
             if (lrtoken) {
                 [self showActivityIndicator];
-                [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken completionHandler:^(NSDictionary *data, NSError *error) {
+                [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken isNative:NO completionHandler:^(NSDictionary *data, NSError *error) {
                     [self hideActivityIndicator];
                     [self finishRaasAction:returnAction	withError:error];
                 }];
@@ -178,7 +178,7 @@
 
             if (lrtoken) {
                 [self showActivityIndicator];
-                [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken completionHandler:^(NSDictionary *data, NSError *error) {
+                [[LRClient sharedInstance] getUserProfileWithAccessToken:lrtoken isNative:NO completionHandler:^(NSDictionary *data, NSError *error) {
                     [self hideActivityIndicator];
                     [self finishRaasAction:@"social" withError:error];
                 }];

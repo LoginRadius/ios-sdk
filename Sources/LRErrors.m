@@ -40,6 +40,12 @@
 					 failureReason:@"User Email needs to be verified in order to proceed"];
 }
 
++ (NSError*)userIsNotVerifiedByNativeSocialProvider {
+    return  [NSError errorWithCode:LRErrorCodeUserIsNotVerifiedBySocialProvider
+                       description:@"User is not verified by the native social provider"
+                     failureReason:@"User needs to be verified by native social provider in order to proceed"];
+}
+
 + (NSError*)userEmailVerificationFailed {
 	return  [NSError errorWithCode:LRErrorCodeRaaSUserEmailVerificationFailed
 					   description:@"User email verification failed"

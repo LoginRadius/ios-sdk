@@ -133,7 +133,7 @@
 		NSString *token = [parameters objectForKey:@"token"];
 
 		if( token ) {
-			[[LRClient sharedInstance] getUserProfileWithAccessToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+            [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:NO completionHandler:^(NSDictionary *data, NSError *error) {
 				[self finishSocialLogin:YES	withError:error];
 			}];
 

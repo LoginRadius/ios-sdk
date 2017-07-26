@@ -38,6 +38,7 @@
 + (NSError*)nativeFacebookLoginCancelled;
 + (NSError*)nativeFacebookLoginFailedMixedPermissions;
 + (NSError*)nativeFacebookLoginFailed;
++ (NSError*)userIsNotVerifiedByNativeSocialProvider;
 
 #pragma mark - Touch ID
 + (NSError*)touchIDNotAvailable;
