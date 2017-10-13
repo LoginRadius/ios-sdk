@@ -96,9 +96,9 @@
         NSAssert((openSquares==-1), @"Invalid Custom Regex");
         
         //save "custom_validation[...]"
-        customValidation = [fullRuleStr substringWithRange:NSMakeRange(start.location,startIndex)];
+        customValidation = [fullRuleStr substringWithRange:NSMakeRange(start.location,startIndex-start.location)];
         //delete it from the fullRuleStr with empty string
-        fullRuleStr = [fullRuleStr stringByReplacingCharactersInRange:NSMakeRange(start.location,startIndex) withString:@""];
+        fullRuleStr = [fullRuleStr stringByReplacingCharactersInRange:NSMakeRange(start.location,startIndex-start.location) withString:@""];
     }
     
     NSMutableArray<NSString *> *rulesStr = [[fullRuleStr componentsSeparatedByString:@"|"] mutableCopy];

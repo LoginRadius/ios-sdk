@@ -106,7 +106,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 4.0.0 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 4.1.0 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
@@ -441,6 +441,13 @@
 - (void) showNativeGoogleLogin
 {
     /* Google Native SignIn
+    
+    if (self.presentedViewController != nil)
+    {
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showNativeGoogleLogin];}];
+        return;
+    }
+    
     [[GIDSignIn sharedInstance] signIn];
     */
 }
@@ -461,21 +468,27 @@
 
 - (void) showNativeTwitterLogin
 {
-    [[LoginRadiusSocialLoginManager sharedInstance] nativeTwitterWithConsumerKey: @"<Your twitter consumer key>"consumerSecret: @"<Your twitter secret key>" inController:self completionHandler: ^(NSDictionary *data, NSError *error)
-    {
-        if (error)
-        {
-            [self checkForMissingFieldError:data error:error];
-        }else
-        {
-            [self showProfileController];
+    /* Twitter Native SignIn
+
+    [[Twitter sharedInstance] logInWithCompletion:
+    ^(TWTRSession * _Nullable session, NSError * _Nullable error) {
+        if (session){
+            [[LoginRadiusSocialLoginManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret inController:self completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+                if (error){
+                    [self showAlert:@"ERROR" message:error.localizedDescription];
+                }else{
+                    [self showProfileController];
+                }
+            }];
+        } else if (error){
+            [self showAlert:@"ERROR" message:error.localizedDescription];
         }
-    }];
+    }];*/
 }
 
 - (void) showNativeFacebookLogin
 {
-    [[LoginRadiusSocialLoginManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions":@[@"public_profile"]} inController:self completionHandler: ^(NSDictionary *data, NSError *error){
+    [[LoginRadiusSocialLoginManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions":@[@"public_profile",@"email"]} inController:self completionHandler: ^(NSDictionary *data, NSError *error){
         if(error)
         {
             [self checkForMissingFieldError:data error:error];

@@ -70,11 +70,11 @@
 	[self.facebookLogin loginfromViewController:controller parameters:params handler:handler];
 }
 
-- (void)nativeTwitterWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
-    [self.twitterLogin loginWithConsumerKey:consumerKey andConumerSecret:consumerSecret inController:controller completion:handler];
+- (void)convertTwitterTokenToLRToken:(NSString *)twitterAccessToken twitterSecret:(NSString *)twitterSecret inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
+    [self.twitterLogin getLRTokenWithTwitterToken:twitterAccessToken twitterSecret:twitterSecret inController:controller handler:handler];
 }
 
-- (void)nativeGoogleLoginWithAccessToken:(NSString *)access_token completionHandler:(LRAPIResponseHandler)handler {
+- (void)convertGoogleTokenToLRToken:(NSString *)access_token inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
     [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/google" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"google_access_token" : access_token} completionHandler:^(NSDictionary *data, NSError *error) {
         NSString *token = [data objectForKey:@"access_token"];
         [[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {

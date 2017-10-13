@@ -5,198 +5,44 @@
 //
 
 #import "LoginRadiusTwitterLogin.h"
-#import "LoginRadiusSDK.h"
 #import "LoginRadiusREST.h"
-#import "LoginRadiusRegistrationManager.h"
-#import "NSDictionary+LRDictionary.h"
 #import "LRErrors.h"
-#import "OAuthCore.h"
-#import <Social/Social.h>
-#import <Accounts/Accounts.h>
+#import "LoginRadiusRegistrationManager.h"
 
-#define TWT_API_ROOT                  @"https://api.twitter.com"
-#define TWT_X_AUTH_MODE_KEY           @"x_auth_mode"
-#define TWT_X_AUTH_MODE_REVERSE_AUTH  @"reverse_auth"
-#define TWT_X_AUTH_MODE_CLIENT_AUTH   @"client_auth"
-#define TWT_X_AUTH_REVERSE_PARMS      @"x_reverse_auth_parameters"
-#define TWT_X_AUTH_REVERSE_TARGET     @"x_reverse_auth_target"
-#define TWT_OAUTH_URL_REQUEST_TOKEN   TWT_API_ROOT "/oauth/request_token"
-#define TWT_OAUTH_URL_AUTH_TOKEN      TWT_API_ROOT "/oauth/access_token"
-#define TW_HTTP_HEADER_AUTHORIZATION @"Authorization"
-
-typedef void(^TwitterAPIHandler)(NSData *data, NSError *error);
-typedef void(^TWTSignedRequestHandler) (NSData *data, NSURLResponse *response, NSError *error);
-
-@interface LoginRadiusTwitterLogin() <NSURLSessionDelegate>
-
-@property (nonatomic) ACAccountStore *accountStore;
-@property (nonatomic) ACAccountType *accountType;
-@property (nonatomic, copy) LRAPIResponseHandler handler;
-
-@property (nonatomic, strong) NSArray *accounts;
-@property (nonatomic, strong) UIButton *reverseAuthBtn;
-
-@property BOOL isConfigured;
-@property (nonatomic, strong) NSString *consumerKey;
-@property (nonatomic, strong) NSString *consumerSecret;
+@interface LoginRadiusTwitterLogin()
+@property(nonatomic, copy) LRAPIResponseHandler handler;
+@property(nonatomic, strong) UIViewController * viewController;
 @end
 
 @implementation LoginRadiusTwitterLogin
 
-@synthesize accountStore, accountType;
-
-- (instancetype)init {
-
-	self = [super init];
-	if (self) {
-		accountStore = [[ACAccountStore alloc] init];
-	}
-	return self;
-}
-
-- (void)loginWithConsumerKey:(NSString *)consumerKey andConumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completion:(LRAPIResponseHandler)handler {
-    self.consumerKey = consumerKey;
-    self.consumerSecret = consumerSecret;
+- (void)getLRTokenWithTwitterToken:(NSString*)twitter_token
+                        twitterSecret:(NSString*)twitter_secret
+                       inController:(UIViewController *)controller
+                        handler:(LRAPIResponseHandler)handler{
     self.handler = handler;
-    accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
-        if(granted) {
-            _isConfigured = true;
-            NSArray *accounts = [accountStore accountsWithAccountType:accountType];
-            if ([accounts count] > 1) {
-
-                UIAlertController * alertC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-
-                for (ACAccount *account in accounts) {
-                    UIAlertAction *action = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"@%@", account.username] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [self takeActions:account];
-                    }];
-                    [alertC addAction:action];
-                }
-
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    // if user cancels
-                    [self finishLogin:nil withError:[LRErrors nativeTwitterLoginCancelled]];
-                }];
-                [alertC addAction:cancelAction];
-
-                [controller presentViewController:alertC animated:YES completion:nil];
-            } else if ([accounts count] == 1) {
-                [self takeActions:[accounts objectAtIndex:0]];
-            } else {
-                [self finishLogin:nil withError:[LRErrors nativeTwitterLoginNoAccount]];
-            }
-        } else {
-            [self finishLogin:nil withError:[LRErrors nativeTwitterLoginFailed]];
-            _isConfigured = false;
-        }
-    }];
-}
-
-- (void)takeActions: (ACAccount *)twAccount {
-	[self performReverseAuthForAccount:twAccount withHandler:^(NSData *responseData, NSError *error) {
-		if (error) {
-            [self finishLogin:nil withError:error];
-        } else {
-			NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-			NSDictionary * params = [NSDictionary dictionaryWithQueryString:responseStr];
-
-			// Get loginradius access token for twitter access token
-            [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/twitter"
-                                          queryParams:@{@"key": [LoginRadiusSDK apiKey],
-                                                        @"tw_access_token" : params[@"oauth_token"],
-                                                        @"tw_token_secret":params[@"oauth_token_secret"]
-                                                        }
-											completionHandler:^(NSDictionary *data, NSError *error) {
-				NSString *token = [data objectForKey:@"access_token"];
-				[[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-					[self finishLogin:data withError:error];
-				}];
-			}];
-		}
-	}];
-}
-
-
-- (void)performReverseAuthForAccount:(ACAccount *)account withHandler:(TwitterAPIHandler)handler {
-    [self getAuthorizationHeader:^(NSData *data, NSError *error) {
-        if (!data) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                handler(nil, error);
-            });
-        }
-        else {
+    self.viewController = controller;
+    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/twitter"
+                                  queryParams:@{@"key": [LoginRadiusSDK apiKey],
+                                                @"tw_access_token" : twitter_token,
+                                                @"tw_token_secret":twitter_secret
+                                                }
+                                    completionHandler:^(NSDictionary *data, NSError *error) {
+        NSString *token = [data objectForKey:@"access_token"];
         
-            NSError *jsonerror;
-            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonerror];
-            
-            if (!jsonerror)
-            {
-                NSDictionary *twitterErrorObj = [jsonDict objectForKey:@"errors"][0];
-                int twitterErrorCode = (int)[twitterErrorObj objectForKey:@"code"];
-                NSString *twitterErrorMsg = [twitterErrorObj objectForKey:@"message"];
-                NSError *twitterErr = [[NSError alloc] initWithDomain:TWT_API_ROOT code:twitterErrorCode userInfo:@{NSLocalizedDescriptionKey:twitterErrorMsg}];
-                handler(nil, twitterErr);
-            }else
-            {
-                NSString *signedReverseAuthSignature = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                [self getTokens:account signature:signedReverseAuthSignature andHandler:^(NSData *responseData, NSError *error2) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        handler(responseData, error2);
-                    });
-                }];
-            }
-        }
+        [[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+                [self finishLogin:data withError:error];
+        }];
     }];
 }
 
-- (void)getAuthorizationHeader:(TwitterAPIHandler)completion {
-    NSURL *url = [NSURL URLWithString:TWT_OAUTH_URL_REQUEST_TOKEN];
-    NSDictionary *params = @{TWT_X_AUTH_MODE_KEY: TWT_X_AUTH_MODE_REVERSE_AUTH};
-    NSMutableString *paramsAsString = [[NSMutableString alloc] init];
-    [params enumerateKeysAndObjectsUsingBlock:
-     ^(id key, id obj, BOOL *stop) {
-         [paramsAsString appendFormat:@"%@=%@&", key, obj];
-     }];
-    NSData *bodyData = [paramsAsString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *authorizationHeader = OAuthorizationHeader(url, @"POST", bodyData, self.consumerKey, self.consumerSecret, nil, nil);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = @"POST";
-    [request setValue:authorizationHeader forHTTPHeaderField:TW_HTTP_HEADER_AUTHORIZATION];
-    request.HTTPBody = bodyData;
 
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            completion(data, error);
+- (void)finishLogin:(NSDictionary*)data withError:(NSError*)error {
+    if (self.handler) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.handler(data, error);
         });
-    }];
-
-    [postDataTask resume];
+    }
 }
-
-- (void)getTokens:(ACAccount *)account signature:(NSString *)signedReverseAuthSignature andHandler:(TwitterAPIHandler)completion {
-    NSDictionary *params = @{
-                             TWT_X_AUTH_REVERSE_TARGET: self.consumerKey,
-                             TWT_X_AUTH_REVERSE_PARMS: signedReverseAuthSignature
-                            };
-    NSURL *authTokenURL = [NSURL URLWithString:TWT_OAUTH_URL_AUTH_TOKEN];
-    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:authTokenURL parameters:params];
-    request.account = account;
-    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            completion(responseData, error);
-        });
-    }];
-}
-
-- (void)finishLogin:(NSDictionary*) data withError:(NSError*) error {
-	if (self.handler) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.handler(data, error);
-		});
-	}
-}
-
 @end
+

@@ -14,7 +14,7 @@ import LoginRadiusSDK
 //Converts LoginRadius Fields to Eureka Rows
 extension FormViewController
 {
-    func setupDynamicRegistrationForm(lrFields:[LoginRadiusField]?,dynamicRegSection:Section, loadingRow:LabelRow?, hiddenCondition:Condition?, sendButtonTitle:String? = "Register",askForEmailAvailability:Bool = true,sendHandler:((Void)->Void)?)
+    func setupDynamicRegistrationForm(lrFields:[LoginRadiusField]?,dynamicRegSection:Section, loadingRow:LabelRow?, hiddenCondition:Condition?, sendButtonTitle:String? = "Register",askForEmailAvailability:Bool = true,sendHandler:(()->Void)?)
     {
         if let fields = lrFields
         {
@@ -165,18 +165,18 @@ extension FormViewController
                     rowString?.add(rule: RuleRegExp(regExpr: fRule.regex!, allowsEmpty: true, msg: fRule.stringValue!))
                 case .exact_length:
                     errMsg = errMsg + "\(fRule.typeToString()) of \(fRule.intValue!)"
-                    rowString?.add(rule:RuleMaxLength(maxLength: UInt(fRule.intValue!), msg: errMsg))
-                    rowString?.add(rule:RuleMinLength(minLength: UInt(fRule.intValue!), msg: errMsg))
+                    rowString?.add(rule:RuleMaxLength(maxLength: UInt(truncating: fRule.intValue!), msg: errMsg))
+                    rowString?.add(rule:RuleMinLength(minLength: UInt(truncating: fRule.intValue!), msg: errMsg))
                 case .matches:
                     errMsg = "\(field.display) needs to match with \(self.form.rowBy(tag: fRule.stringValue!)?.title ?? "Unknown Field" )"
                     rowString?.add(rule: RuleEqualsToRow(form: self.form, tag: fRule.stringValue!, msg: errMsg))
                     rowBool?.add(rule: RuleEqualsToRow(form: self.form, tag: fRule.stringValue!, msg: errMsg))
                 case .max_length:
                     errMsg = "\(field.display) exceeds \(fRule.typeToString()) of \(fRule.intValue!)"
-                    rowString?.add(rule:RuleMaxLength(maxLength: UInt(fRule.intValue!), msg: errMsg))
+                    rowString?.add(rule:RuleMaxLength(maxLength: UInt(truncating: fRule.intValue!), msg: errMsg))
                 case .min_length:
                     errMsg = "\(field.display) needs \(fRule.typeToString()) of \(fRule.intValue!)"
-                    rowString?.add(rule:RuleMinLength(minLength: UInt(fRule.intValue!), msg: errMsg))
+                    rowString?.add(rule:RuleMinLength(minLength: UInt(truncating: fRule.intValue!), msg: errMsg))
                 case .required:
                     rowString?.add(rule:RuleRequired(msg: "\(field.display) is required!"))
                     rowBool?.onChange

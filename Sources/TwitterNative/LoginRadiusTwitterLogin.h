@@ -21,8 +21,8 @@
  *
  *  @param handler service completion handler
  */
--(void)loginWithConsumerKey:(NSString*)consumerKey
-           andConumerSecret:(NSString*)consumerSecret
-               inController:(UIViewController*)controller
-                 completion:(LRAPIResponseHandler)handler;
+- (void)getLRTokenWithTwitterToken:(NSString*)twitter_token
+                        twitterSecret:(NSString*)twitter_secret
+                       inController:(UIViewController *)controller
+                        handler:(LRAPIResponseHandler)handler;
 @end

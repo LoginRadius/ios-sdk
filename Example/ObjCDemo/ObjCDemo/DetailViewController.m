@@ -294,8 +294,28 @@ static NSArray<NSString *>* _countries = nil;
 }
 
 - (void)logoutPressed:(id)sender {
+    /* Google Native Sign in
+    [[GIDSignIn sharedInstance] signOut];
+    */
+    /* Twitter Native Sign in
+    [self twitterLogout];
+    */
+
     [LoginRadiusSDK logout];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+/* Twitter Native Sign in
+- (void) twitterLogout
+{
+    NSArray * twitterSessions;
+    twitterSessions = [[[Twitter sharedInstance] sessionStore] existingUserSessions];
+    if (twitterSessions){
+        for (id session in twitterSessions){
+            [[[Twitter sharedInstance] sessionStore] logOutUserID:[session userID]];
+        }
+    }
+}
+*/
 
 @end

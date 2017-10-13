@@ -52,7 +52,7 @@ class FullDetailViewController: FormViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func setupForm() {
+    @objc func setupForm() {
         
         guard let userAccessToken = LoginRadiusSDK.sharedInstance().session.accessToken
         else

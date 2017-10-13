@@ -26,11 +26,12 @@ static BOOL useFacebookNative    = NO;
     [sdk applicationLaunchedWithOptions:launchOptions];
 
     /* Google Native SignIn
-    NSError* configureError;
-    [[GGLContext sharedInstance] configureWithError: &configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-
+    [GIDSignIn sharedInstance].clientID = @"Your google client id";
     [GIDSignIn sharedInstance].delegate = self;
+    */
+
+    /* Twitter Native Sign in
+    [[Twitter sharedInstance] startWithConsumerKey:@"Your twitter consumer key" consumerSecret:@"Your twitter consumer SECRET key"];
     */
 
     return YES;
@@ -68,6 +69,10 @@ static BOOL useFacebookNative    = NO;
                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]);
     */
     
+    /* Twitter Native Sign in
+    canOpen = (canOpen || [[Twitter sharedInstance] application:app openURL:url options:options]);
+     */
+    
     canOpen = (canOpen || [[LoginRadiusSDK sharedInstance] application:app
                                                 openURL:url
                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
@@ -76,12 +81,12 @@ static BOOL useFacebookNative    = NO;
     return canOpen;
 }
 
-/* Google Native SignIn
+/* Google Native Sign in
 
- - (void)signIn:(GIDSignIn *)signIn
+- (void)signIn:(GIDSignIn *)signIn
      didSignInForUser:(GIDGoogleUser *)user
             withError:(NSError *)error {
-     
+ 
     if (error != nil)
     {
         NSLog(@"Error: %@",error.localizedDescription);
@@ -89,16 +94,15 @@ static BOOL useFacebookNative    = NO;
     else
     {
         NSString *idToken = user.authentication.accessToken;
-        [[LoginRadiusSocialLoginManager sharedInstance] nativeGoogleLoginWithAccessToken: idToken
-                                                                   completionHandler:^(NSDictionary *data, NSError *error) {
+        UIViewController *currentVC = [(UINavigationController *)[[self window] rootViewController] topViewController];
+
+        [[LoginRadiusSocialLoginManager sharedInstance] convertGoogleTokenToLRToken:idToken inController:currentVC completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
             id safeData = (data) ? data : [NSNull null];
             id safeError = (error) ? error : [NSNull null];
- 
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"userAuthenticatedFromNativeGoogle" object:nil userInfo:@{@"data":safeData,@"error":safeError}];
 
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userAuthenticatedFromNativeGoogle" object:nil userInfo:@{@"data":safeData,@"error":safeError}];
          }];
     }
-     
 }
 */
 

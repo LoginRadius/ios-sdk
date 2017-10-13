@@ -67,6 +67,7 @@
             _stringValue = [customRule substringWithRange:NSMakeRange(midPoint, [customRule length]-midPoint)];
         }@catch(NSException *exception)
         {
+            //User inputs their own regex schema, should notify wihtout debug
             NSLog(@"Invalid Custom Regex, %@", exception.reason);
         }
 

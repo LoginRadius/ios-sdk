@@ -108,7 +108,7 @@ class MissingFieldsViewController: FormViewController
             {
                 
                 let range =  row.tag!.index(row.tag!.startIndex, offsetBy: 3)..<row.tag!.endIndex
-                let modifiedTag = row.tag![range]
+                let modifiedTag = String(row.tag![range])
                 
                 if var dict = parameters["CustomFields"] as? [String:Any]
                 {

@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "XLForm.h"
-
+/* Google Native SignIn
+#import <Google/SignIn.h>
+*/
+/* Twitter Native SignIn
+#import <TwitterKit/TwitterKit.h>
+*/
 @interface DetailViewController : XLFormViewController
 
 

@@ -157,7 +157,9 @@
         {
             NSLog(@"Failed to invalidate LRtoken: %@",[error localizedDescription]);
         }else{
+#ifdef DEBUG
             NSLog(@"Succesfully invalidate LRToken");
+#endif
         }
     }];
     

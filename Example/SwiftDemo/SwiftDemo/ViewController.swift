@@ -14,6 +14,10 @@ import Alamofire
 import GoogleSignIn
 */
 
+/* Twitter Native Sign in
+import TwitterKit
+*/
+
 class ViewController: FormViewController
 /* Google Native SignIn
 , GIDSignInUIDelegate
@@ -133,7 +137,7 @@ class ViewController: FormViewController
         NotificationCenter.default.removeObserver(self)
     }
     
-    func updateSocialLoadingText()
+    @objc func updateSocialLoadingText()
     {
         var loadingTxt = "Loading"
         
@@ -150,7 +154,7 @@ class ViewController: FormViewController
         }
     }
     
-    func updateDynamicRegistrationLoadingText()
+    @objc func updateDynamicRegistrationLoadingText()
     {
         var loadingTxt = "Loading"
         
@@ -169,7 +173,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 4.0.0 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 4.1.0 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
@@ -304,7 +308,7 @@ class ViewController: FormViewController
             {
                 $0.title = "Request Password"
                 $0.hidden = forgotCondition
-                }.onCellSelection{ row in
+                }.onCellSelection{ row,arg  in
                     self.forgotPassword()
             }
             
@@ -332,7 +336,7 @@ class ViewController: FormViewController
                 <<< ButtonRow ("Touch ID")
                 {
                     $0.title = $0.tag
-                    }.onCellSelection{ row in
+                    }.onCellSelection{ row,arg  in
                         self.showTouchIDLogin()
                 }
             }
@@ -506,7 +510,7 @@ class ViewController: FormViewController
             {
                 
                 let range =  row.tag!.index(row.tag!.startIndex, offsetBy: 3)..<row.tag!.endIndex
-                let modifiedTag = row.tag![range]
+                let modifiedTag = String(row.tag![range])
                 
                 if var dict = parameter["CustomFields"] as? [String:Any]
                 {
@@ -631,12 +635,6 @@ class ViewController: FormViewController
         })
     }
     
-    /* use web hosted page for resetting it
-    func resetPassword()
-    {
-    }
-    */
-    
     func showSocialLogins(provider:String)
     {
         LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: provider, in: self, completionHandler: { (data, error) in
@@ -656,12 +654,18 @@ class ViewController: FormViewController
     
     func showNativeGoogleLogin()
     {
-        /* Google Native SignIn
+        if let childVC = self.presentedViewController
+        {
+            childVC.dismiss(animated: false, completion: self.showNativeGoogleLogin)
+            return
+        }
+        
+        /* Google Native Sign in
         GIDSignIn.sharedInstance().signIn()
         */
     }
     
-    func processGoogleNativeLogin(notif:NSNotification)
+    @objc func processGoogleNativeLogin(notif:NSNotification)
     {
         if let userInfo = notif.userInfo
         {
@@ -677,19 +681,30 @@ class ViewController: FormViewController
     
     func showNativeTwitterLogin()
     {
-        LoginRadiusSocialLoginManager.sharedInstance().nativeTwitter(withConsumerKey: "<Your twitter consumer key>", consumerSecret: "<Your twitter secret key>", in: self, completionHandler: {(data,  error) in
-            
-            if let err = error{
-                self.checkForMissingFieldError(data:data, error:err)
-            }else{
-                self.showProfileController()
+        /* Twitter Native Sign in
+
+        Twitter.sharedInstance().logIn(completion: { (session, error) in
+            if let session = session {
+                LoginRadiusSocialLoginManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, in: self, completionHandler: {(data, error) in
+                    if let _ = data
+                    {
+                        self.showProfileController()
+                    }else if let err = error
+                    {
+                        self.showAlert(title:"ERROR",message:err.localizedDescription)
+                    }
+                })
+            } else if let err = error{
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
             }
         })
+   
+        */
     }
     
     func showNativeFacebookLogin()
     {
-        LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile"]], in: self, completionHandler: {( data, error) -> Void in
+        LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile", "email"]], in: self, completionHandler: {( data, error) -> Void in
 
             if let err = error {
                 self.checkForMissingFieldError(data:data, error:err)
@@ -723,7 +738,7 @@ class ViewController: FormViewController
         }
     }
     
-    func showProfileController () {
+    @objc func showProfileController () {
         DispatchQueue.main.async
         {
             if LoginRadiusSDK.sharedInstance().session.isLoggedIn

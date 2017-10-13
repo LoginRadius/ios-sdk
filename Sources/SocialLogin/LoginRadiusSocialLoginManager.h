@@ -48,13 +48,29 @@
 							 inController:(UIViewController*)controller
 						completionHandler:(LRAPIResponseHandler)handler;
 
--(void)nativeTwitterWithConsumerKey:(NSString*)consumerKey
-                     consumerSecret:(NSString*)consumerSecret
-                       inController:(UIViewController*)controller
-                  completionHandler:(LRAPIResponseHandler)handler;
+/**
+ Native Twitter Login
 
--(void)nativeGoogleLoginWithAccessToken:(NSString*)access_token
-                      completionHandler:(LRAPIResponseHandler)handler;
+ @param twitterAccessToken Your Twitter User's Access Token
+ @param twitterSecret Your Twitter app's Consumer Secret
+ @param controller view controller where Twitter login take place should not be nil
+ @param handler code block executed after completion
+ */
+- (void)convertTwitterTokenToLRToken:(NSString *)twitterAccessToken
+                       twitterSecret:(NSString *)twitterSecret
+                       inController:(UIViewController *)controller
+                       completionHandler:(LRAPIResponseHandler)handler;
+
+/**
+ Native Google Login
+
+ @param google_token Google Access Token
+ @param controller view controller where google login take place should not be nil
+ @param handler code block executed after completion
+ */
+-(void)convertGoogleTokenToLRToken:(NSString*)google_token
+                      inController:(UIViewController *)controller
+                  completionHandler:(LRAPIResponseHandler)handler;
 
 -(void)getSocialProvidersListWithCompletion:(LRAPIResponseHandler)handler;
 

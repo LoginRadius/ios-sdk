@@ -1,4 +1,13 @@
-4.0.0 Release notes
+4.1.0 Release notes (2017-09-27)
+=============================================================
+### Enhancements
+* Support XCode 9 compiler
+* Update from Swift 3.2 to Swift 4, in the Swift Demo
+
+### Bugfixes
+* Fix Twitter Native Authentication flow in iOS 11
+
+4.0.0
 =============================================================
 
 ### API breaking changes

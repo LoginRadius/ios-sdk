@@ -77,7 +77,7 @@ static NSString * const LoginRadiusInvalidateAndDeleteAccessTokenOnLogout = @"in
 
 + (void) logout {
     
-    [[[self sharedInstance] session] logout];
+    [(LRSession *)[[self sharedInstance] session] logout];
     [[LoginRadiusSocialLoginManager sharedInstance] logout];
 
 	// Clearing all stored tokens userprofiles for loginradius
@@ -118,7 +118,11 @@ static NSString * const LoginRadiusInvalidateAndDeleteAccessTokenOnLogout = @"in
     [self.socialLoginManager applicationLaunchedWithOptions:launchOptions];
 	[self.registrationManager applicationLaunchedWithOptions:launchOptions];
     [self.customObjectManager applicationLaunchedWithOptions:launchOptions];
-    [self.registrationManager getRegistrationSchema:^(NSDictionary *data, NSError *error){if (error){NSLog(@"%@", error.localizedDescription);}}];
+    [self.registrationManager getRegistrationSchema:^(NSDictionary *data, NSError *error){if (error){
+#ifdef DEBUG
+    NSLog(@"%@", error.localizedDescription);
+#endif
+    }}];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

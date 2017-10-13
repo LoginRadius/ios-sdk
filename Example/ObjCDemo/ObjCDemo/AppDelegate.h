@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-/* Google Native SignIn
+/* Google Native Sign in
 #import <Google/SignIn.h>
 */
+/* Twitter Native Sign in
+#import <TwitterKit/TwitterKit.h>
+*/
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-/* Google Native SignIn, GIDSignInDelegate>
+/* Google Native Sign in, GIDSignInDelegate>
 */
 
 @property (strong, nonatomic) UIWindow *window;

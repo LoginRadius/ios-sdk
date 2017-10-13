@@ -11,6 +11,10 @@
 /* Google Native SignIn
 #import <Google/SignIn.h>
 */
+/* Twitter Native SignIn
+#import <TwitterKit/TwitterKit.h>
+*/
+
 @interface ViewController: XLFormViewController
 /* Google Native SignIn
 <GIDSignInUIDelegate>

@@ -27,7 +27,8 @@
 			<array>
 				<string>&lt;Your site name&gt;.&lt;Your Bundle Identifier&gt;</string>
 				<string>&lt;Your Google&apos;s REVERSED_CLIENT_ID, if you are not using google native login delete this row&gt;</string>
-				<string>&lt;Your Facebook&apos;s fb{FacebookAppID}, if you are not using facebook native login delete this row &gt;</string>
+				<string>fb&lt;Your Facebook App ID&gt;</string>
+				<string>twitterkit-&lt;Your Twitter Consumer Key&gt;</string>
 			</array>
 		</dict>
 	</array>
@@ -71,6 +72,8 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 </dict>
 </plist>

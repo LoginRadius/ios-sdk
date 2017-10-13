@@ -28,7 +28,7 @@
 		permissions = params[@"facebookPermissions"];
 	} else {
 		// permissions not set using basic permissions;
-		permissions = @[@"public_profile"];
+		permissions = @[@"public_profile",@"email"];
 	}
 
 	FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
@@ -36,7 +36,7 @@
 	login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorNative;
 
 	void (^handleLogin)(FBSDKLoginManagerLoginResult *result, NSError *error) = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
-		[self onLoginResult:result error:error];
+        [self onLoginResult:result error:error controller:controller];
 	};
 
 	if (token) {
@@ -56,6 +56,12 @@
 		}
 
 		if ([permissions count] == 0) {
+            if ([[[LoginRadiusSDK sharedInstance] session] isLoggedIn]){
+                [self finishLogin:[[[LoginRadiusSDK sharedInstance] session] userProfile] withError:nil];
+            }else{
+                [self convertFacebookTokenToLRToken:[token tokenString] inController:controller];
+            }
+  
 			[self finishLogin:[[[LoginRadiusSDK sharedInstance] session] userProfile] withError:nil];
 		} else if (publishPermissionFound && readPermissionFound) {
 			// Mix of permissions, not allowed
@@ -80,7 +86,8 @@
 }
 
 - (void) onLoginResult:(FBSDKLoginManagerLoginResult *) result
-				 error:(NSError *)error {
+				 error:(NSError *)error
+            controller:(UIViewController *) controller{
 	if (error) {
 		[self finishLogin:nil withError:error];
 	} else if (result.isCancelled) {
@@ -89,13 +96,22 @@
 		// all other cases are handled by the access token notification
 		NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
 		// Get loginradius access_token for facebook access_token
-        [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
-			NSString *token = [data objectForKey:@"access_token"];
-			[[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-                [self finishLogin:data withError:error];
-            }];
-		}];
+  
+        [self convertFacebookTokenToLRToken:accessToken inController:controller];
+
 	}
+}
+
+- (void)convertFacebookTokenToLRToken :(NSString*)fb_token
+                            inController:(UIViewController *)controller {
+    
+    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : fb_token} completionHandler:^(NSDictionary *data, NSError *error) {
+        NSString *token = [data objectForKey:@"access_token"];
+    
+        [[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
+                [self finishLogin:data withError:error];
+        }];
+    }];
 }
 
 - (void) logout {
