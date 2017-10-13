@@ -31,4 +31,17 @@ target 'SwiftDemo' do
    
    # pod 'TwitterKit'
    # Uncomment the above line to enable Twitter Native SignIn
+
+    post_install do |installer|
+    myTargets = ['Eureka']
+
+    installer.pods_project.targets.each do |target|
+        if myTargets.include? target.name
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
+end
+
 end
