@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
 /* Google Native SignIn
 #import <Google/SignIn.h>
 */
-@interface ViewController : UIViewController
+/* Twitter Native SignIn
+#import <TwitterKit/TwitterKit.h>
+*/
+
+@interface ViewController: XLFormViewController
 /* Google Native SignIn
 <GIDSignInUIDelegate>
 */

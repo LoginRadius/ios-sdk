@@ -19,18 +19,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    
     LoginRadiusSDK * sdk =  [LoginRadiusSDK instance];
     [sdk applicationLaunchedWithOptions:launchOptions];
     
     /* Google Native SignIn
-    NSError* configureError;
-    [[GGLContext sharedInstance] configureWithError: &configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-
+    [GIDSignIn sharedInstance].clientID = @"Your google client id";
     [GIDSignIn sharedInstance].delegate = self;
     */
     
+    /* Twitter Native Sign in
+    [[Twitter sharedInstance] startWithConsumerKey:@"Your twitter consumer key" consumerSecret:@"Your twitter consumer SECRET key"];
+    */
+
     return YES;
 }
 
@@ -60,12 +60,14 @@
 
     BOOL canOpen = NO;
     
-    /* Google Native SignIn
+    /* Google Native Sign in
     canOpen = (canOpen || [[GIDSignIn sharedInstance] handleURL:url
                              sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]);
-    */
-    
+     */
+    /* Twitter Native Sign in
+    canOpen = (canOpen || [[Twitter sharedInstance] application:app openURL:url options:options]);
+     */
     canOpen = (canOpen || [[LoginRadiusSDK sharedInstance] application:app
                                                 openURL:url
                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
@@ -74,7 +76,7 @@
     return canOpen;
 }
 
-/* Google Native SignIn
+/* Google Native Sign in
 
  - (void)signIn:(GIDSignIn *)signIn
      didSignInForUser:(GIDGoogleUser *)user
@@ -87,8 +89,8 @@
     else
     {
         NSString *idToken = user.authentication.accessToken;
-        [[LoginRadiusManager sharedInstance] nativeGoogleLoginWithAccessToken: idToken
-                                                                   completionHandler:^(BOOL success, NSError *error) {
+        UIViewController *currentVC = [(UINavigationController *)[[self window] rootViewController] topViewController];
+        [[LoginRadiusManager sharedInstance] convertGoogleTokenToLRToken:idToken inController:currentVC completionHandler:^(BOOL success, NSError *error) {
              if (success) {
                 NSLog(@"successfully logged in with google");
                 
@@ -100,6 +102,6 @@
          }];
     }
      
-}
-*/
+}*/
+
 @end

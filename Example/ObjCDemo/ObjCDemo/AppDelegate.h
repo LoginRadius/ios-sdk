@@ -10,6 +10,10 @@
 /* Google Native SignIn
 #import <Google/SignIn.h>
 */
+/* Twitter Native SignIn
+#import <TwitterKit/TwitterKit.h>
+*/
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 /* Google Native SignIn, GIDSignInDelegate>
 */

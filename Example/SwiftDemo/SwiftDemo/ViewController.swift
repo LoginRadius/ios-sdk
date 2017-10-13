@@ -1,4 +1,4 @@
-//
+  //
 //  ViewController.swift
 //  SwiftDemo
 //
@@ -8,14 +8,23 @@
 
 import LoginRadiusSDK
 import Eureka
-/* Google Native SignIn
+
+/* Google Native Sign in
 import GoogleSignIn
 */
+
+/* Twitter Native Sign in
+import TwitterKit
+*/
+
 class ViewController: FormViewController
-/* Google Native SignIn
+/* Google Native Sign in
 , GIDSignInUIDelegate
 */
 {
+
+    /* Twitter Native Sign in see the exact one line below*/
+    let showNativeTwitter:Bool = false; //showing native twitter button
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +36,7 @@ class ViewController: FormViewController
             self.performSegue(withIdentifier: "profile", sender: self);
         }
         
-        /* Google Native SignIn
+        /* Google Native Sign in
         GIDSignIn.sharedInstance().uiDelegate = self
         */
         
@@ -36,7 +45,7 @@ class ViewController: FormViewController
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receiveForgotPassword), name: NSNotification.Name(rawValue: LoginRadiusForgotPasswordEvent), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receiveSocialLogin), name: NSNotification.Name(rawValue: LoginRadiusSocialLoginEvent), object: nil)
         
-        self.navigationController?.navigationBar.topItem?.title = "Login Radius iOS pod 3.4.0"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 3.5.0 🇨🇦"
         self.form = Form()
         
         //Create UI forms
@@ -56,7 +65,7 @@ class ViewController: FormViewController
             <<< ButtonRow("Forgot LR API")
             {
                 $0.title = "Forgot Password"
-                }.onCellSelection{ row in
+                }.onCellSelection{ row, arg  in
                     self.forgotPassword()
             }
             <<< ButtonRow("Social Login Only")
@@ -65,7 +74,7 @@ class ViewController: FormViewController
                 }.onCellSelection{ cell, row in
                     self.socialLoginOnly()
             }
-            let socialNativeLoginEnabled = LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted ||  LoginRadiusSDK.sharedInstance().enableFacebookNativeInHosted
+            let socialNativeLoginEnabled = LoginRadiusSDK.sharedInstance().enableGoogleNativeInHosted ||  LoginRadiusSDK.sharedInstance().enableFacebookNativeInHosted || showNativeTwitter
         
             if(socialNativeLoginEnabled)
             {
@@ -103,8 +112,15 @@ class ViewController: FormViewController
                             self.showNativeFacebookLogin()
                     }
                 }
-
                 
+                if (showNativeTwitter){
+                    nativeSocialLoginSection <<< ButtonRow("Native Twitter")
+                    {
+                        $0.title = "Twitter"
+                        }.onCellSelection{ cell, row in
+                            self.showNativeTwitterLogin()
+                    }
+                }
             }
 
     }
@@ -130,7 +146,7 @@ class ViewController: FormViewController
         LoginRadiusManager.sharedInstance().registration(withAction: "social", in: self);
     }
     
-    func receiveRegistration(notification:Notification)
+    @objc func receiveRegistration(notification:Notification)
     {
         if let userInfo  = notification.userInfo,
            let error  = userInfo["error"] as? Error
@@ -148,7 +164,7 @@ class ViewController: FormViewController
         }
     }
     
-    func receiveLogin(notification:Notification)
+    @objc func receiveLogin(notification:Notification)
     {
         if let userInfo  = notification.userInfo,
            let error  = userInfo["error"] as? Error
@@ -160,7 +176,7 @@ class ViewController: FormViewController
         }
     }
     
-    func receiveForgotPassword(notification:Notification)
+    @objc func receiveForgotPassword(notification:Notification)
     {
         if let userInfo  = notification.userInfo,
            let error  = userInfo["error"] as? Error
@@ -172,7 +188,7 @@ class ViewController: FormViewController
         }
     }
     
-    func receiveSocialLogin(notification:Notification)
+    @objc func receiveSocialLogin(notification:Notification)
     {
         if let userInfo  = notification.userInfo,
            let error  = userInfo["error"] as? Error
@@ -184,22 +200,22 @@ class ViewController: FormViewController
         }
     }
     
-    func showNativeGoogleLogin()
+    @objc func showNativeGoogleLogin()
     {
-        /* Google Native SignIn
         if let childVC = self.presentedViewController
         {
             childVC.dismiss(animated: false, completion: self.showNativeGoogleLogin)
             return
         }
-    
+        
+        /* Google Native Sign in
         GIDSignIn.sharedInstance().signIn()
         */
     }
     
-    func showNativeFacebookLogin()
+    @objc func showNativeFacebookLogin()
     {
-        LoginRadiusManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile"]], in: self, completionHandler:  {(_ success: Bool, _ error: Error?) -> Void in
+        LoginRadiusManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile","email"]], in: self, completionHandler:  {(_ success: Bool, _ error: Error?) -> Void in
             
             if success
             {
@@ -212,7 +228,30 @@ class ViewController: FormViewController
 
     }
     
-    func showProfileController () {
+    func showNativeTwitterLogin()
+    {
+        /* Twitter Native Sign in
+
+        Twitter.sharedInstance().logIn(completion: { (session, error) in
+            if let session = session {
+                LoginRadiusManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, in: self, completionHandler: {(_ success: Bool, _ error: Error?) -> Void in
+                    if success
+                    {
+                        self.showProfileController()
+                    }else if let err = error
+                    {
+                        self.showAlert(title:"ERROR",message:err.localizedDescription)
+                    }
+                })
+            } else if let err = error{
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
+            }
+        })
+   
+        */
+    }
+    
+    @objc func showProfileController () {
         
         if let childVC = self.presentedViewController
         {
@@ -229,7 +268,7 @@ class ViewController: FormViewController
         }
     }
     
-    fileprivate func showAlert(title:String, message:String)
+    func showAlert(title:String, message:String)
     {
         DispatchQueue.main.async
         {

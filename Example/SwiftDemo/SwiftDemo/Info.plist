@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FacebookAppID</key>
+	<string>&lt;Your FB App ID&gt;</string>
+	<key>FacebookDisplayName</key>
+	<string>&lt;Your FB App Name&gt;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,9 +29,10 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>&lt;Your site name&gt;</string>
-				<string>fb&lt;Your facebook appid&gt;</string>
-				<string>&lt;Your google REVERSED_CLIENT_ID&gt;</string>
+				<string>&lt;Your Site Name&gt;</string>
+				<string>fb&lt;Your FB App ID&gt;</string>
+				<string>&lt;Your Google Reversed Client ID&gt;</string>
+				<string>twitterkit-&lt;Your Twitter Consumer Key&gt;</string>
 			</array>
 		</dict>
 	</array>
@@ -39,6 +44,8 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

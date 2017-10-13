@@ -4,6 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>FacebookDisplayName</key>
+	<string>&lt;Your FB App ID&gt;</string>
+	<key>FacebookAppID</key>
+	<string>&lt;Your FB App Name&gt;</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +31,10 @@
 			<string>com.loginradius.ObjCDemo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>&lt;your-sitename&gt;</string>
+				<string>&lt;Your Site Name&gt;</string>
+				<string>fb&lt;Your FB App ID&gt;</string>
+				<string>&lt;Your Google Reversed Client ID&gt;</string>
+				<string>twitterkit-&lt;Your Twitter Consumer Key&gt;</string>
 			</array>
 		</dict>
 	</array>
@@ -35,6 +42,15 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

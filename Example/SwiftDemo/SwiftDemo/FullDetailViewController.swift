@@ -170,7 +170,7 @@ class FullDetailViewController: FormViewController {
                     {
                         for (dictkey, dictv) in newDict
                         {
-                            let k = dictkey as! String
+                            let k = dictkey 
                             let v = dictv as! String
                             
                             if k.contains("PhoneNumber")

@@ -7,6 +7,7 @@
 #import "LoginRadiusManager.h"
 #import "LoginRadiusTwitterLogin.h"
 #import "LoginRadiusFacebookLogin.h"
+#import "LoginRadiusGoogleLogin.h"
 #import "LoginRadiusRSViewController.h"
 #import "LoginRadiusWebLoginViewController.h"
 #import "LoginRadiusSafariLogin.h"
@@ -17,6 +18,7 @@
 @interface LoginRadiusManager() {}
 @property(nonatomic, strong) LoginRadiusTwitterLogin * twitterLogin;
 @property(nonatomic, strong) LoginRadiusFacebookLogin * facebookLogin;
+@property(nonatomic, strong) LoginRadiusGoogleLogin * googleLogin;
 @property(nonatomic, strong) LoginRadiusSafariLogin * safariLogin;
 @property (assign, readonly, nonatomic) BOOL isSafariLogin;
 @property (assign, readonly, nonatomic) BOOL isFacebookNativeLogin;
@@ -40,6 +42,7 @@
 	if (self) {
 		_twitterLogin = [[LoginRadiusTwitterLogin alloc] init];
 		_facebookLogin = [[LoginRadiusFacebookLogin alloc] init];
+        _googleLogin = [[LoginRadiusGoogleLogin alloc] init];
         _safariLogin = [[LoginRadiusSafariLogin alloc] init];
 	}
 	return self;
@@ -50,7 +53,7 @@
     // If SafariVC exist show the traditional login and social in safari
     if ([SFSafariViewController class] != nil) {
         _isSafariLogin = YES;
-        [self.safariLogin initWithAction:action inController:controller];
+        [self.safariLogin initWithAction:action accessToken:nil inController:controller];
         return;
     }
     
@@ -94,23 +97,12 @@
     
 }
 
-- (void)nativeTwitterWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret inController:(UIViewController *)controller completionHandler:(LRServiceCompletionHandler)handler {
-    [self.twitterLogin loginWithConsumerKey:consumerKey andConumerSecret:consumerSecret inController:controller completion:handler];
+- (void)convertTwitterTokenToLRToken:(NSString *)twitterAccessToken twitterSecret:(NSString *)twitterSecret inController:(UIViewController *)controller completionHandler:(LRServiceCompletionHandler)handler {
+    [self.twitterLogin getLRTokenWithTwitterToken:twitterAccessToken twitterSecret:twitterSecret inController:controller handler:handler];
 }
 
-- (void)nativeGoogleLoginWithAccessToken:(NSString *)access_token completionHandler:(LRServiceCompletionHandler)handler {
-    [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/google" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"google_access_token" : access_token} completionHandler:^(NSDictionary *data, NSError *error) {
-        NSString *token = [data objectForKey:@"access_token"];
-        [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
-            if (error) {
-                handler(YES, error);
-                return;
-            }
-
-            handler(YES, nil);
-        }];
-    }];
-
+- (void)convertGoogleTokenToLRToken:(NSString *)access_token inController:(UIViewController *)controller completionHandler:(LRServiceCompletionHandler)handler {
+    [self.googleLogin convertGoogleTokenToLRToken:access_token inController:controller handler:handler];
 }
 
 - (void)logout {
@@ -149,6 +141,15 @@
               postNotificationName:urlHost
               object:self
               userInfo: nil];
+        }
+        
+        //return from hosted validation
+        if ([urlHost  isEqual: @"social"])
+        {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"returnFromHostedValidation"
+             object:self
+             userInfo: @{@"query":[url query]}];
         }
     }
 

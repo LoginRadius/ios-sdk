@@ -8,12 +8,24 @@
 #import "LoginRadiusREST.h"
 #import "LRClient.h"
 #import "LRErrors.h"
+#import "LoginRadiusSafariLogin.h"
+#import "NSDictionary+LRDictionary.h"
 
 @interface LoginRadiusFacebookLogin ()
 @property(nonatomic, copy) LRServiceCompletionHandler handler;
+@property(nonatomic, strong) LoginRadiusSafariLogin * safariLogin;
+@property(nonatomic, strong) UIViewController * viewController;
 @end
 
 @implementation LoginRadiusFacebookLogin
+
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        _safariLogin = [[LoginRadiusSafariLogin alloc] init];
+    }
+    return self;
+}
 
 - (void)loginfromViewController:(UIViewController*)controller
 					 parameters:(NSDictionary*)params
@@ -22,13 +34,13 @@
 	BOOL permissionsAllowed = YES;
 	NSArray *permissions;
 	self.handler = handler;
-
+    self.viewController = controller;
     
 	if (params[@"facebookPermissions"]) {
 		permissions = params[@"facebookPermissions"];
 	} else {
 		// permissions not set using basic permissions;
-		permissions = @[@"public_profile"];
+		permissions = @[@"public_profile",@"email"];
 	}
 
 	FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
@@ -36,12 +48,12 @@
 	login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorNative;
 
 	void (^handleLogin)(FBSDKLoginManagerLoginResult *result, NSError *error) = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
-		[self onLoginResult:result error:error];
+        [self onLoginResult:result error:error controller:controller];
 	};
 
 	if (token) {
 		// remove permissions that the user already has
-		permissions = [permissions filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+ 		permissions = [permissions filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
 			return ![token.permissions containsObject:evaluatedObject];
 		}]];
 
@@ -56,7 +68,14 @@
 		}
 
 		if ([permissions count] == 0) {
-			[self finishLogin:YES withError:nil];
+            NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
+            NSString * lr_token =  [lrUser objectForKey:@"lrAccessToken"];
+            if (lr_token){
+                [self finishLogin:YES withError:nil];
+            }else{
+                [self convertFacebookTokenToLRToken:[token tokenString] inController:controller];
+            }
+  
 		} else if (publishPermissionFound && readPermissionFound) {
 			// Mix of permissions, not allowed
 			permissionsAllowed = NO;
@@ -80,7 +99,8 @@
 }
 
 - (void) onLoginResult:(FBSDKLoginManagerLoginResult *) result
-				 error:(NSError *)error {
+				 error:(NSError *)error
+            controller:(UIViewController *) controller{
 	if (error) {
 		[self finishLogin:NO withError:error];
 	} else if (result.isCancelled) {
@@ -89,13 +109,48 @@
 		// all other cases are handled by the access token notification
 		NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
 		// Get loginradius access_token for facebook access_token
-        [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : accessToken} completionHandler:^(NSDictionary *data, NSError *error) {
-			NSString *token = [data objectForKey:@"access_token"];
-            [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
-                [self finishLogin:(error==nil) withError:error];
-            }];
-		}];
+        [self convertFacebookTokenToLRToken:accessToken inController:controller];
+        
 	}
+}
+
+- (void)convertFacebookTokenToLRToken :(NSString*)fb_token
+                            inController:(UIViewController *)controller {
+    
+    [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : fb_token} completionHandler:^(NSDictionary *data, NSError *error) {
+        NSString *token = [data objectForKey:@"access_token"];
+    
+        if([LoginRadiusSDK nativeSocialAskForRequiredFields]){
+            [[NSNotificationCenter defaultCenter] addObserver:self
+             selector:@selector(returnFromValidation:)
+                 name:@"returnFromHostedValidation"
+               object:nil];
+            //validate user profile on hosted page
+            [_safariLogin initWithAction:@"sociallogin" accessToken:token inController:controller];
+        }else{
+            [self getUserProfileAndPerformCallback:token];
+        }
+    }];
+}
+
+- (void) returnFromValidation:(NSNotification *)notification{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"returnFromHostedValidation" object:nil];
+    
+    NSDictionary *userInfo = [notification userInfo];
+    NSString *queryString = [userInfo objectForKey:@"query"];
+    NSDictionary *dict = [NSDictionary dictionaryWithQueryString:queryString];
+    NSString *token = [dict objectForKey:@"lrtoken"];
+    
+    [self.viewController.parentViewController dismissViewControllerAnimated:NO completion:^{
+        [self getUserProfileAndPerformCallback:token];
+    }];
+}
+
+- (void) getUserProfileAndPerformCallback: (NSString *) token{
+    [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
+        [self finishLogin:(error==nil) withError:error];
+    }];
 }
 
 - (void) logout {

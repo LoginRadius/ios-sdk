@@ -15,6 +15,7 @@ static NSString * const LoginRadiusV2RecaptchaSiteKey = @"V2RecaptchaSiteKey";
 static NSString * const LoginRadiusHostedPageURL = @"HostedPageURL";
 static NSString * const LoginRadiusEnableGoogleNativeInHosted = @"EnableGoogleNativeInHosted";
 static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebookNativeInHosted";
+static NSString * const LoginRadiusNativeSocialAskForRequiredFields = @"NativeSocialAskForRequiredFields";
 
 
 @interface LoginRadiusSDK ()
@@ -36,6 +37,8 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
     NSString *v2RecaptchaSiteKey = values[LoginRadiusV2RecaptchaSiteKey];
     BOOL enableGoogleNativeInHosted = [values[LoginRadiusEnableGoogleNativeInHosted] boolValue];
     BOOL enableFacebookNativeInHosted = [values[LoginRadiusEnableFacebookNativeInHosted] boolValue];
+    BOOL nativeSocialAskForRequiredFields = values[LoginRadiusNativeSocialAskForRequiredFields] ? [values[LoginRadiusNativeSocialAskForRequiredFields] boolValue] : YES; //if nil, always ask to verify those fields
+    
     NSString *hostedPageURL = (values[LoginRadiusHostedPageURL]&&[values[LoginRadiusHostedPageURL] length]!= 0)?values[LoginRadiusHostedPageURL]:@"https://cdn.loginradius.com/hub/prod/Theme/mobile-v4/index.html" ;
     NSURL *validateURL = [NSURL URLWithString:hostedPageURL];
 
@@ -51,6 +54,7 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
         _v2RecaptchaSiteKey = v2RecaptchaSiteKey;
         _enableGoogleNativeInHosted = enableGoogleNativeInHosted;
         _enableFacebookNativeInHosted = enableFacebookNativeInHosted;
+        _nativeSocialAskForRequiredFields = nativeSocialAskForRequiredFields;
         _hostedPageURL = [validateURL absoluteString];
 		_manager = [[LoginRadiusManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
@@ -112,6 +116,10 @@ static NSString * const LoginRadiusEnableFacebookNativeInHosted = @"EnableFacebo
 
 + (BOOL) enableGoogleNativeInHosted {
     return [LoginRadiusSDK sharedInstance].enableGoogleNativeInHosted;
+}
+
++ (BOOL) nativeSocialAskForRequiredFields {
+    return [LoginRadiusSDK sharedInstance].nativeSocialAskForRequiredFields;
 }
 
 #pragma mark Application Delegate methods

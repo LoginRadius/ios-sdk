@@ -9,9 +9,14 @@
 import LoginRadiusSDK
 import Eureka
 import SwiftyJSON
-/* Google Native SignIn
+/* Google Native Sign in
 import GoogleSignIn
 */
+
+/* Twitter Native Sign in
+import TwitterKit
+*/
+
 class DetailViewController: FormViewController {
 
     //List of countries provided from Apple's NSLocale class
@@ -50,7 +55,7 @@ class DetailViewController: FormViewController {
         
         //Small UI modification
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationItem.title = "User Profile"
+        self.navigationItem.title = "User Profile Swift"
         
         //Form setup
         self.form = Form()
@@ -110,10 +115,23 @@ class DetailViewController: FormViewController {
     }
     
     func logoutPressed() {
-        /* Google Native SignIn
+    
+        /* Google Native Sign in
         GIDSignIn.sharedInstance().signOut()
+        */
+        /* Twitter Native Sign in
+        twitterLogout()
         */
         LoginRadiusSDK.logout()
         let _ = self.navigationController?.popViewController(animated: true)
     }
+    /* Twitter Native Sign in
+    func twitterLogout(){
+        if let twitterSessions = Twitter.sharedInstance().sessionStore.existingUserSessions() as? [TWTRAuthSession]{
+            for session in twitterSessions{
+                Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
+            }
+        }
+    }
+    */
 }

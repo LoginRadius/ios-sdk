@@ -11,15 +11,16 @@
 #import "DetailViewController.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *googleNativeButton;
-@property (weak, nonatomic) IBOutlet UIButton *facebookNativeButton;
+@property (atomic) BOOL showNativeTwitter;
 @end
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.showNativeTwitter = NO;
     
     // Check if already login
     NSUserDefaults *lrUser = [NSUserDefaults standardUserDefaults];
@@ -50,30 +51,87 @@
     name:LoginRadiusSocialLoginEvent
     object:nil];
     
-    if([[LoginRadiusSDK sharedInstance] enableGoogleNativeInHosted])
+    [self setupForm];
+
+}
+
+- (void) setupForm
+{
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 3.5.0 🇮🇳";
+    
+    XLFormDescriptor * form;
+    XLFormSectionDescriptor * section;
+    XLFormRowDescriptor * row;
+
+    form = [XLFormDescriptor formDescriptor];
+
+    //Basic Section
+    section = [XLFormSectionDescriptor formSectionWithTitle:@" "];
+    [form addFormSection:section];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Login" rowType:XLFormRowDescriptorTypeButton title:@"Login"];
+    row.action.formSelector = @selector(login);
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Register" rowType:XLFormRowDescriptorTypeButton title:@"Register"];
+    row.action.formSelector = @selector(registration);
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"ForgotPassword" rowType:XLFormRowDescriptorTypeButton title:@"Forgot Password"];
+    row.action.formSelector = @selector(forgotPassword);
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"SocialLoginOnly" rowType:XLFormRowDescriptorTypeButton title:@"Social Login Only"];
+    row.action.formSelector = @selector(socialLoginOnly);
+    [section addFormRow:row];
+    
+    //end of Basic Section
+    
+    BOOL socialNativeLoginEnabled = (LoginRadiusSDK.enableGoogleNativeInHosted ||  LoginRadiusSDK.enableFacebookNativeInHosted || self.showNativeTwitter);
+    
+    if(socialNativeLoginEnabled)
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(showProfileController)
-        name:@"userAuthenticatedFromNativeGoogle"
-        object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(showNativeGoogleLogin:)
-        name:@"googleNative"
-        object:nil];
+        section = [XLFormSectionDescriptor formSectionWithTitle:@"Native Social Login"];
+        [form addFormSection:section];
         
-        _googleNativeButton.hidden = NO;
+        if([[LoginRadiusSDK sharedInstance] enableGoogleNativeInHosted])
+        {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(showProfileController)
+            name:@"userAuthenticatedFromNativeGoogle"
+            object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(showNativeGoogleLogin)
+            name:@"googleNative"
+            object:nil];
+            
+            row = [XLFormRowDescriptor formRowDescriptorWithTag:@"NativeGoogle" rowType:XLFormRowDescriptorTypeButton title:@"Google"];
+            row.action.formSelector = @selector(showNativeGoogleLogin);
+            [section addFormRow:row];
+        }
+        
+        if([[LoginRadiusSDK sharedInstance] enableFacebookNativeInHosted])
+        {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(showNativeFacebookLogin)
+            name:@"facebookNative"
+            object:nil];
+            row = [XLFormRowDescriptor formRowDescriptorWithTag:@"NativeFacebook" rowType:XLFormRowDescriptorTypeButton title:@"Facebook"];
+            row.action.formSelector = @selector(showNativeFacebookLogin);
+            [section addFormRow:row];
+        }
+        
+        if(self.showNativeTwitter)
+        {
+            row = [XLFormRowDescriptor formRowDescriptorWithTag:@"NativeTwitter" rowType:XLFormRowDescriptorTypeButton title:@"Twitter"];
+            row.action.formSelector = @selector(showNativeTwitterLogin);
+            [section addFormRow:row];
+        
+        }
+        
     }
     
-    if([[LoginRadiusSDK sharedInstance] enableFacebookNativeInHosted])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(showNativeFacebookLogin:)
-        name:@"facebookNative"
-        object:nil];
-        
-        _facebookNativeButton.hidden = NO;
-    }
-    
+    self.form = form;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,28 +140,28 @@
 }
 
 
-- (IBAction)registration:(id)sender {
+- (void)registration {
     [[LoginRadiusManager sharedInstance] registrationWithAction:@"registration" inController:self];
 }
 
-- (IBAction)login:(id)sender {
+- (void)login {
     [[LoginRadiusManager sharedInstance] registrationWithAction:@"login" inController:self];
 }
 
-- (IBAction)forgotPassword:(id)sender {
+- (void)forgotPassword {
     [[LoginRadiusManager sharedInstance] registrationWithAction:@"forgotpassword" inController:self];
 }
 
-- (IBAction)socialLoginOnly:(id)sender {
+- (void)socialLoginOnly {
     [[LoginRadiusManager sharedInstance] registrationWithAction:@"social" inController:self];
 }
 
-- (IBAction)showNativeGoogleLogin:(id)sender {
+- (void)showNativeGoogleLogin {
     /* Google Native SignIn
     
     if (self.presentedViewController != nil)
     {
-        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showNativeGoogleLogin:self];}];
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showNativeGoogleLogin];}];
         return;
     }
     
@@ -111,9 +169,9 @@
     */
 }
 
-- (IBAction)showNativeFacebookLogin:(id)sender {
+- (void)showNativeFacebookLogin {
 
-    [[LoginRadiusManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions": @[@"public_profile"]} inController:self completionHandler:^(BOOL success, NSError *error) {
+    [[LoginRadiusManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions": @[@"public_profile",@"email"]} inController:self completionHandler:^(BOOL success, NSError *error) {
     
         if (success) {
             [self showProfileController];
@@ -122,6 +180,25 @@
         }
     
     }];
+}
+
+- (void)showNativeTwitterLogin {
+    /* Twitter Native SignIn
+
+    [[Twitter sharedInstance] logInWithCompletion:
+    ^(TWTRSession * _Nullable session, NSError * _Nullable error) {
+        if (session){
+            [[LoginRadiusManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret inController:self completionHandler:^(BOOL success, NSError *error) {
+                if (success){
+                    [self showProfileController];
+                }else if(error){
+                    [self showAlert:@"ERROR" message:error.localizedDescription];
+                }
+            }];
+        } else if (error){
+            [self showAlert:@"ERROR" message:error.localizedDescription];
+        }
+    }];*/
 }
 
 - (void) receiveRegistration:(NSNotification *) notification

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) SFSafariViewController *safariController;
 @property (weak, nonatomic) UIViewController *viewController;
 @property(nonatomic, copy) NSString* provider;
+@property(nonatomic, copy) NSString* action;
 @end
 
 @implementation LoginRadiusSafariLogin
@@ -34,13 +35,15 @@
 }
 
 -(void)   initWithAction:(NSString*)action
+             accessToken:(NSString*)accessToken
             inController:(UIViewController*)controller {
 
     NSString *url_address;
 
     // Base version
     NSString *baseUrl = [LoginRadiusSDK hostedPageURL];
-
+    _action = action;
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"action": action,
                                                                                   @"sitename": [LoginRadiusSDK siteName],
@@ -58,12 +61,19 @@
     if ([LoginRadiusSDK enableFacebookNativeInHosted]) {
         [params setObject: @"true" forKey:@"facebookNative"];
     }
+    
+    if (accessToken) {
+        [params setObject: accessToken forKey:@"lrtoken"];
+    }
 
     NSString *urlParams = [[params copy] queryString];
     url_address = [[NSString alloc] initWithFormat:@"%@%@", baseUrl, urlParams];
     NSURL *url = [NSURL URLWithString:url_address];
-
     SFSafariViewController *sfcontroller = [[SFSafariViewController alloc] initWithURL:url];
+    if (@available(iOS 11.0, *)) {
+        [NSThread sleepForTimeInterval:0.5f];
+        //XCode 9 issue on iOS 11, without the above line it will produce a blank safari page
+    }
     sfcontroller.delegate = self;
     [controller presentViewController:sfcontroller animated:NO completion:nil];
     self.safariController = sfcontroller;
@@ -73,7 +83,7 @@
 #pragma mark - Web View Delegates
 - (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self finishRaasAction:@"usercancelled" withError:[LRErrors serviceCancelled] ];
+        [self finishRaasAction:_action withError:[LRErrors serviceCancelled] ];
     });
 }
 
@@ -180,15 +190,20 @@
 }
 
 - (void)finishRaasAction:(NSString*)action withError:(NSError*) error {
-    [self.viewController dismissViewControllerAnimated:YES completion: ^{
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObject: error ? error : [NSNull null]
-         forKey:@"error"];
-        
-        [[NSNotificationCenter defaultCenter]
-          postNotificationName:[NSString stringWithFormat:@"lr-%@", action]
-          object:self
-          userInfo: userInfo];
-    }];
+
+    if([action  isEqual: @"sociallogin"]){
+        action = @"social";
+    }
+
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject: error ? error : [NSNull null]
+     forKey:@"error"];
+    [[NSNotificationCenter defaultCenter]
+      postNotificationName:[NSString stringWithFormat:@"lr-%@", action]
+      object:self
+      userInfo: userInfo];
+
+    [self.viewController.parentViewController dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 @end

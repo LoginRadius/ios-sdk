@@ -63,6 +63,11 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
  */
 @property (readonly, nonatomic) BOOL enableFacebookNativeInHosted;
 
+/**
+ Enable Required Fields Validation on Social Native in Hosted Page
+ */
+@property (readonly, nonatomic) BOOL nativeSocialAskForRequiredFields;
+
 #pragma mark - Initilizers
 
 /**
@@ -122,6 +127,13 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError *error);
  @return Returns whether to use facebook native login
  */
 + (BOOL)enableFacebookNativeInHosted;
+
+/**
+ Configuration on checking validation
+
+ @return Returns whether to validate required fields on native social providers
+ */
++ (BOOL) nativeSocialAskForRequiredFields;
 
 #pragma mark - Application Delegate methods
 

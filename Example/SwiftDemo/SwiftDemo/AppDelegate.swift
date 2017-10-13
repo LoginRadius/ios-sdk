@@ -8,15 +8,15 @@
 
 import UIKit
 import LoginRadiusSDK
-
-/* Google Native SignIn
+/* Google Native Sign in
 import GoogleSignIn
-import Google
 */
-
+/* Twitter Native Sign in
+import TwitterKit
+*/
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
-/* Google Native SignIn
+/* Google Native Sign in
 , GIDSignInDelegate
 */
 {
@@ -30,13 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         let sdk:LoginRadiusSDK = LoginRadiusSDK.instance();
         sdk.applicationLaunched(options: launchOptions);
         
-        /* Google Native SignIn
-        var configureError: NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
-    
+        /* Google Native Sign in
+        GIDSignIn.sharedInstance().clientID = "Your google client id"
         GIDSignIn.sharedInstance().delegate = self
-        */
+         */
+        
+        /* Twitter Native Sign in
+        Twitter.sharedInstance().start(withConsumerKey:"Your twitter consumer key", consumerSecret:"Your twitter consumer SECRET key")
+         */
+        
         
         return true
     }
@@ -67,15 +69,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         var canOpen = false
         
-        /* Google Native SignIn
+        /* Google Native Sign in
         canOpen = (canOpen || GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
         */
+        
+        /* Twitter Native Sign in
+        canOpen = (canOpen || Twitter.sharedInstance().application(app, open: url, options: options))
+         */
+         
         canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
     
         return canOpen
     }
     
-    /* Google Native SignIn
+    /* Google Native Sign in
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     
         if let err = error
@@ -85,16 +92,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         else
         {
             let idToken: String = user.authentication.accessToken
-            LoginRadiusManager.sharedInstance().nativeGoogleLogin(withAccessToken: idToken, completionHandler: {(_ success: Bool, _ error: Error?) -> Void in
-                if success {
-                    print("successfully logged in with google")
-                    NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: nil)
-     
-                }
-                else {
-                    print("Error: \(String(describing: error?.localizedDescription))")
-                }
-            })
+            if let navVC = self.window?.rootViewController as? UINavigationController,
+            let currentVC = navVC.topViewController
+            {
+                LoginRadiusManager.sharedInstance().convertGoogleToken(toLRToken: idToken, in:currentVC, completionHandler: {(_ success: Bool, _ error: Error?) -> Void in
+                    if success {
+                        print("successfully logged in with google")
+                        NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: nil)
+                    }
+                    else {
+                        print("Error: \(String(describing: error?.localizedDescription))")
+                    }
+                })
+            }
         }
     }*/
 

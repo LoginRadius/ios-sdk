@@ -1,45 +1,39 @@
 //
-//  LoginRadiusTwitterLogin.m
+//  LoginRadiusGoogleLogin.m
+//  LoginRadiusSDK
 //
-//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//  Created by Thompson Sanjoto on 2017-09-22.
 //
 
-#import "LoginRadiusTwitterLogin.h"
+#import "LoginRadiusGoogleLogin.h"
 #import "LoginRadiusREST.h"
 #import "LRClient.h"
 #import "LRErrors.h"
 #import "LoginRadiusSafariLogin.h"
 #import "NSDictionary+LRDictionary.h"
 
-@interface LoginRadiusTwitterLogin()
+@interface LoginRadiusGoogleLogin ()
 @property(nonatomic, copy) LRServiceCompletionHandler handler;
 @property(nonatomic, strong) LoginRadiusSafariLogin * safariLogin;
 @property(nonatomic, strong) UIViewController * viewController;
-
 @end
 
-@implementation LoginRadiusTwitterLogin
+@implementation LoginRadiusGoogleLogin
 
 -(instancetype)init {
-	self = [super init];
-	if (self) {
+    self = [super init];
+    if (self) {
         _safariLogin = [[LoginRadiusSafariLogin alloc] init];
-	}
-	return self;
+    }
+    return self;
 }
 
-- (void)getLRTokenWithTwitterToken:(NSString*)twitter_token
-                        twitterSecret:(NSString*)twitter_secret
-                       inController:(UIViewController *)controller
-                        handler:(LRServiceCompletionHandler)handler{
+- (void)convertGoogleTokenToLRToken :(NSString*)google_token
+                            inController:(UIViewController *)controller
+                                 handler:(LRServiceCompletionHandler) handler {
     self.handler = handler;
     self.viewController = controller;
-    [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/twitter"
-                                  queryParams:@{@"key": [LoginRadiusSDK apiKey],
-                                                @"tw_access_token" : twitter_token,
-                                                @"tw_token_secret":twitter_secret
-                                                }
-                                    completionHandler:^(NSDictionary *data, NSError *error) {
+     [[LoginRadiusREST sharedInstance] sendGET:@"api/v2/access_token/google" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"google_access_token" : google_token} completionHandler:^(NSDictionary *data, NSError *error) {
         NSString *token = [data objectForKey:@"access_token"];
         
         if([LoginRadiusSDK nativeSocialAskForRequiredFields]){
@@ -50,7 +44,6 @@
             
             //validate user profile on hosted page
             [_safariLogin initWithAction:@"sociallogin" accessToken:token inController:controller];
-
         }else{
             [self getUserProfileAndPerformCallback:token];
         }
@@ -65,6 +58,7 @@
     NSString *queryString = [userInfo objectForKey:@"query"];
     NSDictionary *dict = [NSDictionary dictionaryWithQueryString:queryString];
     NSString *token = [dict objectForKey:@"lrtoken"];
+    
     [self.viewController.parentViewController dismissViewControllerAnimated:NO completion:^{
         [self getUserProfileAndPerformCallback:token];
     }];
@@ -80,14 +74,15 @@
 - (void) getUserProfileAndPerformCallback: (NSString *) token{
     [[LRClient sharedInstance] getUserProfileWithAccessToken:token isNative:YES completionHandler:^(NSDictionary *data, NSError *error) {
         [self finishLogin:(error==nil) withError:error];
-    }];
+    }]; 
 }
 
-- (void)finishLogin:(BOOL)success withError:(NSError*)error {
+- (void)finishLogin:(BOOL) success withError:(NSError*) error {
     if (self.handler) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.handler(success, error);
         });
     }
 }
+
 @end

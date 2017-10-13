@@ -61,25 +61,27 @@
 /**
  Native Twitter Login
 
- @param consumerKey Your Twitter app's Consumer Key
- @param consumerSecret Your Twitter app's Consumer Secret
- @param controller view controller where social login take place should not be nil
+ @param twitterAccessToken Your Twitter User's Access Token
+ @param twitterSecret Your Twitter app's Consumer Secret
+ @param controller view controller where Twitter login take place should not be nil
  @param handler code block executed after completion
  */
--(void)nativeTwitterWithConsumerKey:(NSString*)consumerKey
-                     consumerSecret:(NSString*)consumerSecret
-                       inController:(UIViewController*)controller
-                  completionHandler:(LRServiceCompletionHandler)handler;
+- (void)convertTwitterTokenToLRToken:(NSString *)twitterAccessToken
+                       twitterSecret:(NSString *)twitterSecret
+                       inController:(UIViewController *)controller
+                       completionHandler:(LRServiceCompletionHandler)handler;
 
 
 /**
  Native Google Login
 
- @param access_token Google Access Token
+ @param google_token Google Access Token
+ @param controller view controller where google login take place should not be nil
  @param handler code block executed after completion
  */
--(void)nativeGoogleLoginWithAccessToken:(NSString*)access_token
-                      completionHandler:(LRServiceCompletionHandler)handler;
+-(void)convertGoogleTokenToLRToken:(NSString*)google_token
+                      inController:(UIViewController *)controller
+                  completionHandler:(LRServiceCompletionHandler)handler;
 
 /**
     Log out the user

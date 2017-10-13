@@ -1,3 +1,22 @@
+3.5.0 Release notes (2017-09-27)
+=============================================================
+
+### Enhancements
+* Support XCode 9 compiler
+* Update UI for Objective C Demo
+* Update from Swift 3.2 to Swift 4, in the Swift Demo
+
+### Bugfixes
+* Add missing fields validation on native social login flows
+* Fix Twitter Native Authentication flow in iOS 11
+
+3.4.1 Release notes (2017-06-05)
+=============================================================
+
+### Bugfixes
+
+* Handle Native Call to take account Verified fields and Email Verified.
+
 3.4.0 Release notes (2017-06-05)
 =============================================================
 

@@ -15,6 +15,7 @@
             inController:(UIViewController*)controller;
 
 -(void)   initWithAction:(NSString*)action
+             accessToken:(NSString*)accessToken
             inController:(UIViewController*)controller;
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;

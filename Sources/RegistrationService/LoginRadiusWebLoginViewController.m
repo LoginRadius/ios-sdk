@@ -176,7 +176,7 @@
         NSDictionary* userInfo = [NSDictionary dictionaryWithObject:error forKey:@"error"];
         
         [[NSNotificationCenter defaultCenter]
-          postNotificationName:@"lr-social"
+          postNotificationName:LoginRadiusSocialLoginEvent
           object:self
           userInfo: userInfo];
     }];
