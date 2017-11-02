@@ -61,8 +61,6 @@
             }else{
                 [self convertFacebookTokenToLRToken:[token tokenString] inController:controller];
             }
-  
-			[self finishLogin:[[[LoginRadiusSDK sharedInstance] session] userProfile] withError:nil];
 		} else if (publishPermissionFound && readPermissionFound) {
 			// Mix of permissions, not allowed
 			permissionsAllowed = NO;

@@ -1,3 +1,9 @@
+4.1.1 Release notes (2017-11-02)
+=============================================================
+
+### Bugfixes
+* Fix Facebook Native calling finishlogin twice on 0 permission
+
 4.1.0 Release notes (2017-09-27)
 =============================================================
 ### Enhancements
