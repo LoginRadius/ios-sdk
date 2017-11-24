@@ -40,7 +40,7 @@
 - (void)authCheckEmailAvailability:(NSString*)email
 				 completionHandler:(LRAPIResponseHandler)completion;
 
-- (void)authUserNameAvailability:(NSString*)email
+- (void)authUserNameAvailability:(NSString*)username
 			   completionHandler:(LRAPIResponseHandler)completion;
 
 #pragma mark - Login

@@ -101,9 +101,18 @@ class FullDetailViewController: FormViewController {
     {
         var lastSection:Section = form.last!
             
-        if let int =  userInfo.int
+        if let bool = userInfo.bool
         {
-        
+            //print("\(key) is a Bool")
+            lastSection <<< TextRow(key)
+            {
+                $0.title = $0.tag
+                $0.value = (bool ? "true" : "false")
+                $0.disabled = Condition(booleanLiteral: true)
+            }
+            
+        } else if let int =  userInfo.int
+        {
             //print("\(key) is an Int")
             lastSection <<< IntRow(key)
             {
@@ -111,16 +120,6 @@ class FullDetailViewController: FormViewController {
                 $0.value = int
                 $0.disabled = Condition(booleanLiteral: true)
             }
-        }else if let bool = userInfo.bool
-        {
-            //print("\(key) is a Bool")
-            lastSection <<< SwitchRow(key)
-            {
-                $0.title = $0.tag
-                $0.value = bool
-                $0.disabled = Condition(booleanLiteral: true)
-            }
-            
         }else if let str = userInfo.string
         {
             //print("\(key) is a String")

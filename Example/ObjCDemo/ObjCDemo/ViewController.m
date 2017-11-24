@@ -106,7 +106,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 4.1.0 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 4.1.2 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;

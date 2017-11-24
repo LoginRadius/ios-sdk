@@ -173,12 +173,16 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 4.1.0 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 4.1.2 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
-        let loginCondition = Condition.function(["Login"], { form in
-            return !((form.rowBy(tag: "Login") as? SwitchRow)?.value ?? false)
+        let loginCondition = Condition.function(["Login by Email"], { form in
+            return !((form.rowBy(tag: "Login by Email") as? SwitchRow)?.value ?? false)
+        })
+        
+        let loginByUsernameCondition = Condition.function(["Login by Username"], { form in
+            return !((form.rowBy(tag: "Login by Username") as? SwitchRow)?.value ?? false)
         })
         
         let staticRegisterCondition = Condition.function(["Static Registration"], { form in
@@ -196,7 +200,7 @@ class ViewController: FormViewController
         
         //Create UI forms
         form +++ Section("Traditional Login")
-            <<< SwitchRow("Login")
+            <<< SwitchRow("Login by Email")
             {
                 $0.title = $0.tag
             }
@@ -212,7 +216,6 @@ class ViewController: FormViewController
                 $0.title = "Password"
                 $0.hidden = loginCondition
                 $0.add(rule: RuleRequired(msg: "Password Required"))
-                $0.add(rule: RuleMinLength(minLength: 6, msg: "Length of password must be at least 6"))
             }
             <<< ButtonRow("Login send")
             {
@@ -220,6 +223,29 @@ class ViewController: FormViewController
                 $0.hidden = loginCondition
                 }.onCellSelection{ cell, row in
                     self.traditionalLogin()
+            }
+            <<< SwitchRow("Login by Username")
+            {
+                $0.title = $0.tag
+            }
+            <<< AccountRow("Username Login")
+            {
+                $0.title = "Username"
+                $0.hidden = loginByUsernameCondition
+                $0.add(rule: RuleRequired(msg: "Username Required"))
+            }
+            <<< PasswordRow("Password Username Login")
+            {
+                $0.title = "Password"
+                $0.hidden = loginByUsernameCondition
+                $0.add(rule: RuleRequired(msg: "Password Required"))
+            }
+            <<< ButtonRow("Login Username send")
+            {
+                $0.title = "Login"
+                $0.hidden = loginByUsernameCondition
+                }.onCellSelection{ cell, row in
+                    self.usernameLogin()
             }
             
             +++ Section("Dynamic Registration Section")
@@ -258,7 +284,7 @@ class ViewController: FormViewController
                 $0.add(rule: RuleRequired(msg: "Email Required"))
                 $0.add(rule: RuleEmail(msg: "Incorrect Email format"))
             }.onChange{ row in
-                self.toggleEmailRegisterAvailability(emailRowTag:row.tag!, available:nil)
+                self.toggleRegisterAvailability(rowTag:row.tag!,msgName: "email", available:nil)
             }.onCellHighlightChanged{ cell, row in
                 //if the user resign other email input field and press something else
                 if (!row.isHighlighted)
@@ -456,6 +482,12 @@ class ViewController: FormViewController
         // The SOTT staticly from LoginRadius Dashboard with the longest endDate
         
         let sott = "<Your static sott>"
+        
+        if(sott == "<Your static sott>"){
+            showAlert(title: "ERROR", message: "For registration you need a SOTT, you can find it in the LoginRadius dashboard or generate one in your server")
+            return
+        }
+
         completion(sott)
         
     }
@@ -614,6 +646,28 @@ class ViewController: FormViewController
         })
     }
     
+    func usernameLogin(){
+        var errors = form.rowBy(tag: "Username Login")!.validate()
+        errors += form.rowBy(tag: "Password Username Login")!.validate()
+        
+        if errors.count > 0
+        {
+            showAlert(title: "ERROR", message: errors[0].msg)
+            return
+        }
+        
+        let username = form.rowBy(tag: "Username Login")!.baseValue! as! String
+        let password = form.rowBy(tag: "Password Username Login")!.baseValue! as! String
+    
+        LoginRadiusRegistrationManager.sharedInstance().authLogin(withUserName: username, withPassword: password, loginUrl: "", verificationUrl: "", emailTemplate: "", completionHandler: { (data, error) in
+            if let err = error {
+                self.checkForMissingFieldError(data:data, error:err)
+            } else {
+                self.showProfileController()
+            }
+        })
+    }
+    
     func forgotPassword() {
     
         var errors = form.rowBy(tag: "Email Forgot")!.validate()
@@ -730,7 +784,7 @@ class ViewController: FormViewController
         let e = error as NSError
         if e.code == LRErrorCode.userRequireAdditionalFieldsError.rawValue
         {
-            self.performSegue(withIdentifier: "missingfields", sender: data);
+            self.attemptToSegue(identifier: "missingfields", sender: self)
         }else
         {
             let descriptiveReason = (e.localizedFailureReason != nil) ? "\n\n\(e.localizedFailureReason!)" : ""
@@ -743,7 +797,7 @@ class ViewController: FormViewController
         {
             if LoginRadiusSDK.sharedInstance().session.isLoggedIn
             {
-                self.performSegue(withIdentifier: "profile", sender: self);
+                self.attemptToSegue(identifier: "profile", sender: self)
             }else
             {
                 print("Attempted to go to profile view controller when not logged in")
@@ -752,23 +806,49 @@ class ViewController: FormViewController
     }
     
         
-    //to eliminate "< Back" button showing up when user already logged in
+    func attemptToSegue(identifier: String, sender: Any?){
+        if(self.shouldPerformSegue(withIdentifier: identifier, sender: sender)){
+            self.performSegue(withIdentifier: identifier, sender: sender)
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool
+    {
+        var shouldSegue = false
+        if let nav = self.navigationController{
+            shouldSegue = nav.viewControllers.count <= 1
+        }
+        return shouldSegue
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "profile"
         {
+            //to eliminate "< Back" button showing up when user already logged in
             segue.destination.navigationItem.hidesBackButton = true
+            resetFormValues()
         } else if segue.identifier == "missingfields",
             let data = sender as? Dictionary<String, Any>,
             let token = data["AccessToken"] as? String,
-            let missingFields = data["MissingRequiredFields"] as?[LoginRadiusField]
+            let missingFields = data["MissingRequiredFields"] as? [LoginRadiusField]
         {
             let mfVC = segue.destination as! MissingFieldsViewController
             mfVC.accessToken = token
             mfVC.lrFields = missingFields
+            resetFormValues()
         }else{
             print("unknown handler for segue")
         }
+        
+    }
+    
+    func resetFormValues(){
+        for rows in form.allRows {
+            rows.baseValue = nil
+        }
+        tableView.reloadData()
+        
     }
 }
 

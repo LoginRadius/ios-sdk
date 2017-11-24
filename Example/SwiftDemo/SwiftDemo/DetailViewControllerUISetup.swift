@@ -62,7 +62,6 @@ extension DetailViewController
         {
             $0.title = $0.tag
             $0.hidden = profileCondition
-            $0.hidden = profileCondition
             $0.value = userEmail ?? nil
             $0.disabled = Condition(booleanLiteral: true)
         }
@@ -83,6 +82,12 @@ extension DetailViewController
             $0.validationOptions = .validatesOnDemand
             }.onRowValidationChanged { cell, row in
                 self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        } 
+        <<< TextRow("IsSecurePassword"){
+            $0.title = $0.tag
+            $0.hidden = profileCondition
+            $0.value = (userProfile[$0.tag!].boolValue ? "true" : "false")
+            $0.disabled = Condition(booleanLiteral: true)
         }
         <<< ButtonRow("Update Profile")
         {

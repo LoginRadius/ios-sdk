@@ -47,7 +47,7 @@ class MissingFieldsViewController: FormViewController
         
         self.form +++ mfSection
         
-        setupDynamicRegistrationForm(lrFields: lrFields, dynamicRegSection: mfSection, loadingRow: nil, hiddenCondition: nil, sendButtonTitle: "Send", askForEmailAvailability: false,sendHandler:
+        setupDynamicRegistrationForm(lrFields: lrFields, dynamicRegSection: mfSection, loadingRow: nil, hiddenCondition: nil, sendButtonTitle: "Send", askForEmailAvailability: false, askForUsernameAvailability:false, sendHandler:
         {
             self.validateUserProfileInput()
         })

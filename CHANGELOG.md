@@ -1,3 +1,14 @@
+4.1.2 Release notes (2017-11-02)
+=============================================================
+
+### SwiftDemo Enhancements
+* Add Login by Username
+* Automatically call Username Availability when Username is in dynamic registration
+* Add asserts on SOTT if not initialized
+
+### Bugfixes
+* Fix Username Availability Call
+
 4.1.1 Release notes (2017-11-02)
 =============================================================
 

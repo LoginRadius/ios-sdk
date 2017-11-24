@@ -14,7 +14,7 @@ import LoginRadiusSDK
 //Converts LoginRadius Fields to Eureka Rows
 extension FormViewController
 {
-    func setupDynamicRegistrationForm(lrFields:[LoginRadiusField]?,dynamicRegSection:Section, loadingRow:LabelRow?, hiddenCondition:Condition?, sendButtonTitle:String? = "Register",askForEmailAvailability:Bool = true,sendHandler:(()->Void)?)
+    func setupDynamicRegistrationForm(lrFields:[LoginRadiusField]?,dynamicRegSection:Section, loadingRow:LabelRow?, hiddenCondition:Condition?, sendButtonTitle:String? = "Register",askForEmailAvailability:Bool = true, askForUsernameAvailability:Bool = true, sendHandler:(()->Void)?)
     {
         if let fields = lrFields
         {
@@ -24,13 +24,37 @@ extension FormViewController
                 switch field.type
                 {
                     case .STRING:
-                        dynamicRegSection <<< AccountRow(field.name)
+                    
+                        if (field.name != "username")
                         {
-                            $0.title = field.display
-                            $0.hidden = hiddenCondition
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
-                            self.setRegistrationRowRules(field: field, row: $0)
-
+                            dynamicRegSection <<< AccountRow(field.name)
+                            {
+                                $0.title = field.display
+                                $0.hidden = hiddenCondition
+                                $0.disabled = Condition(booleanLiteral: field.permission == .READ)
+                                self.setRegistrationRowRules(field: field, row: $0)
+                            }
+                        }else{
+                            dynamicRegSection <<< AccountRow(field.name)
+                            {
+                                $0.title = field.display
+                                $0.hidden = hiddenCondition
+                                $0.disabled = Condition(booleanLiteral: field.permission == .READ)
+                                self.setRegistrationRowRules(field: field, row: $0)
+                            }.onChange{ row in
+                                if (askForUsernameAvailability){
+                                    self.toggleRegisterAvailability(rowTag:row.tag!, msgName: field.name, available:nil)
+                                }
+                            }.onCellHighlightChanged{ cell, row in
+                                //if the user resign other email input field and press something else
+                                if (!row.isHighlighted && askForUsernameAvailability)
+                                {
+                                    //check for email availability
+                                    self.checkUsernameAvailability(usernameStr: row.value ?? "", usernameRowTag: row.tag!)
+                                }
+                        }
+                        
+                        
                         }
                     case .OPTION:
                         dynamicRegSection <<< AlertRow<String>(field.name)
@@ -86,7 +110,7 @@ extension FormViewController
                             self.setRegistrationRowRules(field: field, row: $0 )
                         }.onChange{ row in
                             if (askForEmailAvailability){
-                                self.toggleEmailRegisterAvailability(emailRowTag:row.tag!, available:nil)
+                                self.toggleRegisterAvailability(rowTag:row.tag!, msgName: field.name, available:nil)
                             }
                         }.onCellHighlightChanged{ cell, row in
                             //if the user resign other email input field and press something else
@@ -191,26 +215,26 @@ extension FormViewController
         }
     }
     
-    func toggleEmailRegisterAvailability(emailRowTag:String, available:Bool?)
+    func toggleRegisterAvailability(rowTag:String, msgName:String,available:Bool?)
     {
         DispatchQueue.main.async {
-            if let emailRow = self.form.rowBy(tag:emailRowTag),
-               let cell = emailRow.baseCell as? EmailCell
+            if let idRow = self.form.rowBy(tag:rowTag),
+               let cell = idRow.baseCell
             {
                 if let isValid = available,
-                    emailRow.validate().count == 0
+                    idRow.validate().count == 0
                 {
                     if isValid
                     {
-                        print("email is available")
+                        print("\(msgName) is available")
                         cell.layer.borderWidth = 3
                         cell.layer.borderColor = UIColor.green.cgColor
                     }else
                     {
-                        print("email is not available")
+                        print("\(msgName) is not available")
                         cell.layer.borderWidth = 3
                         cell.layer.borderColor = UIColor.red.cgColor
-                        self.showAlert(title: "ERROR", message: "Email is not available")
+                        self.showAlert(title: "ERROR", message: "\(msgName) is not available")
                     }
                 }else
                 {
@@ -245,7 +269,27 @@ extension FormViewController
             if let data = response,
                let isExist = data["IsExist"] as? Bool
             {
-                self.toggleEmailRegisterAvailability(emailRowTag: emailRowTag, available: !isExist)
+                self.toggleRegisterAvailability(rowTag: emailRowTag, msgName:"email" ,available: !isExist)
+            } else {
+                print(error?.localizedDescription ?? "unknown error")
+            }
+        })
+    }
+    
+    func checkUsernameAvailability(usernameStr:String, usernameRowTag:String){
+        guard let usernameRow = self.form.rowBy(tag:usernameRowTag),
+            usernameRow.validate().count == 0
+        else
+        {
+            return
+        }
+    
+        LoginRadiusRegistrationManager.sharedInstance().authUserNameAvailability(usernameStr, completionHandler: {
+            (response, error) in
+            if let data = response,
+               let isExist = data["IsExist"] as? Bool
+            {
+                self.toggleRegisterAvailability(rowTag: usernameRowTag,msgName: "username", available: !isExist)
             } else {
                 print(error?.localizedDescription ?? "unknown error")
             }

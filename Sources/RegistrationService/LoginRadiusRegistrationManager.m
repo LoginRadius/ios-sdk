@@ -104,13 +104,13 @@ static NSString * const defaultUrl = @"https://auth.lrcontent.com/mobile/verific
                             completionHandler:completion];
 }
 
-- (void)authUserNameAvailability:(NSString*)email
+- (void)authUserNameAvailability:(NSString*)username
 			   completionHandler:(LRAPIResponseHandler)completion {
 
 	[[LoginRadiusREST apiInstance] sendGET:@"identity/v2/auth/username"
 								  queryParams:@{
 												@"apikey": [LoginRadiusSDK apiKey],
-												@"email": email
+												@"username": username
 												}
                             completionHandler:completion];
 }
