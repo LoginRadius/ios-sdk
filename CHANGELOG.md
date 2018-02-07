@@ -7,7 +7,7 @@
 * All the classes are restructed and 'Registration Service' class is depericated, inplace of this now we have multiple sections of Api such as:
  AuthenticationAPI,SocialAPI,CustomObjectAPI,AutoLoginAPI,ConfigurationAPI,InstantLoginAPI,SimplifiedRegistrationAPI.
 
-###Enhancements
+### Enhancements
 
 * Tiny size overhead to your application, below 380kb for everything.
 * Improved native login performance for better native user experience.
