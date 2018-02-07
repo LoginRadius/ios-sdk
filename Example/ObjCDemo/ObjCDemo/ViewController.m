@@ -10,7 +10,6 @@
 #import "LoginRadius.h"
 #import "DetailViewController.h"
 #import "XLFormViewControllerExtension.h"
-#import <AFNetworking/AFNetworking.h>
 #import "AppDelegate.h"
 
 @interface ViewController ()
@@ -20,6 +19,7 @@
 @property ( nonatomic) int socialLoadingDots;
 @property ( nonatomic, nullable) NSTimer *registrationLoadingTimer;
 @property ( nonatomic) int registrationLoadingDots;
+
 @end
 
 @implementation ViewController
@@ -29,35 +29,45 @@
     [super viewDidLoad];
     
     // Check if already login
-    if([LoginRadiusSDK invalidateAndDeleteAccessTokenOnLogout])
+    if([[[LoginRadiusSDK sharedInstance] session] isLoggedIn])
     {
         [self showProfileController];
     }
     
     /* Google Native SignIn
-    [GIDSignIn sharedInstance].uiDelegate = self;
-    */
+     [GIDSignIn sharedInstance].uiDelegate = self;
+     */
     [self setupForm];
     
-    [[LoginRadiusSocialLoginManager sharedInstance] getSocialProvidersListWithCompletion:
-        ^(NSDictionary * data, NSError * error)
-        {
-            if ([[data objectForKey:@"Providers"] isKindOfClass:NSArray.class])
-            {
-                self.socialProviders = [data objectForKey:@"Providers"];
-            }else
-            {
-                [self showAlert:@"ERROR" message:[error localizedDescription]];
-            }
 
-            dispatch_async(dispatch_get_main_queue(), ^(void)
+
+    [[ConfigurationAPI configInstance] getConfigurationSchema:^(NSDictionary *data, NSError *error) {
+        
+        if (data[@"SocialSchema"]){
+            
+            [[LoginRadiusSchema sharedInstance] setSchema:data];
+            NSArray<LoginRadiusField *> *rFields = [[LoginRadiusSchema sharedInstance] providers];
+            
+            NSMutableArray *providersList = [[NSMutableArray alloc] init];
+            for (LoginRadiusField *provider in rFields)
             {
-                    [[self socialLoadingTimer] invalidate];
-                    [self setupSocialLoginForm];
-            });
-        }];
+                [providersList addObject:[provider providerName]];
+            }
+           self.socialProviders = providersList;
+            
+          }else{
+              
+         [self showAlert:@"ERROR" message:[error localizedDescription]];
+     }
+     
+     dispatch_async(dispatch_get_main_queue(), ^(void)
+                    {
+                        [[self socialLoadingTimer] invalidate];
+                        [self setupSocialLoginForm];
+                    });
+     }];
     
-        self.socialLoadingTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateSocialLoadingText) userInfo:nil repeats:YES];
+    self.socialLoadingTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateSocialLoadingText) userInfo:nil repeats:YES];
     
     
 }
@@ -65,12 +75,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if([LoginRadiusSDK invalidateAndDeleteAccessTokenOnLogout])
+    if([[[LoginRadiusSDK sharedInstance] session] isLoggedIn])
     {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showProfileController)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
+                                                 selector:@selector(showProfileController)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
     }
 }
 
@@ -88,17 +98,17 @@
 {
     NSString *staticloadingTxt = @"Loading";
     NSMutableString *loadingTxt = [staticloadingTxt mutableCopy];
-
+    
     _socialLoadingDots = (_socialLoadingDots + 1)%3;
     
     for (int i = 0; i <= _socialLoadingDots; i++)
     {
         [loadingTxt appendFormat:@"%c", '.'];
     }
-   
+    
     if ( [self.form formRowWithTag:@"SocialLoginsLoading"])
     {
-         XLFormRowDescriptor *loadingRow = [self.form formRowWithTag:@"SocialLoginsLoading"];
+        XLFormRowDescriptor *loadingRow = [self.form formRowWithTag:@"SocialLoginsLoading"];
         loadingRow.title = [loadingTxt copy];
         [self reloadFormRow:loadingRow];
     }
@@ -106,15 +116,15 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 4.1.2 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.0.0 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
     XLFormRowDescriptor * row;
     XLFormRowDescriptor * switchRow;
-
+    
     form = [XLFormDescriptor formDescriptor];
-
+    
     //Login Section
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Traditional Login"];
     [form addFormSection:section];
@@ -122,14 +132,14 @@
     switchRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"Login" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Login"];
     switchRow.value = @0;
     [section addFormRow:switchRow];
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"EmailLogin" rowType:XLFormRowDescriptorTypeEmail title:@"Email"];
     [row addValidator:[XLFormValidator emailValidator]];
     row.required = YES;
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     [section addFormRow:row];
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"PasswordLogin" rowType:XLFormRowDescriptorTypePassword title:@"Password"];
     row.required = YES;
     [row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"Length of password must be at least 6" regex:@"^.{6,}$"]];
@@ -142,7 +152,7 @@
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [section addFormRow:row];
     //end of Login Section
-
+    
     //Register Section
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
@@ -150,14 +160,14 @@
     switchRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"StaticRegistration" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Static Registration"];
     switchRow.value = @0;
     [section addFormRow:switchRow];
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"EmailStaticRegister" rowType:XLFormRowDescriptorTypeEmail title:@"Email"];
     [row addValidator:[XLFormValidator emailValidator]];
     row.required = YES;
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     [section addFormRow:row];
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"PasswordStaticRegister" rowType:XLFormRowDescriptorTypePassword title:@"Password"];
     row.required = YES;
     [row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"Length of password must be at least 6" regex:@"^.{6,}$"]];
@@ -184,23 +194,23 @@
     switchRow = [XLFormRowDescriptor formRowDescriptorWithTag:@"ForgotPassword" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Forgot Password"];
     switchRow.value = @0;
     [section addFormRow:switchRow];
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"EmailForgot" rowType:XLFormRowDescriptorTypeEmail title:@"Email"];
     [row addValidator:[XLFormValidator emailValidator]];
     row.required = YES;
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     [section addFormRow:row];
-
+    
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"ForgotSend" rowType:XLFormRowDescriptorTypeButton title:@"Request Password"];
     row.action.formSelector = @selector(forgotPassword);
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [section addFormRow:row];
     //end of Forgot Password Section
-
+    
     //Social Login Section
-    if(![LoginRadiusSDK invalidateAndDeleteAccessTokenOnLogout])
+    if(![[[LoginRadiusSDK sharedInstance] session] isLoggedIn])
     {
         section = [XLFormSectionDescriptor formSectionWithTitle:@"Touch ID"];
         [form addFormSection:section];
@@ -209,18 +219,18 @@
         row.action.formSelector = @selector(showTouchIDLogin);
         [section addFormRow:row];
     }
-
+    
     //Social Login Section
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Normal Social Logins"];
     [form addFormSection:section];
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"SocialLoginsLoading" rowType:XLFormRowDescriptorTypeInfo title:@"Loading"];
     [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
     //end of Social PasswoLoginrd Section
     
     BOOL socialNativeLoginEnabled = (AppDelegate.useGoogleNative ||  AppDelegate.useTwitterNative || AppDelegate.useFacebookNative);
-        
+    
     if(socialNativeLoginEnabled)
     {
         section = [XLFormSectionDescriptor formSectionWithTitle:@"Native Social Login"];
@@ -230,10 +240,10 @@
     if(AppDelegate.useGoogleNative)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(processGoogleNativeLogin:)
-                                                 name:@"userAuthenticatedFromNativeGoogle"
-                                               object:nil];
-    
+                                                 selector:@selector(processGoogleNativeLogin:)
+                                                     name:@"userAuthenticatedFromNativeGoogle"
+                                                   object:nil];
+        
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"NativeGoogle" rowType:XLFormRowDescriptorTypeButton title:@"Google"];
         row.action.formSelector = @selector(showNativeGoogleLogin);
         [section addFormRow:row];
@@ -259,11 +269,11 @@
 - (void) setupSocialLoginForm
 {
     int socialLoginIndex = 3;//careful on adding sections
-    if(![LoginRadiusSDK invalidateAndDeleteAccessTokenOnLogout])
+    if(![[[LoginRadiusSDK sharedInstance] session] isLoggedIn])
     {
         socialLoginIndex += 1;
     }
-
+    
     XLFormSectionDescriptor *socialLoginSection = [self.form formSectionAtIndex:socialLoginIndex];//careful on adding sections
     
     XLFormRowDescriptor *loadingRow = [self.form formRowWithTag:@"SocialLoginsLoading"];
@@ -273,13 +283,13 @@
         for (int i = 0; i < [self.socialProviders count]; i++)
         {
             XLFormRowDescriptor * row;
-                row = [XLFormRowDescriptor formRowDescriptorWithTag:self.socialProviders[i] rowType:XLFormRowDescriptorTypeButton title:self.socialProviders[i]];
-                row.action.formBlock = ^(XLFormRowDescriptor *block)
-                {
-                    [self showSocialLogins:self.socialProviders[i]];
-                };
+            row = [XLFormRowDescriptor formRowDescriptorWithTag:self.socialProviders[i] rowType:XLFormRowDescriptorTypeButton title:self.socialProviders[i]];
+            row.action.formBlock = ^(XLFormRowDescriptor *block)
+            {
+                [self showSocialLogins:self.socialProviders[i]];
+            };
             
-                [socialLoginSection addFormRow:row];
+            [socialLoginSection addFormRow:row];
             
         }
         
@@ -298,18 +308,18 @@
     //Replace this code with your own
     //asking "http://localhost:3000/sott"
     /*
-    NSString *url = @"http://localhost:3000/";
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:url]];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    [manager GET:@"sott" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *sottStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        [self traditionalRegistration:sottStr];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self showAlert:@"ERROR" message:[error localizedDescription]];
-    }];
-    */
+     NSString *url = @"http://localhost:3000/";
+     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:url]];
+     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+     
+     [manager GET:@"sott" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+     NSString *sottStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+     [self traditionalRegistration:sottStr];
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+     [self showAlert:@"ERROR" message:[error localizedDescription]];
+     }];
+     */
     // Alternatively if you don't care about security then take
     // The SOTT staticly from LoginRadius Dashboard with the longest endDate
     
@@ -332,7 +342,7 @@
     matchPass.msg = @"Password and Confirm Password do not match";
     matchPass.isValid = ([(NSString*)passRow.value isEqualToString:(NSString*)conPassRow.value]);
     [errors addObject:matchPass];
-
+    
     for (int i = 0; i < [errors count]; i++)
     {
         if (!errors[i].isValid)
@@ -341,29 +351,37 @@
             return;
         }
     }
-
+    
     NSDictionary *email = @{
                             @"Type":@"Primary",
                             @"Value":[emailRow value]
-                          };
+                            };
     
     NSDictionary *parameter =   @{
-                                    @"Email":@[email],
-                                    @"Password":[passRow value]
-                                };
+                                  @"Email":@[email],
+                                  @"Password":[passRow value]
+                                  };
     
-    [[LoginRadiusRegistrationManager sharedInstance] authRegistrationWithData:parameter withSott:sott verificationUrl:@"" emailTemplate:@"" completionHandler:^(NSDictionary *data, NSError *error)
-    {
-        if (error)
-        {
-            [self checkForMissingFieldError:data error:error];
-        }else
-        {
-            NSLog(@"successfully registered");
-            [self showAlert:@"SUCCESS" message:@"Please verify your email"];
-        }
-    }];
     
+   
+   
+   
+    
+    
+    
+    [[AuthenticationAPI authInstance]  userRegistrationWithSott:sott  payload:parameter emailtemplate:nil smstemplate:nil completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+         if (error)
+         {
+             [self errorMessage:data error:error];
+         }else
+         {
+             NSLog(@"successfully registered");
+             [self showAlert:@"SUCCESS" message:@"Please verify your email"];
+         }
+     }];
+
+    
+  
 }
 
 - (void) traditionalLogin
@@ -381,17 +399,25 @@
             return;
         }
     }
+    NSDictionary *parameter =   @{
+                                  @"Email":[emailRow value],
+                                  @"Password":[passRow value],
+                                  @"securityanswer":@""
+                                  };
     
-    [[LoginRadiusRegistrationManager sharedInstance] authLoginWithEmail:emailRow.value withPassword:passRow.value loginUrl:@"" verificationUrl:@"" emailTemplate:@"" completionHandler:^(NSDictionary *data, NSError *error)
-    {
-        if (error)
-        {
-            [self checkForMissingFieldError:data error:error];
-        }else
-        {
-            [self showProfileController];
-        }
-    }];
+    
+   
+        
+    
+    [[AuthenticationAPI authInstance] loginWithPayload:parameter loginurl:nil emailtemplate:nil smstemplate:nil g_recaptcha_response:nil completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+         if (error)
+         {
+             [self errorMessage:data error:error];
+         }else
+         {
+             [self showProfileController];
+         }
+     }];
 }
 
 
@@ -405,51 +431,62 @@
         return;
     }
     
-    [[LoginRadiusRegistrationManager sharedInstance] authForgotPasswordWithEmail:emailRow.value resetPasswordUrl:@"" emailTemplate:@"" completionHandler:^(NSDictionary *data, NSError *error)
-    {
-        if (error)
-        {
-            [self showAlert:@"ERROR" message:error.localizedDescription];
-        }else
-        {
-            [self showAlert:@"SUCCESS" message:@"Check your email for reset link"];
-        }
-    }];
+   
+   [[AuthenticationAPI authInstance] forgotPasswordWithEmail:emailRow.value emailtemplate:nil completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+         if (error)
+         {
+             [self showAlert:@"ERROR" message:error.localizedDescription];
+         }else
+         {
+             [self showAlert:@"SUCCESS" message:@"Check your email for reset link"];
+         }
+     }];
 }
 
 /* use web hosted page for resetting it
-- (void) resetPassword
-{
-}
-*/
+ - (void) resetPassword
+ {
+ }
+ */
 
 - (void) showSocialLogins:(NSString *)provider
 {
     [[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider inController:self completionHandler:^(NSDictionary * data, NSError * error){
-        
-        if (error)
-        {
-            [self checkForMissingFieldError:data error:error];
-        }else
-        {
-            [self showProfileController];
+        if(error.localizedDescription == @"Social Login cancelled"){
+            return;
         }
-    
-    }];
+        
+        NSString *access_token= [data objectForKey:@"access_token"];
+
+            [[AuthenticationAPI authInstance] profilesWithAccessToken:access_token completionHandler:^(NSDictionary *response, NSError *error) {
+                
+                NSLog(@"get profile api error %@",error.localizedDescription);
+                
+                
+                LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[response mutableCopy] replaceNullWithBlank]];
+                
+                NSLog(@"LRSession Store Token%@",session.accessToken);
+                NSLog(@"LRSession Store UserProfile%@",session.userProfile);
+                
+               
+               [self showProfileController];
+            }];
+        
+     }];
 }
 
 - (void) showNativeGoogleLogin
 {
     /* Google Native SignIn
-    
-    if (self.presentedViewController != nil)
-    {
-        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showNativeGoogleLogin];}];
-        return;
-    }
-    
-    [[GIDSignIn sharedInstance] signIn];
-    */
+     
+     if (self.presentedViewController != nil)
+     {
+     [self.presentedViewController dismissViewControllerAnimated:NO completion:^{[self showNativeGoogleLogin];}];
+     return;
+     }
+     
+     [[GIDSignIn sharedInstance] signIn];
+     */
 }
 
 - (void) processGoogleNativeLogin:(NSNotification *)notif
@@ -458,10 +495,25 @@
     {
         if (![[notif.userInfo objectForKey:@"error"] isEqual:[NSNull null]])
         {
-            [self checkForMissingFieldError: ([notif.userInfo objectForKey:@"data"]) ? [notif.userInfo objectForKey:@"data"] : nil error:[notif.userInfo objectForKey:@"error"]];
+            [self errorMessage: ([notif.userInfo objectForKey:@"data"]) ? [notif.userInfo objectForKey:@"data"] : nil error:[notif.userInfo objectForKey:@"error"]];
         }else
         {
-            [self showProfileController];
+            NSDictionary *data= [notif.userInfo objectForKey:@"data"];
+            NSString *access_token= [data objectForKey:@"access_token"];
+            
+            [[AuthenticationAPI authInstance] profilesWithAccessToken:access_token completionHandler:^(NSDictionary *response, NSError *error) {
+                
+                NSLog(@"get profile api error %@",error.localizedDescription);
+                
+                
+                LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[response mutableCopy] replaceNullWithBlank]];
+                
+                NSLog(@"LRSession Store Token%@",session.accessToken);
+                NSLog(@"LRSession Store UserProfile%@",session.userProfile);
+                
+                
+                [self showProfileController];
+            }];
         }
     }
 }
@@ -469,21 +521,21 @@
 - (void) showNativeTwitterLogin
 {
     /* Twitter Native SignIn
-
-    [[Twitter sharedInstance] logInWithCompletion:
-    ^(TWTRSession * _Nullable session, NSError * _Nullable error) {
-        if (session){
-            [[LoginRadiusSocialLoginManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret inController:self completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
-                if (error){
-                    [self showAlert:@"ERROR" message:error.localizedDescription];
-                }else{
-                    [self showProfileController];
-                }
-            }];
-        } else if (error){
-            [self showAlert:@"ERROR" message:error.localizedDescription];
-        }
-    }];*/
+     
+     [[Twitter sharedInstance] logInWithCompletion:
+     ^(TWTRSession * _Nullable session, NSError * _Nullable error) {
+     if (session){
+     [[LoginRadiusSocialLoginManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret inController:self completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+     if (error){
+     [self showAlert:@"ERROR" message:error.localizedDescription];
+     }else{
+     [self showProfileController];
+     }
+     }];
+     } else if (error){
+     [self showAlert:@"ERROR" message:error.localizedDescription];
+     }
+     }];*/
 }
 
 - (void) showNativeFacebookLogin
@@ -491,10 +543,24 @@
     [[LoginRadiusSocialLoginManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions":@[@"public_profile",@"email"]} inController:self completionHandler: ^(NSDictionary *data, NSError *error){
         if(error)
         {
-            [self checkForMissingFieldError:data error:error];
+            [self errorMessage:data error:error];
         }else
         {
-            [self showProfileController];
+            NSString *access_token= [data objectForKey:@"access_token"];
+            
+            [[AuthenticationAPI authInstance] profilesWithAccessToken:access_token completionHandler:^(NSDictionary *response, NSError *error) {
+                
+                NSLog(@"get profile api error %@",error.localizedDescription);
+                
+                
+                LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[response mutableCopy] replaceNullWithBlank]];
+                
+                NSLog(@"LRSession Store Token%@",session.accessToken);
+                NSLog(@"LRSession Store UserProfile%@",session.userProfile);
+                
+                
+                [self showProfileController];
+            }];
         }
     }];
 }
@@ -511,31 +577,27 @@
     }];
 }
 
-- (void) checkForMissingFieldError:(NSDictionary *)data
-                            error: (NSError *) error
-{
-    if([error code] == LRErrorCodeUserRequireAdditionalFieldsError)
-    {
-        NSString *additionalErrorMsg = [NSString stringWithFormat:@"%@.\n\n See our Swift Demo for an example to handle missing required fields.", error.localizedDescription];
-        [self showAlert:@"ERROR" message:additionalErrorMsg];
-    }else
-    {
+- (void) errorMessage:(NSDictionary *)data
+                             error: (NSError *) error{
+   
         [self showAlert:@"ERROR" message:error.localizedDescription];
-    }
+   
 }
 
 - (void) showProfileController {
-
+    
     dispatch_async(dispatch_get_main_queue(), ^(void)
-    {
-        if ([[LoginRadiusSDK sharedInstance] session].isLoggedIn)
-        {
-                [self performSegueWithIdentifier:@"profile" sender:self];
-        }else
-        {
-            NSLog(@"Attempted to go to profile view controller when not logged in");
-        }
-    });
+                   {
+                       if ([[LoginRadiusSDK sharedInstance] session].isLoggedIn)
+                       {
+                           NSString *additionalErrorMsg = [NSString stringWithFormat:@"%@.\n\n See our Swift Demo for an example to handle missing required fields."];
+                           [self showAlert:@"ERROR" message:additionalErrorMsg];
+                           [self performSegueWithIdentifier:@"profile" sender:self];
+                       }else
+                       {
+                           NSLog(@"Attempted to go to profile view controller when not logged in");
+                       }
+                   });
 }
 
 //to eliminate "< Back" button showing up when user already logged in
@@ -548,3 +610,4 @@
 }
 
 @end
+

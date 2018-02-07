@@ -6,7 +6,7 @@
 //
 
 #import "LRErrors.h"
-#import "NSError+LRError.h"
+#import "LoginRadiusError.h"
 
 @implementation LRErrors
 
@@ -149,4 +149,5 @@
                       description:@"Touch ID authentication failed"
                     failureReason:@"TouchID Authentiction failed since the user is not the device's owner"];
 }
+
 @end

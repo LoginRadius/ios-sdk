@@ -12,7 +12,9 @@ import LoginRadiusSDK
 
 class MissingFieldsViewController: FormViewController
 {
-    var accessToken:String?
+    var accessToken = UserDefaults.standard.object(forKey: "token") as? String
+    
+    
     var lrFields:[LoginRadiusField]?
     let countries = NSLocale.isoCountryCodes.map { (code:String) -> String in
         let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
@@ -23,12 +25,9 @@ class MissingFieldsViewController: FormViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard accessToken != nil, lrFields != nil, lrFields?.count ?? 0 > 0 else
-        {
-            self.showAlert(title: "ERROR", message: "Missing Access Token / LoginRadius field to generate missing fields form")
-            return
-        }
+       
+       
+       
         
         setupForm()
     }
@@ -46,8 +45,10 @@ class MissingFieldsViewController: FormViewController
         }
         
         self.form +++ mfSection
+       
+    
         
-        setupDynamicRegistrationForm(lrFields: lrFields, dynamicRegSection: mfSection, loadingRow: nil, hiddenCondition: nil, sendButtonTitle: "Send", askForEmailAvailability: false, askForUsernameAvailability:false, sendHandler:
+        setupDynamicRequredfieldForm(lrFields: LoginRadiusSchema.sharedInstance().fields, dynamicRegSection: mfSection, loadingRow: nil, hiddenCondition: nil, sendButtonTitle: "Send", askForEmailAvailability: false, askForUsernameAvailability:false, sendHandler:
         {
             self.validateUserProfileInput()
         })
@@ -146,8 +147,7 @@ class MissingFieldsViewController: FormViewController
             arr[0]["type"] = "Personal"
             parameters["addresses"] = arr
         }
-
-        LoginRadiusRegistrationManager.sharedInstance().authUpdateProfilebyToken(accessToken!, verificationUrl: "", emailTemplate: "", userData: parameters, completionHandler: { (data, error) in
+AuthenticationAPI.authInstance().updateProfile(withAccessToken:accessToken!, emailtemplate:nil, smstemplate:nil, payload:parameters, completionHandler: { (data, error) in
             
             if let err = error
             {
@@ -155,8 +155,8 @@ class MissingFieldsViewController: FormViewController
                 self.showAlert(title: "ERROR", message: (e.localizedDescription == ".") ? e.localizedFailureReason! : e.localizedDescription)
             }else
             {
-                LoginRadiusRegistrationManager.sharedInstance().authProfiles(byToken: self.accessToken, completionHandler: {(data, error) in
-                    
+                DispatchQueue.main.async
+                    {
                     self.navigationController?.popViewController(animated: false, completion: { navVC in
                         if let vc = navVC.viewControllers.first as? ViewController
                         {
@@ -165,11 +165,12 @@ class MissingFieldsViewController: FormViewController
                                 vc.showAlert(title: "ERROR", message: err.localizedDescription)
                             }else
                             {
+                                LRSession.init(accessToken:self.accessToken!, userProfile:data!["Data"] as! [AnyHashable : Any])
                                 vc.showProfileController()
                             }
                         }
                     })
-                })
+                }
             }
         
         })

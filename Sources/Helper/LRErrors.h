@@ -45,4 +45,6 @@
 + (NSError*)touchIDNotAvailable;
 + (NSError*)touchIDNotDeviceOwner;
 
+
+
 @end

@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSError (LRError)
+@interface NSError (LoginRadiusError)
 
 + (NSError *)errorWithCode:(NSInteger)code description:(NSString *)description failureReason:(NSString *)failureReason;
 

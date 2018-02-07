@@ -8,7 +8,7 @@
 
 #import "LRTouchIDAuth.h"
 #import <LocalAuthentication/LocalAuthentication.h>
-#import "NSError+LRError.h"
+#import "LoginRadiusError.h"
 #import "LRErrors.h"
 
 @implementation LRTouchIDAuth

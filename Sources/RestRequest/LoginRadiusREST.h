@@ -6,7 +6,6 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginRadiusSDK.h"
-#import <AFNetworking/AFNetworking.h>
 
 /**
  *  REST client
@@ -21,7 +20,7 @@
  *  @return singleton instance of REST client
  */
 + (instancetype) apiInstance;
-+ (instancetype) cdnInstance;
++ (instancetype) configInstance;
 
 #pragma mark - Methods
 

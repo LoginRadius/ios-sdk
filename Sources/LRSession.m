@@ -7,10 +7,10 @@
 //
 
 #import "LRSession.h"
-#import "NSMutableDictionary+LRMutableDictionary.h"
+#import "LRMutableDictionary.h"
 #import "LoginRadiusSDK.h"
 #import "SimpleKeychain.h"
-#import "LoginRadiusRegistrationManager.h"
+#import "LoginRadius.h"
 
 @interface LRSession()
 @end
@@ -146,12 +146,13 @@
 {
     //if its already logged out then don't do anything
     //and if user specify don't invalidate the access token
-    if(![self isLoggedIn] || ![[LoginRadiusSDK sharedInstance] invalidateAndDeleteAccessTokenOnLogout])
+    if(![self isLoggedIn])
     {
         return;
     }
     
-    [[LoginRadiusRegistrationManager sharedInstance] authInvalidateAccessToken: [self accessToken] completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error)
+
+    [[AuthenticationAPI authInstance] invalidateAccessToken: [self accessToken] completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error)
     {
         if (error)
         {

@@ -1,3 +1,29 @@
+
+5.0.0 Release notes (2017-02-07)
+=============================================================
+
+### API breaking changes
+
+* All the classes are restructed and 'Registration Service' class is depericated, inplace of this now we have multiple sections of Api such as:
+ AuthenticationAPI,SocialAPI,CustomObjectAPI,AutoLoginAPI,ConfigurationAPI,InstantLoginAPI,SimplifiedRegistrationAPI.
+
+###Enhancements
+
+* Tiny size overhead to your application, below 380kb for everything.
+* Improved native login performance for better native user experience.
+* Add new Some Missing APIs AuthenticationAPI section.
+* Add new All SocialAPI section.
+* Add new All AutoLoginAPI section.
+* Add new ConfigurationAPI section.
+* Add new InstantLoginAPI section.
+* Add new SimplifiedRegistrationAPI section.
+* Significantly improved code performance.
+
+### Bugfixes
+* Fix social login issue in old devices and browsers.
+* Fix delete APIs issue related to body parameters.
+
+
 4.1.2 Release notes (2017-11-02)
 =============================================================
 

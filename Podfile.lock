@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
   - Alamofire (4.4.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
@@ -26,8 +11,7 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.27.1):
     - FBSDKCoreKit
-  - LoginRadiusSDK (4.1.0):
-    - AFNetworking (~> 3.1)
+  - LoginRadiusSDK (4.2.2):
     - FBSDKLoginKit (~> 4.27)
     - OAuthCore (~> 0.0.1)
     - SimpleKeychain (~> 0.7.0)
@@ -58,13 +42,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/xmartlabs/Eureka.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Eureka: 06695c5795c7be2ed84261d652c266228e19820d
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
   FBSDKLoginKit: 66ff53b73cffd967ab773e32fac39e90a60e6d46
-  LoginRadiusSDK: 17cb7cf3cbf3733c229ecb68b7f1b3ca30b0f668
+  LoginRadiusSDK: 2f7e4ed8836897ec0c2979714d957e996d08408c
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21

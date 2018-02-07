@@ -14,7 +14,11 @@ extension DetailViewController
 {
     func smallUserProfileUISetup()
     {
-        let userEmail = ((userProfile["Email"].array)?[0]["Value"] )?.string
+        var userEmail="";
+        if ((userProfile["Email"].array)) != nil{
+            userEmail = (((userProfile["Email"].array)?[0]["Value"] )?.string)!
+        }
+       
         
         var userCountry:String? = nil
         if let addrArr = userProfile["Addresses"].array,

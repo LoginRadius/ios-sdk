@@ -4,8 +4,8 @@
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
-#import "NSDictionary+LRDictionary.h"
-#import "NSString+LRString.h"
+#import "LRDictionary.h"
+#import "LRString.h"
 
 @implementation NSDictionary (LRDictionary)
 

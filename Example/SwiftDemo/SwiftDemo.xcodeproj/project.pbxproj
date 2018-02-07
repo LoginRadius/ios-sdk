@@ -13,15 +13,15 @@
 		15AFFD8F1ECF4C73006C6485 /* FullDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFFD8E1ECF4C73006C6485 /* FullDetailViewController.swift */; };
 		15AFFD931ECF8F3F006C6485 /* DetailViewControllerUISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AFFD921ECF8F3F006C6485 /* DetailViewControllerUISetup.swift */; };
 		15DF477E1EE621240074CD92 /* FormViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF477D1EE621240074CD92 /* FormViewControllerExtension.swift */; };
-		15DF47831EE8A80A0074CD92 /* MissingFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF47821EE8A80A0074CD92 /* MissingFieldsViewController.swift */; };
 		6802EC941CED883400D3BF22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6802EC691CED883400D3BF22 /* AppDelegate.swift */; };
-		681005671E5C47160097BE26 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = 681005661E5C47160097BE26 /* LoginRadius.plist */; };
 		682D11631CEC5314009274E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D11621CEC5314009274E2 /* ViewController.swift */; };
 		682D11661CEC5314009274E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682D11641CEC5314009274E2 /* Main.storyboard */; };
 		682D11681CEC5314009274E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682D11671CEC5314009274E2 /* Assets.xcassets */; };
 		682D116B1CEC5314009274E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682D11691CEC5314009274E2 /* LaunchScreen.storyboard */; };
 		6830081F1CECF78A000E43DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6830081E1CECF78A000E43DC /* DetailViewController.swift */; };
 		C97F1F10CFF589D1288DC327 /* Pods_SwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1154E97D2B33DDB11D6CF44 /* Pods_SwiftDemo.framework */; };
+		FE1428E01FE3A18900390A47 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE1428DF1FE3A18900390A47 /* LoginRadius.plist */; };
+		FE418EE320087BA800BDB34B /* MissingFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE418EE220087BA800BDB34B /* MissingFieldsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,10 +46,8 @@
 		15AFFD8E1ECF4C73006C6485 /* FullDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDetailViewController.swift; sourceTree = "<group>"; };
 		15AFFD921ECF8F3F006C6485 /* DetailViewControllerUISetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewControllerUISetup.swift; sourceTree = "<group>"; };
 		15DF477D1EE621240074CD92 /* FormViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewControllerExtension.swift; sourceTree = "<group>"; };
-		15DF47821EE8A80A0074CD92 /* MissingFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingFieldsViewController.swift; sourceTree = "<group>"; };
 		35A981D5162E3808D1245BEB /* Pods-SwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDemo.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-SwiftDemo/Pods-SwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6802EC691CED883400D3BF22 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		681005661E5C47160097BE26 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
 		682D115D1CEC5314009274E2 /* SwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682D11621CEC5314009274E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		682D11651CEC5314009274E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +56,8 @@
 		682D116C1CEC5314009274E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6830081E1CECF78A000E43DC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B1154E97D2B33DDB11D6CF44 /* Pods_SwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE1428DF1FE3A18900390A47 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
+		FE418EE220087BA800BDB34B /* MissingFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingFieldsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,16 +124,16 @@
 				6802EC691CED883400D3BF22 /* AppDelegate.swift */,
 				682D11621CEC5314009274E2 /* ViewController.swift */,
 				15DF477D1EE621240074CD92 /* FormViewControllerExtension.swift */,
+				FE418EE220087BA800BDB34B /* MissingFieldsViewController.swift */,
 				6830081E1CECF78A000E43DC /* DetailViewController.swift */,
 				15AFFD921ECF8F3F006C6485 /* DetailViewControllerUISetup.swift */,
 				15AFFD8E1ECF4C73006C6485 /* FullDetailViewController.swift */,
-				15DF47821EE8A80A0074CD92 /* MissingFieldsViewController.swift */,
 				1535D61B1EFC7E25005DDAD0 /* Social Provider Row */,
 				682D11641CEC5314009274E2 /* Main.storyboard */,
 				682D11671CEC5314009274E2 /* Assets.xcassets */,
 				682D11691CEC5314009274E2 /* LaunchScreen.storyboard */,
+				FE1428DF1FE3A18900390A47 /* LoginRadius.plist */,
 				682D116C1CEC5314009274E2 /* Info.plist */,
-				681005661E5C47160097BE26 /* LoginRadius.plist */,
 			);
 			path = SwiftDemo;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				681005671E5C47160097BE26 /* LoginRadius.plist in Resources */,
+				FE1428E01FE3A18900390A47 /* LoginRadius.plist in Resources */,
 				682D116B1CEC5314009274E2 /* LaunchScreen.storyboard in Resources */,
 				682D11681CEC5314009274E2 /* Assets.xcassets in Resources */,
 				682D11661CEC5314009274E2 /* Main.storyboard in Resources */,
@@ -261,7 +261,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/../../Pods/Target Support Files/Pods-SwiftDemo/Pods-SwiftDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -275,7 +274,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
@@ -302,8 +300,8 @@
 				1535D61F1EFC7E3B005DDAD0 /* SocialProvidersPickerRow.swift in Sources */,
 				1535D6211EFC7E3B005DDAD0 /* SocialProvider.swift in Sources */,
 				6802EC941CED883400D3BF22 /* AppDelegate.swift in Sources */,
-				15DF47831EE8A80A0074CD92 /* MissingFieldsViewController.swift in Sources */,
 				15AFFD931ECF8F3F006C6485 /* DetailViewControllerUISetup.swift in Sources */,
+				FE418EE320087BA800BDB34B /* MissingFieldsViewController.swift in Sources */,
 				15DF477E1EE621240074CD92 /* FormViewControllerExtension.swift in Sources */,
 				1535D6201EFC7E3B005DDAD0 /* SocialProviderIconCell.swift in Sources */,
 				6830081F1CECF78A000E43DC /* DetailViewController.swift in Sources */,
@@ -452,7 +450,7 @@
 				);
 				INFOPLIST_FILE = SwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -475,7 +473,7 @@
 				);
 				INFOPLIST_FILE = SwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

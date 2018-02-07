@@ -33,7 +33,10 @@ typedef NS_ENUM(NSUInteger, LoginRadiusFieldPermission) {
     @property (nonatomic) LoginRadiusFieldPermission permission;
     @property (strong, nonatomic, nullable) NSArray<LoginRadiusFieldRule *> *rules;
     @property (nonatomic, getter=getIsRequired) BOOL isRequired; //will loop through rules for a 'required' rule
+    @property (nonatomic, strong) NSString *_Nullable endpoint;
+    @property (nonatomic, strong) NSString *_Nullable providerName;
 
+    -(instancetype)initWithSocialSchema:(NSDictionary *)dictionary;
     - (instancetype _Nonnull )init:(NSDictionary*_Nonnull)dictionary;
     - (NSString* _Nonnull)typeToString;
     + (NSArray<NSString *> *_Nonnull) addressFields;

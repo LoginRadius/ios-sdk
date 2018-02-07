@@ -4,7 +4,7 @@
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
-#import "NSString+LRString.h"
+#import "LRString.h"
 
 @implementation NSString (LRString)
 

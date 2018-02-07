@@ -4,7 +4,7 @@
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
-#import "NSMutableDictionary+LRMutableDictionary.h"
+#import "LRMutableDictionary.h"
 
 @implementation NSMutableDictionary (LRMutableDictionary)
 

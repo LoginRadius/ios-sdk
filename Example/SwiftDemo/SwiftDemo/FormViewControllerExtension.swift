@@ -18,6 +18,7 @@ extension FormViewController
     {
         if let fields = lrFields
         {
+            
             for field in fields
             {
                 //will crash if there exist 2 fields with the same name
@@ -31,7 +32,6 @@ extension FormViewController
                             {
                                 $0.title = field.display
                                 $0.hidden = hiddenCondition
-                                $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                                 self.setRegistrationRowRules(field: field, row: $0)
                             }
                         }else{
@@ -39,7 +39,6 @@ extension FormViewController
                             {
                                 $0.title = field.display
                                 $0.hidden = hiddenCondition
-                                $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                                 self.setRegistrationRowRules(field: field, row: $0)
                             }.onChange{ row in
                                 if (askForUsernameAvailability){
@@ -57,11 +56,11 @@ extension FormViewController
                         
                         }
                     case .OPTION:
-                        dynamicRegSection <<< AlertRow<String>(field.name)
+                
+                        dynamicRegSection <<< ActionSheetRow<String>(field.name)
                         {
                             $0.title = field.display
                             $0.selectorTitle = field.display
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                             $0.options = (field.option?.keys != nil) ? Array(field.option!.keys) : []
                             $0.displayValueFor = { value in
                                 guard let val = value else {
@@ -78,7 +77,6 @@ extension FormViewController
                         {
                             $0.title = field.display
                             $0.hidden = hiddenCondition
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                             $0.value = nil
                             self.setRegistrationRowRules(field: field, row: $0 )
 
@@ -88,7 +86,6 @@ extension FormViewController
                         {
                             $0.title = field.display
                             $0.hidden = hiddenCondition
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                             self.setRegistrationRowRules(field: field, row: $0 )
 
                         }
@@ -97,7 +94,6 @@ extension FormViewController
                         {
                             $0.title = field.display
                             $0.hidden = Condition(booleanLiteral: true)
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                             self.setRegistrationRowRules(field: field, row: $0 )
                         }
                     case .EMAIL:
@@ -105,7 +101,6 @@ extension FormViewController
                         {
                             $0.title = field.display
                             $0.hidden = hiddenCondition
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                             $0.add(rule: RuleEmail(msg: "Invalid Email Format"))
                             self.setRegistrationRowRules(field: field, row: $0 )
                         }.onChange{ row in
@@ -125,7 +120,6 @@ extension FormViewController
                         {
                             $0.title = field.display
                             $0.placeholder = field.display
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)                            
                             $0.hidden = hiddenCondition
                             self.setRegistrationRowRules(field: field, row: $0 )
                         }
@@ -133,10 +127,163 @@ extension FormViewController
                         dynamicRegSection <<< DateRow(field.name)
                         {
                             $0.title = field.display
-                            $0.disabled = Condition(booleanLiteral: field.permission == .READ)
                             $0.hidden = hiddenCondition
                             self.setRegistrationRowRules(field: field, row: $0 )
                         }
+                }
+            }
+            
+            dynamicRegSection <<< ButtonRow("Dynamic Registration Send")
+            {
+                $0.title = sendButtonTitle
+                $0.hidden = hiddenCondition
+                }.onCellSelection{ cell, row in
+                    sendHandler?()
+                    //self.requestSOTT(completion: self.dynamicRegistration)
+            }
+            
+            loadingRow?.hidden = Condition(booleanLiteral: true);
+            loadingRow?.evaluateHidden()
+        }else
+        {
+            loadingRow?.title = "No Registration Fields"
+        }
+    }
+    
+    
+    func setupDynamicRequredfieldForm(lrFields:[LoginRadiusField]?,dynamicRegSection:Section, loadingRow:LabelRow?, hiddenCondition:Condition?, sendButtonTitle:String? = "Register",askForEmailAvailability:Bool = true, askForUsernameAvailability:Bool = true, sendHandler:(()->Void)?)
+    {
+      
+        
+        if let fields = lrFields
+        {
+           
+            for field in fields
+            {
+                //will crash if there exist 2 fields with the same name
+                switch field.type
+                {
+                case .STRING:
+                    
+                    
+                    if (field.name != "username")
+                    {
+                        dynamicRegSection <<< AccountRow(field.name)
+                        {
+                            $0.title = field.display
+                            $0.hidden = hiddenCondition
+                            self.setRegistrationRowRules(field: field, row: $0)
+                        }
+                    }else{
+                        dynamicRegSection <<< AccountRow(field.name)
+                        {
+                            $0.title = field.display
+                            $0.hidden = hiddenCondition
+                            self.setRegistrationRowRules(field: field, row: $0)
+                            }.onChange{ row in
+                                if (askForUsernameAvailability){
+                                    self.toggleRegisterAvailability(rowTag:row.tag!, msgName: field.name, available:nil)
+                                }
+                            }.onCellHighlightChanged{ cell, row in
+                                //if the user resign other email input field and press something else
+                                if (!row.isHighlighted && askForUsernameAvailability)
+                                {
+                                    //check for email availability
+                                    self.checkUsernameAvailability(usernameStr: row.value ?? "", usernameRowTag: row.tag!)
+                                }
+                        }
+                        
+                        
+                  }
+                case .OPTION:
+                    dynamicRegSection <<< AlertRow<String>(field.name)
+                    {
+                        $0.title = field.display
+                        $0.selectorTitle = field.display
+                        $0.options = (field.option?.keys != nil) ? Array(field.option!.keys) : []
+                        $0.displayValueFor = { value in
+                            guard let val = value else {
+                                return nil
+                            }
+                            return field.option?[val] ?? ""
+                        }
+                        $0.hidden = hiddenCondition
+                        $0.value = nil
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                    }
+               
+                case .MULTI:
+                    
+                    dynamicRegSection <<< CheckRow(field.name)
+                    {
+                        $0.title = field.display
+                        $0.hidden = hiddenCondition
+                        $0.value = nil
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                        
+                    }
+
+                case .PASSWORD:
+                    
+             
+                    dynamicRegSection <<< PasswordRow(field.name)
+                    {
+                        $0.title = field.display
+                        $0.hidden = hiddenCondition
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                        
+                    }
+              
+                case .HIDDEN:
+              
+                    dynamicRegSection <<< AccountRow(field.name)
+                    {
+                        $0.title = field.display
+                        $0.hidden = Condition(booleanLiteral: true)
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                    }
+             
+                case .EMAIL:
+             
+
+                    dynamicRegSection <<< EmailRow(field.name)
+                    {
+                        $0.title = field.display
+                        $0.hidden = hiddenCondition
+                        $0.add(rule: RuleEmail(msg: "Invalid Email Format"))
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                        }.onChange{ row in
+                            if (askForEmailAvailability){
+                                self.toggleRegisterAvailability(rowTag:row.tag!, msgName: field.name, available:nil)
+                            }
+                        }.onCellHighlightChanged{ cell, row in
+                            //if the user resign other email input field and press something else
+                            if (!row.isHighlighted && askForEmailAvailability)
+                            {
+                                //check for email availability
+                                self.checkEmailAvailability(emailStr: row.value ?? "", emailRowTag: row.tag!)
+                            }
+                    }
+                  
+                case .TEXT:
+                
+                    dynamicRegSection <<< TextAreaRow(field.name)
+                    {
+                        $0.title = field.display
+                        $0.placeholder = field.display
+                        $0.hidden = hiddenCondition
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                    }
+                  
+                 case .DATE:
+                
+                    dynamicRegSection <<< DateRow(field.name)
+                    {
+                        $0.title = field.display
+                        $0.hidden = hiddenCondition
+                        self.setRegistrationRowRules(field: field, row: $0 )
+                    }
+                 
                 }
             }
             
@@ -264,7 +411,7 @@ extension FormViewController
             return
         }
     
-        LoginRadiusRegistrationManager.sharedInstance().authCheckEmailAvailability(emailStr, completionHandler: {
+        AuthenticationAPI.authInstance().checkEmailAvailability(emailStr, completionHandler: {
             (response, error) in
             if let data = response,
                let isExist = data["IsExist"] as? Bool
@@ -283,8 +430,8 @@ extension FormViewController
         {
             return
         }
-    
-        LoginRadiusRegistrationManager.sharedInstance().authUserNameAvailability(usernameStr, completionHandler: {
+        
+        AuthenticationAPI.authInstance().checkUserNameAvailability(usernameStr,completionHandler: {
             (response, error) in
             if let data = response,
                let isExist = data["IsExist"] as? Bool

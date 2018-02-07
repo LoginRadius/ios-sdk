@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LoginRadiusField.h"
 
+NSString *const kProviderEndpoint = @"Endpoint";
+NSString *const kProviderName = @"Name";
 @implementation LoginRadiusField
 
 - (instancetype)init:(NSDictionary*)dictionary
@@ -17,10 +19,23 @@
     if (self) {
         _type = [self setTypeWithString:[dictionary objectForKey:@"type"]];
         _option = (_type == OPTION) ? [self initializeOptions:[dictionary objectForKey:@"options"]] : nil;
-        _name = [[dictionary objectForKey:@"name"] lowercaseString];
+        _name = [dictionary objectForKey:@"name"];
         _display = [dictionary objectForKey:@"display"];
         _permission = [((NSString *)[dictionary objectForKey:@"permission"]) isEqualToString:@"w"]? WRITE : READ;
         _rules = ([dictionary objectForKey:@"rules"]) ? [self initializeRules:[dictionary objectForKey:@"rules"]] : nil;
+        }
+    
+    return self;
+}
+
+-(instancetype)initWithSocialSchema:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if(![dictionary[kProviderEndpoint] isKindOfClass:[NSNull class]]){
+        self.endpoint = dictionary[kProviderEndpoint];
+    }
+    if(![dictionary[kProviderName] isKindOfClass:[NSNull class]]){
+        self.providerName = dictionary[kProviderName];
     }
     return self;
 }
@@ -54,10 +69,12 @@
 - (NSDictionary*) initializeOptions:(NSArray*) options
 {
     NSMutableDictionary *newOptions = [[NSMutableDictionary alloc] init];
+    
     for(NSDictionary *option in options)
     {
         [newOptions setObject:option[@"text"] forKey:option[@"value"]];
     }
+
     return [newOptions copy];
 }
 

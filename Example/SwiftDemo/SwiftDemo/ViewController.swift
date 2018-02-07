@@ -9,19 +9,19 @@
 import LoginRadiusSDK
 import Eureka
 import SwiftyJSON
-import Alamofire
+
 /* Google Native SignIn
-import GoogleSignIn
-*/
+ import GoogleSignIn
+ */
 
 /* Twitter Native Sign in
-import TwitterKit
-*/
+ import TwitterKit
+ */
 
 class ViewController: FormViewController
-/* Google Native SignIn
-, GIDSignInUIDelegate
-*/
+    /* Google Native SignIn
+     , GIDSignInUIDelegate
+     */
 {
     
     var socialProviders:[String]? = nil
@@ -29,82 +29,91 @@ class ViewController: FormViewController
     var socialLoadingDots:Int = 0
     var registrationLoadingTimer:Timer? = nil
     var registrationLoadingDots:Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Go to Profile VC if already login
         
-        if(LoginRadiusSDK.invalidateAndDeleteAccessTokenOnLogout())
+        if(LoginRadiusSDK.sharedInstance().session.isLoggedIn)
         {
             showProfileController()
         }
         
         /* Google Native SignIn
-        GIDSignIn.sharedInstance().uiDelegate = self
-        */
+         GIDSignIn.sharedInstance().uiDelegate = self
+         */
         self.setupForm()
-        
+      
         //fetch me the social provider list
-        LoginRadiusSocialLoginManager.sharedInstance().getSocialProvidersList
-        { data, error in
-        
-            if let providersObj = data?["Providers"] as? [String]
-            {
-                self.socialProviders = providersObj
-            }else
-            {
-                self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "unknown error")
-                if let loadingRow = self.form.rowBy(tag: "Social Logins Loading") as? LabelRow
+        ConfigurationAPI.configInstance().getConfigurationSchema
+            { data, error in
+                if let err = error
                 {
-                    loadingRow.title = (error?.localizedDescription ?? "unknown error").capitalized
-                    loadingRow.updateCell()
-                }
-            }
-            
-            DispatchQueue.main.async
-            {
-                self.socialLoadingTimer?.invalidate()
-                self.setupSocialLoginForm()
-            }
-        }
-        
-        LoginRadiusRegistrationManager.sharedInstance().getRegistrationSchema
-        { schema, error in
-
-            if let err = error
-            {
-                //success on getting registration schema
-                self.showAlert(title: "ERROR", message: err.localizedDescription )
-                if let loadingRow = self.form.rowBy(tag: "Dynamic Registration Loading") as? LabelRow
+                    
+                    self.showAlert(title: "ERROR", message: err.localizedDescription )
+                    if let loadingRow = self.form.rowBy(tag: "Loading") as? LabelRow
+                    {
+                        loadingRow.title = (error?.localizedDescription ?? "unknown error").capitalized
+                        loadingRow.updateCell()
+                    }
+                    
+                    
+                }else{
+                    // To set LoginRadius Schema (The one that you configured in the LoginRadius dashboard) through:
+                    
+                    LoginRadiusSchema.sharedInstance().setSchema(data!)
+                    
+                    if let providersObj = data!["SocialSchema"]{
+                        
+                    let  fields:[LoginRadiusField] = LoginRadiusSchema.sharedInstance().providers!
+                    let providersList: NSMutableArray = NSMutableArray()
+                    for field in fields
+                    {
+                        providersList.add(field.providerName!)
+                        
+                    }
+                        self.socialProviders = providersList as? [String]
+               
+                  }else
                 {
-                    loadingRow.title = (error?.localizedDescription ?? "unknown error").capitalized
-                    loadingRow.updateCell()
+                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "unknown error")
+                    if let loadingRow = self.form.rowBy(tag: "Social Logins Loading") as? LabelRow
+                    {
+                        loadingRow.title = (error?.localizedDescription ?? "unknown error").capitalized
+                        loadingRow.updateCell()
+                    }
                 }
-            }
-            
-            //You can access registration schema on the callback or from the shared instance
-            //print(schema)
-            //print(LoginRadiusRegistrationSchema.sharedInstance().fields)
-            
-            DispatchQueue.main.async
-            {
-                let dynamicRegisterCondition = Condition.function(["Dynamic Registration"], { form in
-                    return !((form.rowBy(tag: "Dynamic Registration") as? SwitchRow)?.value ?? false)
-                })
                 
-                self.registrationLoadingTimer?.invalidate()
-                self.setupDynamicRegistrationForm(
-                lrFields: LoginRadiusRegistrationSchema.sharedInstance().fields,
-                dynamicRegSection: self.form.sectionBy(tag: "Dynamic Registration Section")!,
-                loadingRow: self.form.rowBy(tag: "Dynamic Registration Loading"),
-                hiddenCondition: dynamicRegisterCondition,
-                sendHandler: {
-                    self.requestSOTT(completion: self.dynamicRegistration)
-                })
-            }
-        
+                DispatchQueue.main.async
+                    {
+                        // for social login form
+                        
+                        
+                        self.socialLoadingTimer?.invalidate()
+                        self.setupSocialLoginForm()
+                   
+                        
+                        // for registration form
+                        
+                        
+                        let dynamicRegisterCondition = Condition.function(["Dynamic Registration"], { form in
+                            return !((form.rowBy(tag: "Dynamic Registration") as? SwitchRow)?.value ?? false)
+                        })
+                        
+                        self.registrationLoadingTimer?.invalidate()
+                        self.setupDynamicRegistrationForm(
+                            lrFields: LoginRadiusSchema.sharedInstance().fields,
+                            dynamicRegSection: self.form.sectionBy(tag: "Dynamic Registration Section")!,
+                            loadingRow: self.form.rowBy(tag: "Dynamic Registration Loading"),
+                            hiddenCondition: dynamicRegisterCondition,
+                            sendHandler: {
+                                self.requestSOTT(completion: self.dynamicRegistration)
+                        })
+                }
+                }
         }
+        
         
         socialLoadingTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(ViewController.updateSocialLoadingText), userInfo: nil, repeats: true)
         registrationLoadingTimer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(ViewController.updateDynamicRegistrationLoadingText), userInfo: nil, repeats: true)
@@ -117,7 +126,7 @@ class ViewController: FormViewController
         //This is do when there are 2 apps sharing 1 LoginRadius sitename login
         //If the other app logged in, this logs in too.
         
-        if LoginRadiusSDK.invalidateAndDeleteAccessTokenOnLogout()
+        if LoginRadiusSDK.sharedInstance().session.isLoggedIn
         {
             NotificationCenter.default.addObserver(self, selector: #selector(self.showProfileController), name:  NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         }
@@ -126,7 +135,7 @@ class ViewController: FormViewController
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if LoginRadiusSDK.invalidateAndDeleteAccessTokenOnLogout()
+        if LoginRadiusSDK.sharedInstance().session.isLoggedIn
         {
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         }
@@ -146,7 +155,7 @@ class ViewController: FormViewController
         {
             loadingTxt.append(".")
         }
-
+        
         if let loadingRow = form.rowBy(tag: "Social Logins Loading") as? LabelRow
         {
             loadingRow.title = loadingTxt
@@ -163,7 +172,7 @@ class ViewController: FormViewController
         {
             loadingTxt.append(".")
         }
-
+        
         if let loadingRow = form.rowBy(tag: "Dynamic Registration Loading") as? LabelRow
         {
             loadingRow.title = loadingTxt
@@ -173,7 +182,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 4.1.2 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.0.0 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
@@ -283,15 +292,15 @@ class ViewController: FormViewController
                 $0.hidden = staticRegisterCondition
                 $0.add(rule: RuleRequired(msg: "Email Required"))
                 $0.add(rule: RuleEmail(msg: "Incorrect Email format"))
-            }.onChange{ row in
-                self.toggleRegisterAvailability(rowTag:row.tag!,msgName: "email", available:nil)
-            }.onCellHighlightChanged{ cell, row in
-                //if the user resign other email input field and press something else
-                if (!row.isHighlighted)
-                {
-                    //check for email availability
-                    self.checkEmailAvailability(emailStr: row.value ?? "", emailRowTag: row.tag!)
-                }
+                }.onChange{ row in
+                    self.toggleRegisterAvailability(rowTag:row.tag!,msgName: "email", available:nil)
+                }.onCellHighlightChanged{ cell, row in
+                    //if the user resign other email input field and press something else
+                    if (!row.isHighlighted)
+                    {
+                        //check for email availability
+                        self.checkEmailAvailability(emailStr: row.value ?? "", emailRowTag: row.tag!)
+                    }
             }
             <<< PasswordRow("Password Static Registration")
             {
@@ -336,27 +345,27 @@ class ViewController: FormViewController
                 $0.hidden = forgotCondition
                 }.onCellSelection{ row,arg  in
                     self.forgotPassword()
-            }
-            
-            /* use web hosted page for resetting it
-            +++ Section("Reset Password")
+        }
+        
+        /* use web hosted page for resetting it
+         +++ Section("Reset Password")
+         {
+         $0.tag = "Reset Password"
+         $0.hidden = Condition(booleanLiteral:  true)
+         }
+         <<< ButtonRow("Reset Password")
+         {
+         $0.title = $0.tag
+         }.onCellSelection{ cell,row in
+         self.resetPassword()
+         }*/
+        
+        
+        if !LoginRadiusSDK.sharedInstance().session.isLoggedIn
+        {
+            form +++ Section("Touch ID")
             {
-                $0.tag = "Reset Password"
-                $0.hidden = Condition(booleanLiteral:  true)
-            }
-            <<< ButtonRow("Reset Password")
-            {
-                $0.title = $0.tag
-                }.onCellSelection{ cell,row in
-                    self.resetPassword()
-            }*/
-            
-            
-            if !LoginRadiusSDK.invalidateAndDeleteAccessTokenOnLogout()
-            {
-                form +++ Section("Touch ID")
-                {
-                    $0.tag = "Touch ID"
+                $0.tag = "Touch ID"
                 }
                 
                 <<< ButtonRow ("Touch ID")
@@ -364,12 +373,12 @@ class ViewController: FormViewController
                     $0.title = $0.tag
                     }.onCellSelection{ row,arg  in
                         self.showTouchIDLogin()
-                }
             }
+        }
         
-            form +++ Section("Social Logins Using Icons")
-            {
-                $0.tag = "Social Logins Using Icons"
+        form +++ Section("Social Logins Using Icons")
+        {
+            $0.tag = "Social Logins Using Icons"
             }
             <<< LabelRow ("Social Logins Loading")
             {
@@ -378,77 +387,77 @@ class ViewController: FormViewController
                 }
                 .cellUpdate{ (cell, row) in
                     cell.textLabel?.textAlignment = .center
-            }
-            /*
-            <<< SocialProvidersPickerRow("Social Logins Icons") { (row) in
-            }
-            .onCellSelection { (cell, row) in
-                self.showSocialLogins(provider:row.value!)
-            }
+        }
+        /*
+         <<< SocialProvidersPickerRow("Social Logins Icons") { (row) in
+         }
+         .onCellSelection { (cell, row) in
+         self.showSocialLogins(provider:row.value!)
+         }
+         
+         form +++ Section("Normal Social Logins")
+         {
+         $0.tag = "Normal Social Logins"
+         }*/
         
-            form +++ Section("Normal Social Logins")
+        let socialNativeLoginEnabled = AppDelegate.useGoogleNative ||  AppDelegate.useTwitterNative || AppDelegate.useFacebookNative
+        
+        if(socialNativeLoginEnabled)
+        {
+            let nativeSocialLoginSection = Section("Native Social Login")
+            form +++ nativeSocialLoginSection
+            
+            if (AppDelegate.useGoogleNative)
             {
-                $0.tag = "Normal Social Logins"
-            }*/
-        
-            let socialNativeLoginEnabled = AppDelegate.useGoogleNative ||  AppDelegate.useTwitterNative || AppDelegate.useFacebookNative
-        
-            if(socialNativeLoginEnabled)
-            {
-                let nativeSocialLoginSection = Section("Native Social Login")
-                form +++ nativeSocialLoginSection
+                NotificationCenter.default.addObserver(self, selector: #selector(self.processGoogleNativeLogin), name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil)
                 
-                if (AppDelegate.useGoogleNative)
+                nativeSocialLoginSection <<< ButtonRow("Native Google")
                 {
-                    NotificationCenter.default.addObserver(self, selector: #selector(self.processGoogleNativeLogin), name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil)
-
-                    nativeSocialLoginSection <<< ButtonRow("Native Google")
-                    {
-                        $0.title = "Google"
-                        }.onCellSelection{ cell, row in
-                            self.showNativeGoogleLogin()
-                    }
+                    $0.title = "Google"
+                    }.onCellSelection{ cell, row in
+                        self.showNativeGoogleLogin()
                 }
-                
-                if (AppDelegate.useFacebookNative)
-                {
-
-                    nativeSocialLoginSection <<< ButtonRow("Native Facebook")
-                    {
-                        $0.title = "Facebook"
-                        }.onCellSelection{ cell, row in
-                            self.showNativeFacebookLogin()
-                    }
-                }
-                
-                if (AppDelegate.useTwitterNative)
-                {
-
-                    nativeSocialLoginSection <<< ButtonRow("Native Twitter")
-                    {
-                        $0.title = "Twitter"
-                        }.onCellSelection{ cell, row in
-                            self.showNativeTwitterLogin()
-                    }
-                }
-
-                
             }
+            
+            if (AppDelegate.useFacebookNative)
+            {
+                
+                nativeSocialLoginSection <<< ButtonRow("Native Facebook")
+                {
+                    $0.title = "Facebook"
+                    }.onCellSelection{ cell, row in
+                        self.showNativeFacebookLogin()
+                }
+            }
+            
+            if (AppDelegate.useTwitterNative)
+            {
+                
+                nativeSocialLoginSection <<< ButtonRow("Native Twitter")
+                {
+                    $0.title = "Twitter"
+                    }.onCellSelection{ cell, row in
+                        self.showNativeTwitterLogin()
+                }
+            }
+            
+            
+        }
     }
-
+    
     func setupSocialLoginForm()
     {
         let socialLoginSection = form.sectionBy(tag: "Social Logins Using Icons")!
         let loadingRow = form.rowBy(tag: "Social Logins Loading")!
-
+        
         if let providers = socialProviders
         {
-           
+            
             socialLoginSection <<< SocialProvidersPickerRow("Social Logins Icons") { (row) in
-            }.cellSetup { cell, row in
-                cell.socialProviders = SocialProvidersManager.generateSocialProviderObjects(providers: providers)
-            }.onCellSelection { cell, row in
-                self.showSocialLogins(provider:row.value!)
+                }.cellSetup { cell, row in
+                    cell.socialProviders = SocialProvidersManager.generateSocialProviderObjects(providers: providers)
+                }.onCellSelection { cell, row in
+                    self.showSocialLogins(provider:row.value!)
             }
             
             
@@ -460,23 +469,23 @@ class ViewController: FormViewController
             loadingRow.updateCell()
         }
     }
-
+    
     // Request SOTT from your own server, then do client side validation, you can do the other way around.
     func requestSOTT(completion:@escaping (String)->Void)
     {
         //You have to handle your own server, networking, and response processing
         //Replace this code with your own
         /*
-        let url = "http://localhost:3000/sott"
-
-        Alamofire.request(url).responseJSON { response in
-            if let data = response.data,
-               let sott = String(data:data, encoding: .utf8)
-            {
-                print("sott: \(sott)")
-                completion(sott)
-            }
-        }*/
+         let url = "http://localhost:3000/sott"
+         
+         Alamofire.request(url).responseJSON { response in
+         if let data = response.data,
+         let sott = String(data:data, encoding: .utf8)
+         {
+         print("sott: \(sott)")
+         completion(sott)
+         }
+         }*/
         
         // Alternatively if you don't care about security then take
         // The SOTT staticly from LoginRadius Dashboard with the longest endDate
@@ -487,11 +496,11 @@ class ViewController: FormViewController
             showAlert(title: "ERROR", message: "For registration you need a SOTT, you can find it in the LoginRadius dashboard or generate one in your server")
             return
         }
-
+        
         completion(sott)
         
     }
-
+    
     func dynamicRegistration(sott:String)
     {
         guard let dynamicRegSection = form.sectionBy(tag: "Dynamic Registration Section") else
@@ -531,7 +540,7 @@ class ViewController: FormViewController
                     parameter[row.tag!] = dateFormatter.string(from: dateRow.value!)
                 }else
                 {
-                
+                    
                     parameter[row.tag!] = row.baseValue
                 }
             }else{
@@ -555,41 +564,39 @@ class ViewController: FormViewController
                 
                 parameter.removeValue(forKey: row.tag!)
             }
-            
+           
             if LoginRadiusField.addressFields().contains(row.tag!)
             {
-                if parameter["addresses"] == nil
-                {
-                    parameter["addresses"] = [[row.tag!:row.baseValue!]]
-                }else if var arr = parameter["addresses"] as? [[String:Any]]
+                 if var arr = parameter["addresses"] as? [[String:Any]]
                 {
                     arr[0][row.tag!] = row.baseValue!
                     parameter["addresses"] = arr
                 }
                 
                 parameter.removeValue(forKey: row.tag!)
-
+                
             }
             
         }
+       
         
-        LoginRadiusRegistrationManager.sharedInstance().authRegistration(withData:parameter, withSott: sott, verificationUrl: "", emailTemplate: "", completionHandler: { (data, error) in
-        
+        AuthenticationAPI.authInstance().userRegistration(withSott:sott,payload:parameter, emailtemplate:nil, smstemplate:nil, completionHandler:{ (data, error) in
+            
             if let err = error
             {
-                self.checkForMissingFieldError(data:data, error:err)
+                self.errorAlert(data:data, error:err)
             }else{
                 print("successfully registered");
                 self.showAlert(title:"SUCCESS", message:"Please verify your email")
             }
-
+            
         })
         
     }
     
     func traditionalRegistration(sott:String)
     {
-    
+        
         var errors = form.rowBy(tag: "Email Static Registration")!.validate()
         errors += form.rowBy(tag: "Password Static Registration")!.validate()
         errors += form.rowBy(tag: "Confirm Password Static Registration")!.validate()
@@ -599,27 +606,31 @@ class ViewController: FormViewController
             showAlert(title: "ERROR", message: errors[0].msg)
             return
         }
-    
-        let email:AnyObject = ["Type":"Primary",
-                                "Value":form.rowBy(tag: "Email Static Registration")!.baseValue!
-                            ] as AnyObject
+        
 
-        let parameter = [  "Email": [
-                                        email
-                                    ],
+        let email:AnyObject = ["Type":"Primary",
+                               "Value":form.rowBy(tag: "Email Static Registration")!.baseValue!
+            ] as AnyObject
+        
+        let parameter:AnyObject = [  "Email": [
+            email
+            ],
                            "Password": form.rowBy(tag: "Password Static Registration")!.baseValue!
-        ]
+        ]as AnyObject
         
-        LoginRadiusRegistrationManager.sharedInstance().authRegistration(withData:parameter, withSott: sott, verificationUrl: "", emailTemplate: "", completionHandler: { (data, error) in
+        print(parameter)
         
+        AuthenticationAPI.authInstance().userRegistration(withSott:sott,payload:parameter as! [AnyHashable : Any], emailtemplate:nil, smstemplate:nil, completionHandler: { (data, error) in
+            
             if let err = error
             {
-                self.checkForMissingFieldError(data:data, error:err)
+                 print("successfully registered");
+                self.errorAlert(data:data, error:err)
             }else{
                 print("successfully registered");
                 self.showAlert(title:"SUCCESS", message:"Please verify your email")
             }
-
+            
         })
     }
     
@@ -636,10 +647,17 @@ class ViewController: FormViewController
         
         let email = form.rowBy(tag: "Email Login")!.baseValue! as! String
         let password = form.rowBy(tag: "Password Login")!.baseValue! as! String
-    
-        LoginRadiusRegistrationManager.sharedInstance().authLogin(withEmail: email, withPassword: password, loginUrl: "", verificationUrl: "", emailTemplate: "", completionHandler: { (data, error) in
+        
+        let parameter:AnyObject = [
+                           "email":email,
+                           "password":password,
+                           "securityanswer":""
+        ]as AnyObject
+        
+        
+        AuthenticationAPI.authInstance().login(withPayload:parameter as! [AnyHashable : Any], loginurl:nil, emailtemplate:nil, smstemplate:nil, g_recaptcha_response:nil,completionHandler: { (data, error) in
             if let err = error {
-                self.checkForMissingFieldError(data:data, error:err)
+                self.errorAlert(data:data, error:err)
             } else {
                 self.showProfileController()
             }
@@ -658,10 +676,17 @@ class ViewController: FormViewController
         
         let username = form.rowBy(tag: "Username Login")!.baseValue! as! String
         let password = form.rowBy(tag: "Password Username Login")!.baseValue! as! String
-    
-        LoginRadiusRegistrationManager.sharedInstance().authLogin(withUserName: username, withPassword: password, loginUrl: "", verificationUrl: "", emailTemplate: "", completionHandler: { (data, error) in
+        let parameter:AnyObject = [
+            "username":username,
+            "password":password,
+            "securityanswer":""
+        ]as AnyObject
+        
+        
+        
+        AuthenticationAPI.authInstance().login(withPayload:parameter as! [AnyHashable : Any], loginurl:nil, emailtemplate:nil, smstemplate:nil, g_recaptcha_response:nil,completionHandler:{ (data, error) in
             if let err = error {
-                self.checkForMissingFieldError(data:data, error:err)
+                self.errorAlert(data:data, error:err)
             } else {
                 self.showProfileController()
             }
@@ -669,7 +694,7 @@ class ViewController: FormViewController
     }
     
     func forgotPassword() {
-    
+        
         var errors = form.rowBy(tag: "Email Forgot")!.validate()
         
         if errors.count > 0
@@ -680,7 +705,7 @@ class ViewController: FormViewController
         
         let email = form.rowBy(tag: "Email Forgot")!.baseValue! as! String
         
-        LoginRadiusRegistrationManager.sharedInstance().authForgotPassword(withEmail: email, resetPasswordUrl:"" , emailTemplate:"" , completionHandler:{ (data, error) in
+        AuthenticationAPI.authInstance().forgotPassword(withEmail:email, emailtemplate:nil,completionHandler:{ (data, error) in
             if let err = error {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             } else {
@@ -691,19 +716,31 @@ class ViewController: FormViewController
     
     func showSocialLogins(provider:String)
     {
-        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: provider, in: self, completionHandler: { (data, error) in
-        
-            DispatchQueue.main.async
-            {
-                if let err = error {
-                    self.checkForMissingFieldError(data:data, error:err)
-                } else {
-                    print("successfully logged in with \(provider)");
-                    self.showProfileController();
-                }
-            }
-        })
 
+        LoginRadiusSocialLoginManager.sharedInstance().login(withProvider: provider, in: self, completionHandler: { (data, error) in
+            
+            DispatchQueue.main.async
+                {
+                    if(error?.localizedDescription == "Social Login cancelled"){
+                        return
+                    }
+                   
+                   
+                    let access_token = data!["access_token"] as! NSString
+                    
+                      AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+                            
+                       self.checkRequiredFields(profile:response,token:access_token)
+                        
+                        })
+
+           
+
+                   
+            }
+            
+        })
+        
     }
     
     func showNativeGoogleLogin()
@@ -715,8 +752,8 @@ class ViewController: FormViewController
         }
         
         /* Google Native Sign in
-        GIDSignIn.sharedInstance().signIn()
-        */
+         GIDSignIn.sharedInstance().signIn()
+         */
     }
     
     @objc func processGoogleNativeLogin(notif:NSNotification)
@@ -725,10 +762,17 @@ class ViewController: FormViewController
         {
             if let err = userInfo["error"] as? NSError
             {
-                checkForMissingFieldError(data:userInfo["data"] as? [AnyHashable : Any], error:err)
+                errorAlert(data:userInfo["data"] as? [AnyHashable : Any], error:err)
             }else
             {
-                showProfileController()
+                let data = userInfo["data"] as? [AnyHashable : Any]
+                let access_token = data!["access_token"] as! NSString
+                
+                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+                    
+                    self.checkRequiredFields(profile:response,token:access_token)
+                    
+                })
             }
         }
     }
@@ -736,34 +780,46 @@ class ViewController: FormViewController
     func showNativeTwitterLogin()
     {
         /* Twitter Native Sign in
-
-        Twitter.sharedInstance().logIn(completion: { (session, error) in
-            if let session = session {
-                LoginRadiusSocialLoginManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, in: self, completionHandler: {(data, error) in
-                    if let _ = data
-                    {
-                        self.showProfileController()
-                    }else if let err = error
-                    {
-                        self.showAlert(title:"ERROR",message:err.localizedDescription)
-                    }
-                })
-            } else if let err = error{
-                self.showAlert(title:"ERROR",message:err.localizedDescription)
-            }
-        })
-   
-        */
+         
+         Twitter.sharedInstance().logIn(completion: { (session, error) in
+         if let session = session {
+         LoginRadiusSocialLoginManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, in: self, completionHandler: {(data, error) in
+         if let _ = data
+         {
+         let access_token = data!["access_token"] as! NSString
+         
+         AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+         
+         self.checkRequiredFields(profile:response,token:access_token)
+         
+         })
+         }else if let err = error
+         {
+         self.showAlert(title:"ERROR",message:err.localizedDescription)
+         }
+         })
+         } else if let err = error{
+         self.showAlert(title:"ERROR",message:err.localizedDescription)
+         }
+         })
+         
+         */
     }
     
     func showNativeFacebookLogin()
     {
         LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile", "email"]], in: self, completionHandler: {( data, error) -> Void in
-
+            
             if let err = error {
-                self.checkForMissingFieldError(data:data, error:err)
+                self.errorAlert(data:data, error:err)
             } else {
-                self.showProfileController();
+                let access_token = data!["access_token"] as! NSString
+                
+                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+                    
+                    self.checkRequiredFields(profile:response,token:access_token)
+                    
+                })
             }
         })
     }
@@ -774,38 +830,38 @@ class ViewController: FormViewController
             if let err = error{
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else{
-                self.showProfileController();
+                self.showAlert(title: "SUCCESS", message:"Valid User")
             }
         })
     }
     
-    func checkForMissingFieldError(data:[AnyHashable:Any]?, error:Error )
+    func errorAlert(data:[AnyHashable:Any]?, error:Error )
     {
-        let e = error as NSError
-        if e.code == LRErrorCode.userRequireAdditionalFieldsError.rawValue
-        {
-            self.attemptToSegue(identifier: "missingfields", sender: self)
-        }else
-        {
+        
+           let e = error as NSError
             let descriptiveReason = (e.localizedFailureReason != nil) ? "\n\n\(e.localizedFailureReason!)" : ""
             self.showAlert(title: "ERROR", message: "\(e.localizedDescription)\(descriptiveReason)")
-        }
+        
     }
+    
+  
     
     @objc func showProfileController () {
         DispatchQueue.main.async
-        {
-            if LoginRadiusSDK.sharedInstance().session.isLoggedIn
             {
-                self.attemptToSegue(identifier: "profile", sender: self)
-            }else
-            {
-                print("Attempted to go to profile view controller when not logged in")
-            }
+                
+                print(LoginRadiusSDK.sharedInstance().session.isLoggedIn);
+                if LoginRadiusSDK.sharedInstance().session.isLoggedIn
+                {
+                    self.attemptToSegue(identifier: "profile", sender: self)
+                }else
+                {
+                    print("Attempted to go to profile view controller when not logged in")
+                }
         }
     }
     
-        
+    
     func attemptToSegue(identifier: String, sender: Any?){
         if(self.shouldPerformSegue(withIdentifier: identifier, sender: sender)){
             self.performSegue(withIdentifier: identifier, sender: sender)
@@ -828,15 +884,6 @@ class ViewController: FormViewController
             //to eliminate "< Back" button showing up when user already logged in
             segue.destination.navigationItem.hidesBackButton = true
             resetFormValues()
-        } else if segue.identifier == "missingfields",
-            let data = sender as? Dictionary<String, Any>,
-            let token = data["AccessToken"] as? String,
-            let missingFields = data["MissingRequiredFields"] as? [LoginRadiusField]
-        {
-            let mfVC = segue.destination as! MissingFieldsViewController
-            mfVC.accessToken = token
-            mfVC.lrFields = missingFields
-            resetFormValues()
         }else{
             print("unknown handler for segue")
         }
@@ -848,6 +895,36 @@ class ViewController: FormViewController
             rows.baseValue = nil
         }
         tableView.reloadData()
+        
+    }
+    
+    
+    func checkRequiredFields(profile:[AnyHashable:Any]?, token:NSString) {
+
+        ConfigurationAPI.configInstance().getConfigurationSchema
+            {schema, error in
+                
+                
+                LoginRadiusSchema.sharedInstance().checkRequiredFields(withSchema:schema!, profile:profile!, completionHandler: {(data, error) in
+            
+           if(data?.index(forKey: "MissingRequiredFields") != nil){
+            
+            // UserDefaults for temp save token for update missing profile 
+            
+            UserDefaults.standard.set(token, forKey: "token")
+            DispatchQueue.main.async{
+             self.attemptToSegue(identifier: "missingfields", sender: self)
+            }
+            }else{
+            
+                LRSession.init(accessToken:token as String, userProfile:profile!)
+                self.showProfileController();
+
+            }
+            
+            
+        })
+     }
         
     }
 }

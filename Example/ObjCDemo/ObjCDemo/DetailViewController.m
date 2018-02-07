@@ -225,8 +225,8 @@ static NSArray<NSString *>* _countries = nil;
         XLFormRowDescriptor *row = rows[i];
         [parameters setObject:[row value] forKey:[row tag]];
         
-        if ([[LoginRadiusField addressFields] containsObject:[[row tag] lowercaseString]])
-        {
+      //  if ([[LoginRadiusField addressFields] containsObject:[[row tag] lowercaseString]])
+      //  {
             if ( ![parameters objectForKey:@"addresses"])
             {
                 NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -240,7 +240,7 @@ static NSArray<NSString *>* _countries = nil;
             }
             
             [parameters removeObjectForKey:[row tag]];
-        }
+       // }
     }
     
     //if contains address, add type at the end.
@@ -250,16 +250,14 @@ static NSArray<NSString *>* _countries = nil;
         [arr[0] setObject:@"Personal" forKey:@"Type"];
     }
     
-    [[LoginRadiusRegistrationManager sharedInstance] authUpdateProfilebyToken:[self accessToken] verificationUrl:@"" emailTemplate:@"" userData: [parameters copy] completionHandler: ^(NSDictionary *data, NSError *error)
-    {
+    [[AuthenticationAPI authInstance] updateProfileWithAccessToken:[self accessToken] emailtemplate:nil smstemplate:nil payload:[parameters copy] completionHandler:^(NSDictionary *data, NSError *error) {
         if (error)
         {
             [self showAlert:@"ERROR" message:[error localizedDescription]];
         }
         else
         {
-            [[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:[self accessToken] completionHandler:^(NSDictionary *data, NSError *error)
-            {
+             [[AuthenticationAPI authInstance] profilesWithAccessToken:[self accessToken] completionHandler:^(NSDictionary *res, NSError *error) {
                 if (error)
                 {
                     NSLog(@"%@", [error localizedDescription]);
@@ -280,8 +278,9 @@ static NSArray<NSString *>* _countries = nil;
 
 - (void) validateAccessToken:(BOOL)showSuccess
 {
-    [[LoginRadiusRegistrationManager sharedInstance] authValidateAccessToken:[self accessToken] completionHandler:^(NSDictionary *data, NSError *error)
-    {
+    
+
+    [[AuthenticationAPI authInstance] validateAccessToken:[self accessToken] completionHandler:^(NSDictionary * data, NSError *error) {
         if (error)
         {
             [self showAlert:@"ERROR" message:[error localizedDescription]];

@@ -18,11 +18,10 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 
 @property (strong, readonly, nonatomic) NSString* _Nonnull apiKey;
 @property (strong, readonly, nonatomic) NSString* _Nonnull siteName;
+@property (strong, readonly, nonatomic) NSString* _Nonnull verificationUrl;
 @property (strong, atomic) LRSession* _Nonnull session;
 @property (readonly, nonatomic) BOOL useKeychain;
-@property (readonly, nonatomic) BOOL askForRequiredFields;
-@property (readonly, nonatomic) BOOL askForVerifiedFields;
-@property (readonly, nonatomic) BOOL invalidateAndDeleteAccessTokenOnLogout;
+
 
 #pragma mark - Initilizers
 
@@ -39,10 +38,9 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 + (instancetype _Nonnull )sharedInstance;
 + (NSString*_Nonnull)apiKey;
 + (NSString*_Nonnull)siteName;
++ (NSString*_Nonnull)verificationUrl;
 + (BOOL)useKeychain;
-+ (BOOL)askForRequiredFields;
-+ (BOOL)askForVerifiedFields;
-+ (BOOL)invalidateAndDeleteAccessTokenOnLogout;
+
 
 #pragma mark - Application Delegate methods
 

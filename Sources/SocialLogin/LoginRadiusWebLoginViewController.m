@@ -6,17 +6,17 @@
 
 #import "LoginRadiusWebLoginViewController.h"
 #import "LoginRadiusSDK.h"
-#import "NSDictionary+LRDictionary.h"
+#import "LRDictionary.h"
 #import "LRErrors.h"
 #import "ReachabilityCheck.h"
-#import "LoginRadiusRegistrationManager.h"
+#import "LoginRadius.h"
+
 
 @interface LoginRadiusWebLoginViewController () <UIWebViewDelegate>
 
 @property(nonatomic, copy) NSString* provider;
 @property(nonatomic, copy) NSURL * serviceURL;
 @property(nonatomic, copy) LRAPIResponseHandler handler;
-
 @property(nonatomic, weak) UIWebView* webView;
 @property(nonatomic, weak) UIView *retryView;
 @property(nonatomic, weak) UILabel *retryLabel;
@@ -28,8 +28,9 @@
 - (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRAPIResponseHandler)handler{
 	self = [super init];
 	if (self) {
-		_provider = provider;
+		_provider = [provider lowercaseString];
 		_handler = handler;
+        
 	}
 	return self;
 }
@@ -85,8 +86,10 @@
 	UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
 
 	self.navigationItem.leftBarButtonItem = cancelItem;
-
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.hub.loginradius.com/RequestHandlor.aspx?apikey=%@&provider=%@&ismobile=1", [LoginRadiusSDK siteName], [LoginRadiusSDK apiKey], _provider]];
+    self.provider=[_provider lowercaseString];
+	
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.hub.loginradius.com/RequestHandlor.aspx?apikey=%@&provider=%@&ismobile=1", [LoginRadiusSDK siteName], [LoginRadiusSDK apiKey], _provider]];
     
     self.serviceURL = url;
     [_webView loadRequest:[NSURLRequest requestWithURL: url]];
@@ -94,7 +97,7 @@
 }
 
 - (void) cancelPressed {
-	[self finishSocialLogin:nil withError:[LRErrors socialLoginCancelled:_provider]];
+    [self finishSocialLogin:@"" withError:[LRErrors socialLoginCancelled:_provider]];
 }
 
 - (void)startMonitoringNetwork {
@@ -128,18 +131,23 @@
 
 #pragma mark - Web View Delegates
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	if ([request.URL.absoluteString rangeOfString:@"token"].location != NSNotFound && [request.URL.path isEqualToString:@"/mobile.aspx"]) {
-
-		NSDictionary *parameters = [NSDictionary dictionaryWithQueryString:request.URL.query];
-		NSString *token = [parameters objectForKey:@"token"];
+    
+    NSLog(@"final url %@",request.URL.absoluteString);
+    NSString *expatedFinalString = [NSString stringWithFormat:@"%@.%@", [LoginRadiusSDK siteName], [[NSBundle mainBundle] bundleIdentifier]];
+    
+    if ([request.URL.absoluteString rangeOfString:@"://#lr-token="].location == NSNotFound) {
+        NSLog(@"string does not contain bla %@",expatedFinalString);
+    } else {
+        NSLog(@"string contains bla! %@",expatedFinalString);
+    }
+	if ([request.URL.absoluteString rangeOfString:@"://#lr-token="].location != NSNotFound) {
+        NSString *token = [[request.URL fragment] substringFromIndex:9];
 
 		if( token ) {
-			[[LoginRadiusRegistrationManager sharedInstance] authProfilesByToken:token completionHandler:^(NSDictionary *data, NSError *error) {
-				[self finishSocialLogin:data withError:error];
-			}];
-
-		} else {
-			[self finishSocialLogin:nil withError:[LRErrors socialLoginFailed:_provider]];
+           [self finishSocialLogin:token withError:nil];
+           
+        } else {
+            [self finishSocialLogin:@"" withError:[LRErrors socialLoginFailed:_provider]];
 		}
 		return YES;
 	}
@@ -172,13 +180,16 @@
     self.retryView.hidden = NO;
 }
 
-- (void)finishSocialLogin:(NSDictionary * _Nullable)data withError:(NSError*) error {
+- (void)finishSocialLogin:(NSString * )access_token withError:(NSError*) error {
 	if (self.handler) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.handler(data, error);
-		});
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDictionary *data = [NSDictionary dictionaryWithObject:access_token forKey:@"access_token"];
+            NSLog(@"test %@", [data objectForKey:@"access_token"]);
+            self.handler(data, error);
+        });
 	}
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

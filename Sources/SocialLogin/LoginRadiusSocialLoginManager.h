@@ -33,6 +33,8 @@
 			inController:(UIViewController*)controller
 	   completionHandler:(LRAPIResponseHandler)handler;
 
+
+
 /**
  *  Native Facebook Login
  *
@@ -72,7 +74,6 @@
                       inController:(UIViewController *)controller
                   completionHandler:(LRAPIResponseHandler)handler;
 
--(void)getSocialProvidersListWithCompletion:(LRAPIResponseHandler)handler;
 
 /**
  *  Log out the user

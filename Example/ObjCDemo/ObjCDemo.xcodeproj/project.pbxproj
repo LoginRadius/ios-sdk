@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		099BC4B3B02C343C6007D470 /* Pods_ObjCDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84063B8378AC28BA2F5D4FA9 /* Pods_ObjCDemo.framework */; };
 		152C02D51EEAF7B100E4AF97 /* XLFormViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 152C02D41EEAF7B100E4AF97 /* XLFormViewControllerExtension.m */; };
-		681005501E5C0E780097BE26 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6810054F1E5C0E780097BE26 /* LoginRadius.plist */; };
 		682D11381CEC500B009274E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D11371CEC500B009274E2 /* main.m */; };
 		682D113B1CEC500B009274E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D113A1CEC500B009274E2 /* AppDelegate.m */; };
 		682D113E1CEC500B009274E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D113D1CEC500B009274E2 /* ViewController.m */; };
@@ -17,6 +16,7 @@
 		682D11431CEC500B009274E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682D11421CEC500B009274E2 /* Assets.xcassets */; };
 		682D11461CEC500B009274E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682D11441CEC500B009274E2 /* LaunchScreen.storyboard */; };
 		682D11531CEC50CA009274E2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D11521CEC50CA009274E2 /* DetailViewController.m */; };
+		FE1428DE1FE3A16300390A47 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE1428DD1FE3A16300390A47 /* LoginRadius.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +36,6 @@
 		152C02D31EEAF5ED00E4AF97 /* XLFormViewControllerExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLFormViewControllerExtension.h; sourceTree = "<group>"; };
 		152C02D41EEAF7B100E4AF97 /* XLFormViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormViewControllerExtension.m; sourceTree = "<group>"; };
 		15AAE7BA1EDCA42D009F66F0 /* ObjCDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ObjCDemo.entitlements; sourceTree = "<group>"; };
-		6810054F1E5C0E780097BE26 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
 		682D11331CEC500B009274E2 /* ObjCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682D11371CEC500B009274E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		682D11391CEC500B009274E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		84063B8378AC28BA2F5D4FA9 /* Pods_ObjCDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjCDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89FC4B7E46D47424B5808E1 /* Pods-ObjCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCDemo.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E92A2AB1EFE5992533D85141 /* Pods-ObjCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCDemo.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo.release.xcconfig"; sourceTree = "<group>"; };
+		FE1428DD1FE3A16300390A47 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 				682D113F1CEC500B009274E2 /* Main.storyboard */,
 				682D11421CEC500B009274E2 /* Assets.xcassets */,
 				682D11441CEC500B009274E2 /* LaunchScreen.storyboard */,
-				6810054F1E5C0E780097BE26 /* LoginRadius.plist */,
+				FE1428DD1FE3A16300390A47 /* LoginRadius.plist */,
 				682D11471CEC500B009274E2 /* Info.plist */,
 				682D11361CEC500B009274E2 /* Supporting Files */,
 			);
@@ -201,7 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				681005501E5C0E780097BE26 /* LoginRadius.plist in Resources */,
+				FE1428DE1FE3A16300390A47 /* LoginRadius.plist in Resources */,
 				682D11461CEC500B009274E2 /* LaunchScreen.storyboard in Resources */,
 				682D11431CEC500B009274E2 /* Assets.xcassets in Resources */,
 				682D11411CEC500B009274E2 /* Main.storyboard in Resources */,
@@ -301,7 +301,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -313,7 +312,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
@@ -472,12 +470,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ObjCDemo/ObjCDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/ObjCDemo",
 				);
 				INFOPLIST_FILE = ObjCDemo/Info.plist;
+				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.ObjCDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -492,12 +492,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ObjCDemo/ObjCDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/ObjCDemo",
 				);
 				INFOPLIST_FILE = ObjCDemo/Info.plist;
+				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.ObjCDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

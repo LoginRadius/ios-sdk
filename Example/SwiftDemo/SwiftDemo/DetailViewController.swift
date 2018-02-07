@@ -131,31 +131,26 @@ class DetailViewController: FormViewController {
         for row in rows
         {
             parameters[row.tag!] = row.baseValue
-            
-            if LoginRadiusField.addressFields().contains(row.tag!.lowercased())
-            {
-                if parameters["addresses"] == nil
-                {
-                    parameters["addresses"] = [[row.tag!:row.baseValue!]]
-                }else if var arr = parameters["addresses"] as? [[String:Any]]
-                {
-                    arr[0][row.tag!] = row.baseValue!
-                    parameters["addresses"] = arr
-                }
-                
-                parameters.removeValue(forKey: row.tag!)
-            }
-        }
         
-        //if contains address, add type at the end.
-        if parameters["addresses"] != nil,
-           var arr = parameters["addresses"] as? [[String:Any]]
-        {
-            arr[0]["type"] = "Personal"
-            parameters["addresses"] = arr
         }
+        let country = parameters["Country"] as! String
+        let Gender = parameters["Gender"] as! String
+        let FirstName = parameters["FirstName"] as! String
+        let LastName = parameters["LastName"] as! String
+        
+        let Country:AnyObject = ["Code":"Primary",
+                               "Name":country
+            ] as AnyObject
+       
+        let par:AnyObject = [ "Country":Country,
+           "Gender": Gender,
+           "FirstName": FirstName,
+           "LastName": LastName
+            ]as AnyObject
+
+       
     
-        LoginRadiusRegistrationManager.sharedInstance().authUpdateProfilebyToken(accessToken, verificationUrl: "", emailTemplate: "", userData: parameters, completionHandler: { (data, error) in
+        AuthenticationAPI.authInstance().updateProfile(withAccessToken:accessToken, emailtemplate: "", smstemplate: "", payload: par as! [AnyHashable : Any], completionHandler: { (data, error) in
             
             if let err = error
             {
@@ -163,7 +158,8 @@ class DetailViewController: FormViewController {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else
             {
-                LoginRadiusRegistrationManager.sharedInstance().authProfiles(byToken: self.accessToken, completionHandler: {(data, error) in
+                
+                AuthenticationAPI.authInstance().profiles(withAccessToken: self.accessToken, completionHandler: {(data, error) in
                     
                     if let err = error
                     {
@@ -188,7 +184,10 @@ class DetailViewController: FormViewController {
     
     func validateAccessToken(showSuccess:Bool = true)
     {
-        LoginRadiusRegistrationManager.sharedInstance().authValidateAccessToken(accessToken, completionHandler: {(data, error) in
+        
+        
+        
+        AuthenticationAPI.authInstance().validateAccessToken(accessToken, completionHandler: {(data, error) in
             
             if let err = error
             {
@@ -205,7 +204,8 @@ class DetailViewController: FormViewController {
     
     func invalidateAccessToken()
     {
-        LoginRadiusRegistrationManager.sharedInstance().authInvalidateAccessToken(accessToken, completionHandler: {(data, error) in
+       
+        AuthenticationAPI.authInstance().invalidateAccessToken(accessToken, completionHandler: {(data, error) in
             
             if let err = error
             {
@@ -239,8 +239,10 @@ class DetailViewController: FormViewController {
             showAlert(title: "ERROR", message: "Invalid JSON payload")
             return
         }
+        
+     
     
-        LoginRadiusCustomObjectManager.sharedInstance().createCustomObject(withName: objectName, accessToken: accessToken, data: dataDict, completionHandler: {data, error in
+        CustomObjectAPI.customInstance().createCustomObject(withObjectName: objectName, accessToken: accessToken, payload: dataDict, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -262,8 +264,9 @@ class DetailViewController: FormViewController {
         }
         
         let objectName = form.rowBy(tag: "GetCO Object Name")!.baseValue! as! String
+        
 
-        LoginRadiusCustomObjectManager.sharedInstance().getCustomObject(withName: objectName, accessToken: accessToken, completionHandler: {data, error in
+        CustomObjectAPI.customInstance().getCustomObject(withObjectName: objectName, accessToken: accessToken, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -288,8 +291,8 @@ class DetailViewController: FormViewController {
         
         let objectName = form.rowBy(tag: "GetCO Object Name with RecordId")!.baseValue! as! String
         let recordId = form.rowBy(tag: "GetCO RecordId with RecordId")!.baseValue! as! String
-
-        LoginRadiusCustomObjectManager.sharedInstance().getCustomObject(withName: objectName, accessToken: accessToken, objectRecordId: recordId, completionHandler: {data, error in
+        
+        CustomObjectAPI.customInstance().getCustomObject(withObjectRecordId:recordId, accessToken:accessToken, objectname:objectName, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -322,8 +325,11 @@ class DetailViewController: FormViewController {
             showAlert(title: "ERROR", message: "Invalid JSON payload")
             return
         }
+        
+        
+       
     
-        LoginRadiusCustomObjectManager.sharedInstance().putCustomObject(withName: objectName, accessToken: accessToken, objectRecordId: recordId, data: dataDict, completionHandler: {data, error in
+        CustomObjectAPI.customInstance().updateCustomObject(withObjectName: objectName, accessToken: accessToken, objectRecordId: recordId, updatetype:nil, payload: dataDict, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -347,8 +353,8 @@ class DetailViewController: FormViewController {
         
         let objectName = form.rowBy(tag: "DelCO Object Name")!.baseValue! as! String
         let recordId = form.rowBy(tag: "DelCO RecordId")!.baseValue! as! String
-    
-        LoginRadiusCustomObjectManager.sharedInstance().deleteCustomObject(withName: objectName, accessToken: accessToken, objectRecordId: recordId, completionHandler: {data, error in
+        
+        CustomObjectAPI.customInstance().deleteCustomObject(withObjectRecordId:recordId, accessToken:accessToken, objectname:objectName, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)

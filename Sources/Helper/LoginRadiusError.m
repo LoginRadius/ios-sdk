@@ -4,11 +4,11 @@
 //  Copyright © 2016 LoginRadius Inc. All rights reserved.
 //
 
-#import "NSError+LRError.h"
+#import "LoginRadiusError.h"
 
 static NSString * _Nonnull const LoginRadiusDomain = @"com.loginradius";
 
-@implementation NSError (LRError)
+@implementation NSError (LoginRadiusError)
 
 + (NSError *)errorWithCode:(NSInteger)code
 			   description:(NSString *)description
