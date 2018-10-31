@@ -117,12 +117,16 @@ static NSArray<NSString *>* _countries = nil;
         [self logoutPressed:self];
     };
     [section addFormRow:row];
-    
+    NSString *userEmail;
+    if ([_userProfile objectForKey:@"Email"] != nil && ([[_userProfile objectForKey:@"Email"] count] > 0)) {
+     userEmail = [[_userProfile objectForKey:@"Email"][0] objectForKey:@"Value"];
+    }
     //User Profile Section
-    NSString *userEmail = [[_userProfile objectForKey:@"Email"][0] objectForKey:@"Value"];
     
-    id countryObj = [_userProfile objectForKey:@"Addresses"];
-    NSString *userCountry  = ([countryObj isKindOfClass:[NSArray class]]) ? [[_userProfile objectForKey:@"Addresses"][0]  objectForKey:@"Country"] : nil;
+    NSString *userCountry;
+    if ([_userProfile objectForKey:@"Country"] != nil && ![[_userProfile objectForKey:@"Country"]  isEqual: @""]) {
+         userCountry = [[_userProfile objectForKey:@"Country"] objectForKey:@"Name"];
+    }
     NSString *gender = [_userProfile objectForKey:@"Gender"];
 
     section = [XLFormSectionDescriptor formSectionWithTitle:@"User Profile Section"];
@@ -152,6 +156,7 @@ static NSArray<NSString *>* _countries = nil;
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Email" rowType:XLFormRowDescriptorTypeEmail title:@"Email"];
     row.required = YES;
     row.value = userEmail;
+    row.disabled = @YES;
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     [section addFormRow:row];
@@ -223,56 +228,33 @@ static NSArray<NSString *>* _countries = nil;
     for(int i = 0; i < [rows count]; i++)
     {
         XLFormRowDescriptor *row = rows[i];
-        [parameters setObject:[row value] forKey:[row tag]];
-        
-      //  if ([[LoginRadiusField addressFields] containsObject:[[row tag] lowercaseString]])
-      //  {
-            if ( ![parameters objectForKey:@"addresses"])
-            {
-                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-                [dict setObject:[row value] forKey:[row tag]];
-                [parameters setObject:@[dict] forKey:@"addresses"];
-            }else
-            {
-                NSArray<NSMutableDictionary *> *arr = [parameters objectForKey:@"addresses"];
-                [arr[0] setObject:[row value] forKey:[row tag]];
-                [parameters setObject:arr forKey:@"addresses"];
-            }
-            
-            [parameters removeObjectForKey:[row tag]];
-       // }
+        if ([[row tag]  isEqual: @"Country"]) {
+            NSDictionary *country = @{@"Code":@"",@"Name":[row value]};
+            [parameters setObject:country forKey:@"Country"];
+        }else{
+            [parameters setObject:[row value] forKey:[row tag]];
+        }
     }
-    
-    //if contains address, add type at the end.
-    if ( [parameters objectForKey:@"addresses"])
-    {
-        NSArray<NSMutableDictionary *> *arr = [parameters objectForKey:@"addresses"];
-        [arr[0] setObject:@"Personal" forKey:@"Type"];
-    }
+
+   
     
     [[AuthenticationAPI authInstance] updateProfileWithAccessToken:[self accessToken] emailtemplate:nil smstemplate:nil payload:[parameters copy] completionHandler:^(NSDictionary *data, NSError *error) {
         if (error)
         {
             [self showAlert:@"ERROR" message:[error localizedDescription]];
         }
-        else
-        {
-             [[AuthenticationAPI authInstance] profilesWithAccessToken:[self accessToken] completionHandler:^(NSDictionary *res, NSError *error) {
-                if (error)
-                {
-                    NSLog(@"%@", [error localizedDescription]);
-                    [self showAlert:@"ERROR" message:[error localizedDescription]];
-                }
-                else
-                {
+        else{
+                    NSString *access_token =  [[[LoginRadiusSDK sharedInstance] session] accessToken];
                     [self showAlert:@"SUCCESS" message:@"User updated!"];
                     NSLog(@"Here is the raw NSDictionary user profile:");
-                    NSLog(@"%@", [self userProfile]);
+                    NSDictionary *_data =[data objectForKey:@"Data"];
+                    LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[_data mutableCopy] replaceNullWithBlank]];
+                    NSLog(@"LRSession Store Update Profile%@",session.userProfile);
                     NSLog(@"end of raw NSDictionary user profile");
                     [self viewDidLoad];
                 }
-            }];
-        }
+        
+        
     }];
 }
 

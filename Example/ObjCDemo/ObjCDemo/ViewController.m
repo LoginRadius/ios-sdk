@@ -39,8 +39,6 @@
      */
     [self setupForm];
     
-
-
     [[ConfigurationAPI configInstance] getConfigurationSchema:^(NSDictionary *data, NSError *error) {
         
         if (data[@"SocialSchema"]){
@@ -116,7 +114,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.0.0 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.1.0 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
@@ -363,13 +361,8 @@
                                   };
     
     
-   
-   
-   
     
-    
-    
-    [[AuthenticationAPI authInstance]  userRegistrationWithSott:sott  payload:parameter emailtemplate:nil smstemplate:nil completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+    [[AuthenticationAPI authInstance]  userRegistrationWithSott:sott  payload:parameter emailtemplate:nil smstemplate:nil preventVerificationEmail:TRUE completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
          if (error)
          {
              [self errorMessage:data error:error];
@@ -377,6 +370,8 @@
          {
              NSLog(@"successfully registered");
              [self showAlert:@"SUCCESS" message:@"Please verify your email"];
+             
+             
          }
      }];
 
@@ -388,6 +383,7 @@
 {
     XLFormRowDescriptor *emailRow = [[self form] formRowWithTag:@"EmailLogin"];
     XLFormRowDescriptor *passRow = [[self form] formRowWithTag:@"PasswordLogin"];
+   
     NSMutableArray<XLFormValidationStatus *> *errors = [[NSMutableArray<XLFormValidationStatus *> alloc] init];
     [errors addObject:[emailRow doValidation]];
     [errors addObject:[passRow doValidation]];
@@ -412,9 +408,17 @@
     [[AuthenticationAPI authInstance] loginWithPayload:parameter loginurl:nil emailtemplate:nil smstemplate:nil g_recaptcha_response:nil completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
          if (error)
          {
+            
              [self errorMessage:data error:error];
+             
          }else
          {
+            
+             NSString *access_token= [data objectForKey:@"access_token"];
+             NSDictionary *_data =[data objectForKey:@"Profile"];
+             LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[_data mutableCopy] replaceNullWithBlank]];
+             NSLog(@"LRSession Store Token%@",session.accessToken);
+             NSLog(@"LRSession Store UserProfile%@",session.userProfile);
              [self showProfileController];
          }
      }];

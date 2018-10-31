@@ -67,8 +67,9 @@
                     accessToken:(NSString*)accessToken
                  objectRecordId:(NSString*)objectRecordId
                  updatetype:(NSString*)updatetype
-                           payload:(NSDictionary*)payload
+                payload:(NSDictionary*)payload
               completionHandler:(LRAPIResponseHandler)completion{
+   
     NSString* url = [NSString stringWithFormat:@"identity/v2/auth/customobject/%@", objectRecordId];
     [[LoginRadiusREST apiInstance] sendPUT:url
                                queryParams:@{

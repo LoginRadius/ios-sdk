@@ -44,7 +44,6 @@ class ViewController: FormViewController
          GIDSignIn.sharedInstance().uiDelegate = self
          */
         self.setupForm()
-      
         //fetch me the social provider list
         ConfigurationAPI.configInstance().getConfigurationSchema
             { data, error in
@@ -66,51 +65,51 @@ class ViewController: FormViewController
                     
                     if let providersObj = data!["SocialSchema"]{
                         
-                    let  fields:[LoginRadiusField] = LoginRadiusSchema.sharedInstance().providers!
-                    let providersList: NSMutableArray = NSMutableArray()
-                    for field in fields
-                    {
-                        providersList.add(field.providerName!)
-                        
-                    }
+                        let  fields:[LoginRadiusField] = LoginRadiusSchema.sharedInstance().providers!
+                        let providersList: NSMutableArray = NSMutableArray()
+                        for field in fields
+                        {
+                            providersList.add(field.providerName!)
+                            
+                        }
                         self.socialProviders = providersList as? [String]
-               
-                  }else
-                {
-                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "unknown error")
-                    if let loadingRow = self.form.rowBy(tag: "Social Logins Loading") as? LabelRow
+                        
+                    }else
                     {
-                        loadingRow.title = (error?.localizedDescription ?? "unknown error").capitalized
-                        loadingRow.updateCell()
+                        self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "unknown error")
+                        if let loadingRow = self.form.rowBy(tag: "Social Logins Loading") as? LabelRow
+                        {
+                            loadingRow.title = (error?.localizedDescription ?? "unknown error").capitalized
+                            loadingRow.updateCell()
+                        }
                     }
-                }
-                
-                DispatchQueue.main.async
-                    {
-                        // for social login form
-                        
-                        
-                        self.socialLoadingTimer?.invalidate()
-                        self.setupSocialLoginForm()
-                   
-                        
-                        // for registration form
-                        
-                        
-                        let dynamicRegisterCondition = Condition.function(["Dynamic Registration"], { form in
-                            return !((form.rowBy(tag: "Dynamic Registration") as? SwitchRow)?.value ?? false)
-                        })
-                        
-                        self.registrationLoadingTimer?.invalidate()
-                        self.setupDynamicRegistrationForm(
-                            lrFields: LoginRadiusSchema.sharedInstance().fields,
-                            dynamicRegSection: self.form.sectionBy(tag: "Dynamic Registration Section")!,
-                            loadingRow: self.form.rowBy(tag: "Dynamic Registration Loading"),
-                            hiddenCondition: dynamicRegisterCondition,
-                            sendHandler: {
-                                self.requestSOTT(completion: self.dynamicRegistration)
-                        })
-                }
+                    
+                    DispatchQueue.main.async
+                        {
+                            // for social login form
+                            
+                            
+                            self.socialLoadingTimer?.invalidate()
+                            self.setupSocialLoginForm()
+                            
+                            
+                            // for registration form
+                            
+                            
+                            let dynamicRegisterCondition = Condition.function(["Dynamic Registration"], { form in
+                                return !((form.rowBy(tag: "Dynamic Registration") as? SwitchRow)?.value ?? false)
+                            })
+                            
+                            self.registrationLoadingTimer?.invalidate()
+                            self.setupDynamicRegistrationForm(
+                                lrFields: LoginRadiusSchema.sharedInstance().fields,
+                                dynamicRegSection: self.form.sectionBy(tag: "Dynamic Registration Section")!,
+                                loadingRow: self.form.rowBy(tag: "Dynamic Registration Loading"),
+                                hiddenCondition: dynamicRegisterCondition,
+                                sendHandler: {
+                                    self.requestSOTT(completion: self.dynamicRegistration)
+                            })
+                    }
                 }
         }
         
@@ -182,7 +181,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.0.0 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.1.0 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
@@ -501,7 +500,7 @@ class ViewController: FormViewController
         
     }
     
-    func dynamicRegistration(sott:String)
+  func dynamicRegistration(sott:String)
     {
         guard let dynamicRegSection = form.sectionBy(tag: "Dynamic Registration Section") else
         {
@@ -555,11 +554,17 @@ class ViewController: FormViewController
                 
                 if var dict = parameter["CustomFields"] as? [String:Any]
                 {
-                    dict[modifiedTag] = parameter[row.tag!]!
-                    parameter["CustomFields"] = dict
-                }else
+                    if(parameter[row.tag!] != nil){
+                        dict[modifiedTag] = parameter[row.tag!]!
+                        parameter["CustomFields"] = dict
+                    }
+                   
+                }else 
                 {
-                    parameter["CustomFields"] = [modifiedTag:parameter[row.tag!]!]
+                    if(parameter[row.tag!] != nil){
+                         parameter["CustomFields"] = [modifiedTag:parameter[row.tag!]!]
+                    }
+                   
                 }
                 
                 parameter.removeValue(forKey: row.tag!)
@@ -580,7 +585,7 @@ class ViewController: FormViewController
         }
        
         
-        AuthenticationAPI.authInstance().userRegistration(withSott:sott,payload:parameter, emailtemplate:nil, smstemplate:nil, completionHandler:{ (data, error) in
+        AuthenticationAPI.authInstance().userRegistration(withSott:sott,payload:parameter, emailtemplate:nil, smstemplate:nil,preventVerificationEmail:false , completionHandler:{ (data, error) in
             
             if let err = error
             {
@@ -620,7 +625,7 @@ class ViewController: FormViewController
         
         print(parameter)
         
-        AuthenticationAPI.authInstance().userRegistration(withSott:sott,payload:parameter as! [AnyHashable : Any], emailtemplate:nil, smstemplate:nil, completionHandler: { (data, error) in
+        AuthenticationAPI.authInstance().userRegistration(withSott:sott,payload:parameter as! [AnyHashable : Any], emailtemplate:nil, smstemplate:nil,preventVerificationEmail:false , completionHandler: { (data, error) in
             
             if let err = error
             {
@@ -659,7 +664,10 @@ class ViewController: FormViewController
             if let err = error {
                 self.errorAlert(data:data, error:err)
             } else {
-                self.showProfileController()
+                let access_token = data!["access_token"] as! NSString
+                let profile = data!["Profile"] as! [AnyHashable:Any]?
+                self.checkRequiredFields(profile:profile,token:access_token)
+               
             }
         })
     }
@@ -688,7 +696,9 @@ class ViewController: FormViewController
             if let err = error {
                 self.errorAlert(data:data, error:err)
             } else {
-                self.showProfileController()
+                let access_token = data!["access_token"] as! NSString
+                let profile = data!["Profile"] as! [AnyHashable:Any]?
+                self.checkRequiredFields(profile:profile,token:access_token)
             }
         })
     }
@@ -728,7 +738,7 @@ class ViewController: FormViewController
                    
                     let access_token = data!["access_token"] as! NSString
                     
-                      AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+                    AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String? , completionHandler: {(response, error) in
                             
                        self.checkRequiredFields(profile:response,token:access_token)
                         
@@ -768,7 +778,7 @@ class ViewController: FormViewController
                 let data = userInfo["data"] as? [AnyHashable : Any]
                 let access_token = data!["access_token"] as! NSString
                 
-                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String? , completionHandler: {(response, error) in
                     
                     self.checkRequiredFields(profile:response,token:access_token)
                     
@@ -808,14 +818,14 @@ class ViewController: FormViewController
     
     func showNativeFacebookLogin()
     {
-        LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile", "email"]], in: self, completionHandler: {( data, error) -> Void in
+        LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile"]], in: self, completionHandler: {( data, error) -> Void in
             
             if let err = error {
                 self.errorAlert(data:data, error:err)
             } else {
                 let access_token = data!["access_token"] as! NSString
                 
-                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String! , completionHandler: {(response, error) in
+                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String? , completionHandler: {(response, error) in
                     
                     self.checkRequiredFields(profile:response,token:access_token)
                     
@@ -838,11 +848,11 @@ class ViewController: FormViewController
     func errorAlert(data:[AnyHashable:Any]?, error:Error )
     {
         
-           let e = error as NSError
-            let descriptiveReason = (e.localizedFailureReason != nil) ? "\n\n\(e.localizedFailureReason!)" : ""
-            self.showAlert(title: "ERROR", message: "\(e.localizedDescription)\(descriptiveReason)")
-        
-    }
+            let e = error as NSError
+            self.showAlert(title: "ERROR", message:e.localizedDescription)
+           
+
+}
     
   
     
@@ -917,7 +927,8 @@ class ViewController: FormViewController
             }
             }else{
             
-                LRSession.init(accessToken:token as String, userProfile:profile!)
+                let session = LRSession.init(accessToken:token as String, userProfile:profile!)
+                print("session",session)
                 self.showProfileController();
 
             }

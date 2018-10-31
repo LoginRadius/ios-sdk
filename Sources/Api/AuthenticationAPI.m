@@ -66,13 +66,17 @@
 
 - (void)userRegistrationWithSott:(NSString *)sott
                          payload:(NSDictionary *)payload
-                 emailtemplate:(NSString *)emailtemplate
-                    smstemplate:(NSString *)smstemplate
+                   emailtemplate:(NSString *)emailtemplate
+                     smstemplate:(NSString *)smstemplate
+        preventVerificationEmail:(BOOL)preventVerificationEmail
          completionHandler:(LRAPIResponseHandler)completion {
      NSString *email_template = emailtemplate ? emailtemplate: @"";
      NSString *sms_template = smstemplate ? smstemplate: @"";
+             NSString *prevent_verificationEmail = @"";
     if ([sott containsString:@"%"]){
         sott = [sott stringByRemovingPercentEncoding];
+    }if(preventVerificationEmail == YES){
+        prevent_verificationEmail = @"PreventVerificationEmail";
     }
     [[LoginRadiusREST apiInstance] sendPOST:@"identity/v2/auth/register"
                                 queryParams:@{
@@ -80,7 +84,8 @@
                                               @"sott": sott,
                                               @"verificationurl": [LoginRadiusSDK verificationUrl],
                                               @"emailtemplate": email_template,
-                                              @"smstemplate":sms_template
+                                              @"smstemplate":sms_template,
+                                              @"options":prevent_verificationEmail
                                               }
                                        body:payload
                           completionHandler:completion];
@@ -353,6 +358,31 @@
 }
 
 
+-(void)sendWelcomeEmailWithAccessToken:(NSString *)access_token welcomeemailtemplate:(NSString *)welcomeemailtemplate completionHandler:(LRAPIResponseHandler)completion{
+    NSString *welcomeemail_template = welcomeemailtemplate ? welcomeemailtemplate: @"";
+    [[LoginRadiusREST apiInstance] sendGET:@"identity/v2/auth/account/sendwelcomeemail"
+                               queryParams:@{
+                                             @"apikey": [LoginRadiusSDK apiKey],
+                                             @"access_token": access_token,
+                                             @"welcomeemailtemplate": welcomeemail_template
+                                             }
+                         completionHandler:completion];
+    
+}
+
+
+-(void)privacyPolicyAcceptWithAccessToken:(NSString *)access_token completionHandler:(LRAPIResponseHandler)completion{
+    
+    [[LoginRadiusREST apiInstance] sendGET:@"identity/v2/auth/privacypolicy/accept"
+                               queryParams:@{
+                                             @"apikey": [LoginRadiusSDK apiKey],
+                                             @"access_token": access_token
+                                             }
+                         completionHandler:completion];
+    
+}
+
+
                /* ******************************* Put Method  **********************************/
 
 
@@ -361,7 +391,7 @@
                          newpassword:(NSString *)newpassword
      completionHandler:(LRAPIResponseHandler)completion {
     
-    [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/password"
+    [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/password/change"
                                 queryParams:@{
                                               @"apikey": [LoginRadiusSDK apiKey],
                                               @"access_token":access_token
@@ -407,7 +437,7 @@
 - (void)resetPasswordByResetToken:(NSDictionary *)payload
                completionHandler:(LRAPIResponseHandler)completion {
     
-    [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/password"
+    [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/password/reset"
                                queryParams:@{
                                              @"apikey": [LoginRadiusSDK apiKey]
                                              }
@@ -513,7 +543,7 @@
                          completionHandler:completion];
 }
 
-- (void)resetPasswordWithPayload:(NSDictionary *)payload
+- (void)phoneResetPasswordByOtpWithPayload:(NSDictionary *)payload
             completionHandler:(LRAPIResponseHandler)completion {
     
     [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/password/otp"
@@ -559,6 +589,32 @@
 }
 
 
+- (void)verifyEmailByOtpWithPayload:(NSDictionary *)payload
+                                        url:(NSString *)url
+                                welcomeemailtemplate:(NSString *)welcomeemailtemplate
+                          completionHandler:(LRAPIResponseHandler)completion {
+    NSString *_url = url ? url: @"";
+    NSString *welcome_emailtemplate = welcomeemailtemplate ? welcomeemailtemplate: @"";
+    [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/email"
+                               queryParams:@{
+                                             @"apikey": [LoginRadiusSDK apiKey],
+                                             @"url":_url,
+                                             @"welcomeemailtemplate":welcome_emailtemplate
+                                             }
+                                      body:payload
+                         completionHandler:completion];
+}
+
+
+-(void)resetPasswordByOtpWithPayload:(NSDictionary *)payload completionHandler:(LRAPIResponseHandler)completion{
+    [[LoginRadiusREST apiInstance] sendPUT:@"identity/v2/auth/password/reset"
+                               queryParams:@{
+                                             @"apikey": [LoginRadiusSDK apiKey]
+                                             }
+                                      body:payload
+                         completionHandler:completion];
+}
+
             /* ******************************* Delete Method  **********************************/
 
 
@@ -591,6 +647,19 @@
                                                 @"email":email
                                                 }
                          completionHandler:completion];
+}
+
+
+- (void)removePhoneIDWithAccessToken:(NSString *)access_token
+                   completionHandler:(LRAPIResponseHandler)completion {
+    
+    [[LoginRadiusREST apiInstance] sendDELETE:@"identity/v2/auth/phone"
+                                  queryParams:@{
+                                                @"apikey": [LoginRadiusSDK apiKey],
+                                                @"access_token":access_token
+                                                }
+                                         body:@{}
+                            completionHandler:completion];
 }
 
 

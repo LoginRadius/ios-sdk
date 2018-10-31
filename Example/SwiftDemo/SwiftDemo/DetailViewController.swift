@@ -115,8 +115,7 @@ class DetailViewController: FormViewController {
         errors += gender.validate()
         errors += country.validate()
 
-        if errors.count > 0
-        {
+        if errors.count > 0{
             showAlert(title: "ERROR", message: errors[0].msg)
             return
         }
@@ -158,21 +157,13 @@ class DetailViewController: FormViewController {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else
             {
-                
-                AuthenticationAPI.authInstance().profiles(withAccessToken: self.accessToken, completionHandler: {(data, error) in
-                    
-                    if let err = error
-                    {
-                        self.showAlert(title: "ERROR", message: err.localizedDescription)
-                    }else if let userProfile = data
-                    {
-                        self.showAlert(title: "SUCCESS", message: "User updated!")
-                        print("Here is the raw NSDictionary user profile:")
-                        print(userProfile)
-                        print("end of raw NSDictionary user profile")
-                        self.viewDidLoad()
-                    }
-                })
+                let access_token = LoginRadiusSDK.sharedInstance().session.accessToken
+                self.showAlert(title: "SUCCESS", message: "User updated!")
+                print("Here is the raw NSDictionary user profile:")
+                let session = LRSession.init(accessToken:access_token as! String, userProfile:data!["Data"] as! [AnyHashable : Any])
+                print(data as Any)
+                print("end of raw NSDictionary user profile")
+                self.viewDidLoad()
             }
         
         })
@@ -212,8 +203,7 @@ class DetailViewController: FormViewController {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else if let _ = data
             {
-                self.logoutPressed()
-                self.showAlert(title: "SUCCESS", message: "Token now is invalid")
+                self.showAlert(title: "SUCCESS", message: "Access Token now is invalid Please Click on Logout Button And try to Login Again")
             }
         })
     }
@@ -233,7 +223,6 @@ class DetailViewController: FormViewController {
         let objectName = form.rowBy(tag: "CrCO Object Name")!.baseValue! as! String
         let dataString = form.rowBy(tag: "CrCO Data")!.baseValue! as! String
         let dataJSON = JSON(parseJSON: dataString)
-        
         guard let dataDict = dataJSON.dictionaryObject else
         {
             showAlert(title: "ERROR", message: "Invalid JSON payload")
@@ -248,7 +237,7 @@ class DetailViewController: FormViewController {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else{
                 let prettyJson = JSON(data as Any)
-                self.showAlert(title: "SUCCESS", message: prettyJson.rawString() ?? "nil data")
+                self.showAlert(title: "SUCCESS", message: prettyJson.rawString() ?? "")
             }
         })
     }
@@ -326,16 +315,14 @@ class DetailViewController: FormViewController {
             return
         }
         
-        
-       
-    
-        CustomObjectAPI.customInstance().updateCustomObject(withObjectName: objectName, accessToken: accessToken, objectRecordId: recordId, updatetype:nil, payload: dataDict, completionHandler: {data, error in
+
+        CustomObjectAPI.customInstance().updateCustomObject(withObjectName: objectName, accessToken: accessToken, objectRecordId:recordId, updatetype:"replace", payload: dataDict, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else{
                 let prettyJson = JSON(data as Any)
-                self.showAlert(title: "SUCCESS", message: prettyJson.rawString() ?? "nil data")
+                self.showAlert(title: "SUCCESS", message: prettyJson.rawString() ?? "You are successfully Update the specified Custom Object")
             }
         })
     }
@@ -360,7 +347,7 @@ class DetailViewController: FormViewController {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else{
                 let prettyJson = JSON(data as Any)
-                self.showAlert(title: "SUCCESS", message: prettyJson.rawString() ?? "nil data")
+                self.showAlert(title: "SUCCESS", message:prettyJson.rawString() ?? "You are successfully Delete the specified Custom Object")
             }
         })
     }
@@ -385,6 +372,7 @@ class DetailViewController: FormViewController {
         */
         
         LoginRadiusSDK.logout()
+        
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

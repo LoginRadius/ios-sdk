@@ -15,7 +15,7 @@ end
 target 'SwiftDemo' do
     project 'Example/SwiftDemo/SwiftDemo.xcodeproj'
     pod 'LoginRadiusSDK', :path => './'
-    pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift4'
+    pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git'
     pod 'SwiftyJSON', '<= 3.1.4'
     pod 'Alamofire', '<= 4.4.0'
     #pod 'Google/SignIn', '<= 4.1.0'

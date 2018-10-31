@@ -1,40 +1,39 @@
 //
-//  SimplifiedRegistrationAPI.h
+//  OneTouchLoginAPI.h
 //  LoginRadiusSDK
 //
-//  Created by LoginRadius on 14/12/17.
+//  Created by LoginRadius on 06/08/18.
 //
 
 #import <Foundation/Foundation.h>
 #import "LoginRadius.h"
 
-@interface SimplifiedRegistrationAPI : NSObject
-+ (instancetype)simplifiedInstance;
+@interface OneTouchLoginAPI : NSObject
++ (instancetype)oneTouchInstance;
 
-- (void)simplifiedInstantRegistrationWithEmail:(NSString *)email
-                                    clientguid:(NSString *)clientguid
-                                          name:(NSString *)name
+- (void)oneTouchLoginEmailWithPayload:(NSDictionary *)payload
                                    redirecturl:(NSString *)redirecturl
-                   noregistrationemailtemplate:(NSString *)noregistrationemailtemplate
+                   onetouchloginemailtemplate:(NSString *)onetouchloginemailtemplate
                           welcomeemailtemplate:(NSString *)welcomeemailtemplate
                              completionHandler:(LRAPIResponseHandler)completion;
 
 
-- (void)simplifiedInstantRegistrationWithPhone:(NSString *)phone
-                                          name:(NSString *)name
+- (void)oneToucEmailVerificationWithVerificationtoken:(NSString *)verificationtoken
+          welcomeemailtemplate:(NSString *)welcomeemailtemplate
+             completionHandler:(LRAPIResponseHandler)completion;
+
+
+- (void)oneTouchLoginPhoneWithPayload:(NSDictionary *)payload
                                    smstemplate:(NSString *)smstemplate
                              completionHandler:(LRAPIResponseHandler)completion;
 
 
-- (void)simplifiedInstantRegistrationVerificationWithOtp:(NSString *)otp
+- (void)oneTouchLoginVerificationWithOtp:(NSString *)otp
                                                    phone:(NSString *)phone
                                              smstemplate:(NSString *)smstemplate
                                        completionHandler:(LRAPIResponseHandler)completion;
 
 
-- (void)simplifiedInstantRegistrationPingWithClientguid:(NSString *)clientguid
+- (void)oneTouchLoginPingWithClientguid:(NSString *)clientguid
                                       completionHandler:(LRAPIResponseHandler)completion;
-
-
 @end
-

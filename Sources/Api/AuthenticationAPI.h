@@ -25,6 +25,7 @@
                          payload:(NSDictionary *)payload
                    emailtemplate:(NSString *)emailtemplate
                      smstemplate:(NSString *)smstemplate
+         preventVerificationEmail:(BOOL)preventVerificationEmail
                completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)loginWithPayload:(NSDictionary *)payload
@@ -53,6 +54,9 @@ completionHandler:(LRAPIResponseHandler)completion;
                 completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)profilesWithAccessToken:(NSString *)access_token
+              completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)privacyPolicyAcceptWithAccessToken:(NSString *)access_token
               completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)socialIdentityWithAccessToken:(NSString *)access_token
@@ -153,7 +157,7 @@ completionHandler:(LRAPIResponseHandler)completion;
                        completionHandler:(LRAPIResponseHandler)completion;
 
 
-- (void)resetPasswordWithPayload:(NSDictionary *)payload
+- (void)phoneResetPasswordByOtpWithPayload:(NSDictionary *)payload
                completionHandler:(LRAPIResponseHandler)completion;
 
 
@@ -168,6 +172,19 @@ completionHandler:(LRAPIResponseHandler)completion;
                                 smstemplate:(NSString *)smstemplate
                           completionHandler:(LRAPIResponseHandler)completion;
 
+- (void)verifyEmailByOtpWithPayload:(NSDictionary *)payload
+                                url:(NSString *)url
+               welcomeemailtemplate:(NSString *)welcomeemailtemplate
+                          completionHandler:(LRAPIResponseHandler)completion;
+
+- (void)resetPasswordByOtpWithPayload:(NSDictionary *)payload
+                  completionHandler:(LRAPIResponseHandler)completion;
+
+
+-(void)sendWelcomeEmailWithAccessToken:(NSString *)access_token
+                  welcomeemailtemplate:(NSString *)welcomeemailtemplate
+                     completionHandler:(LRAPIResponseHandler)completion;
+
 
 - (void)deleteAccountWithEmailConfirmation:(NSString *)access_token
                              emailtemplate:(NSString *)emailtemplate
@@ -176,6 +193,11 @@ completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)removeEmailWithAccessToken:(NSString *)access_token
                              email:(NSString *)email
+                 completionHandler:(LRAPIResponseHandler)completion;
+
+
+
+- (void)removePhoneIDWithAccessToken:(NSString *)access_token
                  completionHandler:(LRAPIResponseHandler)completion;
 
 

@@ -1,5 +1,33 @@
 
-5.0.0 Release notes (2017-02-07)
+5.1.0 Release notes (2018-10-31)
+=============================================================
+
+### API breaking changes
+
+* Updated endpoints and renamed ""Auto Login"" to ""Smart Login"", ""No Registration/Simplified Registration"" to ""One touch Login"" and ""Instant Link Login"" to ""PasswordLess Login"". Also, changed the methods of the above APIs accordingly."
+
+### Enhancements
+
+* Improved native social login performance for better native user experience.
+* Added new custom domain option.
+* Updated FBSDKLoginKit - 4.27.0 to FBSDKLoginKit - 4.36.0.
+* SOTT is added as a header in Registration API.
+* Added new Privacy Policy API.
+* Added new Reset Password By Email OTP API.
+* Added new Verify Email By OTP API.
+* Access Token is added as a header in all Authentication APIs.
+* Added preventEmailVerification (Boolean) option to prevent email verification flow in Auth Login and Registration APIs (where optional email is enabled).
+* Added new Send Welcome Email API.
+* Significantly improved code performance.
+
+### Bugfixes
+* Fixed FBSDKLoginKit - 4.36.0 : Error - Semantic issue - Redefinition of 'EMAIL' in LoginRadiusField.h
+* Fixed SDK required field issue.
+* Fixed demo issue in Objective-C and Swift.
+
+
+
+5.0.0 Release notes (2018-02-07)
 =============================================================
 
 ### API breaking changes

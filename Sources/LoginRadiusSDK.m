@@ -14,6 +14,7 @@ static NSString * const LoginRadiusAPIKey = @"apiKey";
 static NSString * const LoginRadiusSiteName = @"siteName";
 static NSString * const LoginRadiusVerificationUrl = @"verificationUrl";
 static NSString * const LoginRadiusKeychain = @"useKeychain";
+static NSString * const LoginRadiusCustomDomain = @"customDomain";
 
 
 @interface LoginRadiusSDK ()
@@ -30,7 +31,8 @@ static NSString * const LoginRadiusKeychain = @"useKeychain";
     NSString *siteName = values[LoginRadiusSiteName];
     NSString *verificationUrl = values[LoginRadiusVerificationUrl] ? values[LoginRadiusVerificationUrl] : @"https://auth.lrcontent.com/mobile/verification/index.html";
     BOOL useKeychain = values[LoginRadiusKeychain] ? [values[LoginRadiusKeychain] boolValue] : NO; // if nil set to false
-
+    NSString *customDomain = values[LoginRadiusCustomDomain] ? values[LoginRadiusCustomDomain] : @"";
+    
     if([apiKey isEqualToString:@"<Your LoginRadius ApiKey>"] || [apiKey isEqualToString:@""]){
         NSString *str = nil;
         NSAssert(str, @"apiKey or siteName cannot be null in LoginRadius.plist");
@@ -41,32 +43,33 @@ static NSString * const LoginRadiusKeychain = @"useKeychain";
     
     
     self = [super init];
-
+    
     if (self) {
         _apiKey = apiKey;
         _siteName = siteName;
         _verificationUrl=verificationUrl;
+        _customDomain =customDomain;
         _useKeychain = useKeychain;
         _session = [[LRSession alloc] init];
-		_socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
+        _socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
     }
-
+    
     return self;
 }
 
 + (instancetype)sharedInstance {
-	static dispatch_once_t onceToken;
-	static LoginRadiusSDK *instance;
-	dispatch_once(&onceToken, ^{
-		instance = [LoginRadiusSDK instance];
-	});
-
-	return instance;
+    static dispatch_once_t onceToken;
+    static LoginRadiusSDK *instance;
+    dispatch_once(&onceToken, ^{
+        instance = [LoginRadiusSDK instance];
+    });
+    
+    return instance;
 }
 
 + (instancetype)instance {
-
+    
     return [[LoginRadiusSDK alloc] init];
 }
 
@@ -74,29 +77,33 @@ static NSString * const LoginRadiusKeychain = @"useKeychain";
     
     [(LRSession *)[[self sharedInstance] session] logout];
     [[LoginRadiusSocialLoginManager sharedInstance] logout];
-
-	// Clearing all stored tokens userprofiles for loginradius
-	NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	for (NSHTTPCookie *cookie in [storage cookies]) {
-		[storage deleteCookie:cookie];
-	}
+    
+    // Clearing all stored tokens userprofiles for loginradius
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
     
 }
 
 + (NSString*) apiKey {
-	return [LoginRadiusSDK sharedInstance].apiKey;
+    return [LoginRadiusSDK sharedInstance].apiKey;
 }
 
 + (NSString*) siteName {
-	return [LoginRadiusSDK sharedInstance].siteName;
+    return [LoginRadiusSDK sharedInstance].siteName;
 }
 
 + (NSString*) verificationUrl {
     return [LoginRadiusSDK sharedInstance].verificationUrl;
 }
 
++ (NSString*) customDomain {
+    return [LoginRadiusSDK sharedInstance].customDomain;
+}
+
 + (BOOL) useKeychain {
-	return [LoginRadiusSDK sharedInstance].useKeychain;
+    return [LoginRadiusSDK sharedInstance].useKeychain;
 }
 
 
@@ -104,12 +111,12 @@ static NSString * const LoginRadiusKeychain = @"useKeychain";
 
 - (void)applicationLaunchedWithOptions:(NSDictionary *)launchOptions {
     [self.socialLoginManager applicationLaunchedWithOptions:launchOptions];
-	
+    
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-
-	return [[LoginRadiusSocialLoginManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    
+    return [[LoginRadiusSocialLoginManager sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

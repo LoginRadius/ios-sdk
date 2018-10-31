@@ -59,7 +59,7 @@ NSString *const kProviderName = @"Name";
     } else if ([fieldString isEqualToString:@"hidden"]) {
         fieldType = HIDDEN;
     } else if ([fieldString isEqualToString:@"email"]) {
-        fieldType = EMAIL;
+        fieldType = EMAILID;
     } else if ([fieldString isEqualToString:@"text"]) {
         fieldType = TEXT;
     }

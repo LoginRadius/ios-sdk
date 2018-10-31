@@ -53,13 +53,25 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
     self = [super init];
     if (self) {
         _baseURL = [NSURL URLWithString:BASE_URL_STRING(baseUrlEnum)];
-    }
+        NSString *stringUrl = _baseURL.absoluteString;
+        if (![[LoginRadiusSDK customDomain] isEqualToString:@""] && [stringUrl containsString:@"api"]) {
+        _baseURL = [NSURL URLWithString:[LoginRadiusSDK customDomain]];
+        }
+}
     return self;
 }
 
 - (void)sendGET:(NSString *)url queryParams:(id)queryParams completionHandler:(LRAPIResponseHandler)completion {
     
-        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
+        NSString *access_token;
+        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
+    
+        if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+          access_token = queryParameters[@"access_token"];
+          [queryParameters removeObjectForKey:@"access_token"];
+        }
+    
+        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParameters ? [url stringByAppendingString:[queryParameters queryString]]: url]];
         
         
         NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
@@ -67,7 +79,10 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
         [request setHTTPMethod:@"GET"];//use GET
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
+        if (access_token !=nil) {
+        NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+        [request addValue:token forHTTPHeaderField:@"Authorization"];
+        }
         
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request
@@ -101,11 +116,19 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
 }
 
 - (void)sendPOST:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
-    
+        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
+        NSString *sott;
+        NSString *access_token;
         NSError* error;
         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
-        
-        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
+        if (queryParameters[@"sott"]) {
+            sott = queryParameters[@"sott"];
+            [queryParameters removeObjectForKey:@"sott"];
+        }else if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+            access_token = queryParameters[@"access_token"];
+            [queryParameters removeObjectForKey:@"access_token"];
+        }
+        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParameters ? [url stringByAppendingString:[queryParameters queryString]]: url]];
         
         
         NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
@@ -113,7 +136,14 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
         [request setHTTPMethod:@"POST"];//use POST
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+           [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+        if (sott !=nil) {
+            [request addValue:sott forHTTPHeaderField:@"X-LoginRadius-Sott"];
+        }else if (access_token !=nil) {
+            NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+            [request addValue:token forHTTPHeaderField:@"Authorization"];
+        }
+    
         [request setHTTPBody:jsonData];//set data
         
         NSURLSession *session = [NSURLSession sharedSession];
@@ -149,8 +179,15 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
 
 - (void)sendPUT:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
     
+        NSString *access_token;
+        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
         NSError* error;
         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
+    
+        if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+          access_token = queryParameters[@"access_token"];
+          [queryParameters removeObjectForKey:@"access_token"];
+        }
         
         NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
         
@@ -161,6 +198,10 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+        if (access_token !=nil) {
+          NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+          [request addValue:token forHTTPHeaderField:@"Authorization"];
+        }
         [request setHTTPBody:jsonData];//set data
         
         NSURLSession *session = [NSURLSession sharedSession];
@@ -194,9 +235,16 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
 }
 
 - (void)sendDELETE:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
-
+    
+        NSString *access_token;
+        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
         NSError* error;
         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
+    
+        if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+          access_token = queryParameters[@"access_token"];
+          [queryParameters removeObjectForKey:@"access_token"];
+        }
 
         NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
         
@@ -207,6 +255,10 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+        if (access_token !=nil) {
+          NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+          [request addValue:token forHTTPHeaderField:@"Authorization"];
+        }
         [request setHTTPBody:jsonData];//set data
         
         NSURLSession *session = [NSURLSession sharedSession];

@@ -21,8 +21,8 @@ static BOOL useFacebookNative    = NO;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    LoginRadiusSDK * sdk =  [LoginRadiusSDK instance];
-    [sdk applicationLaunchedWithOptions:launchOptions];
+     LoginRadiusSDK * sdk =  [LoginRadiusSDK instance];
+     [sdk applicationLaunchedWithOptions:launchOptions];
    
 
 

@@ -34,6 +34,19 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>&lt;Your Facebook App&apos;s App ID, if you are not using facebook native login delete this row&gt;</string>
+	<key>FacebookDisplayName</key>
+	<string>&lt;Your Facebook App&apos;s display name, if you are not using facebook native login delete this row&gt;</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -45,19 +58,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>FacebookDisplayName</key>
-	<string>&lt;Your Facebook App&apos;s display name, if you are not using facebook native login delete this row&gt;</string>
-	<key>FacebookAppID</key>
-	<string>&lt;Your Facebook App&apos;s App ID, if you are not using facebook native login delete this row&gt;</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-		<string>twitter</string>
-		<string>twitterauth</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

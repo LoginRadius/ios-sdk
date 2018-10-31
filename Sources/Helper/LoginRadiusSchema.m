@@ -41,7 +41,7 @@
 
 - (void) setSchema:(NSDictionary*) data;
 {
-    if (data[@"SocialSchema"]){
+   if (data[@"SocialSchema"]){
         NSArray *providersObj = [data[@"SocialSchema"] objectForKey:@"Providers"];
         NSMutableArray * providersItems = [NSMutableArray array];
         for(NSDictionary * providersDictionary in providersObj){
@@ -58,8 +58,12 @@
         for (NSDictionary* fieldDict in array)
         {
             
-            
-            NSMutableDictionary *fieldFormatted = [[fieldDict mutableCopy] replaceNullWithBlank];
+            NSMutableDictionary* rules = [fieldDict mutableCopy];
+            NSString *dtc = rules[@"rules"];
+            if ([dtc containsString:@"custom_validation"]){
+                rules[@"rules"] = @"";
+            }
+            NSMutableDictionary *fieldFormatted = [[rules mutableCopy] replaceNullWithBlank];
             LoginRadiusField *newField = [[LoginRadiusField alloc] init:fieldFormatted];
             [newFields addObject:newField];
         }
@@ -88,7 +92,7 @@
         NSString *fName = [[field valueForKey:@"name"] lowercaseString];
         NSString *fRules = [[field valueForKey:@"rules"] lowercaseString];
         
-        if ([fRules isEqual:@"required"] || [fRules hasPrefix:@"required|"]) {
+        if ([fRules isEqual:@"required"] || [fRules hasPrefix:@"required|"] || [fRules isEqual:@"valid_email|required"]) {
             int miss = 0;
             
             if (([[lowercasedProfile objectForKey:fName] isEqual:(id)[NSNull null]] && ![fName isEqual:@"emailid"] && ![fName  hasPrefix:@"cf"])|| ([[lowercasedProfile objectForKey:fName] isEqual:@""] && ![fName isEqual:@"emailid"] && ![fName  hasPrefix:@"cf"])) {
@@ -131,7 +135,7 @@
                 [customFields deleteCharactersInRange:NSMakeRange(0, 3)];
                 if([lowercasedProfile[@"customfields"] valueForKey:customFields] == nil || [[lowercasedProfile[@"customfields"] valueForKey:customFields] isEqual:@""]){
                       miss = 1;
-                }else if([fName  hasPrefix:@"cf"] && [lowercasedProfile objectForKey:@"customfields"] == @{}) {
+                }else if([fName  hasPrefix:@"cf"] && [[lowercasedProfile objectForKey:@"customfields"]  isEqual: @{}]) {
                       miss = 1;
                 }
             }

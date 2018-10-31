@@ -16,7 +16,6 @@
 		682D11431CEC500B009274E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682D11421CEC500B009274E2 /* Assets.xcassets */; };
 		682D11461CEC500B009274E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682D11441CEC500B009274E2 /* LaunchScreen.storyboard */; };
 		682D11531CEC50CA009274E2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D11521CEC50CA009274E2 /* DetailViewController.m */; };
-		FE1428DE1FE3A16300390A47 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE1428DD1FE3A16300390A47 /* LoginRadius.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +50,6 @@
 		84063B8378AC28BA2F5D4FA9 /* Pods_ObjCDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjCDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89FC4B7E46D47424B5808E1 /* Pods-ObjCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCDemo.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E92A2AB1EFE5992533D85141 /* Pods-ObjCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCDemo.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo.release.xcconfig"; sourceTree = "<group>"; };
-		FE1428DD1FE3A16300390A47 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +97,6 @@
 				682D113F1CEC500B009274E2 /* Main.storyboard */,
 				682D11421CEC500B009274E2 /* Assets.xcassets */,
 				682D11441CEC500B009274E2 /* LaunchScreen.storyboard */,
-				FE1428DD1FE3A16300390A47 /* LoginRadius.plist */,
 				682D11471CEC500B009274E2 /* Info.plist */,
 				682D11361CEC500B009274E2 /* Supporting Files */,
 			);
@@ -145,9 +142,7 @@
 				682D11311CEC500B009274E2 /* Resources */,
 				6830081D1CECF460000E43DC /* Embed Frameworks */,
 				F25119E5CD27D149EE2BCAD3 /* [CP] Embed Pods Frameworks */,
-				DC346ED173EE075AE5371AB6 /* [CP] Copy Pods Resources */,
 				90B8420AC29E61F97ACA3E4C /* 📦 Embed Pods Frameworks */,
-				CA05527C79ECA7B093429F53 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,7 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE1428DE1FE3A16300390A47 /* LoginRadius.plist in Resources */,
 				682D11461CEC500B009274E2 /* LaunchScreen.storyboard in Resources */,
 				682D11431CEC500B009274E2 /* Assets.xcassets in Resources */,
 				682D11411CEC500B009274E2 /* Main.storyboard in Resources */,
@@ -244,21 +238,6 @@
 			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CA05527C79ECA7B093429F53 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D70AB3EE4E5F11D00D8DC4F6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -272,26 +251,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DC346ED173EE075AE5371AB6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-ObjCDemo/Pods-ObjCDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F25119E5CD27D149EE2BCAD3 /* [CP] Embed Pods Frameworks */ = {

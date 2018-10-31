@@ -13,7 +13,7 @@ typedef NS_ENUM(NSUInteger, LoginRadiusFieldType) {
     MULTI, //this is 'checkbox' in dashboard for checkbox
     PASSWORD,
     HIDDEN,
-    EMAIL,
+    EMAILID,
     TEXT, //this is text area, meaning multi-line text area
     DATE //this field type only exist in iOS, core field type is a string.
 };

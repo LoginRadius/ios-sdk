@@ -15,15 +15,14 @@ extension DetailViewController
     func smallUserProfileUISetup()
     {
         var userEmail="";
-        if ((userProfile["Email"].array)) != nil{
+        if ((userProfile["Email"].array)) != nil && (userProfile["Email"].array)?.isEmpty == false{
             userEmail = (((userProfile["Email"].array)?[0]["Value"] )?.string)!
         }
        
         
         var userCountry:String? = nil
-        if let addrArr = userProfile["Addresses"].array,
-            let firstAddr = addrArr[0].dictionary,
-            let countryStr = firstAddr["Country"]?.string
+        if let addrArr = userProfile["Country"].dictionary,
+            let countryStr = addrArr["Name"]?.string
         {
             userCountry = countryStr
         }
@@ -207,10 +206,10 @@ extension DetailViewController
             $0.title = "Payload Data"
             $0.hidden = objectCreateCondition
         }
-        <<< TextAreaRow("CrCO Data")
+        <<< AccountRow("CrCO Data")
         {
             $0.title = "Data"
-            $0.placeholder = "{\"customdata1\": \"my customdata1\",\n\"customdata2\": \"my customdata2 \"}"
+            $0.placeholder = "{\"customdata1\": \"my customdata1\"}"
             $0.hidden = objectCreateCondition
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
@@ -319,10 +318,10 @@ extension DetailViewController
             $0.title = "Payload Data"
             $0.hidden = objectPutCondition
         }
-        <<< TextAreaRow("PutCO Data")
+        <<< AccountRow("PutCO Data")
         {
             $0.title = "Data"
-            $0.placeholder = "{\"customdata1\": \"my customdata1\",\n\"customdata2\": \"my customdata2 \"}"
+            $0.placeholder = "{\"customdata1\": \"my customdata1\"}"
             $0.hidden = objectPutCondition
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand

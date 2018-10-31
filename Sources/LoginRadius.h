@@ -20,9 +20,9 @@ FOUNDATION_EXPORT const unsigned char LoginRadiusSDKVersionString[];
 #import <LoginRadiusSDK/AuthenticationAPI.h>
 #import <LoginRadiusSDK/CustomObjectAPI.h>
 #import <LoginRadiusSDK/ConfigurationAPI.h>
-#import <LoginRadiusSDK/SimplifiedRegistrationAPI.h>
-#import <LoginRadiusSDK/AutoLoginAPI.h>
-#import <LoginRadiusSDK/InstantLoginAPI.h>
+#import <LoginRadiusSDK/OneTouchLoginAPI.h>
+#import <LoginRadiusSDK/SmartLoginAPI.h>
+#import <LoginRadiusSDK/PasswordlessLoginAPI.h>
 #import <LoginRadiusSDK/LoginRadiusField.h>
 #import <LoginRadiusSDK/LoginRadiusFieldRule.h>
 #import <LoginRadiusSDK/LoginRadiusSchema.h>

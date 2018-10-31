@@ -19,6 +19,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 @property (strong, readonly, nonatomic) NSString* _Nonnull apiKey;
 @property (strong, readonly, nonatomic) NSString* _Nonnull siteName;
 @property (strong, readonly, nonatomic) NSString* _Nonnull verificationUrl;
+@property (strong, readonly, nonatomic) NSString* _Nonnull customDomain;
 @property (strong, atomic) LRSession* _Nonnull session;
 @property (readonly, nonatomic) BOOL useKeychain;
 
@@ -39,6 +40,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 + (NSString*_Nonnull)apiKey;
 + (NSString*_Nonnull)siteName;
 + (NSString*_Nonnull)verificationUrl;
++ (NSString*_Nonnull)customDomain;
 + (BOOL)useKeychain;
 
 

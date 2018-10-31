@@ -96,7 +96,7 @@ extension FormViewController
                             $0.hidden = Condition(booleanLiteral: true)
                             self.setRegistrationRowRules(field: field, row: $0 )
                         }
-                    case .EMAIL:
+                    case .EMAILID:
                         dynamicRegSection <<< EmailRow(field.name)
                         {
                             $0.title = field.display
@@ -243,7 +243,7 @@ extension FormViewController
                         self.setRegistrationRowRules(field: field, row: $0 )
                     }
              
-                case .EMAIL:
+                case .EMAILID:
              
 
                     dynamicRegSection <<< EmailRow(field.name)

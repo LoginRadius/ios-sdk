@@ -20,7 +20,6 @@
 		682D116B1CEC5314009274E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682D11691CEC5314009274E2 /* LaunchScreen.storyboard */; };
 		6830081F1CECF78A000E43DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6830081E1CECF78A000E43DC /* DetailViewController.swift */; };
 		C97F1F10CFF589D1288DC327 /* Pods_SwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1154E97D2B33DDB11D6CF44 /* Pods_SwiftDemo.framework */; };
-		FE1428E01FE3A18900390A47 /* LoginRadius.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE1428DF1FE3A18900390A47 /* LoginRadius.plist */; };
 		FE418EE320087BA800BDB34B /* MissingFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE418EE220087BA800BDB34B /* MissingFieldsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		682D116C1CEC5314009274E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6830081E1CECF78A000E43DC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B1154E97D2B33DDB11D6CF44 /* Pods_SwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE1428DF1FE3A18900390A47 /* LoginRadius.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LoginRadius.plist; sourceTree = "<group>"; };
 		FE418EE220087BA800BDB34B /* MissingFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingFieldsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,7 +130,6 @@
 				682D11641CEC5314009274E2 /* Main.storyboard */,
 				682D11671CEC5314009274E2 /* Assets.xcassets */,
 				682D11691CEC5314009274E2 /* LaunchScreen.storyboard */,
-				FE1428DF1FE3A18900390A47 /* LoginRadius.plist */,
 				682D116C1CEC5314009274E2 /* Info.plist */,
 			);
 			path = SwiftDemo;
@@ -151,7 +148,6 @@
 				682D115B1CEC5314009274E2 /* Resources */,
 				682D11781CEC5383009274E2 /* Embed Frameworks */,
 				BB995EF660B1948D1BC01F80 /* [CP] Embed Pods Frameworks */,
-				387CE78499F9DD04C0A399F1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +171,7 @@
 					682D115C1CEC5314009274E2 = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -206,7 +203,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE1428E01FE3A18900390A47 /* LoginRadius.plist in Resources */,
 				682D116B1CEC5314009274E2 /* LaunchScreen.storyboard in Resources */,
 				682D11681CEC5314009274E2 /* Assets.xcassets in Resources */,
 				682D11661CEC5314009274E2 /* Main.storyboard in Resources */,
@@ -232,26 +228,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		387CE78499F9DD04C0A399F1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../../Pods/Target Support Files/Pods-SwiftDemo/Pods-SwiftDemo-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-SwiftDemo/Pods-SwiftDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB995EF660B1948D1BC01F80 /* [CP] Embed Pods Frameworks */ = {
@@ -444,14 +420,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwiftDemo/SwiftDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -467,14 +446,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SwiftDemo/SwiftDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loginradius.SwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
