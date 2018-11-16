@@ -94,10 +94,12 @@ static BOOL useFacebookNative    = NO;
     }
     else
     {
-        NSString *idToken = user.authentication.accessToken;
+        NSString *googleToken = user.authentication.accessToken;
+        NSString *refreshToken = user.authentication.refreshToken;
+        NSString *clientID = user.authentication.clientID;
         UIViewController *currentVC = [(UINavigationController *)[[self window] rootViewController] topViewController];
 
-        [[LoginRadiusSocialLoginManager sharedInstance] convertGoogleTokenToLRToken:idToken inController:currentVC completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+        [[LoginRadiusSocialLoginManager sharedInstance] convertGoogleTokenToLRToken:googleToken google_refresh_token:refreshToken google_client_id:clientID inController:currentVC completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
             id safeData = (data) ? data : [NSNull null];
             id safeError = (error) ? error : [NSNull null];
 

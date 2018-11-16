@@ -181,7 +181,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.1.0 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.1.1 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements

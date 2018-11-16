@@ -79,8 +79,16 @@
     
 }
 
-- (void)convertGoogleTokenToLRToken:(NSString *)access_token inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
-    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/google" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"google_access_token" : access_token} completionHandler:^(NSDictionary *data, NSError *error) {
+- (void)convertGoogleTokenToLRToken:(NSString *)google_token google_refresh_token:(NSString *)google_refresh_token google_client_id:(NSString *)google_client_id inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
+    NSString *refresh_token = google_refresh_token ? google_refresh_token: @"";
+    NSString *client_id = google_client_id ? google_client_id: @"";
+    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/google"
+                               queryParams:@{@"key": [LoginRadiusSDK apiKey],
+                                             @"google_access_token" : google_token,
+                                             @"refresh_token" : refresh_token,
+                                             @"client_id" : client_id
+                                             }
+                         completionHandler:^(NSDictionary *data, NSError *error) {
 
          handler(data, error);
         

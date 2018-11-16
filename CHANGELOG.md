@@ -1,3 +1,15 @@
+5.1.1 Release notes (2018-11-16)
+=============================================================
+
+### API breaking changes
+
+* Updated LoginRadius Google Native EndPoint Also, 
+* Updated the convertGoogleToken() methods of the above API .
+
+
+### Bugfixes
+* Fixed google refresh token issue in native login.
+
 
 5.1.0 Release notes (2018-10-31)
 =============================================================

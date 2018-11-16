@@ -67,10 +67,14 @@
  Native Google Login
 
  @param google_token Google Access Token
+ @param google_refresh_token Google refresh_token
+ @param google_client_id Google client_id
  @param controller view controller where google login take place should not be nil
  @param handler code block executed after completion
  */
 -(void)convertGoogleTokenToLRToken:(NSString*)google_token
+                       google_refresh_token:(NSString *)google_refresh_token
+                      google_client_id:(NSString *)google_client_id
                       inController:(UIViewController *)controller
                   completionHandler:(LRAPIResponseHandler)handler;
 
