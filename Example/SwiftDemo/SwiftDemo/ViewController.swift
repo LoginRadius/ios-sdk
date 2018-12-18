@@ -127,7 +127,7 @@ class ViewController: FormViewController
         
         if LoginRadiusSDK.sharedInstance().session.isLoggedIn
         {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.showProfileController), name:  NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.showProfileController), name:  UIApplication.willEnterForegroundNotification, object: nil)
         }
     }
     
@@ -136,7 +136,7 @@ class ViewController: FormViewController
         
         if LoginRadiusSDK.sharedInstance().session.isLoggedIn
         {
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
         }
     }
     
@@ -181,7 +181,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.1.1 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.1.2 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements

@@ -49,14 +49,19 @@
     NSString *siteNameAndBundleID = [NSString stringWithFormat:@"%@.%@",[LoginRadiusSDK siteName],[[NSBundle mainBundle] bundleIdentifier]];
     BOOL isLoginRadiusURL = [[url scheme] isEqualToString:siteNameAndBundleID] && [[url host] isEqualToString:@"auth"];
     BOOL haveAccessToken = [[url fragment] hasPrefix:@"lr-token"];
-    NSString *token = [[url fragment] substringFromIndex:9];
 
     if( haveAccessToken ) {
+        NSString *token = [[url fragment] substringFromIndex:9];
         [self finishSocialLogin:token withError:nil];
        
     }else {
-        
-       [self finishSocialLogin:nil withError:[LRErrors socialLoginFailed:self.provider]];
+       NSString *access_denied = url.absoluteString;
+        if ([access_denied containsString:@"?denied_access"]) {
+            [self finishSocialLogin:nil withError:[LRErrors socialLoginCancelled:self.provider]];
+         } else {
+            [self finishSocialLogin:nil withError:[LRErrors socialLoginFailed:self.provider]];
+        }
+       
     }
     
     return isLoginRadiusURL && haveAccessToken;
@@ -66,10 +71,11 @@
     [self.viewController dismissViewControllerAnimated:YES completion: ^{
         if (self.handler) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSDictionary *data = [NSDictionary dictionaryWithObject:access_token forKey:@"access_token"];
-                NSLog(@"test %@", [data objectForKey:@"access_token"]);
-               
-                 self.handler(data, error);
+                NSDictionary *data = nil;
+                if(access_token != nil){
+                  data = [NSDictionary dictionaryWithObject:access_token forKey:@"access_token"];
+                }
+                self.handler(data, error);
                 
     
             });

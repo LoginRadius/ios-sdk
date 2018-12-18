@@ -6,12 +6,12 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Eureka (4.2.0)
-  - FBSDKCoreKit (4.36.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.36.0):
+  - Eureka (4.3.0)
+  - FBSDKCoreKit (4.39.0):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.39.0):
     - FBSDKCoreKit
-  - LoginRadiusSDK (5.1.0):
+  - LoginRadiusSDK (5.1.2):
     - FBSDKLoginKit (~> 4.36)
     - OAuthCore (~> 0.0.1)
     - SimpleKeychain (~> 0.7.0)
@@ -49,22 +49,22 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Eureka:
-    :commit: bd0bf276274e5d6cfabffd23e27c1ea5dbe55f44
+    :commit: 293f4ef4ccdc9cd24ec9b32b4e257bbde5a7180c
     :git: https://github.com/xmartlabs/Eureka.git
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
-  FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
-  FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
-  LoginRadiusSDK: bc2a71a019901c881fef61e86e22c2afef95c34f
+  Eureka: e2dd50c3d6e07d2d2501d4141e903ec64fa3724e
+  FBSDKCoreKit: 1e3981faefab8c88edfaa9eecd94aab02d99a9bc
+  FBSDKLoginKit: 30ba5039a2c53d65a75103889bc2deebdacd5a1f
+  LoginRadiusSDK: 1adf4dcc5942986559550b9426dc6f3bec5f368b
   "NSData+Base64": 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: c286d7a8b4ea78e09e532717088194913462c19a
+PODFILE CHECKSUM: b8256ed8fdbcadb3406cedaa30145bea06214217
 
 COCOAPODS: 1.5.3

@@ -1,3 +1,12 @@
+
+5.1.2 Release notes (2018-12-18)
+=============================================================
+
+### Bugfixes
+* Fixed issue iOS 10 and below App crashes when tapped on Cancel button in sfsafariviewcontroller(WebView).
+* Fixed Build issue in LoginRadius Swift Demo with Swift Version 4.2
+
+
 5.1.1 Release notes (2018-11-16)
 =============================================================
 

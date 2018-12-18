@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     static var useTwitterNative:Bool = true
     static var useFacebookNative:Bool = true
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         let sdk:LoginRadiusSDK = LoginRadiusSDK.instance();
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
         var canOpen = false
         
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         canOpen = (canOpen || Twitter.sharedInstance().application(app, open: url, options: options))
          */
     
-        canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]))
+        canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))
     
         return canOpen
     }

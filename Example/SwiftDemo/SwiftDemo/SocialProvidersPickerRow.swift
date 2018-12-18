@@ -24,7 +24,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
     private var dynamicConstraints = [NSLayoutConstraint]()
     private var notificationObserver : NSObjectProtocol?
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: 84, height: 84)
@@ -42,7 +42,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         collectionView.showsHorizontalScrollIndicator = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(SocialProviderIconCell.self, forCellWithReuseIdentifier: "SocialProviderIconCell")
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -71,7 +71,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         
         setNeedsUpdateConstraints()
         
-        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIContentSizeCategoryDidChange,
+        notificationObserver = NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification,
                                                                       object: nil,
                                                                       queue: nil,
                                                                       using: { [weak self] (note) in

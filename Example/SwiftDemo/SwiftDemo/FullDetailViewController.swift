@@ -26,7 +26,7 @@ class FullDetailViewController: FormViewController {
         super.viewDidLoad()
         //This is do when there are 2 apps sharing 1 LoginRadius sitename login
         //If the other app logged out, this logs out too.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setupForm), name:  NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupForm), name:  UIApplication.willEnterForegroundNotification, object: nil)
         
     }
     
@@ -36,14 +36,14 @@ class FullDetailViewController: FormViewController {
         
         //This is do when there are 2 apps sharing 1 LoginRadius sitename login
         //If the other app logged out, this logs out too.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setupForm), name:  NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupForm), name:  UIApplication.willEnterForegroundNotification, object: nil)
         
         setupForm()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
 
     }
     

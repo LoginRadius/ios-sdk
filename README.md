@@ -23,8 +23,8 @@ This project is licensed under the MIT license. See the [LICENSE](LICENSE) file 
 
 
 #### There are three projects in the library:
-a. ObjCDemo - This is the demo application in objective-c. 
-a. SwiftDemo - This is the demo application in swift.      
+a. ObjCDemo - This is the demo application in objective-c.<br>
+a. SwiftDemo - This is the demo application in Swift(Supported Swift version 4.2).<br>
 b. LoginRadiusSDK -This is the LoginRadius SDK.
 
 
@@ -45,7 +45,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform : ios, '9.0'
 
 target 'TargetName' do
-pod 'LoginRadiusSDK', '~> 5.1.1'
+pod 'LoginRadiusSDK', '~> 5.1.2'
 end
 
 ```
