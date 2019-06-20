@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         */
         
         /* Twitter Native Sign in
-        Twitter.sharedInstance().start(withConsumerKey:"Your twitter consumer key", consumerSecret:"Your twitter consumer SECRET key")
+        TWTRTwitter.sharedInstance().start(withConsumerKey:"Your twitter consumer key", consumerSecret:"Your twitter consumer SECRET key")
          */
 
         return true
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         */
         
         /* Twitter Native Sign in
-        canOpen = (canOpen || Twitter.sharedInstance().application(app, open: url, options: options))
+        canOpen = (canOpen || TWTRTwitter.sharedInstance().application(app, open: url, options: options))
          */
     
         canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))

@@ -36,7 +36,7 @@
     
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorNative;
+    login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorBrowser;
     
     void (^handleLogin)(FBSDKLoginManagerLoginResult *result, NSError *error) = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
         [self onLoginResult:result error:error controller:controller];
@@ -70,15 +70,15 @@
             [self finishLogin:nil withError:[LRErrors nativeFacebookLoginFailedMixedPermissions]];
         } else if (publishPermissionFound) {
             // Only publish permissions
-            [login logInWithPublishPermissions:permissions fromViewController:controller handler:handleLogin];
+            [login logInWithPermissions:permissions fromViewController:controller handler:handleLogin];
         } else {
             // Only read permissions
-            [login logInWithReadPermissions:permissions fromViewController:controller handler:handleLogin];
+            [login logInWithPermissions:permissions fromViewController:controller handler:handleLogin];
         }
     } else {
         // Initial log in, can only ask for read type permissions
         if ([self areAllPermissionsReadPermissions:permissions]) {
-            [login logInWithReadPermissions:permissions fromViewController:controller handler:handleLogin];
+            [login logInWithPermissions:permissions fromViewController:controller handler:handleLogin];
         } else {
             permissionsAllowed = NO;
             [self finishLogin:nil withError:[LRErrors nativeFacebookLoginFailed]];

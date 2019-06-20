@@ -32,7 +32,7 @@ static BOOL useFacebookNative    = NO;
     */
 
     /* Twitter Native Sign in
-    [[Twitter sharedInstance] startWithConsumerKey:@"Your twitter consumer key" consumerSecret:@"Your twitter consumer SECRET key"];
+    [[TWTRTwitter sharedInstance] startWithConsumerKey:@"Your twitter consumer key" consumerSecret:@"Your twitter consumer SECRET key"];
     */
 
     return YES;
@@ -71,7 +71,7 @@ static BOOL useFacebookNative    = NO;
     */
     
     /* Twitter Native Sign in
-    canOpen = (canOpen || [[Twitter sharedInstance] application:app openURL:url options:options]);
+    canOpen = (canOpen || [[TWTRTwitter sharedInstance] application:app openURL:url options:options]);
      */
     
     canOpen = (canOpen || [[LoginRadiusSDK sharedInstance] application:app

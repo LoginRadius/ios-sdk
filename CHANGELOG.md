@@ -1,4 +1,16 @@
 
+
+5.2.0 Release notes (2019-06-20)
+=============================================================
+
+### Enhancements
+* Updated FBSDKLoginKit and FBSDKCoreKit - 4.27.0 to 5.0.2
+
+### Bugfixes
+* Fixed FBSDKLoginKit Version - 5.0.2 : Error - Semantic issue
+* Fixed Build issue in LoginRadius Swift Demo with Swift Version 5.0
+* Fixed Build issue With TwitterKit Version -3.4.2
+
 5.1.2 Release notes (2018-12-18)
 =============================================================
 

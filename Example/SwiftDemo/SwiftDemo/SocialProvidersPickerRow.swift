@@ -57,11 +57,11 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         }
     }
     
-    open override func update() {
+    public override func update() {
         super.update()
     }
     
-    open override func setup() {
+    public override func setup() {
         super.setup()
 
         selectionStyle = .none
@@ -79,12 +79,12 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         })
     }
     
-    open override func updateConstraints(){
+    public override func updateConstraints(){
         customConstraints()
         super.updateConstraints()
     }
 
-    open override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         var frame = contentView.frame
@@ -93,7 +93,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         contentView.frame = frame
     }
     
-    open func customConstraints() {
+    public func customConstraints() {
         let views : [String: AnyObject] = ["collectionView": collectionView]
 
         contentView.removeConstraints(dynamicConstraints)

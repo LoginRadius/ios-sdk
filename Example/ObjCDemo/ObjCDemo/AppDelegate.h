@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 /* Google Native Sign in
 #import <Google/SignIn.h>
 */
 /* Twitter Native Sign in
-#import <TwitterKit/TwitterKit.h>
+#import <TwitterKit/TWTRKit.h>
 */
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 /* Google Native Sign in, GIDSignInDelegate>

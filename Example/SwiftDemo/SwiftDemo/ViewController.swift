@@ -181,7 +181,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.1.2 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.2.0 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
@@ -789,9 +789,9 @@ class ViewController: FormViewController
     
     func showNativeTwitterLogin()
     {
-        /* Twitter Native Sign in
-         
-         Twitter.sharedInstance().logIn(completion: { (session, error) in
+        
+         /* Twitter Native Sign in
+         TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
          if let session = session {
          LoginRadiusSocialLoginManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, in: self, completionHandler: {(data, error) in
          if let _ = data

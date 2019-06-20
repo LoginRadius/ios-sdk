@@ -114,7 +114,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.1.2 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.2.0 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
@@ -524,9 +524,9 @@
 
 - (void) showNativeTwitterLogin
 {
-    /* Twitter Native SignIn
+    /*Twitter Native SignIn
      
-     [[Twitter sharedInstance] logInWithCompletion:
+     [[TWTRTwitter sharedInstance] logInWithCompletion:
      ^(TWTRSession * _Nullable session, NSError * _Nullable error) {
      if (session){
      [[LoginRadiusSocialLoginManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret inController:self completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
