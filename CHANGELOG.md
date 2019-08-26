@@ -4,8 +4,8 @@
 =============================================================
 
 ### Enhancements
-* Add new PIN Authentication APIs for better user experience.PIN Authentication is a mechanism for prompting your customers to provide a PIN code as part of your Authentication processes.
-* Updated the logout mathod type as BOOL.
+* Added new PIN Authentication APIs. PIN authentication is an alternate way to do authentication, instead of password users can use the PIN. PIN Authentication can be used for re-authentication also (when the user accesses a specific section or area).
+* Updated the logout method type as BOOL.
 
 5.2.0 Release notes (2019-06-20)
 =============================================================
