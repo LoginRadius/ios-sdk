@@ -46,7 +46,7 @@
                                              @"username": username,
                                              @"clientguid": clientguid,
                                              @"smartloginemailtemplate":smartlogin_emailtemplate,
-                                             @"welcomeemailtemplate":redirect_url,
+                                             @"welcomeemailtemplate":welcome_emailtemplate,
                                              @"redirecturl":redirect_url
                                              }
                          completionHandler:completion];

@@ -26,3 +26,4 @@ FOUNDATION_EXPORT const unsigned char LoginRadiusSDKVersionString[];
 #import <LoginRadiusSDK/LoginRadiusField.h>
 #import <LoginRadiusSDK/LoginRadiusFieldRule.h>
 #import <LoginRadiusSDK/LoginRadiusSchema.h>
+#import <LoginRadiusSDK/PinAuthentication.h>

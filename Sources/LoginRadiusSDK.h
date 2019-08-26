@@ -63,6 +63,6 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 /**
  *  Log out the user
  */
-+ (void) logout;
++ (BOOL) logout;
 
 @end

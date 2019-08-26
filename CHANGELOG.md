@@ -1,5 +1,12 @@
 
 
+5.3.0 Release notes (2019-08-26)
+=============================================================
+
+### Enhancements
+* Add new PIN Authentication APIs for better user experience.PIN Authentication is a mechanism for prompting your customers to provide a PIN code as part of your Authentication processes.
+* Updated the logout mathod type as BOOL.
+
 5.2.0 Release notes (2019-06-20)
 =============================================================
 

@@ -25,6 +25,6 @@
 /**
  *  Log out the user from session
  */
-- (void) logout;
+- (BOOL) logout;
 
 @end

@@ -73,17 +73,16 @@ static NSString * const LoginRadiusCustomDomain = @"customDomain";
     return [[LoginRadiusSDK alloc] init];
 }
 
-+ (void) logout {
++ (BOOL) logout {
     
-    [(LRSession *)[[self sharedInstance] session] logout];
+    BOOL is = [(LRSession *)[[self sharedInstance] session] logout];
     [[LoginRadiusSocialLoginManager sharedInstance] logout];
-    
     // Clearing all stored tokens userprofiles for loginradius
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
-    
+    return is;
 }
 
 + (NSString*) apiKey {

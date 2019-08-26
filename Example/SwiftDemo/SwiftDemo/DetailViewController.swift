@@ -370,9 +370,7 @@ class DetailViewController: FormViewController {
         /* Twitter Native Sign in
         twitterLogout()
         */
-        
         LoginRadiusSDK.logout()
-        
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

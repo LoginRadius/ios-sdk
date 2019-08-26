@@ -114,7 +114,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.2.0 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.3.0 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
@@ -456,7 +456,7 @@
 - (void) showSocialLogins:(NSString *)provider
 {
     [[LoginRadiusSocialLoginManager sharedInstance] loginWithProvider:provider inController:self completionHandler:^(NSDictionary * data, NSError * error){
-        if(error.localizedDescription == @"Social Login cancelled"){
+        if([error.localizedDescription  isEqual: @"Social Login cancelled"]){
             return;
         }
         

@@ -142,15 +142,15 @@
     return self;
 }
 
-- (void) logout
+- (BOOL) logout
 {
     //if its already logged out then don't do anything
     //and if user specify don't invalidate the access token
+
     if(![self isLoggedIn])
     {
-        return;
+        return NO;
     }
-    
 
     [[AuthenticationAPI authInstance] invalidateAccessToken: [self accessToken] completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error)
     {
@@ -186,6 +186,8 @@
         [lrUserDefault removeObjectForKey:@"lrUserProfile"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    return YES;
 }
 
 - (BOOL) isLoggedIn
