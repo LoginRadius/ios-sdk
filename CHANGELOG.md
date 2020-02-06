@@ -1,4 +1,10 @@
 
+5.4.0 Release notes (2020-02-06)
+=============================================================
+
+### Enhancements
+* Added new Apple SignIn Native Login. 
+* Added new Wechat Native Login.
 
 5.3.0 Release notes (2019-08-26)
 =============================================================

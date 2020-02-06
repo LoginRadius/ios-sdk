@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     static var useGoogleNative:Bool = true
     static var useTwitterNative:Bool = true
     static var useFacebookNative:Bool = true
+    static var useAppleSignInNative:Bool = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

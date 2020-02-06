@@ -9,6 +9,7 @@
 import LoginRadiusSDK
 import Eureka
 import SwiftyJSON
+import AuthenticationServices
 
 /* Google Native SignIn
  import GoogleSignIn
@@ -181,7 +182,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.3.0 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.4.0 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
@@ -406,13 +407,24 @@ class ViewController: FormViewController
             let nativeSocialLoginSection = Section("Native Social Login")
             form +++ nativeSocialLoginSection
             
+            if (AppDelegate.useAppleSignInNative)
+            {
+                nativeSocialLoginSection <<< ButtonRow("Native Apple")
+                {
+                    $0.title = "Apple Native Login"
+                    }.onCellSelection{ cell, row in
+                        self.actionHandleAppleSignin()
+                }
+               // self.setupSOAppleSignIn();
+            }
+            
             if (AppDelegate.useGoogleNative)
             {
                 NotificationCenter.default.addObserver(self, selector: #selector(self.processGoogleNativeLogin), name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil)
                 
                 nativeSocialLoginSection <<< ButtonRow("Native Google")
                 {
-                    $0.title = "Google"
+                    $0.title = "Google Native Login"
                     }.onCellSelection{ cell, row in
                         self.showNativeGoogleLogin()
                 }
@@ -423,7 +435,7 @@ class ViewController: FormViewController
                 
                 nativeSocialLoginSection <<< ButtonRow("Native Facebook")
                 {
-                    $0.title = "Facebook"
+                    $0.title = "Facebook Native Login"
                     }.onCellSelection{ cell, row in
                         self.showNativeFacebookLogin()
                 }
@@ -434,13 +446,11 @@ class ViewController: FormViewController
                 
                 nativeSocialLoginSection <<< ButtonRow("Native Twitter")
                 {
-                    $0.title = "Twitter"
+                    $0.title = "Twitter Native Login"
                     }.onCellSelection{ cell, row in
                         self.showNativeTwitterLogin()
                 }
             }
-            
-            
         }
     }
     
@@ -705,7 +715,7 @@ class ViewController: FormViewController
     
     func forgotPassword() {
         
-        var errors = form.rowBy(tag: "Email Forgot")!.validate()
+        let errors = form.rowBy(tag: "Email Forgot")!.validate()
         
         if errors.count > 0
         {
@@ -743,9 +753,6 @@ class ViewController: FormViewController
                        self.checkRequiredFields(profile:response,token:access_token)
                         
                         })
-
-           
-
                    
             }
             
@@ -909,6 +916,39 @@ class ViewController: FormViewController
     }
     
     
+    //Add button for Sign in with Apple
+       func setupSOAppleSignIn() {
+        
+        if #available(iOS 13.0, *) {
+            let btnAuthorization = ASAuthorizationAppleIDButton()
+            btnAuthorization.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
+            btnAuthorization.center = self.view.center
+            btnAuthorization.addTarget(self, action: #selector(actionHandleAppleSignin), for: .touchUpInside)
+            self.view.addSubview(btnAuthorization)
+        } else {
+            // Fallback on earlier versions
+        }
+           
+       }
+    
+    // Perform acton on click of Sign in with Apple button
+       @objc func actionHandleAppleSignin() {
+        if #available(iOS 13.0, *) {
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        } else {
+            // Fallback on earlier versions
+        }
+           
+       }
+    
+    
     func checkRequiredFields(profile:[AnyHashable:Any]?, token:NSString) {
 
         ConfigurationAPI.configInstance().getConfigurationSchema
@@ -938,5 +978,60 @@ class ViewController: FormViewController
      }
         
     }
+    
+    
 }
 
+
+extension ViewController: ASAuthorizationControllerDelegate {
+    
+    // ASAuthorizationControllerDelegate function for authorization failed
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    // ASAuthorizationControllerDelegate function for successful authorization
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            // Create an account as per your requirement
+           let appleUserToken = appleIDCredential.authorizationCode!
+           if let code = String(bytes: appleUserToken, encoding: .utf8) {
+            
+            // Convert apple Code to LoginRadius Acess Token
+            
+            LoginRadiusSocialLoginManager.sharedInstance()?.convertAppleCode(toLRToken:code, completionHandler: {(data, error) in
+              
+                if let _ = data
+                {
+                let access_token = data!["access_token"] as! NSString
+                
+                AuthenticationAPI.authInstance().profiles(withAccessToken: access_token as String? , completionHandler: {(response, error) in
+                
+                self.checkRequiredFields(profile:response,token:access_token)
+                
+                })
+                }else if let err = error
+                {
+                self.showAlert(title:"ERROR",message:err.localizedDescription)
+                }
+                
+            })
+           
+                print(code)
+            } else {
+                print("not a valid UTF-8 sequence")
+            }
+        }
+    }
+    
+}
+
+extension ViewController: ASAuthorizationControllerPresentationContextProviding {
+    //For present window
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}

@@ -97,6 +97,32 @@
 }
 
 
+- (void)convertWeChatCodeToLRToken:(NSString *)code completionHandler:(LRAPIResponseHandler)handler {
+    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/wechat"
+                            queryParams:@{ @"key": [LoginRadiusSDK apiKey],
+                                           @"code" : code
+                                         }
+                         completionHandler:^(NSDictionary *data, NSError *error) {
+         handler(data, error);
+        
+    }];
+
+}
+
+
+- (void)convertAppleCodeToLRToken:(NSString *)code completionHandler:(LRAPIResponseHandler)handler {
+    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/apple"
+                            queryParams:@{ @"key": [LoginRadiusSDK apiKey],
+                                           @"code" : code
+                                         }
+                         completionHandler:^(NSDictionary *data, NSError *error) {
+         handler(data, error);
+        
+    }];
+
+}
+
+
 - (void)logout {
 	// Only facebook native login stores sessions that we have to clear
 	[self.facebookLogin logout];

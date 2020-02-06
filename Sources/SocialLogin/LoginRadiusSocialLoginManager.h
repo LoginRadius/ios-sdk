@@ -79,6 +79,28 @@
                   completionHandler:(LRAPIResponseHandler)handler;
 
 
+
+/**
+ Native WeChat Login
+
+ @param code WeChat Access Code
+ @param handler code block executed after completion
+ */
+-(void)convertWeChatCodeToLRToken:(NSString*)code
+                  completionHandler:(LRAPIResponseHandler)handler;
+
+
+
+/**
+ Native Apple Login
+
+ @param code Apple Access Code
+ @param handler code block executed after completion
+ */
+-(void)convertAppleCodeToLRToken:(NSString*)code
+                  completionHandler:(LRAPIResponseHandler)handler;
+
+
 /**
  *  Log out the user
  */
