@@ -1,58 +1,20 @@
-# LoginRadius iOS SDK
-![Home Image](http://docs.lrcontent.com/resources/github/banner-1544x500.png)
+# WechatExample
+Wechat SDK example for login and exchanging the LoginRadius AccessToken.
 
-## Introduction ##
-LoginRadius is an Identity Management Platform that simplifies user registration while securing data. LoginRadius Platform simplifies and secures your user registration process, increases conversion with Social Login that combines 30 major social platforms, and offers a full solution with Traditional Customer Registration. You can gather a wealth of user profile data from Social Login or Traditional Customer Registration.
+# installation
 
-LoginRadius centralizes it all in one place, making it easy to manage and access. Easily integrate LoginRadius with all of your third-party applications, like MailChimp, Google Analytics, Livefyre and many more, making it easy to utilize the data you are capturing.
+- install the cocoapods 'gem install cocoapods'
 
-LoginRadius helps businesses boost user engagement on their web/mobile platform, manage online identities, utilize social media for marketing, capture accurate consumer data, and get unique social insight into their customer base.
+- run the 'pod install' command.
 
-Please visit [here](http://www.loginradius.com/) for more information.
+ 
+# configuration
 
-## Documentation
-For full documentation visit [here](https://docs.loginradius.com/api/v2/mobile-libraries/ios-library)
+First you need to add a URL Schemes to your project.
+Go to your **project configuration** > **Info.Plist** > then the **URL schemes** and add must be your wechat appId in wechat_app_ID section.
 
-## Author
-
-[LoginRadius](https://www.loginradius.com/)
-
-## License
-
-This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
+To use your own **wechat credential** (*appID and UNIVERSAL_LINK) information, you need to change the top of the file **AuthWechatManager.m**, with your informations : 
 
 
-#### There are three projects in the library:
-a. ObjCDemo - This is the demo application in objective-c.<br>
-a. SwiftDemo - This is the demo application in Swift(Supported Swift version 4.2).<br>
-b. LoginRadiusSDK -This is the LoginRadius SDK.
+For Initialize the LoginRadius SDK Create a new File LoginRadius.plist and add it to the demo App and add the apiKey and siteName for the interacting the LoginRadius API.
 
-
-## Installing
-
-We recommend using CocoaPods for installing the library in a project.
-
-CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```
-$ gem install cocoapods
-```
-
-To integrate LRSDK into your Xcode project using CocoaPods, specify it in your Podfile:
-
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform : ios, '9.0'
-
-target 'TargetName' do
-pod 'LoginRadiusSDK', '~> 5.4.0'
-end
-
-```
-
-Then, run the following command:
-
-```
-$ pod install
-
-```
