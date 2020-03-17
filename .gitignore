@@ -17,7 +17,6 @@ ehthumbs.db
 # Xcode
 
 ## Build generated
-build/
 DerivedData/
 
 ##Documentation
@@ -42,4 +41,3 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 *.xcuserstate
-
