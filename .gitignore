@@ -17,13 +17,12 @@ ehthumbs.db
 # Xcode
 
 ## Build generated
+build/
 DerivedData/
 
 ##Documentation
 /docs
 
-##CocoaPods
-Pods/
 
 ## Various settings
 *.pbxuser
@@ -34,6 +33,11 @@ Pods/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+xcuserdata/
 
 ## Other
 *.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+
