@@ -23,10 +23,10 @@ This project is licensed under the MIT license. See the [LICENSE](LICENSE) file 
 
 ## Installing
 
-This is the carthage build LoginRadius iOS SDK.you can just add the build file directly via "Embedded Binaries" section in the xcode.
+This is the carthage build LoginRadius iOS SDK. You can just add the build file directly via "Embedded Binaries" section in the xcode.
 
 1. Copy the LRSDK_CART folder and paste it into your project directory manually.
 
-2. Select your project target, under Build Phases menu expand Link Binary With Libraries, and drag the frameworks in the "LRSDK_CART" folder over to Xcode as seen in this GIF:
+2. Select your project target, under General menu expand Frameworks, Libraries, and Embedded Content Section and drag the frameworks from the "LRSDK_CART" folder in Xcode as shown in this GIF:
 
-![gif Image](https://apidocs.lrcontent.com/images/ios_op_323095e71fd67290ba9.29293753.gif)
+![](https://media.giphy.com/media/TL1ZSHHDbxwxFauCa7/giphy.gif)
