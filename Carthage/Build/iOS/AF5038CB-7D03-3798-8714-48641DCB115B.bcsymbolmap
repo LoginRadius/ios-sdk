@@ -1,0 +1,3594 @@
+BCSymbolMap Version: 2.0
+-[_FBSDKTemporaryErrorRecoveryAttempter attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:]
+Apple clang version 11.0.0 (clang-1100.0.33.17)
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/_FBSDKTemporaryErrorRecoveryAttempter.m
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/_FBSDKTemporaryErrorRecoveryAttempter.m
+-[FBSDKAccessToken initWithTokenString:permissions:declinedPermissions:expiredPermissions:appID:userID:expirationDate:refreshDate:dataAccessExpirationDate:]
+-[FBSDKAccessToken initWithTokenString:permissions:declinedPermissions:expiredPermissions:appID:userID:expirationDate:refreshDate:dataAccessExpirationDate:graphDomain:]
+-[FBSDKAccessToken hasGranted:]
+-[FBSDKAccessToken isDataAccessExpired]
+-[FBSDKAccessToken isExpired]
++[FBSDKAccessToken currentAccessToken]
++[FBSDKAccessToken setCurrentAccessToken:]
++[FBSDKAccessToken isCurrentAccessTokenActive]
++[FBSDKAccessToken refreshCurrentAccessToken:]
+-[FBSDKAccessToken hash]
+-[FBSDKAccessToken isEqual:]
+-[FBSDKAccessToken isEqualToAccessToken:]
+-[FBSDKAccessToken copyWithZone:]
++[FBSDKAccessToken supportsSecureCoding]
+-[FBSDKAccessToken initWithCoder:]
+-[FBSDKAccessToken encodeWithCoder:]
+-[FBSDKAccessToken appID]
+-[FBSDKAccessToken dataAccessExpirationDate]
+-[FBSDKAccessToken declinedPermissions]
+-[FBSDKAccessToken expiredPermissions]
+-[FBSDKAccessToken expirationDate]
+-[FBSDKAccessToken permissions]
+-[FBSDKAccessToken refreshDate]
+-[FBSDKAccessToken tokenString]
+-[FBSDKAccessToken userID]
+-[FBSDKAccessToken graphDomain]
+-[FBSDKAccessToken .cxx_destruct]
+_g_currentAccessToken
+__OBJC_PROTOCOL_$_NSCopying
+__OBJC_LABEL_PROTOCOL_$_NSCopying
+__OBJC_PROTOCOL_$_NSObject
+__OBJC_LABEL_PROTOCOL_$_NSObject
+__OBJC_PROTOCOL_$_FBSDKCopying
+__OBJC_LABEL_PROTOCOL_$_FBSDKCopying
+__OBJC_PROTOCOL_$_NSCoding
+__OBJC_LABEL_PROTOCOL_$_NSCoding
+__OBJC_PROTOCOL_$_NSSecureCoding
+__OBJC_LABEL_PROTOCOL_$_NSSecureCoding
+_OBJC_IVAR_$_FBSDKAccessToken._appID
+_OBJC_IVAR_$_FBSDKAccessToken._dataAccessExpirationDate
+_OBJC_IVAR_$_FBSDKAccessToken._declinedPermissions
+_OBJC_IVAR_$_FBSDKAccessToken._expiredPermissions
+_OBJC_IVAR_$_FBSDKAccessToken._expirationDate
+_OBJC_IVAR_$_FBSDKAccessToken._permissions
+_OBJC_IVAR_$_FBSDKAccessToken._refreshDate
+_OBJC_IVAR_$_FBSDKAccessToken._tokenString
+_OBJC_IVAR_$_FBSDKAccessToken._userID
+_OBJC_IVAR_$_FBSDKAccessToken._graphDomain
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKAccessToken.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKAccessToken.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKAccessToken.h
+-[FBSDKAccessTokenCache init]
+-[FBSDKAccessTokenCache accessToken]
+-[FBSDKAccessTokenCache setAccessToken:]
+-[FBSDKAccessTokenCache clearCache]
+-[FBSDKAccessTokenCache .cxx_destruct]
+__OBJC_PROTOCOL_$_FBSDKAccessTokenCaching
+__OBJC_LABEL_PROTOCOL_$_FBSDKAccessTokenCaching
+_OBJC_IVAR_$_FBSDKAccessTokenCache._keychainStore
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCache.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCache.m
+-[FBSDKAccessTokenExpirer init]
+-[FBSDKAccessTokenExpirer dealloc]
+-[FBSDKAccessTokenExpirer _checkAccessTokenExpirationDate]
+-[FBSDKAccessTokenExpirer _timerDidFire]
+-[FBSDKAccessTokenExpirer .cxx_destruct]
+_OBJC_IVAR_$_FBSDKAccessTokenExpirer._timer
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenExpirer.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenExpirer.m
++[FBSDKAddressFilterManager enable]
++[FBSDKAddressFilterManager processParameters:]
+_isAddressFilterEnabled
+_isSampleEnabled
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/RestrictiveDataFilter/FBSDKAddressFilterManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/RestrictiveDataFilter/FBSDKAddressFilterManager.m
+__ZNSt3__113unordered_mapINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN3mat7MTensorENS_4hashIS6_EENS_8equal_toIS6_EENS4_INS_4pairIKS6_S8_EEEEED1Ev
+__ZNSt3__16vectorIfNS_9allocatorIfEEED1Ev
++[FBSDKAddressInferencer initializeDenseFeature]
++[FBSDKAddressInferencer loadWeights]
++[FBSDKAddressInferencer validateWeights:]
+__ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1IDnEEPKc
++[FBSDKAddressInferencer loadWeights:]
+___38+[FBSDKAddressInferencer loadWeights:]_block_invoke
++[FBSDKAddressInferencer shouldFilterParam:]
+__ZNSt3__116allocator_traitsINS_9allocatorINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS1_IcEEEEN3mat7MTensorEEEPvEEEEE7destroyINS_4pairIKS8_SA_EEEEvRSE_PT_
+___clang_call_terminate
+__ZNSt3__1L20__throw_length_errorEPKc
+__ZNSt12length_errorC1EPKc
+__ZN3mat7MTensorC2ERKNSt3__16vectorIxNS1_9allocatorIxEEEE
+__ZN3matL9MCheckPtrEPv
+__ZNSt3__120__shared_ptr_pointerIPvPFvS1_ENS_9allocatorIvEEED1Ev
+__ZNSt3__120__shared_ptr_pointerIPvPFvS1_ENS_9allocatorIvEEED0Ev
+__ZN4mat1L11transpose3DEPfxii
+__ZN4mat1L11transpose2DEPfii
+__ZN4mat1L6conv1DEPfS0_iiiii
+__ZN4mat1L9maxPool1DEPfiiii
+__ZN4mat1L5denseEPfS0_S0_iii
+__ZNSt3__1L20__throw_out_of_rangeEPKc
+__ZNKSt3__18equal_toINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEclERKS6_S9_
+__ZNSt12out_of_rangeC1EPKc
+__ZNSt3__110unique_ptrINS_11__hash_nodeINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN3mat7MTensorEEEPvEENS_22__hash_node_destructorINS6_ISD_EEEEED1Ev
+__ZNSt3__14pairIKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN3mat7MTensorEEC2ERKSA_
+__ZNSt3__112__hash_tableINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN3mat7MTensorEEENS_22__unordered_map_hasherIS7_SA_NS_4hashIS7_EELb1EEENS_21__unordered_map_equalIS7_SA_NS_8equal_toIS7_EELb1EEENS5_ISA_EEE19__node_insert_multiEPNS_11__hash_nodeISA_PvEE
+__GLOBAL__sub_I_FBSDKAddressInferencer.mm
++[FBSDKAddressInferencer loadWeights:].cold.1
+__ZL12WEIGHTS_INFO
+__ZL12WEIGHTS_KEYS
+__ZL8_weights
+__ZL13_denseFeature
+___block_descriptor_20_e30_i12?0"NSString"4"NSString"8l
+___block_literal_global
+__ZNSt3__1L19piecewise_constructE
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/RestrictiveDataFilter/FBSDKAddressInferencer.mm
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/RestrictiveDataFilter/FBSDKAddressInferencer.mm
+~MTensor
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ML/FBSDKStandaloneModel.hpp
+~shared_ptr
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory
+__release_shared
+__libcpp_atomic_refcount_decrement<long>
+_GLOBAL__sub_I_FBSDKAddressInferencer.mm
+__cxx_global_var_init.53
+vector
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector
+__vector_base
+__compressed_pair<nullptr_t, true>
+__compressed_pair_elem<nullptr_t, void>
+__cxx_global_var_init.52
+unordered_map
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/unordered_map
+__hash_table
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__hash_table
+__compressed_pair<float, true>
+__compressed_pair_elem<float, void>
+unique_ptr<true, void>
+__compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *> **, true>
+__compressed_pair_elem
+__bucket_list_deallocator
+__compressed_pair<int, true>
+__compressed_pair_elem<int, void>
+__cxx_global_var_init.37
+__cxx_global_var_init
+__construct_node_hash<const std::__1::piecewise_construct_t &, std::__1::tuple<const std::__1::basic_string<char> &>, std::__1::tuple<> >
+operator->
+construct<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor>, const std::__1::piecewise_construct_t &, std::__1::tuple<const std::__1::basic_string<char> &>, std::__1::tuple<> >
+__construct<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor>, const std::__1::piecewise_construct_t &, std::__1::tuple<const std::__1::basic_string<char> &>, std::__1::tuple<> >
+pair<const std::__1::basic_string<char> &>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility
+pair<const std::__1::basic_string<char> &, 0>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple
+MTensor
+first
+__get
+__compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *&, std::__1::__hash_node_destructor<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> > > >
+__compressed_pair_elem<std::__1::__hash_node_destructor<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> > >, void>
+__compressed_pair_elem<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *&, void>
+__hash_node_destructor
+allocate
+__libcpp_allocate
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/new
+__node_alloc
+__split_buffer
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__split_buffer
+__compressed_pair<nullptr_t, std::__1::allocator<long long> &>
+__compressed_pair_elem<std::__1::allocator<long long> &, void>
+__push_back_slow_path<long long>
+~__split_buffer
+deallocate
+__libcpp_deallocate
+__do_deallocate_handle_size_align
+__do_deallocate_handle_size
+__do_call
+clear
+__destruct_at_end
+__swap_out_circular_buffer
+swap<long long *>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits
+__end_cap
+__construct_backward<long long>
+construct<long long, long long>
+__construct<long long, long long>
+__recommend
+max<unsigned long>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm
+max<unsigned long, std::__1::__less<unsigned long, unsigned long> >
+operator()
+capacity
+size
+__alloc
+second
+find<std::__1::basic_string<char> >
+__hash_const_iterator
+__constrain_hash
+__hash
+operator[]
+bucket_count
+hash_function
+__construct_node<const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+construct<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor>, const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+__construct<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor>, const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+pair
+__get_ptr
+__get_value
+__node_insert_multi
+__hash_iterator
+__node_insert_multi_perform
+__node_insert_multi_prepare
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/math.h
+__is_hash_power2
+max_load_factor
+__assign_multi<std::__1::__hash_const_iterator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *> >
+operator!=
+operator==
+operator++
+__insert_multi<const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+__emplace_multi<const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+release
+get
+__get_value<const std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor> >
+operator*
+__deallocate_node
+operator=
+operator=<const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &, false>
+swap
+swap<std::__1::__shared_weak_count *>
+swap<void *>
+shared_ptr
+__add_shared
+__libcpp_atomic_refcount_increment<long>
+get<0, const std::__1::basic_string<char>, mat::MTensor>
+get<const std::__1::basic_string<char>, mat::MTensor>
+__ref
+__detach
+~basic_string
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string
+__get_long_pointer
+__is_long
+~vector
+~__vector_base
+~unique_ptr
+reset
+__construct_node_hash<const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+__rehash
+reset<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *> **>
+rehash
+__next_hash_pow2
+__clz
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/bit
+~__hash_table
+insert<std::__1::__hash_map_const_iterator<std::__1::__hash_const_iterator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *> > >
+__insert_unique
+__emplace_unique_key_args<std::__1::basic_string<char>, const std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> &>
+__get_key
+begin
+__compressed_pair<nullptr_t, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *> *> > >
+__compressed_pair_elem<std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, mat::MTensor>, void *> *> *> >, void>
+assign<float *>
+__construct_at_end<float *>
+__construct_range_forward<float, float, float, float>
+__vdeallocate
+copy<float *, float *>
+__copy<float, float>
+advance<float *>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator
+__advance<float *>
+distance<float *>
+__distance<float *>
+__vallocate
+__construct_at_end
+construct<float>
+__construct<float>
+out_of_range
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional
+operator==<std::__1::allocator<char> >
+compare
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__string
+data
+__get_pointer
+__do_string_hash<const char *>
+__loadword<unsigned long>
+__throw_out_of_range
+dense
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ML/FBSDKModelRuntime.hpp
+maxPool1D
+conv1D
+transpose2D
+transpose3D
+__on_zero_shared_weak
+__get_deleter
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeinfo
+__on_zero_shared
+~__shared_ptr_pointer
+shared_ptr<void, void (*)(void *)>
+__shared_ptr_pointer
+__compressed_pair<std::__1::__compressed_pair<void *, void (*)(void *)>, std::__1::allocator<void> >
+__compressed_pair_elem<std::__1::__compressed_pair<void *, void (*)(void *)>, void>
+__shared_weak_count
+__shared_count
+assign<long long *>
+__construct_at_end<long long *>
+__construct_range_forward<long long, long long, long long, long long>
+copy<long long *, long long *>
+__copy<long long, long long>
+advance<long long *>
+__advance<long long *>
+distance<long long *>
+__distance<long long *>
+construct<long long>
+__construct<long long>
+MCheckPtr
+MFreeMemory
+MAllocateMemory
+operator!=<const long long *>
+operator==<const long long *, const long long *>
+end
+length_error
+__throw_length_error
+__compressed_pair<nullptr_t, std::__1::allocator<long long> >
+destroy<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> >
+__destroy<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor> >
+~pair
+predictOnText
+softmax
+relu
+concatenate
+add
+embedding
+vectorize
+data<float>
+at
+find
+__emplace_unique_key_args<std::__1::basic_string<char>, const std::__1::piecewise_construct_t &, std::__1::tuple<const std::__1::basic_string<char> &>, std::__1::tuple<> >
+__38+[FBSDKAddressInferencer loadWeights:]_block_invoke
+~unordered_map
+mempty
+push_back
+__emplace_unique_key_args<std::__1::basic_string<char>, const std::__1::piecewise_construct_t &, std::__1::tuple<std::__1::basic_string<char> &&>, std::__1::tuple<> >
+__construct_node_hash<const std::__1::piecewise_construct_t &, std::__1::tuple<std::__1::basic_string<char> &&>, std::__1::tuple<> >
+construct<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor>, const std::__1::piecewise_construct_t &, std::__1::tuple<std::__1::basic_string<char> &&>, std::__1::tuple<> >
+__construct<std::__1::pair<const std::__1::basic_string<char>, mat::MTensor>, const std::__1::piecewise_construct_t &, std::__1::tuple<std::__1::basic_string<char> &&>, std::__1::tuple<> >
+pair<std::__1::basic_string<char> &&>
+pair<std::__1::basic_string<char> &&, 0>
+basic_string
+__zero
+basic_string<nullptr_t>
+__init
+assign
+copy
+__get_short_pointer
+__set_short_size
+__set_long_size
+__set_long_cap
+__set_long_pointer
+__align_it<16>
+length
+__compressed_pair<true, void>
+count
+__count_unique<std::__1::basic_string<char> >
+__fill_n<std::__1::__wrap_iter<float *>, int, int>
+fill<std::__1::__wrap_iter<float *>, int>
+__fill<std::__1::__wrap_iter<float *>, int>
+fill_n<std::__1::__wrap_iter<float *>, int, int>
+operator-<float *, float *>
++[FBSDKAppEvents initialize]
+-[FBSDKAppEvents init]
+___22-[FBSDKAppEvents init]_block_invoke
+___copy_helper_block_e4_20w
+___destroy_helper_block_e4_20w
+-[FBSDKAppEvents registerNotifications]
+-[FBSDKAppEvents dealloc]
++[FBSDKAppEvents logEvent:]
++[FBSDKAppEvents logEvent:valueToSum:]
++[FBSDKAppEvents logEvent:parameters:]
++[FBSDKAppEvents logEvent:valueToSum:parameters:]
++[FBSDKAppEvents logEvent:valueToSum:parameters:accessToken:]
++[FBSDKAppEvents logPurchase:currency:]
++[FBSDKAppEvents logPurchase:currency:parameters:]
++[FBSDKAppEvents logPurchase:currency:parameters:accessToken:]
++[FBSDKAppEvents logPushNotificationOpen:]
++[FBSDKAppEvents logPushNotificationOpen:action:]
++[FBSDKAppEvents logProductItem:availability:condition:description:imageLink:link:title:priceAmount:currency:gtin:mpn:brand:parameters:]
++[FBSDKAppEvents activateApp]
++[FBSDKAppEvents setPushNotificationsDeviceToken:]
++[FBSDKAppEvents setPushNotificationsDeviceTokenString:]
++[FBSDKAppEvents flushBehavior]
++[FBSDKAppEvents setFlushBehavior:]
++[FBSDKAppEvents loggingOverrideAppID]
++[FBSDKAppEvents setLoggingOverrideAppID:]
++[FBSDKAppEvents flush]
++[FBSDKAppEvents setUserID:]
++[FBSDKAppEvents clearUserID]
++[FBSDKAppEvents userID]
++[FBSDKAppEvents setUserEmail:firstName:lastName:phone:dateOfBirth:gender:city:state:zip:country:]
++[FBSDKAppEvents getUserData]
++[FBSDKAppEvents clearUserData]
++[FBSDKAppEvents setUserData:forType:]
++[FBSDKAppEvents clearUserDataForType:]
++[FBSDKAppEvents updateUserProperties:handler:]
+___Block_byref_object_copy_
+___Block_byref_object_dispose_
+___47+[FBSDKAppEvents updateUserProperties:handler:]_block_invoke
+___copy_helper_block_e4_20r
+___destroy_helper_block_e4_20r
++[FBSDKAppEvents augmentHybridWKWebView:]
++[FBSDKAppEvents setIsUnityInit:]
++[FBSDKAppEvents sendEventBindingsToUnity]
++[FBSDKAppEvents logInternalEvent:isImplicitlyLogged:]
++[FBSDKAppEvents logInternalEvent:valueToSum:isImplicitlyLogged:]
++[FBSDKAppEvents logInternalEvent:parameters:isImplicitlyLogged:]
++[FBSDKAppEvents logInternalEvent:parameters:isImplicitlyLogged:accessToken:]
++[FBSDKAppEvents logInternalEvent:valueToSum:parameters:isImplicitlyLogged:]
++[FBSDKAppEvents logInternalEvent:valueToSum:parameters:isImplicitlyLogged:accessToken:]
++[FBSDKAppEvents logImplicitEvent:valueToSum:parameters:accessToken:]
++[FBSDKAppEvents singleton]
+___27+[FBSDKAppEvents singleton]_block_invoke
+___copy_helper_block_e4_
+___destroy_helper_block_e4_
+-[FBSDKAppEvents flushForReason:]
+___33-[FBSDKAppEvents flushForReason:]_block_invoke
+___copy_helper_block_e4_20s24s
+___destroy_helper_block_e4_20s24s
+-[FBSDKAppEvents appID]
+-[FBSDKAppEvents publishInstall]
+___32-[FBSDKAppEvents publishInstall]_block_invoke
+___32-[FBSDKAppEvents publishInstall]_block_invoke_2
+___copy_helper_block_e4_20s24s28s
+___destroy_helper_block_e4_20s24s28s
+___copy_helper_block_e4_20s24s28s32s
+___destroy_helper_block_e4_20s24s28s32s
+-[FBSDKAppEvents enableCodelessEvents]
+-[FBSDKAppEvents fetchServerConfiguration:]
+___43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke
+___43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke_2
+___copy_helper_block_e4_20s
+___destroy_helper_block_e4_20s
+___43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke.700
+___43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke_2.702
+___copy_helper_block_e4_20s24b
+-[FBSDKAppEvents instanceLogEvent:valueToSum:parameters:isImplicitlyLogged:accessToken:]
+___88-[FBSDKAppEvents instanceLogEvent:valueToSum:parameters:isImplicitlyLogged:accessToken:]_block_invoke
+-[FBSDKAppEvents checkPersistedEvents]
+___38-[FBSDKAppEvents checkPersistedEvents]_block_invoke
+-[FBSDKAppEvents flushOnMainQueue:forReason:]
+___45-[FBSDKAppEvents flushOnMainQueue:forReason:]_block_invoke
+___45-[FBSDKAppEvents flushOnMainQueue:forReason:]_block_invoke_2
+-[FBSDKAppEvents handleActivitiesPostCompletion:loggingEntry:appEventsState:]
+-[FBSDKAppEvents flushTimerFired:]
+-[FBSDKAppEvents applicationDidBecomeActive]
+-[FBSDKAppEvents applicationMovingFromActiveStateOrTerminating]
++[FBSDKAppEvents requestForCustomAudienceThirdPartyIDWithAccessToken:]
+-[FBSDKAppEvents flushBehavior]
+-[FBSDKAppEvents setFlushBehavior:]
+-[FBSDKAppEvents disableTimer]
+-[FBSDKAppEvents setDisableTimer:]
+-[FBSDKAppEvents pushNotificationsDeviceTokenString]
+-[FBSDKAppEvents setPushNotificationsDeviceTokenString:]
+-[FBSDKAppEvents flushTimer]
+-[FBSDKAppEvents setFlushTimer:]
+-[FBSDKAppEvents userID]
+-[FBSDKAppEvents setUserID:]
+-[FBSDKAppEvents .cxx_destruct]
+_g_overrideAppID
+___block_descriptor_24_e4_20w_e5_v4?0l
+___block_descriptor_24_e4_20r_e11_12?04^c8l
+_singleton.onceToken
+_singleton.shared
+___block_descriptor_24_e4__e5_v4?0l
+___block_descriptor_32_e4_20s24s_e5_v4?0l
+___block_descriptor_32_e4_20s24s28s_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+___block_descriptor_36_e4_20s24s28s32s_e5_v4?0l
+___block_descriptor_24_e4_20s_e7_v8?0c4l
+___block_descriptor_20_e7_v8?0c4l
+___block_literal_global.703
+___block_descriptor_28_e4_20s24bs_e45_v12?0"FBSDKServerConfiguration"4"NSError"8l
+___block_descriptor_24_e4_20r_e14_v16?048^c12l
+___block_descriptor_28_e4_20s24s_e5_v4?0l
+_OBJC_IVAR_$_FBSDKAppEvents._explicitEventsLoggedYet
+_OBJC_IVAR_$_FBSDKAppEvents._serverConfiguration
+_OBJC_IVAR_$_FBSDKAppEvents._appEventsState
+_OBJC_IVAR_$_FBSDKAppEvents._eventBindingManager
+_OBJC_IVAR_$_FBSDKAppEvents._isUnityInit
+_OBJC_IVAR_$_FBSDKAppEvents._disableTimer
+_OBJC_IVAR_$_FBSDKAppEvents._flushBehavior
+_OBJC_IVAR_$_FBSDKAppEvents._pushNotificationsDeviceTokenString
+_OBJC_IVAR_$_FBSDKAppEvents._flushTimer
+_OBJC_IVAR_$_FBSDKAppEvents._userID
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/FBSDKAppEvents.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/FBSDKAppEvents.m
+__45-[FBSDKAppEvents flushOnMainQueue:forReason:]_block_invoke_2
+__45-[FBSDKAppEvents flushOnMainQueue:forReason:]_block_invoke
+__38-[FBSDKAppEvents checkPersistedEvents]_block_invoke
+__88-[FBSDKAppEvents instanceLogEvent:valueToSum:parameters:isImplicitlyLogged:accessToken:]_block_invoke
+__copy_helper_block_e4_20s24b
+__43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke_2.702
+__43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke.700
+__destroy_helper_block_e4_20s
+__copy_helper_block_e4_20s
+__43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke_2
+__43-[FBSDKAppEvents fetchServerConfiguration:]_block_invoke
+__destroy_helper_block_e4_20s24s28s32s
+__copy_helper_block_e4_20s24s28s32s
+__destroy_helper_block_e4_20s24s28s
+__copy_helper_block_e4_20s24s28s
+__32-[FBSDKAppEvents publishInstall]_block_invoke_2
+__32-[FBSDKAppEvents publishInstall]_block_invoke
+__destroy_helper_block_e4_20s24s
+__copy_helper_block_e4_20s24s
+__33-[FBSDKAppEvents flushForReason:]_block_invoke
+__destroy_helper_block_e4_
+__copy_helper_block_e4_
+__27+[FBSDKAppEvents singleton]_block_invoke
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/usr/include/dispatch/once.h
+__destroy_helper_block_e4_20r
+__copy_helper_block_e4_20r
+__47+[FBSDKAppEvents updateUserProperties:handler:]_block_invoke
+__Block_byref_object_dispose_
+__Block_byref_object_copy_
+__destroy_helper_block_e4_20w
+__copy_helper_block_e4_20w
+__22-[FBSDKAppEvents init]_block_invoke
++[FBSDKAppEventsDeviceInfo extendDictionaryWithDeviceInfo:]
++[FBSDKAppEventsDeviceInfo initialize]
++[FBSDKAppEventsDeviceInfo sharedDeviceInfo]
+-[FBSDKAppEventsDeviceInfo init]
+-[FBSDKAppEventsDeviceInfo encodedDeviceInfo]
+-[FBSDKAppEventsDeviceInfo setEncodedDeviceInfo:]
+-[FBSDKAppEventsDeviceInfo _collectPersistentData]
+-[FBSDKAppEventsDeviceInfo _isGroup1Expired]
+-[FBSDKAppEventsDeviceInfo _collectGroup1Data]
+-[FBSDKAppEventsDeviceInfo _generateEncoding]
++[FBSDKAppEventsDeviceInfo _getTotalDiskSpace]
++[FBSDKAppEventsDeviceInfo _getRemainingDiskSpace]
++[FBSDKAppEventsDeviceInfo _coreCount]
++[FBSDKAppEventsDeviceInfo _readSysCtlUInt:type:]
++[FBSDKAppEventsDeviceInfo _getCarrier]
+-[FBSDKAppEventsDeviceInfo .cxx_destruct]
+_sharedDeviceInfo._sharedDeviceInfo
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._carrierName
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._timeZoneAbbrev
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._remainingDiskSpaceGB
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._timeZoneName
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._bundleIdentifier
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._longVersion
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._shortVersion
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._sysVersion
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._machine
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._language
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._totalDiskSpaceGB
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._coreCount
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._width
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._height
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._density
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._lastGroup1CheckTime
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._isEncodingDirty
+_OBJC_IVAR_$_FBSDKAppEventsDeviceInfo._encodedDeviceInfo
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsDeviceInfo.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsDeviceInfo.m
+-[FBSDKAppEventsState initWithToken:appID:]
+-[FBSDKAppEventsState copyWithZone:]
++[FBSDKAppEventsState supportsSecureCoding]
+-[FBSDKAppEventsState initWithCoder:]
+-[FBSDKAppEventsState encodeWithCoder:]
+-[FBSDKAppEventsState events]
+-[FBSDKAppEventsState addEventsFromAppEventState:]
+-[FBSDKAppEventsState addEvent:isImplicit:]
+-[FBSDKAppEventsState extractReceiptData]
+-[FBSDKAppEventsState areAllEventsImplicit]
+-[FBSDKAppEventsState isCompatibleWithAppEventsState:]
+-[FBSDKAppEventsState isCompatibleWithTokenString:appID:]
+-[FBSDKAppEventsState JSONStringForEvents:]
+-[FBSDKAppEventsState numSkipped]
+-[FBSDKAppEventsState tokenString]
+-[FBSDKAppEventsState appID]
+-[FBSDKAppEventsState .cxx_destruct]
+_OBJC_IVAR_$_FBSDKAppEventsState._mutableEvents
+_OBJC_IVAR_$_FBSDKAppEventsState._numSkipped
+_OBJC_IVAR_$_FBSDKAppEventsState._tokenString
+_OBJC_IVAR_$_FBSDKAppEventsState._appID
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsState.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsState.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsState.h
++[FBSDKAppEventsStateManager clearPersistedAppEventsStates]
++[FBSDKAppEventsStateManager persistAppEventsData:]
++[FBSDKAppEventsStateManager retrievePersistedAppEventsStates]
++[FBSDKAppEventsStateManager filePath]
+_g_canSkipDiskCheck
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsStateManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsStateManager.m
++[FBSDKAppEventsUtility activityParametersDictionaryForEvent:implicitEventsOnly:shouldAccessAdvertisingID:]
+___107+[FBSDKAppEventsUtility activityParametersDictionaryForEvent:implicitEventsOnly:shouldAccessAdvertisingID:]_block_invoke
++[FBSDKAppEventsUtility advertiserID]
++[FBSDKAppEventsUtility advertisingTrackingStatus]
+___50+[FBSDKAppEventsUtility advertisingTrackingStatus]_block_invoke
++[FBSDKAppEventsUtility attributionID]
++[FBSDKAppEventsUtility clearLibraryFiles]
++[FBSDKAppEventsUtility ensureOnMainThread:className:]
++[FBSDKAppEventsUtility flushReasonToString:]
++[FBSDKAppEventsUtility logAndNotify:]
++[FBSDKAppEventsUtility logAndNotify:allowLogAsDeveloperError:]
++[FBSDKAppEventsUtility matchString:firstCharacterSet:restOfStringCharacterSet:]
++[FBSDKAppEventsUtility regexValidateIdentifier:]
+___49+[FBSDKAppEventsUtility regexValidateIdentifier:]_block_invoke
++[FBSDKAppEventsUtility validateIdentifier:]
++[FBSDKAppEventsUtility tokenStringToUseFor:]
++[FBSDKAppEventsUtility unixTimeNow]
++[FBSDKAppEventsUtility getVariable:fromInstance:]
++[FBSDKAppEventsUtility getNumberValue:]
++[FBSDKAppEventsUtility isDebugBuild]
++[FBSDKAppEventsUtility isSensitiveUserData:]
++[FBSDKAppEventsUtility isCreditCardNumber:]
++[FBSDKAppEventsUtility isEmailAddress:]
+_activityParametersDictionaryForEvent:implicitEventsOnly:shouldAccessAdvertisingID:.fetchBundleOnce
+_activityParametersDictionaryForEvent:implicitEventsOnly:shouldAccessAdvertisingID:.urlSchemes
+___block_descriptor_20_e5_v4?0l
+_advertisingTrackingStatus.fetchAdvertisingTrackingStatusOnce
+_advertisingTrackingStatus.status
+___block_literal_global.77
+_regexValidateIdentifier:.firstCharacterSet
+_regexValidateIdentifier:.restOfStringCharacterSet
+_regexValidateIdentifier:.onceToken
+_regexValidateIdentifier:.cachedIdentifiers
+___block_literal_global.141
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKAppEventsUtility.m
+__49+[FBSDKAppEventsUtility regexValidateIdentifier:]_block_invoke
+__50+[FBSDKAppEventsUtility advertisingTrackingStatus]_block_invoke
+__107+[FBSDKAppEventsUtility activityParametersDictionaryForEvent:implicitEventsOnly:shouldAccessAdvertisingID:]_block_invoke
++[FBSDKApplicationDelegate load]
++[FBSDKApplicationDelegate initializeWithLaunchData:]
++[FBSDKApplicationDelegate initializeSDK:]
+___42+[FBSDKApplicationDelegate initializeSDK:]_block_invoke
+___42+[FBSDKApplicationDelegate initializeSDK:]_block_invoke_2
+___42+[FBSDKApplicationDelegate initializeSDK:]_block_invoke_3
++[FBSDKApplicationDelegate sharedInstance]
+___42+[FBSDKApplicationDelegate sharedInstance]_block_invoke
+-[FBSDKApplicationDelegate init]
+-[FBSDKApplicationDelegate dealloc]
+-[FBSDKApplicationDelegate application:openURL:options:]
+-[FBSDKApplicationDelegate application:openURL:sourceApplication:annotation:]
+-[FBSDKApplicationDelegate application:didFinishLaunchingWithOptions:]
+-[FBSDKApplicationDelegate applicationDidEnterBackground:]
+-[FBSDKApplicationDelegate applicationDidBecomeActive:]
+-[FBSDKApplicationDelegate addObserver:]
+-[FBSDKApplicationDelegate removeObserver:]
++[FBSDKApplicationDelegate applicationState]
+-[FBSDKApplicationDelegate _logIfAppLinkEvent:]
+-[FBSDKApplicationDelegate _logSDKInitialize]
+___45-[FBSDKApplicationDelegate _logSDKInitialize]_block_invoke
+___45-[FBSDKApplicationDelegate _logSDKInitialize]_block_invoke.230
+___copy_helper_block_e4_20b
+-[FBSDKApplicationDelegate _logIfAutoAppLinkEnabled]
++[FBSDKApplicationDelegate isSDKInitialized]
+-[FBSDKApplicationDelegate isAppLaunched]
+-[FBSDKApplicationDelegate .cxx_destruct]
+___clang_at_available_requires_core_foundation_framework
+___clang_at_available_requires_core_foundation_framework.cold.1
+_g_isSDKInitialized
+___block_literal_global.41
+___block_literal_global.43
+_sharedInstance._sharedInstance
+_sharedInstance.onceToken
+__applicationState
+___block_descriptor_24_e4_20s_e5_v4?0l
+___block_descriptor_24_e4_20bs_e5_v4?0l
+_OBJC_IVAR_$_FBSDKApplicationDelegate._applicationObservers
+_OBJC_IVAR_$_FBSDKApplicationDelegate._isAppLaunched
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKApplicationDelegate.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKApplicationDelegate.m
+__copy_helper_block_e4_20b
+__45-[FBSDKApplicationDelegate _logSDKInitialize]_block_invoke.230
+__45-[FBSDKApplicationDelegate _logSDKInitialize]_block_invoke
+__42+[FBSDKApplicationDelegate sharedInstance]_block_invoke
+__42+[FBSDKApplicationDelegate initializeSDK:]_block_invoke_3
+__42+[FBSDKApplicationDelegate initializeSDK:]_block_invoke_2
+__42+[FBSDKApplicationDelegate initializeSDK:]_block_invoke
++[FBSDKAppLink appLinkWithSourceURL:targets:webURL:isBackToReferrer:]
++[FBSDKAppLink appLinkWithSourceURL:targets:webURL:]
+-[FBSDKAppLink initWithIsBackToReferrer:]
+-[FBSDKAppLink sourceURL]
+-[FBSDKAppLink setSourceURL:]
+-[FBSDKAppLink targets]
+-[FBSDKAppLink setTargets:]
+-[FBSDKAppLink webURL]
+-[FBSDKAppLink setWebURL:]
+-[FBSDKAppLink isBackToReferrer]
+-[FBSDKAppLink setBackToReferrer:]
+-[FBSDKAppLink .cxx_destruct]
+_OBJC_IVAR_$_FBSDKAppLink._backToReferrer
+_OBJC_IVAR_$_FBSDKAppLink._sourceURL
+_OBJC_IVAR_$_FBSDKAppLink._targets
+_OBJC_IVAR_$_FBSDKAppLink._webURL
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLink.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLink.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLink.h
++[FBSDKAppLinkNavigation navigationWithAppLink:extras:appLinkData:]
++[FBSDKAppLinkNavigation callbackAppLinkDataForAppWithName:url:]
+-[FBSDKAppLinkNavigation stringByEscapingQueryString:]
+-[FBSDKAppLinkNavigation appLinkURLWithTargetURL:error:]
+-[FBSDKAppLinkNavigation navigate:]
+-[FBSDKAppLinkNavigation postAppLinkNavigateEventNotificationWithTargetURL:error:type:]
++[FBSDKAppLinkNavigation resolveAppLink:resolver:handler:]
++[FBSDKAppLinkNavigation resolveAppLink:handler:]
++[FBSDKAppLinkNavigation navigateToURL:handler:]
++[FBSDKAppLinkNavigation navigateToURL:resolver:handler:]
+___57+[FBSDKAppLinkNavigation navigateToURL:resolver:handler:]_block_invoke
+___57+[FBSDKAppLinkNavigation navigateToURL:resolver:handler:]_block_invoke_2
+___copy_helper_block_e4_24s28s32b
+___destroy_helper_block_e4_24s28s32s
++[FBSDKAppLinkNavigation navigateToAppLink:error:]
++[FBSDKAppLinkNavigation navigationTypeForLink:]
+-[FBSDKAppLinkNavigation navigationType]
++[FBSDKAppLinkNavigation defaultResolver]
++[FBSDKAppLinkNavigation setDefaultResolver:]
+-[FBSDKAppLinkNavigation extras]
+-[FBSDKAppLinkNavigation setExtras:]
+-[FBSDKAppLinkNavigation appLinkData]
+-[FBSDKAppLinkNavigation setAppLinkData:]
+-[FBSDKAppLinkNavigation appLink]
+-[FBSDKAppLinkNavigation setAppLink:]
+-[FBSDKAppLinkNavigation .cxx_destruct]
+___block_descriptor_28_e4_20bs_e33_v12?0"FBSDKAppLink"4"NSError"8l
+___block_descriptor_36_e4_24s28s32bs_e5_v4?0l
+_defaultResolver
+_OBJC_IVAR_$_FBSDKAppLinkNavigation._extras
+_OBJC_IVAR_$_FBSDKAppLinkNavigation._appLinkData
+_OBJC_IVAR_$_FBSDKAppLinkNavigation._appLink
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkNavigation.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkNavigation.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkNavigation.h
+__destroy_helper_block_e4_24s28s32s
+__copy_helper_block_e4_24s28s32b
+__57+[FBSDKAppLinkNavigation navigateToURL:resolver:handler:]_block_invoke_2
+__57+[FBSDKAppLinkNavigation navigateToURL:resolver:handler:]_block_invoke
++[FBSDKAppLinkResolver initialize]
+-[FBSDKAppLinkResolver initWithUserInterfaceIdiom:]
+-[FBSDKAppLinkResolver appLinkFromURL:handler:]
+___47-[FBSDKAppLinkResolver appLinkFromURL:handler:]_block_invoke
+___copy_helper_block_e4_20b24s
+-[FBSDKAppLinkResolver appLinksFromURLs:handler:]
+___49-[FBSDKAppLinkResolver appLinksFromURLs:handler:]_block_invoke
+___copy_helper_block_e4_20b24s28s32s36s
+___destroy_helper_block_e4_20s24s28s32s36s
++[FBSDKAppLinkResolver resolver]
+-[FBSDKAppLinkResolver cachedFBSDKAppLinks]
+-[FBSDKAppLinkResolver setCachedFBSDKAppLinks:]
+-[FBSDKAppLinkResolver userInterfaceIdiom]
+-[FBSDKAppLinkResolver setUserInterfaceIdiom:]
+-[FBSDKAppLinkResolver .cxx_destruct]
+___block_descriptor_28_e4_20bs24s_e33_v12?0"NSDictionary"4"NSError"8l
+___block_descriptor_40_e4_20bs24s28s32s36s_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+__OBJC_PROTOCOL_$_FBSDKAppLinkResolving
+__OBJC_LABEL_PROTOCOL_$_FBSDKAppLinkResolving
+_OBJC_IVAR_$_FBSDKAppLinkResolver._cachedFBSDKAppLinks
+_OBJC_IVAR_$_FBSDKAppLinkResolver._userInterfaceIdiom
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkResolver.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkResolver.m
+UI_USER_INTERFACE_IDIOM
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h
+__destroy_helper_block_e4_20s24s28s32s36s
+__copy_helper_block_e4_20b24s28s32s36s
+__49-[FBSDKAppLinkResolver appLinksFromURLs:handler:]_block_invoke
+__copy_helper_block_e4_20b24s
+__47-[FBSDKAppLinkResolver appLinkFromURL:handler:]_block_invoke
+-[FBSDKAppLinkReturnToRefererController init]
+-[FBSDKAppLinkReturnToRefererController initForDisplayAboveNavController:]
+-[FBSDKAppLinkReturnToRefererController dealloc]
+-[FBSDKAppLinkReturnToRefererController view]
+-[FBSDKAppLinkReturnToRefererController setView:]
+-[FBSDKAppLinkReturnToRefererController showViewForRefererAppLink:]
+___67-[FBSDKAppLinkReturnToRefererController showViewForRefererAppLink:]_block_invoke
+-[FBSDKAppLinkReturnToRefererController showViewForRefererURL:]
+-[FBSDKAppLinkReturnToRefererController removeFromNavController]
+-[FBSDKAppLinkReturnToRefererController returnToRefererViewDidTapInsideCloseButton:]
+-[FBSDKAppLinkReturnToRefererController returnToRefererViewDidTapInsideLink:link:]
+-[FBSDKAppLinkReturnToRefererController statusBarFrameWillChange:]
+___66-[FBSDKAppLinkReturnToRefererController statusBarFrameWillChange:]_block_invoke
+-[FBSDKAppLinkReturnToRefererController statusBarFrameDidChange:]
+___65-[FBSDKAppLinkReturnToRefererController statusBarFrameDidChange:]_block_invoke
+-[FBSDKAppLinkReturnToRefererController orientationDidChange:]
+___62-[FBSDKAppLinkReturnToRefererController orientationDidChange:]_block_invoke
+-[FBSDKAppLinkReturnToRefererController moveNavigationBar]
+-[FBSDKAppLinkReturnToRefererController updateNavigationBarY:]
+-[FBSDKAppLinkReturnToRefererController closeViewAnimated:]
+-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]
+___76-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]_block_invoke
+___76-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]_block_invoke_2
+___76-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]_block_invoke.76
+-[FBSDKAppLinkReturnToRefererController openRefererAppLink:]
+-[FBSDKAppLinkReturnToRefererController delegate]
+-[FBSDKAppLinkReturnToRefererController setDelegate:]
+-[FBSDKAppLinkReturnToRefererController .cxx_destruct]
+___block_descriptor_25_e4_20s_e7_v8?0c4l
+__OBJC_PROTOCOL_$_FBSDKAppLinkReturnToRefererViewDelegate
+__OBJC_LABEL_PROTOCOL_$_FBSDKAppLinkReturnToRefererViewDelegate
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererController._navigationController
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererController._view
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererController._delegate
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererController.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererController.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererController.h
+__76-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]_block_invoke.76
+__76-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]_block_invoke_2
+__76-[FBSDKAppLinkReturnToRefererController closeViewAnimated:explicitlyClosed:]_block_invoke
+UIEdgeInsetsInsetRect
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIGeometry.h
+__62-[FBSDKAppLinkReturnToRefererController orientationDidChange:]_block_invoke
+__65-[FBSDKAppLinkReturnToRefererController statusBarFrameDidChange:]_block_invoke
+__66-[FBSDKAppLinkReturnToRefererController statusBarFrameWillChange:]_block_invoke
+CGRectMake
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h
+__67-[FBSDKAppLinkReturnToRefererController showViewForRefererAppLink:]_block_invoke
+-[FBSDKAppLinkReturnToRefererView initWithFrame:]
+-[FBSDKAppLinkReturnToRefererView initWithCoder:]
+-[FBSDKAppLinkReturnToRefererView commonInit]
+-[FBSDKAppLinkReturnToRefererView initViews]
+-[FBSDKAppLinkReturnToRefererView intrinsicContentSize]
+-[FBSDKAppLinkReturnToRefererView layoutSubviews]
+-[FBSDKAppLinkReturnToRefererView sizeThatFits:]
+-[FBSDKAppLinkReturnToRefererView statusBarHeight]
+-[FBSDKAppLinkReturnToRefererView setIncludeStatusBarInSize:]
+-[FBSDKAppLinkReturnToRefererView setTextColor:]
+-[FBSDKAppLinkReturnToRefererView setRefererAppLink:]
+-[FBSDKAppLinkReturnToRefererView setClosed:]
+-[FBSDKAppLinkReturnToRefererView setHidden:]
+-[FBSDKAppLinkReturnToRefererView updateLabelText]
+-[FBSDKAppLinkReturnToRefererView updateColors]
+-[FBSDKAppLinkReturnToRefererView drawCloseButtonImageWithColor:]
+-[FBSDKAppLinkReturnToRefererView localizedLabelForReferer:]
+-[FBSDKAppLinkReturnToRefererView hasRefererData]
+-[FBSDKAppLinkReturnToRefererView closeButtonTapped:]
+-[FBSDKAppLinkReturnToRefererView onTapInside:]
+-[FBSDKAppLinkReturnToRefererView updateHidden]
+-[FBSDKAppLinkReturnToRefererView delegate]
+-[FBSDKAppLinkReturnToRefererView setDelegate:]
+-[FBSDKAppLinkReturnToRefererView textColor]
+-[FBSDKAppLinkReturnToRefererView refererAppLink]
+-[FBSDKAppLinkReturnToRefererView includeStatusBarInSize]
+-[FBSDKAppLinkReturnToRefererView isClosed]
+-[FBSDKAppLinkReturnToRefererView labelView]
+-[FBSDKAppLinkReturnToRefererView setLabelView:]
+-[FBSDKAppLinkReturnToRefererView closeButton]
+-[FBSDKAppLinkReturnToRefererView setCloseButton:]
+-[FBSDKAppLinkReturnToRefererView insideTapGestureRecognizer]
+-[FBSDKAppLinkReturnToRefererView setInsideTapGestureRecognizer:]
+-[FBSDKAppLinkReturnToRefererView .cxx_destruct]
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._includeStatusBarInSize
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._labelView
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._closeButton
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._insideTapGestureRecognizer
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._closed
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._textColor
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._refererAppLink
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._explicitlyHidden
+_OBJC_IVAR_$_FBSDKAppLinkReturnToRefererView._delegate
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererView.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererView.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererView.h
+UIInterfaceOrientationIsLandscape
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h
+CGSizeMake
++[FBSDKAppLinkTarget appLinkTargetWithURL:appStoreId:appName:]
+-[FBSDKAppLinkTarget URL]
+-[FBSDKAppLinkTarget setURL:]
+-[FBSDKAppLinkTarget appStoreId]
+-[FBSDKAppLinkTarget setAppStoreId:]
+-[FBSDKAppLinkTarget appName]
+-[FBSDKAppLinkTarget setAppName:]
+-[FBSDKAppLinkTarget .cxx_destruct]
+_OBJC_IVAR_$_FBSDKAppLinkTarget._URL
+_OBJC_IVAR_$_FBSDKAppLinkTarget._appStoreId
+_OBJC_IVAR_$_FBSDKAppLinkTarget._appName
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkTarget.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkTarget.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkTarget.h
++[FBSDKAppLinkUtility fetchDeferredAppLink:]
+___44+[FBSDKAppLinkUtility fetchDeferredAppLink:]_block_invoke
+___44+[FBSDKAppLinkUtility fetchDeferredAppLink:]_block_invoke_2
+___copy_helper_block_e4_20b24s28s
++[FBSDKAppLinkUtility appInvitePromotionCodeFromURL:]
++[FBSDKAppLinkUtility isMatchURLScheme:]
+___block_descriptor_32_e4_20bs24s28s_e5_v4?0l
+___block_descriptor_24_e4_20bs_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkUtility.m
+__copy_helper_block_e4_20b24s28s
+__44+[FBSDKAppLinkUtility fetchDeferredAppLink:]_block_invoke_2
+__44+[FBSDKAppLinkUtility fetchDeferredAppLink:]_block_invoke
++[FBSDKAudioResourceLoader sharedLoader]
+___40+[FBSDKAudioResourceLoader sharedLoader]_block_invoke
+-[FBSDKAudioResourceLoader init]
+-[FBSDKAudioResourceLoader dealloc]
+-[FBSDKAudioResourceLoader loadSound:]
+-[FBSDKAudioResourceLoader playSound]
+-[FBSDKAudioResourceLoader _fileURL:]
+-[FBSDKAudioResourceLoader .cxx_destruct]
++[FBSDKAudioResourceLoader(Subclass) name]
++[FBSDKAudioResourceLoader(Subclass) version]
++[FBSDKAudioResourceLoader(Subclass) data]
+_sharedLoader._loaderCache
+_sharedLoader.onceToken
+_OBJC_IVAR_$_FBSDKAudioResourceLoader._fileManager
+_OBJC_IVAR_$_FBSDKAudioResourceLoader._fileURL
+_OBJC_IVAR_$_FBSDKAudioResourceLoader._systemSoundID
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKAudioResourceLoader.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKAudioResourceLoader.m
+__40+[FBSDKAudioResourceLoader sharedLoader]_block_invoke
++[FBSDKBase64 initialize]
++[FBSDKBase64 decodeAsData:]
++[FBSDKBase64 decodeAsString:]
++[FBSDKBase64 encodeData:]
++[FBSDKBase64 encodeString:]
+-[FBSDKBase64 decodeAsData:]
+-[FBSDKBase64 decodeAsString:]
+-[FBSDKBase64 encodeData:]
+-[FBSDKBase64 encodeString:]
+__decoder
+__encoder
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Base64/FBSDKBase64.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Base64/FBSDKBase64.m
++[FBSDKBasicUtility JSONStringForObject:error:invalidObjectHandler:]
++[FBSDKBasicUtility dictionary:setJSONStringForObject:forKey:error:]
++[FBSDKBasicUtility _convertObjectToJSONObject:invalidObjectHandler:stop:]
+___74+[FBSDKBasicUtility _convertObjectToJSONObject:invalidObjectHandler:stop:]_block_invoke
+___copy_helper_block_e4_24s28b32r
+___destroy_helper_block_e4_24s28s32r
++[FBSDKBasicUtility dictionary:setObject:forKey:]
++[FBSDKBasicUtility array:addObject:]
++[FBSDKBasicUtility objectForJSONString:error:]
++[FBSDKBasicUtility queryStringWithDictionary:error:invalidObjectHandler:]
+___74+[FBSDKBasicUtility queryStringWithDictionary:error:invalidObjectHandler:]_block_invoke
++[FBSDKBasicUtility convertRequestValue:]
++[FBSDKBasicUtility URLEncode:]
++[FBSDKBasicUtility dictionaryWithQueryString:]
++[FBSDKBasicUtility URLDecode:]
++[FBSDKBasicUtility gzip:]
++[FBSDKBasicUtility anonymousID]
++[FBSDKBasicUtility retrievePersistedAnonymousID]
++[FBSDKBasicUtility persistenceFilePath:]
++[FBSDKBasicUtility persistAnonymousID:]
+___block_descriptor_36_e4_24s28bs32r_e14_v16?048^c12l
+___block_descriptor_20_e24_c12?04"NSDictionary"8l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKBasicUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKBasicUtility.m
+__74+[FBSDKBasicUtility queryStringWithDictionary:error:invalidObjectHandler:]_block_invoke
+__destroy_helper_block_e4_24s28s32r
+__copy_helper_block_e4_24s28b32r
+__74+[FBSDKBasicUtility _convertObjectToJSONObject:invalidObjectHandler:stop:]_block_invoke
++[FBSDKBridgeAPI load]
++[FBSDKBridgeAPI sharedInstance]
+___32+[FBSDKBridgeAPI sharedInstance]_block_invoke
+-[FBSDKBridgeAPI applicationDidBecomeActive:]
+-[FBSDKBridgeAPI applicationDidEnterBackground:]
+-[FBSDKBridgeAPI application:openURL:sourceApplication:annotation:]
+___67-[FBSDKBridgeAPI application:openURL:sourceApplication:annotation:]_block_invoke
+___copy_helper_block_e4_20s24s28s32s36s40s
+___destroy_helper_block_e4_20s24s28s32s36s40s
+-[FBSDKBridgeAPI application:didFinishLaunchingWithOptions:]
+-[FBSDKBridgeAPI openURL:sender:handler:]
+___41-[FBSDKBridgeAPI openURL:sender:handler:]_block_invoke
+___41-[FBSDKBridgeAPI openURL:sender:handler:]_block_invoke_2
+-[FBSDKBridgeAPI openBridgeAPIRequest:useSafariViewController:fromViewController:completionBlock:]
+___98-[FBSDKBridgeAPI openBridgeAPIRequest:useSafariViewController:fromViewController:completionBlock:]_block_invoke
+___copy_helper_block_e4_20s24s28b
+-[FBSDKBridgeAPI openURLWithSafariViewController:sender:fromViewController:handler:]
+___84-[FBSDKBridgeAPI openURLWithSafariViewController:sender:fromViewController:handler:]_block_invoke
+-[FBSDKBridgeAPI _openURLWithAuthenticationSession:]
+-[FBSDKBridgeAPI _setSessionCompletionHandlerFromHandler:]
+___58-[FBSDKBridgeAPI _setSessionCompletionHandlerFromHandler:]_block_invoke
+___copy_helper_block_e4_20b24w
+___destroy_helper_block_e4_20s24w
+-[FBSDKBridgeAPI safariViewControllerDidFinish:]
+-[FBSDKBridgeAPI viewControllerDidDisappear:animated:]
+-[FBSDKBridgeAPI _handleBridgeAPIResponseURL:sourceApplication:]
+-[FBSDKBridgeAPI _cancelBridgeRequest]
+-[FBSDKBridgeAPI presentationAnchorForWebAuthenticationSession:]
+-[FBSDKBridgeAPI isActive]
+-[FBSDKBridgeAPI .cxx_destruct]
+___block_descriptor_44_e4_20s24s28s32s36s40s_e5_v4?0l
+___block_descriptor_24_e4_20bs_e7_v8?0c4l
+___block_descriptor_28_e4_20s24bs_e5_v4?0l
+___block_descriptor_32_e4_20s24s28bs_e19_v12?0c4"NSError"8l
+___block_descriptor_40_e4_20s24s28s32s_e55_v8?0"<UIViewControllerTransitionCoordinatorContext>"4lu36l4
+___block_descriptor_28_e4_20bs24w_e26_v12?0"NSURL"4"NSError"8l
+__OBJC_PROTOCOL_$_FBSDKApplicationObserving
+__OBJC_LABEL_PROTOCOL_$_FBSDKApplicationObserving
+__OBJC_PROTOCOL_$_FBSDKContainerViewControllerDelegate
+__OBJC_LABEL_PROTOCOL_$_FBSDKContainerViewControllerDelegate
+__OBJC_PROTOCOL_$_ASWebAuthenticationPresentationContextProviding
+__OBJC_LABEL_PROTOCOL_$_ASWebAuthenticationPresentationContextProviding
+_OBJC_IVAR_$_FBSDKBridgeAPI._pendingRequest
+_OBJC_IVAR_$_FBSDKBridgeAPI._pendingRequestCompletionBlock
+_OBJC_IVAR_$_FBSDKBridgeAPI._pendingURLOpen
+_OBJC_IVAR_$_FBSDKBridgeAPI._authenticationSession
+_OBJC_IVAR_$_FBSDKBridgeAPI._authenticationSessionCompletionHandler
+_OBJC_IVAR_$_FBSDKBridgeAPI._expectingBackground
+_OBJC_IVAR_$_FBSDKBridgeAPI._isRequestingSFAuthenticationSession
+_OBJC_IVAR_$_FBSDKBridgeAPI._safariViewController
+_OBJC_IVAR_$_FBSDKBridgeAPI._isDismissingSafariViewController
+_OBJC_IVAR_$_FBSDKBridgeAPI._isAppLaunched
+_OBJC_IVAR_$_FBSDKBridgeAPI._active
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPI.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPI.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPI.h
+__destroy_helper_block_e4_20s24w
+__copy_helper_block_e4_20b24w
+__58-[FBSDKBridgeAPI _setSessionCompletionHandlerFromHandler:]_block_invoke
+__84-[FBSDKBridgeAPI openURLWithSafariViewController:sender:fromViewController:handler:]_block_invoke
+__copy_helper_block_e4_20s24s28b
+__98-[FBSDKBridgeAPI openBridgeAPIRequest:useSafariViewController:fromViewController:completionBlock:]_block_invoke
+__41-[FBSDKBridgeAPI openURL:sender:handler:]_block_invoke_2
+__41-[FBSDKBridgeAPI openURL:sender:handler:]_block_invoke
+__destroy_helper_block_e4_20s24s28s32s36s40s
+__copy_helper_block_e4_20s24s28s32s36s40s
+__67-[FBSDKBridgeAPI application:openURL:sourceApplication:annotation:]_block_invoke
+__32+[FBSDKBridgeAPI sharedInstance]_block_invoke
+-[FBSDKBridgeAPIProtocolNativeV1 initWithAppScheme:]
+-[FBSDKBridgeAPIProtocolNativeV1 initWithAppScheme:pasteboard:dataLengthThreshold:includeAppIcon:]
+-[FBSDKBridgeAPIProtocolNativeV1 requestURLWithActionID:scheme:methodName:methodVersion:parameters:error:]
+-[FBSDKBridgeAPIProtocolNativeV1 responseParametersForActionID:queryParameters:cancelled:error:]
+-[FBSDKBridgeAPIProtocolNativeV1 _appIcon]
+-[FBSDKBridgeAPIProtocolNativeV1 _bridgeParametersWithActionID:error:]
+-[FBSDKBridgeAPIProtocolNativeV1 _errorWithDictionary:]
+-[FBSDKBridgeAPIProtocolNativeV1 _JSONStringForObject:enablePasteboard:error:]
+___78-[FBSDKBridgeAPIProtocolNativeV1 _JSONStringForObject:enablePasteboard:error:]_block_invoke
+___copy_helper_block_e4_20s24r
+___destroy_helper_block_e4_20s24r
++[FBSDKBridgeAPIProtocolNativeV1 clearData:fromPasteboardOnApplicationDidBecomeActive:]
+___87+[FBSDKBridgeAPIProtocolNativeV1 clearData:fromPasteboardOnApplicationDidBecomeActive:]_block_invoke
+-[FBSDKBridgeAPIProtocolNativeV1 appScheme]
+-[FBSDKBridgeAPIProtocolNativeV1 dataLengthThreshold]
+-[FBSDKBridgeAPIProtocolNativeV1 shouldIncludeAppIcon]
+-[FBSDKBridgeAPIProtocolNativeV1 pasteboard]
+-[FBSDKBridgeAPIProtocolNativeV1 .cxx_destruct]
+___block_descriptor_29_e4_20s24r_e11_12?04^c8l
+___block_descriptor_28_e4_20s24s_e23_v8?0"NSNotification"4l
+__OBJC_PROTOCOL_$_FBSDKBridgeAPIProtocol
+__OBJC_LABEL_PROTOCOL_$_FBSDKBridgeAPIProtocol
+_OBJC_IVAR_$_FBSDKBridgeAPIProtocolNativeV1._includeAppIcon
+_OBJC_IVAR_$_FBSDKBridgeAPIProtocolNativeV1._appScheme
+_OBJC_IVAR_$_FBSDKBridgeAPIProtocolNativeV1._dataLengthThreshold
+_OBJC_IVAR_$_FBSDKBridgeAPIProtocolNativeV1._pasteboard
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolNativeV1.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolNativeV1.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolNativeV1.h
+__87+[FBSDKBridgeAPIProtocolNativeV1 clearData:fromPasteboardOnApplicationDidBecomeActive:]_block_invoke
+__destroy_helper_block_e4_20s24r
+__copy_helper_block_e4_20s24r
+__78-[FBSDKBridgeAPIProtocolNativeV1 _JSONStringForObject:enablePasteboard:error:]_block_invoke
+-[FBSDKBridgeAPIProtocolWebV1 requestURLWithActionID:scheme:methodName:methodVersion:parameters:error:]
+-[FBSDKBridgeAPIProtocolWebV1 responseParametersForActionID:queryParameters:cancelled:error:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV1.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV1.m
+-[FBSDKBridgeAPIProtocolWebV2 init]
+-[FBSDKBridgeAPIProtocolWebV2 _redirectURLWithActionID:methodName:error:]
+-[FBSDKBridgeAPIProtocolWebV2 _requestURLForDialogConfiguration:error:]
+-[FBSDKBridgeAPIProtocolWebV2 requestURLWithActionID:scheme:methodName:methodVersion:parameters:error:]
+-[FBSDKBridgeAPIProtocolWebV2 responseParametersForActionID:queryParameters:cancelled:error:]
+-[FBSDKBridgeAPIProtocolWebV2 .cxx_destruct]
+_OBJC_IVAR_$_FBSDKBridgeAPIProtocolWebV2._nativeProtocol
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV2.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV2.m
++[FBSDKBridgeAPIRequest bridgeAPIRequestWithProtocolType:scheme:methodName:methodVersion:parameters:userInfo:]
++[FBSDKBridgeAPIRequest protocolMap]
+___36+[FBSDKBridgeAPIRequest protocolMap]_block_invoke
+-[FBSDKBridgeAPIRequest initWithProtocol:protocolType:scheme:methodName:methodVersion:parameters:userInfo:]
+-[FBSDKBridgeAPIRequest requestURL:]
+-[FBSDKBridgeAPIRequest copyWithZone:]
++[FBSDKBridgeAPIRequest _protocolForType:scheme:]
+-[FBSDKBridgeAPIRequest actionID]
+-[FBSDKBridgeAPIRequest methodName]
+-[FBSDKBridgeAPIRequest methodVersion]
+-[FBSDKBridgeAPIRequest parameters]
+-[FBSDKBridgeAPIRequest protocolType]
+-[FBSDKBridgeAPIRequest scheme]
+-[FBSDKBridgeAPIRequest userInfo]
+-[FBSDKBridgeAPIRequest protocol]
+-[FBSDKBridgeAPIRequest .cxx_destruct]
+_protocolMap._protocolMap
+_protocolMap.onceToken
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._actionID
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._methodName
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._methodVersion
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._parameters
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._protocolType
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._scheme
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._userInfo
+_OBJC_IVAR_$_FBSDKBridgeAPIRequest._protocol
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest+Private.h
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest.h
+__36+[FBSDKBridgeAPIRequest protocolMap]_block_invoke
++[FBSDKBridgeAPIResponse bridgeAPIResponseWithRequest:error:]
++[FBSDKBridgeAPIResponse bridgeAPIResponseWithRequest:responseURL:sourceApplication:error:]
++[FBSDKBridgeAPIResponse bridgeAPIResponseCancelledWithRequest:]
+-[FBSDKBridgeAPIResponse initWithRequest:responseParameters:cancelled:error:]
+-[FBSDKBridgeAPIResponse copyWithZone:]
+-[FBSDKBridgeAPIResponse isCancelled]
+-[FBSDKBridgeAPIResponse error]
+-[FBSDKBridgeAPIResponse request]
+-[FBSDKBridgeAPIResponse responseParameters]
+-[FBSDKBridgeAPIResponse .cxx_destruct]
+_OBJC_IVAR_$_FBSDKBridgeAPIResponse._cancelled
+_OBJC_IVAR_$_FBSDKBridgeAPIResponse._error
+_OBJC_IVAR_$_FBSDKBridgeAPIResponse._request
+_OBJC_IVAR_$_FBSDKBridgeAPIResponse._responseParameters
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.h
+-[FBSDKButton initWithFrame:]
+-[FBSDKButton awakeFromNib]
+-[FBSDKButton dealloc]
+-[FBSDKButton setEnabled:]
+-[FBSDKButton imageRectForContentRect:]
+-[FBSDKButton intrinsicContentSize]
+-[FBSDKButton layoutSubviews]
+-[FBSDKButton sizeThatFits:]
+-[FBSDKButton sizeToFit]
+-[FBSDKButton titleRectForContentRect:]
+_FBSDKTextSize
+-[FBSDKButton logTapEventWithEventName:parameters:]
+-[FBSDKButton checkImplicitlyDisabled]
+-[FBSDKButton configureButton]
+-[FBSDKButton configureWithIcon:title:backgroundColor:highlightedColor:]
+-[FBSDKButton configureWithIcon:title:backgroundColor:highlightedColor:selectedTitle:selectedIcon:selectedColor:selectedHighlightedColor:]
+-[FBSDKButton defaultBackgroundColor]
+-[FBSDKButton defaultDisabledColor]
+-[FBSDKButton defaultFont]
+-[FBSDKButton defaultHighlightedColor]
+-[FBSDKButton defaultIcon]
+-[FBSDKButton defaultSelectedColor]
+-[FBSDKButton highlightedContentColor]
+-[FBSDKButton isImplicitlyDisabled]
+-[FBSDKButton sizeThatFits:title:]
+-[FBSDKButton _applicationDidBecomeActiveNotification:]
+-[FBSDKButton _backgroundImageWithColor:cornerRadius:scale:]
+-[FBSDKButton _configureWithIcon:title:backgroundColor:highlightedColor:selectedTitle:selectedIcon:selectedColor:selectedHighlightedColor:]
+-[FBSDKButton _fontSizeForHeight:]
+-[FBSDKButton _heightForContentRect:]
+-[FBSDKButton _heightForFont:]
+-[FBSDKButton _marginForHeight:]
+-[FBSDKButton _paddingForHeight:]
+-[FBSDKButton _textPaddingCorrectionForHeight:]
+_OBJC_IVAR_$_FBSDKButton._skipIntrinsicContentSizing
+_OBJC_IVAR_$_FBSDKButton._isExplicitlyDisabled
+__OBJC_PROTOCOL_$_FBSDKButtonImpressionTracking
+__OBJC_LABEL_PROTOCOL_$_FBSDKButtonImpressionTracking
+l_OBJC_PROTOCOL_REFERENCE_$_FBSDKButtonImpressionTracking
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKButton.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKButton.m
+FBSDKEdgeInsetsOutsetSize
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKUIUtility.h
+FBSDKEdgeInsetsInsetSize
+FBSDKTextSize
+-[FBSDKCloseIcon imageWithSize:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKCloseIcon.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKCloseIcon.m
+CGPointMake
++[FBSDKCodelessIndexer enable]
+___30+[FBSDKCodelessIndexer enable]_block_invoke
++[FBSDKCodelessIndexer loadCodelessSettingWithCompletionBlock:]
+___63+[FBSDKCodelessIndexer loadCodelessSettingWithCompletionBlock:]_block_invoke
+___63+[FBSDKCodelessIndexer loadCodelessSettingWithCompletionBlock:]_block_invoke_2
+___copy_helper_block_e4_20s28b
+___destroy_helper_block_e4_20s28s
++[FBSDKCodelessIndexer requestToLoadCodelessSetup:]
++[FBSDKCodelessIndexer _codelessSetupTimestampIsValid:]
++[FBSDKCodelessIndexer setupGesture]
+___36+[FBSDKCodelessIndexer setupGesture]_block_invoke
++[FBSDKCodelessIndexer checkCodelessIndexingSession]
+___52+[FBSDKCodelessIndexer checkCodelessIndexingSession]_block_invoke
++[FBSDKCodelessIndexer currentSessionDeviceID]
++[FBSDKCodelessIndexer extInfo]
++[FBSDKCodelessIndexer startIndexing]
++[FBSDKCodelessIndexer uploadIndexing]
++[FBSDKCodelessIndexer uploadIndexing:]
+___39+[FBSDKCodelessIndexer uploadIndexing:]_block_invoke
++[FBSDKCodelessIndexer currentViewTree]
++[FBSDKCodelessIndexer recursiveCaptureTree:]
++[FBSDKCodelessIndexer screenshot]
++[FBSDKCodelessIndexer dimensionOf:]
+__isGestureSet
+___block_descriptor_24_e4__e19_v12?0c4"NSError"8l
+__codelessSetting
+___block_descriptor_32_e4_20s24s28bs_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+___block_descriptor_32_e4_20s28bs_e45_v12?0"FBSDKServerConfiguration"4"NSError"8l
+__isCheckingSession
+__isCodelessIndexingEnabled
+__lastTreeHash
+__appIndexingTimer
+__deviceSessionID
+___block_descriptor_24_e4__e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+__isCodelessIndexing
+___block_descriptor_20_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessIndexer.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessIndexer.m
+__39+[FBSDKCodelessIndexer uploadIndexing:]_block_invoke
+__52+[FBSDKCodelessIndexer checkCodelessIndexingSession]_block_invoke
+__36+[FBSDKCodelessIndexer setupGesture]_block_invoke
+__destroy_helper_block_e4_20s28s
+__copy_helper_block_e4_20s28b
+__63+[FBSDKCodelessIndexer loadCodelessSettingWithCompletionBlock:]_block_invoke_2
+__63+[FBSDKCodelessIndexer loadCodelessSettingWithCompletionBlock:]_block_invoke
+__30+[FBSDKCodelessIndexer enable]_block_invoke
+-[FBSDKCodelessParameterComponent initWithJSON:]
+-[FBSDKCodelessParameterComponent name]
+-[FBSDKCodelessParameterComponent value]
+-[FBSDKCodelessParameterComponent path]
+-[FBSDKCodelessParameterComponent pathType]
+-[FBSDKCodelessParameterComponent .cxx_destruct]
+_OBJC_IVAR_$_FBSDKCodelessParameterComponent._name
+_OBJC_IVAR_$_FBSDKCodelessParameterComponent._value
+_OBJC_IVAR_$_FBSDKCodelessParameterComponent._path
+_OBJC_IVAR_$_FBSDKCodelessParameterComponent._pathType
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessParameterComponent.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessParameterComponent.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessParameterComponent.h
+-[FBSDKCodelessPathComponent initWithJSON:]
+-[FBSDKCodelessPathComponent className]
+-[FBSDKCodelessPathComponent text]
+-[FBSDKCodelessPathComponent hint]
+-[FBSDKCodelessPathComponent desc]
+-[FBSDKCodelessPathComponent index]
+-[FBSDKCodelessPathComponent tag]
+-[FBSDKCodelessPathComponent section]
+-[FBSDKCodelessPathComponent row]
+-[FBSDKCodelessPathComponent matchBitmask]
+-[FBSDKCodelessPathComponent .cxx_destruct]
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._className
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._text
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._hint
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._desc
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._index
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._tag
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._section
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._row
+_OBJC_IVAR_$_FBSDKCodelessPathComponent._matchBitmask
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessPathComponent.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessPathComponent.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKCodelessPathComponent.h
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKColor.m
+FBSDKUIColorWithRGB
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKColor.m
+FBSDKUIColorWithRGBA
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKConstants.m
+-[FBSDKContainerViewController viewDidDisappear:]
+-[FBSDKContainerViewController displayChildController:]
+-[FBSDKContainerViewController delegate]
+-[FBSDKContainerViewController setDelegate:]
+-[FBSDKContainerViewController .cxx_destruct]
+_OBJC_IVAR_$_FBSDKContainerViewController._delegate
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKContainerViewController.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKContainerViewController.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKContainerViewController.h
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/Target Support Files/FBSDKCoreKit/FBSDKCoreKit-dummy.m
++[FBSDKCrashHandler initialize]
++[FBSDKCrashHandler sendCrashLogs]
++[FBSDKCrashHandler filterCrashLogs:]
++[FBSDKCrashHandler callstack:containsPrefix:]
++[FBSDKCrashHandler disable]
++[FBSDKCrashHandler addObserver:]
+___33+[FBSDKCrashHandler addObserver:]_block_invoke
++[FBSDKCrashHandler removeObserver:]
++[FBSDKCrashHandler installExceptionsHandler]
+_FBSDKExceptionHandler
++[FBSDKCrashHandler uninstallExceptionsHandler]
++[FBSDKCrashHandler saveException:]
++[FBSDKCrashHandler saveSignal:withCallStack:]
++[FBSDKCrashHandler getProcessedCrashLogs]
++[FBSDKCrashHandler loadCrashLogs]
+___34+[FBSDKCrashHandler loadCrashLogs]_block_invoke
++[FBSDKCrashHandler loadCrashLog:]
++[FBSDKCrashHandler clearCrashReportFiles]
++[FBSDKCrashHandler getCrashLogFileNames:]
++[FBSDKCrashHandler saveCrashLog:]
++[FBSDKCrashHandler generateMethodMapping:]
++[FBSDKCrashHandler loadLibData:]
++[FBSDKCrashHandler getPathToCrashFile:]
++[FBSDKCrashHandler getPathToLibDataFile:]
++[FBSDKCrashHandler isSafeToGenerateMapping]
++[FBSDKCrashHandler getFBSDKVersion]
+_mappingTableIdentifier
+_directoryPath
+__observers
+__processedCrashLogs
+__isTurnedOff
+_addObserver:.onceToken
+_previousExceptionHandler
+___block_descriptor_20_e10_i12?048l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Instrument/FBSDKCrashHandler.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Instrument/FBSDKCrashHandler.m
+__34+[FBSDKCrashHandler loadCrashLogs]_block_invoke
+FBSDKExceptionHandler
+__33+[FBSDKCrashHandler addObserver:]_block_invoke
+-[FBSDKCrashObserver init]
++[FBSDKCrashObserver enable]
++[FBSDKCrashObserver sharedInstance]
+___36+[FBSDKCrashObserver sharedInstance]_block_invoke
+-[FBSDKCrashObserver didReceiveCrashLogs:]
+___42-[FBSDKCrashObserver didReceiveCrashLogs:]_block_invoke
+___42-[FBSDKCrashObserver didReceiveCrashLogs:]_block_invoke_2
+-[FBSDKCrashObserver prefixes]
+-[FBSDKCrashObserver setPrefixes:]
+-[FBSDKCrashObserver frameworks]
+-[FBSDKCrashObserver setFrameworks:]
+-[FBSDKCrashObserver .cxx_destruct]
+__OBJC_PROTOCOL_$_FBSDKCrashObserving
+__OBJC_LABEL_PROTOCOL_$_FBSDKCrashObserving
+_OBJC_IVAR_$_FBSDKCrashObserver.prefixes
+_OBJC_IVAR_$_FBSDKCrashObserver.frameworks
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/CrashReport/FBSDKCrashObserver.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/CrashReport/FBSDKCrashObserver.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Instrument/FBSDKCrashObserving.h
+__42-[FBSDKCrashObserver didReceiveCrashLogs:]_block_invoke_2
+__42-[FBSDKCrashObserver didReceiveCrashLogs:]_block_invoke
+__36+[FBSDKCrashObserver sharedInstance]_block_invoke
++[FBSDKCrashShield initialize]
++[FBSDKCrashShield analyze:]
++[FBSDKCrashShield getFeature:]
++[FBSDKCrashShield getClassName:]
+__featureMapping
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/CrashReport/FBSDKCrashShield.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/CrashReport/FBSDKCrashShield.m
++[FBSDKCrypto randomBytes:]
++[FBSDKCrypto randomString:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Cryptography/FBSDKCrypto.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Cryptography/FBSDKCrypto.m
+FBSDKCryptoBlankData
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKDeviceButton.m
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Device/FBSDKDeviceDialogView.m
++[FBSDKDeviceRequestsHelper initialize]
++[FBSDKDeviceRequestsHelper getDeviceInfo]
++[FBSDKDeviceRequestsHelper startAdvertisementService:withDelegate:]
+___68+[FBSDKDeviceRequestsHelper startAdvertisementService:withDelegate:]_block_invoke
++[FBSDKDeviceRequestsHelper isDelegate:forAdvertisementService:]
++[FBSDKDeviceRequestsHelper cleanUpAdvertisementService:]
+_g_mdnsAdvertisementServices
+_startAdvertisementService:withDelegate:.sdkVersion
+_startAdvertisementService:withDelegate:.onceToken
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDeviceRequestsHelper.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDeviceRequestsHelper.m
+__68+[FBSDKDeviceRequestsHelper startAdvertisementService:withDelegate:]_block_invoke
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Device/FBSDKDeviceUtilities.m
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKDeviceViewControllerBase.m
+-[FBSDKDialogConfiguration initWithName:URL:appVersions:]
++[FBSDKDialogConfiguration supportsSecureCoding]
+-[FBSDKDialogConfiguration initWithCoder:]
+-[FBSDKDialogConfiguration encodeWithCoder:]
+-[FBSDKDialogConfiguration copyWithZone:]
+-[FBSDKDialogConfiguration appVersions]
+-[FBSDKDialogConfiguration name]
+-[FBSDKDialogConfiguration URL]
+-[FBSDKDialogConfiguration .cxx_destruct]
+_OBJC_IVAR_$_FBSDKDialogConfiguration._appVersions
+_OBJC_IVAR_$_FBSDKDialogConfiguration._name
+_OBJC_IVAR_$_FBSDKDialogConfiguration._URL
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKDialogConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKDialogConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKDialogConfiguration.h
++[FBSDKDynamicFrameworkLoader loadkSecRandomDefault]
+_fbsdkdfl_handle_get_Security
+_fbsdkdfl_load_symbol_once
++[FBSDKDynamicFrameworkLoader loadkSecAttrAccessible]
++[FBSDKDynamicFrameworkLoader loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]
++[FBSDKDynamicFrameworkLoader loadkSecAttrAccount]
++[FBSDKDynamicFrameworkLoader loadkSecAttrService]
++[FBSDKDynamicFrameworkLoader loadkSecAttrGeneric]
++[FBSDKDynamicFrameworkLoader loadkSecValueData]
++[FBSDKDynamicFrameworkLoader loadkSecClassGenericPassword]
++[FBSDKDynamicFrameworkLoader loadkSecAttrAccessGroup]
++[FBSDKDynamicFrameworkLoader loadkSecMatchLimitOne]
++[FBSDKDynamicFrameworkLoader loadkSecMatchLimit]
++[FBSDKDynamicFrameworkLoader loadkSecReturnData]
++[FBSDKDynamicFrameworkLoader loadkSecClass]
+_fbsdkdfl_handle_get_Social
+_fbsdkdfl_handle_get_MessageUI
+_fbsdkdfl_handle_get_QuartzCore
+_fbsdkdfl_handle_get_AudioToolbox
+_fbsdkdfl_handle_get_AdSupport
+_fbsdkdfl_handle_get_SafariServices
+_fbsdkdfl_handle_get_AuthenticationServices
+_fbsdkdfl_handle_get_Accounts
+_fbsdkdfl_handle_get_StoreKit
+_fbsdkdfl_handle_get_AssetsLibrary
+_fbsdkdfl_handle_get_CoreTelephony
+_fbsdkdfl_handle_get_CoreImage
+_fbsdkdfl_handle_get_Photos
+_fbsdkdfl_handle_get_MobileCoreServices
+_fbsdkdfl_handle_get_WebKit
+_fbsdkdfl_load_Security_once
+_fbsdkdfl_load_framework_once
+_fbsdkdfl_load_Social_once
+_fbsdkdfl_load_MessageUI_once
+_fbsdkdfl_load_QuartzCore_once
+_fbsdkdfl_load_AudioToolbox_once
+_fbsdkdfl_load_AdSupport_once
+_fbsdkdfl_load_SafariServices_once
+_fbsdkdfl_load_AuthenticationServices_once
+_fbsdkdfl_load_Accounts_once
+_fbsdkdfl_load_StoreKit_once
+_fbsdkdfl_load_AssetsLibrary_once
+_fbsdkdfl_load_CoreTelephony_once
+_fbsdkdfl_load_CoreImage_once
+_fbsdkdfl_load_Photos_once
+_fbsdkdfl_load_MobileCoreServices_once
+_fbsdkdfl_load_WebKit_once
+_loadkSecRandomDefault.k
+_loadkSecRandomDefault.kSecRandomDefault_once
+_loadkSecRandomDefault.ctx
+_loadkSecAttrAccessible.k
+_loadkSecAttrAccessible.kSecAttrAccessible_once
+_loadkSecAttrAccessible.ctx
+_loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly.k
+_loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly.kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly_once
+_loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly.ctx
+_loadkSecAttrAccount.k
+_loadkSecAttrAccount.kSecAttrAccount_once
+_loadkSecAttrAccount.ctx
+_loadkSecAttrService.k
+_loadkSecAttrService.kSecAttrService_once
+_loadkSecAttrService.ctx
+_loadkSecAttrGeneric.k
+_loadkSecAttrGeneric.kSecAttrGeneric_once
+_loadkSecAttrGeneric.ctx
+_loadkSecValueData.k
+_loadkSecValueData.kSecValueData_once
+_loadkSecValueData.ctx
+_loadkSecClassGenericPassword.k
+_loadkSecClassGenericPassword.kSecClassGenericPassword_once
+_loadkSecClassGenericPassword.ctx
+_loadkSecAttrAccessGroup.k
+_loadkSecAttrAccessGroup.kSecAttrAccessGroup_once
+_loadkSecAttrAccessGroup.ctx
+_loadkSecMatchLimitOne.k
+_loadkSecMatchLimitOne.kSecMatchLimitOne_once
+_loadkSecMatchLimitOne.ctx
+_loadkSecMatchLimit.k
+_loadkSecMatchLimit.kSecMatchLimit_once
+_loadkSecMatchLimit.ctx
+_loadkSecReturnData.k
+_loadkSecReturnData.kSecReturnData_once
+_loadkSecReturnData.ctx
+_loadkSecClass.k
+_loadkSecClass.kSecClass_once
+_loadkSecClass.ctx
+_fbsdkdfl_SecRandomCopyBytes.f
+_fbsdkdfl_SecRandomCopyBytes.SecRandomCopyBytes_once
+_fbsdkdfl_SecRandomCopyBytes.ctx
+_fbsdkdfl_SecItemUpdate.f
+_fbsdkdfl_SecItemUpdate.SecItemUpdate_once
+_fbsdkdfl_SecItemUpdate.ctx
+_fbsdkdfl_SecItemAdd.f
+_fbsdkdfl_SecItemAdd.SecItemAdd_once
+_fbsdkdfl_SecItemAdd.ctx
+_fbsdkdfl_SecItemCopyMatching.f
+_fbsdkdfl_SecItemCopyMatching.SecItemCopyMatching_once
+_fbsdkdfl_SecItemCopyMatching.ctx
+_fbsdkdfl_SecItemDelete.f
+_fbsdkdfl_SecItemDelete.SecItemDelete_once
+_fbsdkdfl_SecItemDelete.ctx
+_fbsdkdfl_SLServiceTypeFacebook.k
+_fbsdkdfl_SLServiceTypeFacebook.SLServiceTypeFacebook_once
+_fbsdkdfl_SLServiceTypeFacebook.ctx
+_fbsdkdfl_SLServiceTypeTwitter.k
+_fbsdkdfl_SLServiceTypeTwitter.SLServiceTypeTwitter_once
+_fbsdkdfl_SLServiceTypeTwitter.ctx
+_fbsdkdfl_SLComposeViewControllerClass.c
+_fbsdkdfl_SLComposeViewControllerClass.SLComposeViewController_once
+_fbsdkdfl_SLComposeViewControllerClass.ctx
+_fbsdkdfl_MFMailComposeViewControllerClass.c
+_fbsdkdfl_MFMailComposeViewControllerClass.MFMailComposeViewController_once
+_fbsdkdfl_MFMailComposeViewControllerClass.ctx
+_fbsdkdfl_MFMessageComposeViewControllerClass.c
+_fbsdkdfl_MFMessageComposeViewControllerClass.MFMessageComposeViewController_once
+_fbsdkdfl_MFMessageComposeViewControllerClass.ctx
+_fbsdkdfl_CATransactionClass.c
+_fbsdkdfl_CATransactionClass.CATransaction_once
+_fbsdkdfl_CATransactionClass.ctx
+_fbsdkdfl_CATransform3DMakeScale.f
+_fbsdkdfl_CATransform3DMakeScale.CATransform3DMakeScale_once
+_fbsdkdfl_CATransform3DMakeScale.ctx
+_fbsdkdfl_CATransform3DMakeTranslation.f
+_fbsdkdfl_CATransform3DMakeTranslation.CATransform3DMakeTranslation_once
+_fbsdkdfl_CATransform3DMakeTranslation.ctx
+_fbsdkdfl_CATransform3DConcat.f
+_fbsdkdfl_CATransform3DConcat.CATransform3DConcat_once
+_fbsdkdfl_CATransform3DConcat.ctx
+_fbsdkdfl_AudioServicesCreateSystemSoundID.f
+_fbsdkdfl_AudioServicesCreateSystemSoundID.AudioServicesCreateSystemSoundID_once
+_fbsdkdfl_AudioServicesCreateSystemSoundID.ctx
+_fbsdkdfl_AudioServicesDisposeSystemSoundID.f
+_fbsdkdfl_AudioServicesDisposeSystemSoundID.AudioServicesDisposeSystemSoundID_once
+_fbsdkdfl_AudioServicesDisposeSystemSoundID.ctx
+_fbsdkdfl_AudioServicesPlaySystemSound.f
+_fbsdkdfl_AudioServicesPlaySystemSound.AudioServicesPlaySystemSound_once
+_fbsdkdfl_AudioServicesPlaySystemSound.ctx
+_fbsdkdfl_ASIdentifierManagerClass.c
+_fbsdkdfl_ASIdentifierManagerClass.ASIdentifierManager_once
+_fbsdkdfl_ASIdentifierManagerClass.ctx
+_fbsdkdfl_SFSafariViewControllerClass.c
+_fbsdkdfl_SFSafariViewControllerClass.SFSafariViewController_once
+_fbsdkdfl_SFSafariViewControllerClass.ctx
+_fbsdkdfl_SFAuthenticationSessionClass.c
+_fbsdkdfl_SFAuthenticationSessionClass.SFAuthenticationSession_once
+_fbsdkdfl_SFAuthenticationSessionClass.ctx
+_fbsdkdfl_ASWebAuthenticationSessionClass.c
+_fbsdkdfl_ASWebAuthenticationSessionClass.ASWebAuthenticationSession_once
+_fbsdkdfl_ASWebAuthenticationSessionClass.ctx
+_fbsdkdfl_ACFacebookAppIdKey.k
+_fbsdkdfl_ACFacebookAppIdKey.ACFacebookAppIdKey_once
+_fbsdkdfl_ACFacebookAppIdKey.ctx
+_fbsdkdfl_ACFacebookAudienceEveryone.k
+_fbsdkdfl_ACFacebookAudienceEveryone.ACFacebookAudienceEveryone_once
+_fbsdkdfl_ACFacebookAudienceEveryone.ctx
+_fbsdkdfl_ACFacebookAudienceFriends.k
+_fbsdkdfl_ACFacebookAudienceFriends.ACFacebookAudienceFriends_once
+_fbsdkdfl_ACFacebookAudienceFriends.ctx
+_fbsdkdfl_ACFacebookAudienceKey.k
+_fbsdkdfl_ACFacebookAudienceKey.ACFacebookAudienceKey_once
+_fbsdkdfl_ACFacebookAudienceKey.ctx
+_fbsdkdfl_ACFacebookAudienceOnlyMe.k
+_fbsdkdfl_ACFacebookAudienceOnlyMe.ACFacebookAudienceOnlyMe_once
+_fbsdkdfl_ACFacebookAudienceOnlyMe.ctx
+_fbsdkdfl_ACFacebookPermissionsKey.k
+_fbsdkdfl_ACFacebookPermissionsKey.ACFacebookPermissionsKey_once
+_fbsdkdfl_ACFacebookPermissionsKey.ctx
+_fbsdkdfl_ACAccountStoreClass.c
+_fbsdkdfl_ACAccountStoreClass.ACAccountStore_once
+_fbsdkdfl_ACAccountStoreClass.ctx
+_fbsdkdfl_SKPaymentQueueClass.c
+_fbsdkdfl_SKPaymentQueueClass.SKPaymentQueue_once
+_fbsdkdfl_SKPaymentQueueClass.ctx
+_fbsdkdfl_SKProductsRequestClass.c
+_fbsdkdfl_SKProductsRequestClass.SKProductsRequest_once
+_fbsdkdfl_SKProductsRequestClass.ctx
+_fbsdkdfl_ALAssetsLibraryClass.c
+_fbsdkdfl_ALAssetsLibraryClass.ALAssetsLibrary_once
+_fbsdkdfl_ALAssetsLibraryClass.ctx
+_fbsdkdfl_CTTelephonyNetworkInfoClass.c
+_fbsdkdfl_CTTelephonyNetworkInfoClass.CTTelephonyNetworkInfo_once
+_fbsdkdfl_CTTelephonyNetworkInfoClass.ctx
+_fbsdkdfl_CIImageClass.c
+_fbsdkdfl_CIImageClass.CIImage_once
+_fbsdkdfl_CIImageClass.ctx
+_fbsdkdfl_CIFilterClass.c
+_fbsdkdfl_CIFilterClass.CIFilter_once
+_fbsdkdfl_CIFilterClass.ctx
+_fbsdkdfl_kCIInputImageKey.k
+_fbsdkdfl_kCIInputImageKey.kCIInputImageKey_once
+_fbsdkdfl_kCIInputImageKey.ctx
+_fbsdkdfl_kCIInputRadiusKey.k
+_fbsdkdfl_kCIInputRadiusKey.kCIInputRadiusKey_once
+_fbsdkdfl_kCIInputRadiusKey.ctx
+_fbsdkdfl_kCIOutputImageKey.k
+_fbsdkdfl_kCIOutputImageKey.kCIOutputImageKey_once
+_fbsdkdfl_kCIOutputImageKey.ctx
+_fbsdkdfl_PHPhotoLibrary.c
+_fbsdkdfl_PHPhotoLibrary.PHPhotoLibrary_once
+_fbsdkdfl_PHPhotoLibrary.ctx
+_fbsdkdfl_PHAssetChangeRequest.c
+_fbsdkdfl_PHAssetChangeRequest.PHAssetChangeRequest_once
+_fbsdkdfl_PHAssetChangeRequest.ctx
+_fbsdkdfl_UTTypeCopyPreferredTagWithClass.f
+_fbsdkdfl_UTTypeCopyPreferredTagWithClass.UTTypeCopyPreferredTagWithClass_once
+_fbsdkdfl_UTTypeCopyPreferredTagWithClass.ctx
+_fbsdkdfl_kUTTagClassMIMEType.k
+_fbsdkdfl_kUTTagClassMIMEType.kUTTagClassMIMEType_once
+_fbsdkdfl_kUTTagClassMIMEType.ctx
+_fbsdkdfl_kUTTypeJPEG.k
+_fbsdkdfl_kUTTypeJPEG.kUTTypeJPEG_once
+_fbsdkdfl_kUTTypeJPEG.ctx
+_fbsdkdfl_kUTTypePNG.k
+_fbsdkdfl_kUTTypePNG.kUTTypePNG_once
+_fbsdkdfl_kUTTypePNG.ctx
+_fbsdkdfl_WKWebViewClass.c
+_fbsdkdfl_WKWebViewClass.WKWebView_once
+_fbsdkdfl_WKWebViewClass.ctx
+_fbsdkdfl_WKUserScriptClass.c
+_fbsdkdfl_WKUserScriptClass.WKUserScript_once
+_fbsdkdfl_WKUserScriptClass.ctx
+_fbsdkdfl_handle_get_Security.Security_handle
+_fbsdkdfl_handle_get_Security.Security_once
+_fbsdkdfl_handle_get_Social.Social_handle
+_fbsdkdfl_handle_get_Social.Social_once
+_fbsdkdfl_handle_get_MessageUI.MessageUI_handle
+_fbsdkdfl_handle_get_MessageUI.MessageUI_once
+_fbsdkdfl_handle_get_QuartzCore.QuartzCore_handle
+_fbsdkdfl_handle_get_QuartzCore.QuartzCore_once
+_fbsdkdfl_handle_get_AudioToolbox.AudioToolbox_handle
+_fbsdkdfl_handle_get_AudioToolbox.AudioToolbox_once
+_fbsdkdfl_handle_get_AdSupport.AdSupport_handle
+_fbsdkdfl_handle_get_AdSupport.AdSupport_once
+_fbsdkdfl_handle_get_SafariServices.SafariServices_handle
+_fbsdkdfl_handle_get_SafariServices.SafariServices_once
+_fbsdkdfl_handle_get_AuthenticationServices.AuthenticationServices_handle
+_fbsdkdfl_handle_get_AuthenticationServices.AuthenticationServices_once
+_fbsdkdfl_handle_get_Accounts.Accounts_handle
+_fbsdkdfl_handle_get_Accounts.Accounts_once
+_fbsdkdfl_handle_get_StoreKit.StoreKit_handle
+_fbsdkdfl_handle_get_StoreKit.StoreKit_once
+_fbsdkdfl_handle_get_AssetsLibrary.AssetsLibrary_handle
+_fbsdkdfl_handle_get_AssetsLibrary.AssetsLibrary_once
+_fbsdkdfl_handle_get_CoreTelephony.CoreTelephony_handle
+_fbsdkdfl_handle_get_CoreTelephony.CoreTelephony_once
+_fbsdkdfl_handle_get_CoreImage.CoreImage_handle
+_fbsdkdfl_handle_get_CoreImage.CoreImage_once
+_fbsdkdfl_handle_get_Photos.Photos_handle
+_fbsdkdfl_handle_get_Photos.Photos_once
+_fbsdkdfl_handle_get_MobileCoreServices.MobileCoreServices_handle
+_fbsdkdfl_handle_get_MobileCoreServices.MobileCoreServices_once
+_fbsdkdfl_handle_get_WebKit.WebKit_handle
+_fbsdkdfl_handle_get_WebKit.WebKit_once
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal_NoARC/FBSDKDynamicFrameworkLoader.m
+fbsdkdfl_load_WebKit_once
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal_NoARC/FBSDKDynamicFrameworkLoader.m
+fbsdkdfl_load_MobileCoreServices_once
+fbsdkdfl_load_Photos_once
+fbsdkdfl_load_CoreImage_once
+fbsdkdfl_load_CoreTelephony_once
+fbsdkdfl_load_AssetsLibrary_once
+fbsdkdfl_load_StoreKit_once
+fbsdkdfl_load_Accounts_once
+fbsdkdfl_load_AuthenticationServices_once
+fbsdkdfl_load_SafariServices_once
+fbsdkdfl_load_AdSupport_once
+fbsdkdfl_load_AudioToolbox_once
+fbsdkdfl_load_QuartzCore_once
+fbsdkdfl_load_MessageUI_once
+fbsdkdfl_load_Social_once
+fbsdkdfl_load_framework_once
+fbsdkdfl_load_library_once
+fbsdkdfl_load_Security_once
+fbsdkdfl_WKUserScriptClass
+fbsdkdfl_handle_get_WebKit
+fbsdkdfl_WKWebViewClass
+fbsdkdfl_kUTTypePNG
+fbsdkdfl_kUTTypeJPEG
+fbsdkdfl_kUTTagClassMIMEType
+fbsdkdfl_handle_get_MobileCoreServices
+fbsdkdfl_UTTypeCopyPreferredTagWithClass
+fbsdkdfl_PHAssetChangeRequest
+fbsdkdfl_handle_get_Photos
+fbsdkdfl_PHPhotoLibrary
+fbsdkdfl_kCIOutputImageKey
+fbsdkdfl_kCIInputRadiusKey
+fbsdkdfl_kCIInputImageKey
+fbsdkdfl_CIFilterClass
+fbsdkdfl_handle_get_CoreImage
+fbsdkdfl_CIImageClass
+fbsdkdfl_handle_get_CoreTelephony
+fbsdkdfl_CTTelephonyNetworkInfoClass
+fbsdkdfl_handle_get_AssetsLibrary
+fbsdkdfl_ALAssetsLibraryClass
+fbsdkdfl_SKProductsRequestClass
+fbsdkdfl_handle_get_StoreKit
+fbsdkdfl_SKPaymentQueueClass
+fbsdkdfl_ACAccountStoreClass
+fbsdkdfl_ACFacebookPermissionsKey
+fbsdkdfl_ACFacebookAudienceOnlyMe
+fbsdkdfl_ACFacebookAudienceKey
+fbsdkdfl_ACFacebookAudienceFriends
+fbsdkdfl_ACFacebookAudienceEveryone
+fbsdkdfl_handle_get_Accounts
+fbsdkdfl_ACFacebookAppIdKey
+fbsdkdfl_handle_get_AuthenticationServices
+fbsdkdfl_ASWebAuthenticationSessionClass
+fbsdkdfl_SFAuthenticationSessionClass
+fbsdkdfl_handle_get_SafariServices
+fbsdkdfl_SFSafariViewControllerClass
+fbsdkdfl_handle_get_AdSupport
+fbsdkdfl_ASIdentifierManagerClass
+fbsdkdfl_AudioServicesPlaySystemSound
+fbsdkdfl_AudioServicesDisposeSystemSoundID
+fbsdkdfl_handle_get_AudioToolbox
+fbsdkdfl_AudioServicesCreateSystemSoundID
+fbsdkdfl_CATransform3DConcat
+fbsdkdfl_CATransform3DMakeTranslation
+fbsdkdfl_CATransform3DMakeScale
+fbsdkdfl_handle_get_QuartzCore
+fbsdkdfl_CATransactionClass
+fbsdkdfl_MFMessageComposeViewControllerClass
+fbsdkdfl_handle_get_MessageUI
+fbsdkdfl_MFMailComposeViewControllerClass
+fbsdkdfl_SLComposeViewControllerClass
+fbsdkdfl_SLServiceTypeTwitter
+fbsdkdfl_handle_get_Social
+fbsdkdfl_SLServiceTypeFacebook
+fbsdkdfl_SecItemDelete
+fbsdkdfl_SecItemCopyMatching
+fbsdkdfl_SecItemAdd
+fbsdkdfl_SecItemUpdate
+fbsdkdfl_SecRandomCopyBytes
+fbsdkdfl_load_symbol_once
+fbsdkdfl_handle_get_Security
++[FBSDKError errorWithCode:message:]
++[FBSDKError errorWithDomain:code:message:]
++[FBSDKError errorWithCode:message:underlyingError:]
++[FBSDKError errorWithDomain:code:message:underlyingError:]
++[FBSDKError errorWithCode:userInfo:message:underlyingError:]
++[FBSDKError errorWithDomain:code:userInfo:message:underlyingError:]
++[FBSDKError invalidArgumentErrorWithName:value:message:]
++[FBSDKError invalidArgumentErrorWithDomain:name:value:message:]
++[FBSDKError invalidArgumentErrorWithName:value:message:underlyingError:]
++[FBSDKError invalidArgumentErrorWithDomain:name:value:message:underlyingError:]
++[FBSDKError invalidCollectionErrorWithName:collection:item:message:]
++[FBSDKError invalidCollectionErrorWithName:collection:item:message:underlyingError:]
++[FBSDKError requiredArgumentErrorWithName:message:]
++[FBSDKError requiredArgumentErrorWithDomain:name:message:]
++[FBSDKError requiredArgumentErrorWithName:message:underlyingError:]
++[FBSDKError unknownErrorWithMessage:]
++[FBSDKError isNetworkError:]
++[FBSDKError enableErrorReport]
+_isErrorReportEnabled
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKError.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKError.m
+-[FBSDKErrorConfiguration initWithDictionary:]
+-[FBSDKErrorConfiguration recoveryConfigurationForCode:subcode:request:]
+-[FBSDKErrorConfiguration parseArray:]
+___38-[FBSDKErrorConfiguration parseArray:]_block_invoke
++[FBSDKErrorConfiguration supportsSecureCoding]
+-[FBSDKErrorConfiguration initWithCoder:]
+-[FBSDKErrorConfiguration encodeWithCoder:]
+-[FBSDKErrorConfiguration copyWithZone:]
+-[FBSDKErrorConfiguration .cxx_destruct]
+___block_descriptor_28_e4_20s24s_e24_v16?0"NSString"48^c12l
+_OBJC_IVAR_$_FBSDKErrorConfiguration._configurationDictionary
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorConfiguration.m
+__38-[FBSDKErrorConfiguration parseArray:]_block_invoke
++[FBSDKErrorRecoveryAttempter recoveryAttempterFromConfiguration:]
+-[FBSDKErrorRecoveryAttempter attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:]
+-[FBSDKErrorRecoveryAttempter(Protected) completeRecovery:delegate:didRecoverSelector:contextInfo:]
+__OBJC_PROTOCOL_$_FBSDKErrorRecoveryAttempting
+__OBJC_LABEL_PROTOCOL_$_FBSDKErrorRecoveryAttempting
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/FBSDKErrorRecoveryAttempter.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/FBSDKErrorRecoveryAttempter.m
+-[FBSDKErrorRecoveryConfiguration initWithRecoveryDescription:optionDescriptions:category:recoveryActionName:]
++[FBSDKErrorRecoveryConfiguration supportsSecureCoding]
+-[FBSDKErrorRecoveryConfiguration initWithCoder:]
+-[FBSDKErrorRecoveryConfiguration encodeWithCoder:]
+-[FBSDKErrorRecoveryConfiguration copyWithZone:]
+-[FBSDKErrorRecoveryConfiguration localizedRecoveryDescription]
+-[FBSDKErrorRecoveryConfiguration localizedRecoveryOptionDescriptions]
+-[FBSDKErrorRecoveryConfiguration errorCategory]
+-[FBSDKErrorRecoveryConfiguration recoveryActionName]
+-[FBSDKErrorRecoveryConfiguration .cxx_destruct]
+_OBJC_IVAR_$_FBSDKErrorRecoveryConfiguration._localizedRecoveryDescription
+_OBJC_IVAR_$_FBSDKErrorRecoveryConfiguration._localizedRecoveryOptionDescriptions
+_OBJC_IVAR_$_FBSDKErrorRecoveryConfiguration._errorCategory
+_OBJC_IVAR_$_FBSDKErrorRecoveryConfiguration._recoveryActionName
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorRecoveryConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorRecoveryConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorRecoveryConfiguration.h
++[FBSDKErrorReport enable]
++[FBSDKErrorReport uploadError]
+___31+[FBSDKErrorReport uploadError]_block_invoke
++[FBSDKErrorReport saveError:errorDomain:message:]
++[FBSDKErrorReport loadErrorReports]
+___36+[FBSDKErrorReport loadErrorReports]_block_invoke
+___36+[FBSDKErrorReport loadErrorReports]_block_invoke_2
++[FBSDKErrorReport clearErrorInfo]
++[FBSDKErrorReport saveErrorInfoToDisk:]
++[FBSDKErrorReport pathToErrorInfoFile]
+___block_literal_global.95
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/ErrorReport/FBSDKErrorReport.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/ErrorReport/FBSDKErrorReport.m
+__36+[FBSDKErrorReport loadErrorReports]_block_invoke_2
+__36+[FBSDKErrorReport loadErrorReports]_block_invoke
+__31+[FBSDKErrorReport uploadError]_block_invoke
+-[FBSDKEventBinding initWithJSON:]
+-[FBSDKEventBinding trackEvent:]
++[FBSDKEventBinding matchAnyView:pathComponent:]
++[FBSDKEventBinding match:pathComponent:]
++[FBSDKEventBinding isViewMatchPath:path:]
++[FBSDKEventBinding isPath:matchViewPath:]
++[FBSDKEventBinding findViewByPath:parent:level:]
++[FBSDKEventBinding findParameterOfPath:pathType:sourceView:]
+-[FBSDKEventBinding eventName]
+-[FBSDKEventBinding eventType]
+-[FBSDKEventBinding appVersion]
+-[FBSDKEventBinding path]
+-[FBSDKEventBinding pathType]
+-[FBSDKEventBinding parameters]
+-[FBSDKEventBinding .cxx_destruct]
+_OBJC_IVAR_$_FBSDKEventBinding._eventName
+_OBJC_IVAR_$_FBSDKEventBinding._eventType
+_OBJC_IVAR_$_FBSDKEventBinding._appVersion
+_OBJC_IVAR_$_FBSDKEventBinding._path
+_OBJC_IVAR_$_FBSDKEventBinding._pathType
+_OBJC_IVAR_$_FBSDKEventBinding._parameters
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKEventBinding.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKEventBinding.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKEventBinding.h
+-[FBSDKEventBindingManager init]
++[FBSDKEventBindingManager parseArray:]
+-[FBSDKEventBindingManager initWithJSON:]
+-[FBSDKEventBindingManager start]
+___33-[FBSDKEventBindingManager start]_block_invoke
+___33-[FBSDKEventBindingManager start]_block_invoke.52
+___33-[FBSDKEventBindingManager start]_block_invoke.74
+___33-[FBSDKEventBindingManager start]_block_invoke.80
+-[FBSDKEventBindingManager rematchBindings]
+-[FBSDKEventBindingManager matchSubviewsIn:]
+-[FBSDKEventBindingManager matchView:delegate:]
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_2
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_3
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke.110
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke.263
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_2.268
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_3.269
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke.331
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_2.332
+___47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_3.333
+-[FBSDKEventBindingManager updateBindings:]
+___43-[FBSDKEventBindingManager updateBindings:]_block_invoke
+-[FBSDKEventBindingManager .cxx_destruct]
+___block_descriptor_24_e4_20s_e7_v8?04l
+___block_descriptor_24_e4_20s_e16_v20?04:81216l
+___block_descriptor_24_e4_20s_e49_v16?0"UITableView"4:8"<UITableViewDelegate>"12l
+___block_descriptor_24_e4_20s_e59_v16?0"UICollectionView"4:8"<UICollectionViewDelegate>"12l
+___block_descriptor_32_e4_20s24s28s_e5_v4?0l
+__OBJC_PROTOCOL_$_UIScrollViewDelegate
+__OBJC_LABEL_PROTOCOL_$_UIScrollViewDelegate
+__OBJC_PROTOCOL_$_UITableViewDelegate
+__OBJC_LABEL_PROTOCOL_$_UITableViewDelegate
+l_OBJC_PROTOCOL_REFERENCE_$_UITableViewDelegate
+___block_descriptor_24_e4_20s_e42_v20?04:8"UITableView"12"NSIndexPath"16l
+__OBJC_PROTOCOL_$_UICollectionViewDelegate
+__OBJC_LABEL_PROTOCOL_$_UICollectionViewDelegate
+l_OBJC_PROTOCOL_REFERENCE_$_UICollectionViewDelegate
+___block_descriptor_24_e4_20s_e47_v20?04:8"UICollectionView"12"NSIndexPath"16l
+_OBJC_IVAR_$_FBSDKEventBindingManager.isStarted
+_OBJC_IVAR_$_FBSDKEventBindingManager.reactBindings
+_OBJC_IVAR_$_FBSDKEventBindingManager.validClasses
+_OBJC_IVAR_$_FBSDKEventBindingManager.hasReactNative
+_OBJC_IVAR_$_FBSDKEventBindingManager.eventBindings
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKEventBindingManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKEventBindingManager.m
+__43-[FBSDKEventBindingManager updateBindings:]_block_invoke
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_3.333
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_2.332
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke.331
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_3.269
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_2.268
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke.263
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke.110
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_3
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke_2
+__47-[FBSDKEventBindingManager matchView:delegate:]_block_invoke
+__33-[FBSDKEventBindingManager start]_block_invoke.80
+__33-[FBSDKEventBindingManager start]_block_invoke.74
+__33-[FBSDKEventBindingManager start]_block_invoke.52
+__33-[FBSDKEventBindingManager start]_block_invoke
+-[FBSDKDeactivatedEvent initWithEventName:deactivatedParams:]
+-[FBSDKDeactivatedEvent eventName]
+-[FBSDKDeactivatedEvent deactivatedParams]
+-[FBSDKDeactivatedEvent .cxx_destruct]
++[FBSDKEventDeactivationManager enable]
++[FBSDKEventDeactivationManager updateDeactivatedEvents:]
++[FBSDKEventDeactivationManager processEvents:]
++[FBSDKEventDeactivationManager processParameters:eventName:]
+_OBJC_IVAR_$_FBSDKDeactivatedEvent._eventName
+_OBJC_IVAR_$_FBSDKDeactivatedEvent._deactivatedParams
+_isEventDeactivationEnabled
+__deactivatedEvents
+__eventsWithDeactivatedParams
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/EventDeactivation/FBSDKEventDeactivationManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/EventDeactivation/FBSDKEventDeactivationManager.m
++[FBSDKEventInferencer loadWeights]
++[FBSDKEventInferencer validateWeights:]
++[FBSDKEventInferencer loadWeights:]
+___36+[FBSDKEventInferencer loadWeights:]_block_invoke
++[FBSDKEventInferencer predict:viewTree:withLog:]
+__GLOBAL__sub_I_FBSDKEventInferencer.mm
++[FBSDKEventInferencer loadWeights:].cold.1
+__ZL15SUGGESTED_EVENT
+__ZL18DEFAULT_PREDICTION
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/SuggestedEvents/FBSDKEventInferencer.mm
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/SuggestedEvents/FBSDKEventInferencer.mm
+_GLOBAL__sub_I_FBSDKEventInferencer.mm
+__cxx_global_var_init.46
+__cxx_global_var_init.13
+__36+[FBSDKEventInferencer loadWeights:]_block_invoke
++[FBSDKFeatureExtractor initialize]
++[FBSDKFeatureExtractor loadRules]
++[FBSDKFeatureExtractor getTextFeature:withScreenName:]
++[FBSDKFeatureExtractor getDenseFeatures:]
++[FBSDKFeatureExtractor pruneTree:siblings:]
++[FBSDKFeatureExtractor nonparseFeatures:siblings:screenname:viewTreeString:]
+___77+[FBSDKFeatureExtractor nonparseFeatures:siblings:screenname:viewTreeString:]_block_invoke
++[FBSDKFeatureExtractor parseFeatures:]
++[FBSDKFeatureExtractor isButton:]
++[FBSDKFeatureExtractor update:text:hint:]
++[FBSDKFeatureExtractor foundIndicators:inValues:]
++[FBSDKFeatureExtractor regextMatch:text:]
++[FBSDKFeatureExtractor regexMatch:event:textType:matchText:]
+__languageInfo
+__eventInfo
+__textTypeInfo
+__rules
+___block_descriptor_24_e4__e24_c12?04"NSDictionary"8l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/SuggestedEvents/FBSDKFeatureExtractor.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/SuggestedEvents/FBSDKFeatureExtractor.m
+sum
+__77+[FBSDKFeatureExtractor nonparseFeatures:siblings:screenname:viewTreeString:]_block_invoke
++[FBSDKFeatureManager checkFeature:completionBlock:]
+___52+[FBSDKFeatureManager checkFeature:completionBlock:]_block_invoke
++[FBSDKFeatureManager isEnabled:]
++[FBSDKFeatureManager disableFeature:]
++[FBSDKFeatureManager getParentFeature:]
++[FBSDKFeatureManager checkGK:]
++[FBSDKFeatureManager featureName:]
++[FBSDKFeatureManager defaultStatus:]
+___block_descriptor_28_e4_20bs_e16_v8?0"NSError"4l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKFeatureManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKFeatureManager.m
+__52+[FBSDKFeatureManager checkFeature:completionBlock:]_block_invoke
++[FBSDKGateKeeperManager initialize]
++[FBSDKGateKeeperManager boolForKey:defaultValue:]
++[FBSDKGateKeeperManager loadGateKeepers:]
+___42+[FBSDKGateKeeperManager loadGateKeepers:]_block_invoke
++[FBSDKGateKeeperManager requestToLoadGateKeepers]
++[FBSDKGateKeeperManager processLoadRequestResponse:error:]
++[FBSDKGateKeeperManager _didProcessGKFromNetwork:]
++[FBSDKGateKeeperManager _gateKeeperTimestampIsValid:]
++[FBSDKGateKeeperManager _gateKeeperIsValid]
+__completionBlocks
+__gateKeepers
+__loadingGateKeepers
+__requeryFinishedForAppStart
+__timestamp
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKGateKeeperManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKGateKeeperManager.m
+__42+[FBSDKGateKeeperManager loadGateKeepers:]_block_invoke
+-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]
+___66-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]_block_invoke
+___66-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]_block_invoke_2
+___66-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]_block_invoke.28
+-[FBSDKGraphErrorRecoveryProcessor displayAlertWithRecoverySuggestion:recoveryOptionsTitles:]
+___93-[FBSDKGraphErrorRecoveryProcessor displayAlertWithRecoverySuggestion:recoveryOptionsTitles:]_block_invoke
+-[FBSDKGraphErrorRecoveryProcessor displayAlertWithTitle:message:cancelButtonTitle:]
+___84-[FBSDKGraphErrorRecoveryProcessor displayAlertWithTitle:message:cancelButtonTitle:]_block_invoke
+-[FBSDKGraphErrorRecoveryProcessor didPresentErrorWithRecovery:contextInfo:]
+-[FBSDKGraphErrorRecoveryProcessor delegate]
+-[FBSDKGraphErrorRecoveryProcessor setDelegate:]
+-[FBSDKGraphErrorRecoveryProcessor .cxx_destruct]
+___block_descriptor_28_e4_20s24s_e5_c4?0l
+___block_descriptor_28_e4_20s_e22_v8?0"UIAlertAction"4l
+___block_descriptor_24_e4_20s_e22_v8?0"UIAlertAction"4l
+_OBJC_IVAR_$_FBSDKGraphErrorRecoveryProcessor._recoveryAttempter
+_OBJC_IVAR_$_FBSDKGraphErrorRecoveryProcessor._error
+_OBJC_IVAR_$_FBSDKGraphErrorRecoveryProcessor._delegate
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphErrorRecoveryProcessor.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphErrorRecoveryProcessor.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphErrorRecoveryProcessor.h
+__84-[FBSDKGraphErrorRecoveryProcessor displayAlertWithTitle:message:cancelButtonTitle:]_block_invoke
+__93-[FBSDKGraphErrorRecoveryProcessor displayAlertWithRecoverySuggestion:recoveryOptionsTitles:]_block_invoke
+__66-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]_block_invoke.28
+__66-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]_block_invoke_2
+__66-[FBSDKGraphErrorRecoveryProcessor processError:request:delegate:]_block_invoke
+-[FBSDKGraphRequest initWithGraphPath:]
+-[FBSDKGraphRequest initWithGraphPath:HTTPMethod:]
+-[FBSDKGraphRequest initWithGraphPath:parameters:]
+-[FBSDKGraphRequest initWithGraphPath:parameters:HTTPMethod:]
+-[FBSDKGraphRequest initWithGraphPath:parameters:flags:]
+-[FBSDKGraphRequest initWithGraphPath:parameters:tokenString:HTTPMethod:flags:]
+-[FBSDKGraphRequest initWithGraphPath:parameters:tokenString:version:HTTPMethod:]
+-[FBSDKGraphRequest isGraphErrorRecoveryDisabled]
+-[FBSDKGraphRequest setGraphErrorRecoveryDisabled:]
+-[FBSDKGraphRequest hasAttachments]
+___35-[FBSDKGraphRequest hasAttachments]_block_invoke
++[FBSDKGraphRequest isAttachment:]
++[FBSDKGraphRequest serializeURL:params:]
++[FBSDKGraphRequest serializeURL:params:httpMethod:]
++[FBSDKGraphRequest serializeURL:params:httpMethod:forBatch:]
+___61+[FBSDKGraphRequest serializeURL:params:httpMethod:forBatch:]_block_invoke
+___copy_helper_block_e4_24s
+___destroy_helper_block_e4_24s
++[FBSDKGraphRequest preprocessParams:]
+-[FBSDKGraphRequest startWithCompletionHandler:]
+-[FBSDKGraphRequest description]
+-[FBSDKGraphRequest HTTPMethod]
+-[FBSDKGraphRequest setHTTPMethod:]
+-[FBSDKGraphRequest parameters]
+-[FBSDKGraphRequest setParameters:]
+-[FBSDKGraphRequest tokenString]
+-[FBSDKGraphRequest graphPath]
+-[FBSDKGraphRequest version]
+-[FBSDKGraphRequest flags]
+-[FBSDKGraphRequest setFlags:]
+-[FBSDKGraphRequest .cxx_destruct]
+___block_descriptor_28_e4_24s_e11_12?04^c8l
+_OBJC_IVAR_$_FBSDKGraphRequest.HTTPMethod
+_OBJC_IVAR_$_FBSDKGraphRequest._parameters
+_OBJC_IVAR_$_FBSDKGraphRequest._tokenString
+_OBJC_IVAR_$_FBSDKGraphRequest._graphPath
+_OBJC_IVAR_$_FBSDKGraphRequest._version
+_OBJC_IVAR_$_FBSDKGraphRequest._flags
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequest.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequest.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequest.h
+__destroy_helper_block_e4_24s
+__copy_helper_block_e4_24s
+__61+[FBSDKGraphRequest serializeURL:params:httpMethod:forBatch:]_block_invoke
+__35-[FBSDKGraphRequest hasAttachments]_block_invoke
+-[FBSDKGraphRequestBody init]
+-[FBSDKGraphRequestBody mimeContentType]
+-[FBSDKGraphRequestBody appendUTF8:]
+-[FBSDKGraphRequestBody appendWithKey:formValue:logger:]
+___56-[FBSDKGraphRequestBody appendWithKey:formValue:logger:]_block_invoke
+-[FBSDKGraphRequestBody appendWithKey:imageValue:logger:]
+___57-[FBSDKGraphRequestBody appendWithKey:imageValue:logger:]_block_invoke
+-[FBSDKGraphRequestBody appendWithKey:dataValue:logger:]
+___56-[FBSDKGraphRequestBody appendWithKey:dataValue:logger:]_block_invoke
+-[FBSDKGraphRequestBody appendWithKey:dataAttachmentValue:logger:]
+___66-[FBSDKGraphRequestBody appendWithKey:dataAttachmentValue:logger:]_block_invoke
+-[FBSDKGraphRequestBody data]
+-[FBSDKGraphRequestBody _appendWithKey:filename:contentType:contentBlock:]
+-[FBSDKGraphRequestBody compressedData]
+-[FBSDKGraphRequestBody .cxx_destruct]
+_OBJC_IVAR_$_FBSDKGraphRequestBody._data
+_OBJC_IVAR_$_FBSDKGraphRequestBody._json
+_OBJC_IVAR_$_FBSDKGraphRequestBody._stringBoundary
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestBody.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestBody.m
+__66-[FBSDKGraphRequestBody appendWithKey:dataAttachmentValue:logger:]_block_invoke
+__56-[FBSDKGraphRequestBody appendWithKey:dataValue:logger:]_block_invoke
+__57-[FBSDKGraphRequestBody appendWithKey:imageValue:logger:]_block_invoke
+__56-[FBSDKGraphRequestBody appendWithKey:formValue:logger:]_block_invoke
+-[FBSDKGraphRequestConnection init]
+-[FBSDKGraphRequestConnection dealloc]
++[FBSDKGraphRequestConnection setDefaultConnectionTimeout:]
++[FBSDKGraphRequestConnection defaultConnectionTimeout]
+-[FBSDKGraphRequestConnection addRequest:completionHandler:]
+-[FBSDKGraphRequestConnection addRequest:batchEntryName:completionHandler:]
+-[FBSDKGraphRequestConnection addRequest:batchParameters:completionHandler:]
+-[FBSDKGraphRequestConnection cancel]
+-[FBSDKGraphRequestConnection overrideGraphAPIVersion:]
+-[FBSDKGraphRequestConnection start]
+___36-[FBSDKGraphRequestConnection start]_block_invoke
+___36-[FBSDKGraphRequestConnection start]_block_invoke_2
+___36-[FBSDKGraphRequestConnection start]_block_invoke_3
+___36-[FBSDKGraphRequestConnection start]_block_invoke.118
+-[FBSDKGraphRequestConnection delegateQueue]
+-[FBSDKGraphRequestConnection setDelegateQueue:]
+-[FBSDKGraphRequestConnection session]
+-[FBSDKGraphRequestConnection addRequest:toBatch:attachments:batchToken:]
+___73-[FBSDKGraphRequestConnection addRequest:toBatch:attachments:batchToken:]_block_invoke
+-[FBSDKGraphRequestConnection appendAttachments:toBody:addFormData:logger:]
+___75-[FBSDKGraphRequestConnection appendAttachments:toBody:addFormData:logger:]_block_invoke
+-[FBSDKGraphRequestConnection appendJSONRequests:toBody:andNameAttachments:logger:]
+-[FBSDKGraphRequestConnection _shouldWarnOnMissingFieldsParam:]
+-[FBSDKGraphRequestConnection _validateFieldsParamForGetRequests:]
+-[FBSDKGraphRequestConnection requestWithBatch:timeout:]
+-[FBSDKGraphRequestConnection urlStringForSingleRequest:forBatch:]
+-[FBSDKGraphRequestConnection completeFBSDKURLSessionWithResponse:data:networkError:]
+-[FBSDKGraphRequestConnection parseJSONResponse:error:statusCode:]
+-[FBSDKGraphRequestConnection parseJSONOrOtherwise:error:]
+-[FBSDKGraphRequestConnection completeWithResults:networkError:]
+___64-[FBSDKGraphRequestConnection completeWithResults:networkError:]_block_invoke
+-[FBSDKGraphRequestConnection processResultBody:error:metadata:canNotifyDelegate:]
+___82-[FBSDKGraphRequestConnection processResultBody:error:metadata:canNotifyDelegate:]_block_invoke
+___82-[FBSDKGraphRequestConnection processResultBody:error:metadata:canNotifyDelegate:]_block_invoke.403
+-[FBSDKGraphRequestConnection processResultDebugDictionary:]
+___60-[FBSDKGraphRequestConnection processResultDebugDictionary:]_block_invoke
+-[FBSDKGraphRequestConnection errorFromResult:request:]
+-[FBSDKGraphRequestConnection errorWithCode:statusCode:parsedJSONResponse:innerError:message:]
+-[FBSDKGraphRequestConnection logAndInvokeHandler:error:]
+-[FBSDKGraphRequestConnection logAndInvokeHandler:response:responseData:requestStartTime:]
+-[FBSDKGraphRequestConnection invokeHandler:error:response:responseData:]
+___73-[FBSDKGraphRequestConnection invokeHandler:error:response:responseData:]_block_invoke
+___copy_helper_block_e4_20b24s28s32s
+-[FBSDKGraphRequestConnection logMessage:]
+-[FBSDKGraphRequestConnection taskDidCompleteWithResponse:data:requestStartTime:handler:]
+-[FBSDKGraphRequestConnection taskDidCompleteWithError:handler:]
+-[FBSDKGraphRequestConnection logRequest:bodyLength:bodyLogger:attachmentLogger:]
+-[FBSDKGraphRequestConnection accessTokenWithRequest:]
+-[FBSDKGraphRequestConnection registerTokenToOmitFromLog:]
++[FBSDKGraphRequestConnection userAgent]
+___40+[FBSDKGraphRequestConnection userAgent]_block_invoke
+-[FBSDKGraphRequestConnection URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:]
+-[FBSDKGraphRequestConnection processorDidAttemptRecovery:didRecover:error:]
+___76-[FBSDKGraphRequestConnection processorDidAttemptRecovery:didRecover:error:]_block_invoke
+-[FBSDKGraphRequestConnection description]
+-[FBSDKGraphRequestConnection delegate]
+-[FBSDKGraphRequestConnection setDelegate:]
+-[FBSDKGraphRequestConnection timeout]
+-[FBSDKGraphRequestConnection setTimeout:]
+-[FBSDKGraphRequestConnection urlResponse]
+-[FBSDKGraphRequestConnection requests]
+-[FBSDKGraphRequestConnection setRequests:]
+-[FBSDKGraphRequestConnection state]
+-[FBSDKGraphRequestConnection setState:]
+-[FBSDKGraphRequestConnection logger]
+-[FBSDKGraphRequestConnection setLogger:]
+-[FBSDKGraphRequestConnection requestStartTime]
+-[FBSDKGraphRequestConnection setRequestStartTime:]
+-[FBSDKGraphRequestConnection .cxx_destruct]
+_g_defaultTimeout
+_start.onceToken
+_g_errorConfiguration
+___block_descriptor_24_e4_20s_e45_v16?0"NSData"4"NSURLResponse"8"NSError"12l
+___block_descriptor_28_e4_20s24s_e14_v16?048^c12l
+___block_descriptor_29_e4_20s24s_e14_v16?048^c12l
+___block_descriptor_33_e4_20s24s28s_e41_v16?0"FBSDKGraphRequestMetadata"4I8^c12l
+___block_descriptor_37_e4_20s24s28s32s_e5_v4?0l
+___block_descriptor_24_e4_20s_e7_v8?0i4l
+___block_descriptor_20_e14_v16?04I8^c12l
+___block_literal_global.421
+___block_descriptor_36_e4_20bs24s28s32s_e5_v4?0l
+_userAgent.agent
+_userAgent.onceToken
+___block_literal_global.543
+___block_descriptor_28_e4_20s24s_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+__OBJC_PROTOCOL_$_NSURLSessionDelegate
+__OBJC_LABEL_PROTOCOL_$_NSURLSessionDelegate
+__OBJC_PROTOCOL_$_NSURLSessionTaskDelegate
+__OBJC_LABEL_PROTOCOL_$_NSURLSessionTaskDelegate
+__OBJC_PROTOCOL_$_NSURLSessionDataDelegate
+__OBJC_LABEL_PROTOCOL_$_NSURLSessionDataDelegate
+__OBJC_PROTOCOL_$_FBSDKGraphErrorRecoveryProcessorDelegate
+__OBJC_LABEL_PROTOCOL_$_FBSDKGraphErrorRecoveryProcessorDelegate
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._overrideVersionPart
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._expectingResults
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._delegateQueue
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._session
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._recoveringRequestMetadata
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._errorRecoveryProcessor
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._delegate
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._urlResponse
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._requests
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._state
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._logger
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._timeout
+_OBJC_IVAR_$_FBSDKGraphRequestConnection._requestStartTime
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequestConnection.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequestConnection.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequestConnection.h
+__76-[FBSDKGraphRequestConnection processorDidAttemptRecovery:didRecover:error:]_block_invoke
+__40+[FBSDKGraphRequestConnection userAgent]_block_invoke
+__copy_helper_block_e4_20b24s28s32s
+__73-[FBSDKGraphRequestConnection invokeHandler:error:response:responseData:]_block_invoke
+__60-[FBSDKGraphRequestConnection processResultDebugDictionary:]_block_invoke
+__82-[FBSDKGraphRequestConnection processResultBody:error:metadata:canNotifyDelegate:]_block_invoke.403
+_CreateExpiredAccessToken
+__82-[FBSDKGraphRequestConnection processResultBody:error:metadata:canNotifyDelegate:]_block_invoke
+__64-[FBSDKGraphRequestConnection completeWithResults:networkError:]_block_invoke
+__75-[FBSDKGraphRequestConnection appendAttachments:toBody:addFormData:logger:]_block_invoke
+__73-[FBSDKGraphRequestConnection addRequest:toBatch:attachments:batchToken:]_block_invoke
+__36-[FBSDKGraphRequestConnection start]_block_invoke.118
+__36-[FBSDKGraphRequestConnection start]_block_invoke_3
+__36-[FBSDKGraphRequestConnection start]_block_invoke_2
+__36-[FBSDKGraphRequestConnection start]_block_invoke
+-[FBSDKGraphRequestDataAttachment initWithData:filename:contentType:]
+-[FBSDKGraphRequestDataAttachment contentType]
+-[FBSDKGraphRequestDataAttachment data]
+-[FBSDKGraphRequestDataAttachment filename]
+-[FBSDKGraphRequestDataAttachment .cxx_destruct]
+_OBJC_IVAR_$_FBSDKGraphRequestDataAttachment._contentType
+_OBJC_IVAR_$_FBSDKGraphRequestDataAttachment._data
+_OBJC_IVAR_$_FBSDKGraphRequestDataAttachment._filename
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequestDataAttachment.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequestDataAttachment.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/GraphAPI/FBSDKGraphRequestDataAttachment.h
+-[FBSDKGraphRequestMetadata initWithRequest:completionHandler:batchParameters:]
+-[FBSDKGraphRequestMetadata invokeCompletionHandlerForConnection:withResults:error:]
+-[FBSDKGraphRequestMetadata description]
+-[FBSDKGraphRequestMetadata request]
+-[FBSDKGraphRequestMetadata setRequest:]
+-[FBSDKGraphRequestMetadata completionHandler]
+-[FBSDKGraphRequestMetadata setCompletionHandler:]
+-[FBSDKGraphRequestMetadata batchParameters]
+-[FBSDKGraphRequestMetadata setBatchParameters:]
+-[FBSDKGraphRequestMetadata .cxx_destruct]
+_OBJC_IVAR_$_FBSDKGraphRequestMetadata._request
+_OBJC_IVAR_$_FBSDKGraphRequestMetadata._completionHandler
+_OBJC_IVAR_$_FBSDKGraphRequestMetadata._batchParameters
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestMetadata.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestMetadata.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestMetadata.h
++[FBSDKGraphRequestPiggybackManager addPiggybackRequests:]
++[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]
+___75+[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]_block_invoke
+___copy_helper_block_e4_20s24r28r32r36r40r44r48r52r
+___destroy_helper_block_e4_20s24r28r32r36r40r44r48r52r
+___75+[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]_block_invoke.74
+___copy_helper_block_e4_20b24r28r32r36r
+___destroy_helper_block_e4_20s24r28r32r36r
+___75+[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]_block_invoke.90
+___copy_helper_block_e4_20b24b28r32r36r
+___destroy_helper_block_e4_20s24s28r32r36r
++[FBSDKGraphRequestPiggybackManager addRefreshPiggybackIfStale:]
+___64+[FBSDKGraphRequestPiggybackManager addRefreshPiggybackIfStale:]_block_invoke
++[FBSDKGraphRequestPiggybackManager addServerConfigurationPiggyback:]
+___69+[FBSDKGraphRequestPiggybackManager addServerConfigurationPiggyback:]_block_invoke
+___block_descriptor_56_e4_20s24r28r32r36r40r44r48r52r_e5_v4?0l
+___block_descriptor_40_e4_20bs24r28r32r36r_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+___block_descriptor_40_e4_20bs24bs28r32r36r_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+_addRefreshPiggybackIfStale:.lastRefreshTry
+_addRefreshPiggybackIfStale:.onceToken
+___block_descriptor_24_e4_20s_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestPiggybackManager.m
+__69+[FBSDKGraphRequestPiggybackManager addServerConfigurationPiggyback:]_block_invoke
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestPiggybackManager.m
+__64+[FBSDKGraphRequestPiggybackManager addRefreshPiggybackIfStale:]_block_invoke
+__destroy_helper_block_e4_20s24s28r32r36r
+__copy_helper_block_e4_20b24b28r32r36r
+__75+[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]_block_invoke.90
+__destroy_helper_block_e4_20s24r28r32r36r
+__copy_helper_block_e4_20b24r28r32r36r
+__75+[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]_block_invoke.74
+__destroy_helper_block_e4_20s24r28r32r36r40r44r48r52r
+__copy_helper_block_e4_20s24r28r32r36r40r44r48r52r
+__75+[FBSDKGraphRequestPiggybackManager addRefreshPiggyback:permissionHandler:]_block_invoke
+-[FBSDKHybridAppEventsScriptMessageHandler userContentController:didReceiveScriptMessage:]
+__OBJC_PROTOCOL_$_WKScriptMessageHandler
+__OBJC_LABEL_PROTOCOL_$_WKScriptMessageHandler
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKHybridAppEventsScriptMessageHandler.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKHybridAppEventsScriptMessageHandler.m
+-[FBSDKIcon initWithColor:]
+-[FBSDKIcon init]
+-[FBSDKIcon imageWithSize:]
+-[FBSDKIcon pathWithSize:]
+-[FBSDKIcon color]
+-[FBSDKIcon .cxx_destruct]
+_OBJC_IVAR_$_FBSDKIcon._color
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKIcon.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKIcon.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKIcon.h
++[FBSDKImageDownloader sharedInstance]
+___38+[FBSDKImageDownloader sharedInstance]_block_invoke
+-[FBSDKImageDownloader init]
+-[FBSDKImageDownloader removeAll]
+-[FBSDKImageDownloader downloadImageWithURL:ttl:completion:]
+___60-[FBSDKImageDownloader downloadImageWithURL:ttl:completion:]_block_invoke
+___60-[FBSDKImageDownloader downloadImageWithURL:ttl:completion:]_block_invoke.34
+___copy_helper_block_e4_20s24s28b32b
+-[FBSDKImageDownloader .cxx_destruct]
+_sharedInstance.instance
+___block_descriptor_24_e4_20bs_e28_v8?0"NSCachedURLResponse"4l
+___block_descriptor_36_e4_20s24s28bs32bs_e45_v16?0"NSData"4"NSURLResponse"8"NSError"12l
+_OBJC_IVAR_$_FBSDKImageDownloader._urlCache
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKImageDownloader.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKImageDownloader.m
+__copy_helper_block_e4_20s24s28b32b
+__60-[FBSDKImageDownloader downloadImageWithURL:ttl:completion:]_block_invoke.34
+__60-[FBSDKImageDownloader downloadImageWithURL:ttl:completion:]_block_invoke
+__38+[FBSDKImageDownloader sharedInstance]_block_invoke
++[FBSDKInstrumentManager enable]
+___32+[FBSDKInstrumentManager enable]_block_invoke
+___32+[FBSDKInstrumentManager enable]_block_invoke_2
+___block_literal_global.7
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/FBSDKInstrumentManager.m
+__32+[FBSDKInstrumentManager enable]_block_invoke_2
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Instrument/FBSDKInstrumentManager.m
+__32+[FBSDKInstrumentManager enable]_block_invoke
++[FBSDKInternalUtility appURLScheme]
++[FBSDKInternalUtility appURLWithHost:path:queryParameters:error:]
++[FBSDKInternalUtility dictionaryFromFBURL:]
++[FBSDKInternalUtility bundleForStrings]
+___40+[FBSDKInternalUtility bundleForStrings]_block_invoke
++[FBSDKInternalUtility currentTimeInMilliseconds]
++[FBSDKInternalUtility extractPermissionsFromResponse:grantedPermissions:declinedPermissions:expiredPermissions:]
++[FBSDKInternalUtility facebookURLWithHostPrefix:path:queryParameters:error:]
++[FBSDKInternalUtility facebookURLWithHostPrefix:path:queryParameters:defaultVersion:error:]
++[FBSDKInternalUtility isBrowserURL:]
++[FBSDKInternalUtility isFacebookBundleIdentifier:]
++[FBSDKInternalUtility isOSRunTimeVersionAtLeast:]
++[FBSDKInternalUtility isSafariBundleIdentifier:]
++[FBSDKInternalUtility isUIKitLinkTimeVersionAtLeast:]
+___54+[FBSDKInternalUtility isUIKitLinkTimeVersionAtLeast:]_block_invoke
++[FBSDKInternalUtility isUIKitRunTimeVersionAtLeast:]
+___53+[FBSDKInternalUtility isUIKitRunTimeVersionAtLeast:]_block_invoke
++[FBSDKInternalUtility getMajorVersionFromFullLibraryVersion:]
++[FBSDKInternalUtility object:isEqualToObject:]
++[FBSDKInternalUtility operatingSystemVersion]
+___46+[FBSDKInternalUtility operatingSystemVersion]_block_invoke
++[FBSDKInternalUtility shouldManuallyAdjustOrientation]
++[FBSDKInternalUtility URLWithScheme:host:path:queryParameters:error:]
++[FBSDKInternalUtility deleteFacebookCookies]
++[FBSDKInternalUtility registerTransientObject:]
++[FBSDKInternalUtility unregisterTransientObject:]
++[FBSDKInternalUtility viewControllerForView:]
++[FBSDKInternalUtility isFacebookAppInstalled]
+___46+[FBSDKInternalUtility isFacebookAppInstalled]_block_invoke
++[FBSDKInternalUtility isMessengerAppInstalled]
+___47+[FBSDKInternalUtility isMessengerAppInstalled]_block_invoke
++[FBSDKInternalUtility isMSQRDPlayerAppInstalled]
+___49+[FBSDKInternalUtility isMSQRDPlayerAppInstalled]_block_invoke
++[FBSDKInternalUtility _compareOperatingSystemVersion:toVersion:]
++[FBSDKInternalUtility _canOpenURLScheme:]
++[FBSDKInternalUtility validateAppID]
++[FBSDKInternalUtility validateRequiredClientAccessToken]
++[FBSDKInternalUtility validateURLSchemes]
++[FBSDKInternalUtility validateFacebookReservedURLSchemes]
++[FBSDKInternalUtility findWindow]
++[FBSDKInternalUtility topMostViewController]
++[FBSDKInternalUtility hexadecimalStringFromData:]
++[FBSDKInternalUtility isRegisteredURLScheme:]
+___46+[FBSDKInternalUtility isRegisteredURLScheme:]_block_invoke
++[FBSDKInternalUtility checkRegisteredCanOpenURLScheme:]
+___56+[FBSDKInternalUtility checkRegisteredCanOpenURLScheme:]_block_invoke
++[FBSDKInternalUtility isRegisteredCanOpenURLScheme:]
+___53+[FBSDKInternalUtility isRegisteredCanOpenURLScheme:]_block_invoke
++[FBSDKInternalUtility isPublishPermission:]
++[FBSDKInternalUtility isUnity]
+_bundleForStrings.bundle
+_bundleForStrings.onceToken
+_isUIKitLinkTimeVersionAtLeast:.linkTimeMajorVersion
+_isUIKitLinkTimeVersionAtLeast:.getVersionOnce
+_isUIKitRunTimeVersionAtLeast:.runTimeMajorVersion
+_isUIKitRunTimeVersionAtLeast:.getVersionOnce
+_operatingSystemVersion.operatingSystemVersion
+_operatingSystemVersion.getVersionOnce
+__transientObjects
+_isFacebookAppInstalled.onceToken
+___block_literal_global.218
+_isMessengerAppInstalled.onceToken
+___block_literal_global.226
+_isMSQRDPlayerAppInstalled.onceToken
+___block_literal_global.229
+_isRegisteredURLScheme:.fetchBundleOnce
+_isRegisteredURLScheme:.urlTypes
+___block_literal_global.317
+_checkRegisteredCanOpenURLScheme:.initCheckedSchemesOnce
+_checkRegisteredCanOpenURLScheme:.checkedSchemes
+___block_literal_global.326
+_isRegisteredCanOpenURLScheme:.fetchBundleOnce
+_isRegisteredCanOpenURLScheme:.schemes
+___block_literal_global.334
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKInternalUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKInternalUtility.m
+__53+[FBSDKInternalUtility isRegisteredCanOpenURLScheme:]_block_invoke
+__56+[FBSDKInternalUtility checkRegisteredCanOpenURLScheme:]_block_invoke
+__46+[FBSDKInternalUtility isRegisteredURLScheme:]_block_invoke
+__49+[FBSDKInternalUtility isMSQRDPlayerAppInstalled]_block_invoke
+__47+[FBSDKInternalUtility isMessengerAppInstalled]_block_invoke
+__46+[FBSDKInternalUtility isFacebookAppInstalled]_block_invoke
+__46+[FBSDKInternalUtility operatingSystemVersion]_block_invoke
+__53+[FBSDKInternalUtility isUIKitRunTimeVersionAtLeast:]_block_invoke
+__54+[FBSDKInternalUtility isUIKitLinkTimeVersionAtLeast:]_block_invoke
+__40+[FBSDKInternalUtility bundleForStrings]_block_invoke
+-[FBSDKKeychainStore initWithService:accessGroup:]
+-[FBSDKKeychainStore setDictionary:forKey:accessibility:]
+-[FBSDKKeychainStore dictionaryForKey:]
+-[FBSDKKeychainStore setString:forKey:accessibility:]
+-[FBSDKKeychainStore stringForKey:]
+-[FBSDKKeychainStore setData:forKey:accessibility:]
+-[FBSDKKeychainStore dataForKey:]
+-[FBSDKKeychainStore queryForKey:]
+-[FBSDKKeychainStore service]
+-[FBSDKKeychainStore accessGroup]
+-[FBSDKKeychainStore .cxx_destruct]
+_OBJC_IVAR_$_FBSDKKeychainStore._service
+_OBJC_IVAR_$_FBSDKKeychainStore._accessGroup
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStore.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStore.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStore.h
+-[FBSDKKeychainStoreViaBundleID init]
+-[FBSDKKeychainStoreViaBundleID initWithService:accessGroup:]
+-[FBSDKKeychainStoreViaBundleID queryForKey:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStoreViaBundleID.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStoreViaBundleID.m
++[FBSDKLibAnalyzer initialize]
++[FBSDKLibAnalyzer getMethodsTable:frameworks:]
++[FBSDKLibAnalyzer getClassNames:frameworks:]
++[FBSDKLibAnalyzer getClassesFrom:prefixes:]
++[FBSDKLibAnalyzer addClass:isClassMethod:]
++[FBSDKLibAnalyzer symbolicateCallstack:methodMapping:]
+___55+[FBSDKLibAnalyzer symbolicateCallstack:methodMapping:]_block_invoke
++[FBSDKLibAnalyzer getAddress:]
++[FBSDKLibAnalyzer getOffset:secondString:]
++[FBSDKLibAnalyzer searchMethod:sortedAllAddress:]
+___50+[FBSDKLibAnalyzer searchMethod:sortedAllAddress:]_block_invoke
+__methodMapping
+___block_literal_global.88
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Instrument/FBSDKLibAnalyzer.m
+__50+[FBSDKLibAnalyzer searchMethod:sortedAllAddress:]_block_invoke
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Instrument/FBSDKLibAnalyzer.m
+__55+[FBSDKLibAnalyzer symbolicateCallstack:methodMapping:]_block_invoke
+-[FBSDKLogger initWithLoggingBehavior:]
+-[FBSDKLogger contents]
+-[FBSDKLogger setContents:]
+-[FBSDKLogger appendString:]
+-[FBSDKLogger appendFormat:]
+-[FBSDKLogger appendKey:value:]
+-[FBSDKLogger emitToNSLog]
++[FBSDKLogger generateSerialNumber]
++[FBSDKLogger singleShotLogEntry:logEntry:]
++[FBSDKLogger singleShotLogEntry:formatString:]
++[FBSDKLogger singleShotLogEntry:timestampTag:formatString:]
++[FBSDKLogger registerCurrentTime:withTag:]
++[FBSDKLogger registerStringToReplace:replaceWith:]
+-[FBSDKLogger loggerSerialNumber]
+-[FBSDKLogger loggingBehavior]
+-[FBSDKLogger isActive]
+-[FBSDKLogger internalContents]
+-[FBSDKLogger .cxx_destruct]
+_g_stringsToReplace
+_g_startTimesWithTags
+_g_serialNumberCounter
+_OBJC_IVAR_$_FBSDKLogger._active
+_OBJC_IVAR_$_FBSDKLogger._loggerSerialNumber
+_OBJC_IVAR_$_FBSDKLogger._loggingBehavior
+_OBJC_IVAR_$_FBSDKLogger._internalContents
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKLogger.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKLogger.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKLogger.h
+-[FBSDKLogo pathWithSize:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKLogo.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKLogo.m
+-[FBSDKMaleSilhouetteIcon pathWithSize:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKMaleSilhouetteIcon.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKMaleSilhouetteIcon.m
++[FBSDKMath ceilForPoint:]
++[FBSDKMath ceilForSize:]
++[FBSDKMath floorForPoint:]
++[FBSDKMath floorForSize:]
++[FBSDKMath hashWithCGFloat:]
++[FBSDKMath hashWithCString:]
++[FBSDKMath hashWithDouble:]
++[FBSDKMath hashWithFloat:]
++[FBSDKMath hashWithInteger:]
++[FBSDKMath hashWithInteger:andInteger:]
++[FBSDKMath hashWithIntegerArray:count:]
++[FBSDKMath hashWithLong:]
++[FBSDKMath hashWithPointer:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKMath.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKMath.m
+-[FBSDKMeasurementEvent postNotification]
+-[FBSDKMeasurementEvent initEventWithName:args:]
++[FBSDKMeasurementEvent postNotificationForEventName:args:]
+-[FBSDKMeasurementEvent .cxx_destruct]
+_OBJC_IVAR_$_FBSDKMeasurementEvent._name
+_OBJC_IVAR_$_FBSDKMeasurementEvent._args
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKMeasurementEvent.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKMeasurementEvent.m
++[FBSDKMeasurementEventListener defaultListener]
+___48+[FBSDKMeasurementEventListener defaultListener]_block_invoke
+-[FBSDKMeasurementEventListener logFBAppEventForNotification:]
+-[FBSDKMeasurementEventListener dealloc]
+_defaultListener.dispatchOnceLocker
+_defaultListener.defaultListener
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/Internal/FBSDKMeasurementEventListener.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/Internal/FBSDKMeasurementEventListener.m
+__48+[FBSDKMeasurementEventListener defaultListener]_block_invoke
++[FBSDKMetadataIndexer initialize]
++[FBSDKMetadataIndexer enable]
+___30+[FBSDKMetadataIndexer enable]_block_invoke
++[FBSDKMetadataIndexer setupWithRules:]
+___39+[FBSDKMetadataIndexer setupWithRules:]_block_invoke
++[FBSDKMetadataIndexer initStore]
++[FBSDKMetadataIndexer constructRules:]
++[FBSDKMetadataIndexer setupMetadataIndexing]
+___45+[FBSDKMetadataIndexer setupMetadataIndexing]_block_invoke
+___45+[FBSDKMetadataIndexer setupMetadataIndexing]_block_invoke_2
+___copy_helper_block_e4_24s28s32s
++[FBSDKMetadataIndexer getSiblingViewsOfView:]
++[FBSDKMetadataIndexer getLabelsOfView:]
++[FBSDKMetadataIndexer checkSecureTextEntry:]
++[FBSDKMetadataIndexer getKeyboardType:]
++[FBSDKMetadataIndexer getMetadataWithText:placeholder:labels:secureTextEntry:inputType:]
++[FBSDKMetadataIndexer checkAndAppendData:forKey:]
+___50+[FBSDKMetadataIndexer checkAndAppendData:forKey:]_block_invoke
++[FBSDKMetadataIndexer checkMetadataLabels:matchRuleK:]
++[FBSDKMetadataIndexer checkMetadataHint:matchRuleK:]
++[FBSDKMetadataIndexer checkMetadataText:matchRuleV:]
++[FBSDKMetadataIndexer normalizeField:]
++[FBSDKMetadataIndexer normalizedValue:]
+_FBSDKMetadataIndexerKeys
+_serialQueue
+___block_descriptor_20_e45_v12?0"FBSDKServerConfiguration"4"NSError"8l
+_setupWithRules:.onceToken
+__store
+__OBJC_PROTOCOL_$_UITextInputTraits
+__OBJC_LABEL_PROTOCOL_$_UITextInputTraits
+__OBJC_PROTOCOL_$_UIKeyInput
+__OBJC_LABEL_PROTOCOL_$_UIKeyInput
+__OBJC_PROTOCOL_$_UITextInput
+__OBJC_LABEL_PROTOCOL_$_UITextInput
+l_OBJC_PROTOCOL_REFERENCE_$_UITextInput
+___block_descriptor_41_e4_24s28s32s_e5_v4?0l
+___block_descriptor_24_e4__e15_v8?0"UIView"4l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/AAM/FBSDKMetadataIndexer.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/AAM/FBSDKMetadataIndexer.m
+__50+[FBSDKMetadataIndexer checkAndAppendData:forKey:]_block_invoke
+__copy_helper_block_e4_24s28s32s
+__45+[FBSDKMetadataIndexer setupMetadataIndexing]_block_invoke_2
+__45+[FBSDKMetadataIndexer setupMetadataIndexing]_block_invoke
+__39+[FBSDKMetadataIndexer setupWithRules:]_block_invoke
+__30+[FBSDKMetadataIndexer enable]_block_invoke
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Device/FBSDKModalFormPresentationController.m
++[FBSDKModelManager enable]
+___27+[FBSDKModelManager enable]_block_invoke
+___27+[FBSDKModelManager enable]_block_invoke_2
+___27+[FBSDKModelManager enable]_block_invoke_3
+___27+[FBSDKModelManager enable]_block_invoke_4
+___27+[FBSDKModelManager enable]_block_invoke.72
+___27+[FBSDKModelManager enable]_block_invoke_2.73
++[FBSDKModelManager getModelAndRules:handler:]
+___46+[FBSDKModelManager getModelAndRules:handler:]_block_invoke
++[FBSDKModelManager download:filePath:queue:group:]
+___51+[FBSDKModelManager download:filePath:queue:group:]_block_invoke
++[FBSDKModelManager convertToDictionary:]
++[FBSDKModelManager getRules]
++[FBSDKModelManager getWeightsPath:]
+_enable.onceToken
+__directoryPath
+___block_descriptor_24_e4__e7_v8?0c4l
+___block_literal_global.74
+__modelInfo
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ML/FBSDKModelManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ML/FBSDKModelManager.m
+__51+[FBSDKModelManager download:filePath:queue:group:]_block_invoke
+__46+[FBSDKModelManager getModelAndRules:handler:]_block_invoke
+__27+[FBSDKModelManager enable]_block_invoke_2.73
+__27+[FBSDKModelManager enable]_block_invoke.72
+__27+[FBSDKModelManager enable]_block_invoke_4
+__27+[FBSDKModelManager enable]_block_invoke_3
+__27+[FBSDKModelManager enable]_block_invoke_2
+__27+[FBSDKModelManager enable]_block_invoke
++[FBSDKModelUtility normalizeText:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ML/FBSDKModelUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ML/FBSDKModelUtility.m
+__get_time_nanoseconds
+___FBSDKMonotonicTimeConvertSecondsToMachUnits_block_invoke
+___FBSDKMonotonicTimeConvertMachUnitsToSeconds_block_invoke
+____get_time_nanoseconds_block_invoke
+___FBSDKMonotonicTimeConvertSecondsToMachUnits_block_invoke.cold.1
+___FBSDKMonotonicTimeConvertMachUnitsToSeconds_block_invoke.cold.1
+____get_time_nanoseconds_block_invoke.cold.1
+_FBSDKMonotonicTimeConvertSecondsToMachUnits.ratio
+_FBSDKMonotonicTimeConvertSecondsToMachUnits.onceToken
+_FBSDKMonotonicTimeConvertMachUnitsToSeconds.ratio
+_FBSDKMonotonicTimeConvertMachUnitsToSeconds.onceToken
+___block_literal_global.3
+__get_time_nanoseconds.tb_info
+__get_time_nanoseconds.onceToken
+___block_literal_global.4
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKMonotonicTime.m
+___get_time_nanoseconds_block_invoke
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKMonotonicTime.m
+__FBSDKMonotonicTimeConvertMachUnitsToSeconds_block_invoke
+__FBSDKMonotonicTimeConvertSecondsToMachUnits_block_invoke
+FBSDKMonotonicTimeConvertMachUnitsToSeconds
+FBSDKMonotonicTimeConvertSecondsToMachUnits
+FBSDKMonotonicTimeGetCurrentNanoseconds
+FBSDKMonotonicTimeGetCurrentMilliseconds
+_get_time_nanoseconds
+FBSDKMonotonicTimeGetCurrentSeconds
++[FBSDKPaymentObserver startObservingTransactions]
++[FBSDKPaymentObserver stopObservingTransactions]
++[FBSDKPaymentObserver singleton]
+___33+[FBSDKPaymentObserver singleton]_block_invoke
+-[FBSDKPaymentObserver init]
+-[FBSDKPaymentObserver startObservingTransactions]
+-[FBSDKPaymentObserver stopObservingTransactions]
+-[FBSDKPaymentObserver paymentQueue:updatedTransactions:]
+-[FBSDKPaymentObserver handleTransaction:]
++[FBSDKPaymentProductRequestor initialize]
+-[FBSDKPaymentProductRequestor initWithTransaction:]
+-[FBSDKPaymentProductRequestor setProductRequest:]
+-[FBSDKPaymentProductRequestor resolveProducts]
+-[FBSDKPaymentProductRequestor getTruncatedString:]
+-[FBSDKPaymentProductRequestor logTransactionEvent:]
+-[FBSDKPaymentProductRequestor isSubscription:]
+-[FBSDKPaymentProductRequestor getEventParametersOfProduct:withTransaction:]
+-[FBSDKPaymentProductRequestor appendOriginalTransactionID:]
+-[FBSDKPaymentProductRequestor clearOriginalTransactionID:]
+-[FBSDKPaymentProductRequestor isStartTrial:ofProduct:]
+-[FBSDKPaymentProductRequestor hasStartTrial:]
+-[FBSDKPaymentProductRequestor durationOfSubscriptionPeriod:]
+-[FBSDKPaymentProductRequestor productsRequest:didReceiveResponse:]
+-[FBSDKPaymentProductRequestor requestDidFinish:]
+-[FBSDKPaymentProductRequestor request:didFailWithError:]
+-[FBSDKPaymentProductRequestor cleanUp]
+-[FBSDKPaymentProductRequestor logImplicitSubscribeTransaction:ofProduct:]
+-[FBSDKPaymentProductRequestor logImplicitPurchaseTransaction:ofProduct:]
+-[FBSDKPaymentProductRequestor logImplicitTransactionEvent:valueToSum:parameters:]
+-[FBSDKPaymentProductRequestor fetchDeviceReceipt]
+-[FBSDKPaymentProductRequestor transaction]
+-[FBSDKPaymentProductRequestor setTransaction:]
+-[FBSDKPaymentProductRequestor productRequest]
+-[FBSDKPaymentProductRequestor .cxx_destruct]
+_singleton.pred
+__OBJC_PROTOCOL_$_SKPaymentTransactionObserver
+__OBJC_LABEL_PROTOCOL_$_SKPaymentTransactionObserver
+_OBJC_IVAR_$_FBSDKPaymentObserver._observingTransactions
+_g_pendingRequestors
+__OBJC_PROTOCOL_$_SKRequestDelegate
+__OBJC_LABEL_PROTOCOL_$_SKRequestDelegate
+__OBJC_PROTOCOL_$_SKProductsRequestDelegate
+__OBJC_LABEL_PROTOCOL_$_SKProductsRequestDelegate
+_OBJC_IVAR_$_FBSDKPaymentProductRequestor._originalTransactionSet
+_OBJC_IVAR_$_FBSDKPaymentProductRequestor._eventsWithReceipt
+_OBJC_IVAR_$_FBSDKPaymentProductRequestor._formatter
+_OBJC_IVAR_$_FBSDKPaymentProductRequestor._transaction
+_OBJC_IVAR_$_FBSDKPaymentProductRequestor._productRequest
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKPaymentObserver.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKPaymentObserver.m
+__33+[FBSDKPaymentObserver singleton]_block_invoke
+-[FBSDKProfile initWithUserID:firstName:middleName:lastName:name:linkURL:refreshDate:]
++[FBSDKProfile currentProfile]
++[FBSDKProfile setCurrentProfile:]
+-[FBSDKProfile imageURLForPictureMode:size:]
++[FBSDKProfile enableUpdatesOnAccessTokenChange:]
++[FBSDKProfile loadCurrentProfileWithCompletion:]
+-[FBSDKProfile copyWithZone:]
+-[FBSDKProfile hash]
+-[FBSDKProfile isEqual:]
+-[FBSDKProfile isEqualToProfile:]
++[FBSDKProfile supportsSecureCoding]
+-[FBSDKProfile initWithCoder:]
+-[FBSDKProfile encodeWithCoder:]
++[FBSDKProfile loadProfileWithToken:completion:]
+___48+[FBSDKProfile loadProfileWithToken:completion:]_block_invoke
++[FBSDKProfile observeChangeAccessTokenChange:]
+-[FBSDKProfile userID]
+-[FBSDKProfile firstName]
+-[FBSDKProfile middleName]
+-[FBSDKProfile lastName]
+-[FBSDKProfile name]
+-[FBSDKProfile linkURL]
+-[FBSDKProfile refreshDate]
+-[FBSDKProfile .cxx_destruct]
++[FBSDKProfile(Internal) cacheProfile:]
++[FBSDKProfile(Internal) fetchCachedProfile]
+_g_currentProfile
+_loadProfileWithToken:completion:.executingRequestConnection
+___block_descriptor_32_e4_20s24bs_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+_OBJC_IVAR_$_FBSDKProfile._userID
+_OBJC_IVAR_$_FBSDKProfile._firstName
+_OBJC_IVAR_$_FBSDKProfile._middleName
+_OBJC_IVAR_$_FBSDKProfile._lastName
+_OBJC_IVAR_$_FBSDKProfile._name
+_OBJC_IVAR_$_FBSDKProfile._linkURL
+_OBJC_IVAR_$_FBSDKProfile._refreshDate
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKProfile.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKProfile.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKProfile.h
+__48+[FBSDKProfile loadProfileWithToken:completion:]_block_invoke
+-[FBSDKProfilePictureViewState initWithProfileID:size:scale:pictureMode:imageShouldFit:]
+-[FBSDKProfilePictureViewState hash]
+-[FBSDKProfilePictureViewState isEqual:]
+-[FBSDKProfilePictureViewState isEqualToState:]
+-[FBSDKProfilePictureViewState isValidForState:]
+-[FBSDKProfilePictureViewState imageShouldFit]
+-[FBSDKProfilePictureViewState pictureMode]
+-[FBSDKProfilePictureViewState profileID]
+-[FBSDKProfilePictureViewState scale]
+-[FBSDKProfilePictureViewState size]
+-[FBSDKProfilePictureViewState .cxx_destruct]
+-[FBSDKProfilePictureView initWithFrame:]
+-[FBSDKProfilePictureView initWithCoder:]
+-[FBSDKProfilePictureView initWithFrame:profile:]
+-[FBSDKProfilePictureView initWithProfile:]
+-[FBSDKProfilePictureView dealloc]
+-[FBSDKProfilePictureView setBounds:]
+___37-[FBSDKProfilePictureView setBounds:]_block_invoke
+-[FBSDKProfilePictureView contentMode]
+-[FBSDKProfilePictureView setContentMode:]
+-[FBSDKProfilePictureView setMode:]
+-[FBSDKProfilePictureView setProfileID:]
+-[FBSDKProfilePictureView setNeedsImageUpdate]
+___46-[FBSDKProfilePictureView setNeedsImageUpdate]_block_invoke
+-[FBSDKProfilePictureView _accessTokenDidChangeNotification:]
+-[FBSDKProfilePictureView _configureProfilePictureView]
+-[FBSDKProfilePictureView _imageShouldFit]
+-[FBSDKProfilePictureView _imageSize:scale:]
+-[FBSDKProfilePictureView _needsImageUpdate]
+___44-[FBSDKProfilePictureView _needsImageUpdate]_block_invoke
+___copy_helper_block_e4_20s24w
+-[FBSDKProfilePictureView _setPlaceholderImage]
+___47-[FBSDKProfilePictureView _setPlaceholderImage]_block_invoke
+-[FBSDKProfilePictureView _updateImageWithData:state:]
+___54-[FBSDKProfilePictureView _updateImageWithData:state:]_block_invoke
+-[FBSDKProfilePictureView pictureMode]
+-[FBSDKProfilePictureView setPictureMode:]
+-[FBSDKProfilePictureView profileID]
+-[FBSDKProfilePictureView .cxx_destruct]
+_OBJC_IVAR_$_FBSDKProfilePictureViewState._imageShouldFit
+_OBJC_IVAR_$_FBSDKProfilePictureViewState._pictureMode
+_OBJC_IVAR_$_FBSDKProfilePictureViewState._profileID
+_OBJC_IVAR_$_FBSDKProfilePictureViewState._scale
+_OBJC_IVAR_$_FBSDKProfilePictureViewState._size
+_OBJC_IVAR_$_FBSDKProfilePictureView._profileID
+_OBJC_IVAR_$_FBSDKProfilePictureView._placeholderImageIsValid
+___block_descriptor_40_e4_20s_e5_v4?0l
+_OBJC_IVAR_$_FBSDKProfilePictureView._imageView
+_OBJC_IVAR_$_FBSDKProfilePictureView._pictureMode
+_OBJC_IVAR_$_FBSDKProfilePictureView._hasProfileImage
+_OBJC_IVAR_$_FBSDKProfilePictureView._needsImageUpdate
+_OBJC_IVAR_$_FBSDKProfilePictureView._lastState
+___block_descriptor_28_e4_20s24w_e45_v16?0"NSData"4"NSURLResponse"8"NSError"12l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKProfilePictureView.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKProfilePictureView.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKProfilePictureView.h
+__54-[FBSDKProfilePictureView _updateImageWithData:state:]_block_invoke
+__47-[FBSDKProfilePictureView _setPlaceholderImage]_block_invoke
+__copy_helper_block_e4_20s24w
+__44-[FBSDKProfilePictureView _needsImageUpdate]_block_invoke
+__46-[FBSDKProfilePictureView setNeedsImageUpdate]_block_invoke
+__37-[FBSDKProfilePictureView setBounds:]_block_invoke
+__CGSizeEqualToSize
+-[FBSDKRestrictiveEventFilter initWithEventName:restrictiveParams:]
+-[FBSDKRestrictiveEventFilter eventName]
+-[FBSDKRestrictiveEventFilter restrictiveParams]
+-[FBSDKRestrictiveEventFilter .cxx_destruct]
++[FBSDKRestrictiveDataFilterManager updateFilters:]
++[FBSDKRestrictiveDataFilterManager getMatchedDataTypeWithEventName:paramKey:]
++[FBSDKRestrictiveDataFilterManager processParameters:eventName:]
++[FBSDKRestrictiveDataFilterManager enable]
++[FBSDKRestrictiveDataFilterManager isMatchedWithPattern:text:]
+_OBJC_IVAR_$_FBSDKRestrictiveEventFilter._eventName
+_OBJC_IVAR_$_FBSDKRestrictiveEventFilter._restrictiveParams
+_isRestrictiveEventFilterEnabled
+__params
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/RestrictiveDataFilter/FBSDKRestrictiveDataFilterManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/RestrictiveDataFilter/FBSDKRestrictiveDataFilterManager.m
+-[FBSDKServerConfiguration initWithAppID:appName:loginTooltipEnabled:loginTooltipText:defaultShareMode:advertisingIDEnabled:implicitLoggingEnabled:implicitPurchaseLoggingEnabled:codelessEventsEnabled:uninstallTrackingEnabled:dialogConfigurations:dialogFlows:timestamp:errorConfiguration:sessionTimeoutInterval:defaults:loggingToken:smartLoginOptions:smartLoginBookmarkIconURL:smartLoginMenuIconURL:updateMessage:eventBindings:restrictiveParams:AAMRules:suggestedEventsSetting:]
+-[FBSDKServerConfiguration dialogConfigurationForDialogName:]
+-[FBSDKServerConfiguration useNativeDialogForDialogName:]
+-[FBSDKServerConfiguration useSafariViewControllerForDialogName:]
+-[FBSDKServerConfiguration _useFeatureWithKey:dialogName:]
++[FBSDKServerConfiguration supportsSecureCoding]
+-[FBSDKServerConfiguration initWithCoder:]
+-[FBSDKServerConfiguration encodeWithCoder:]
+-[FBSDKServerConfiguration copyWithZone:]
+-[FBSDKServerConfiguration isAdvertisingIDEnabled]
+-[FBSDKServerConfiguration appID]
+-[FBSDKServerConfiguration appName]
+-[FBSDKServerConfiguration isDefaults]
+-[FBSDKServerConfiguration defaultShareMode]
+-[FBSDKServerConfiguration errorConfiguration]
+-[FBSDKServerConfiguration isImplicitLoggingSupported]
+-[FBSDKServerConfiguration isImplicitPurchaseLoggingSupported]
+-[FBSDKServerConfiguration isCodelessEventsEnabled]
+-[FBSDKServerConfiguration isLoginTooltipEnabled]
+-[FBSDKServerConfiguration isUninstallTrackingEnabled]
+-[FBSDKServerConfiguration loginTooltipText]
+-[FBSDKServerConfiguration timestamp]
+-[FBSDKServerConfiguration sessionTimoutInterval]
+-[FBSDKServerConfiguration setSessionTimoutInterval:]
+-[FBSDKServerConfiguration loggingToken]
+-[FBSDKServerConfiguration smartLoginOptions]
+-[FBSDKServerConfiguration smartLoginBookmarkIconURL]
+-[FBSDKServerConfiguration smartLoginMenuIconURL]
+-[FBSDKServerConfiguration updateMessage]
+-[FBSDKServerConfiguration eventBindings]
+-[FBSDKServerConfiguration restrictiveParams]
+-[FBSDKServerConfiguration AAMRules]
+-[FBSDKServerConfiguration suggestedEventsSetting]
+-[FBSDKServerConfiguration version]
+-[FBSDKServerConfiguration .cxx_destruct]
+_OBJC_IVAR_$_FBSDKServerConfiguration._dialogConfigurations
+_OBJC_IVAR_$_FBSDKServerConfiguration._dialogFlows
+_OBJC_IVAR_$_FBSDKServerConfiguration._version
+_OBJC_IVAR_$_FBSDKServerConfiguration._advertisingIDEnabled
+_OBJC_IVAR_$_FBSDKServerConfiguration._defaults
+_OBJC_IVAR_$_FBSDKServerConfiguration._implicitLoggingEnabled
+_OBJC_IVAR_$_FBSDKServerConfiguration._implicitPurchaseLoggingEnabled
+_OBJC_IVAR_$_FBSDKServerConfiguration._codelessEventsEnabled
+_OBJC_IVAR_$_FBSDKServerConfiguration._loginTooltipEnabled
+_OBJC_IVAR_$_FBSDKServerConfiguration._uninstallTrackingEnabled
+_OBJC_IVAR_$_FBSDKServerConfiguration._appID
+_OBJC_IVAR_$_FBSDKServerConfiguration._appName
+_OBJC_IVAR_$_FBSDKServerConfiguration._defaultShareMode
+_OBJC_IVAR_$_FBSDKServerConfiguration._errorConfiguration
+_OBJC_IVAR_$_FBSDKServerConfiguration._loginTooltipText
+_OBJC_IVAR_$_FBSDKServerConfiguration._timestamp
+_OBJC_IVAR_$_FBSDKServerConfiguration._loggingToken
+_OBJC_IVAR_$_FBSDKServerConfiguration._smartLoginOptions
+_OBJC_IVAR_$_FBSDKServerConfiguration._smartLoginBookmarkIconURL
+_OBJC_IVAR_$_FBSDKServerConfiguration._smartLoginMenuIconURL
+_OBJC_IVAR_$_FBSDKServerConfiguration._updateMessage
+_OBJC_IVAR_$_FBSDKServerConfiguration._eventBindings
+_OBJC_IVAR_$_FBSDKServerConfiguration._restrictiveParams
+_OBJC_IVAR_$_FBSDKServerConfiguration._AAMRules
+_OBJC_IVAR_$_FBSDKServerConfiguration._suggestedEventsSetting
+_OBJC_IVAR_$_FBSDKServerConfiguration._sessionTimoutInterval
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfiguration.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfiguration.h
++[FBSDKServerConfigurationManager initialize]
++[FBSDKServerConfigurationManager clearCache]
++[FBSDKServerConfigurationManager cachedServerConfiguration]
++[FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:]
+___78+[FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:]_block_invoke
++[FBSDKServerConfigurationManager processLoadRequestResponse:error:appID:]
++[FBSDKServerConfigurationManager requestToLoadServerConfiguration:]
++[FBSDKServerConfigurationManager _defaultServerConfigurationForAppID:]
++[FBSDKServerConfigurationManager _didProcessConfigurationFromNetwork:appID:error:]
++[FBSDKServerConfigurationManager _parseDialogConfigurations:]
++[FBSDKServerConfigurationManager _serverConfigurationTimestampIsValid:]
++[FBSDKServerConfigurationManager _wrapperBlockForLoadBlock:]
+___61+[FBSDKServerConfigurationManager _wrapperBlockForLoadBlock:]_block_invoke
+-[FBSDKServerConfigurationManager init]
+__serverConfiguration
+__serverConfigurationError
+__serverConfigurationErrorTimestamp
+__loadingServerConfiguration
+___block_descriptor_28_e4_24s_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+__defaultServerConfigurationForAppID:._defaultServerConfiguration
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfigurationManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfigurationManager.m
+__61+[FBSDKServerConfigurationManager _wrapperBlockForLoadBlock:]_block_invoke
+__78+[FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:]_block_invoke
++[FBSDKSettings initialize]
++[FBSDKSettings appID]
++[FBSDKSettings setAppID:]
++[FBSDKSettings appURLSchemeSuffix]
++[FBSDKSettings setAppURLSchemeSuffix:]
++[FBSDKSettings clientToken]
++[FBSDKSettings setClientToken:]
++[FBSDKSettings displayName]
++[FBSDKSettings setDisplayName:]
++[FBSDKSettings facebookDomainPart]
++[FBSDKSettings setFacebookDomainPart:]
++[FBSDKSettings _JPEGCompressionQualityNumber]
++[FBSDKSettings _setJPEGCompressionQualityNumber:]
++[FBSDKSettings _autoInitEnabled]
++[FBSDKSettings _setAutoInitEnabled:]
++[FBSDKSettings _instrumentEnabled]
++[FBSDKSettings _setInstrumentEnabled:]
++[FBSDKSettings _autoLogAppEventsEnabled]
++[FBSDKSettings _setAutoLogAppEventsEnabled:]
++[FBSDKSettings _advertiserIDCollectionEnabled]
++[FBSDKSettings _setAdvertiserIDCollectionEnabled:]
++[FBSDKSettings _codelessDebugLogEnabled]
++[FBSDKSettings _setCodelessDebugLogEnabled:]
++[FBSDKSettings isGraphErrorRecoveryEnabled]
++[FBSDKSettings setGraphErrorRecoveryEnabled:]
++[FBSDKSettings JPEGCompressionQuality]
++[FBSDKSettings setJPEGCompressionQuality:]
++[FBSDKSettings isAutoInitEnabled]
++[FBSDKSettings setAutoInitEnabled:]
++[FBSDKSettings isInstrumentEnabled]
++[FBSDKSettings setInstrumentEnabled:]
++[FBSDKSettings isCodelessDebugLogEnabled]
++[FBSDKSettings setCodelessDebugLogEnabled:]
++[FBSDKSettings isAutoLogAppEventsEnabled]
++[FBSDKSettings setAutoLogAppEventsEnabled:]
++[FBSDKSettings isAdvertiserIDCollectionEnabled]
++[FBSDKSettings setAdvertiserIDCollectionEnabled:]
++[FBSDKSettings shouldLimitEventAndDataUsage]
++[FBSDKSettings setLimitEventAndDataUsage:]
++[FBSDKSettings loggingBehaviors]
++[FBSDKSettings setLoggingBehaviors:]
++[FBSDKSettings enableLoggingBehavior:]
++[FBSDKSettings disableLoggingBehavior:]
++[FBSDKSettings sdkVersion]
++[FBSDKSettings accessTokenCache]
++[FBSDKSettings setAccessTokenCache:]
++[FBSDKSettings userAgentSuffix]
++[FBSDKSettings setUserAgentSuffix:]
++[FBSDKSettings setGraphAPIVersion:]
++[FBSDKSettings defaultGraphAPIVersion]
++[FBSDKSettings graphAPIVersion]
++[FBSDKSettings appEventSettingsForPlistKey:defaultValue:]
++[FBSDKSettings appEventSettingsForUserDefaultsKey:defaultValue:]
++[FBSDKSettings _logWarnings]
++[FBSDKSettings _logIfSDKSettingsChanged]
++[FBSDKSettings updateGraphAPIDebugBehavior]
++[FBSDKSettings graphAPIDebugParamValue]
+_g_tokenCache
+_g_accessTokenExpirer
+_g_FacebookAppID
+_g_FacebookUrlSchemeSuffix
+_g_FacebookClientToken
+_g_FacebookDisplayName
+_g_FacebookDomainPart
+_g_FacebookJpegCompressionQuality
+_g_FacebookAutoInitEnabled
+_g_FacebookInstrumentEnabled
+_g_FacebookAutoLogAppEventsEnabled
+_g_FacebookAdvertiserIDCollectionEnabled
+_g_FacebookCodelessDebugLogEnabled
+_g_disableErrorRecovery
+_g_loggingBehaviors
+_g_userAgentSuffix
+_g_defaultGraphAPIVersion
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKSettings.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKSettings.m
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/Device/FBSDKSmartDeviceDialogView.m
++[FBSDKSuggestedEventsIndexer initialize]
++[FBSDKSuggestedEventsIndexer enable]
+___37+[FBSDKSuggestedEventsIndexer enable]_block_invoke
++[FBSDKSuggestedEventsIndexer setup]
+___36+[FBSDKSuggestedEventsIndexer setup]_block_invoke
+___36+[FBSDKSuggestedEventsIndexer setup]_block_invoke_2
+___36+[FBSDKSuggestedEventsIndexer setup]_block_invoke.41
+___36+[FBSDKSuggestedEventsIndexer setup]_block_invoke.49
+___36+[FBSDKSuggestedEventsIndexer setup]_block_invoke.53
++[FBSDKSuggestedEventsIndexer rematchBindings]
++[FBSDKSuggestedEventsIndexer matchSubviewsIn:]
++[FBSDKSuggestedEventsIndexer buttonClicked:]
++[FBSDKSuggestedEventsIndexer handleView:withDelegate:]
+___55+[FBSDKSuggestedEventsIndexer handleView:withDelegate:]_block_invoke
+___55+[FBSDKSuggestedEventsIndexer handleView:withDelegate:]_block_invoke.91
++[FBSDKSuggestedEventsIndexer predictEvent:withText:]
+___53+[FBSDKSuggestedEventsIndexer predictEvent:withText:]_block_invoke
+___53+[FBSDKSuggestedEventsIndexer predictEvent:withText:]_block_invoke_2
++[FBSDKSuggestedEventsIndexer getTextFromContentView:]
++[FBSDKSuggestedEventsIndexer logSuggestedEvent:withText:withDenseFeature:]
+___75+[FBSDKSuggestedEventsIndexer logSuggestedEvent:withText:withDenseFeature:]_block_invoke
+__viewTrees
+__optInEvents
+__unconfirmedEvents
+_setup.onceToken
+___block_descriptor_24_e4__e17_v8?0"UIButton"4l
+___block_descriptor_24_e4__e49_v16?0"UITableView"4:8"<UITableViewDelegate>"12l
+___block_descriptor_24_e4__e59_v16?0"UICollectionView"4:8"<UICollectionViewDelegate>"12l
+___block_descriptor_24_e4__e42_v20?04:8"UITableView"12"NSIndexPath"16l
+___block_descriptor_24_e4__e47_v20?04:8"UICollectionView"12"NSIndexPath"16l
+___block_descriptor_36_e4_20s24s28s_e5_v4?0l
+___block_literal_global.181
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/SuggestedEvents/FBSDKSuggestedEventsIndexer.m
+__75+[FBSDKSuggestedEventsIndexer logSuggestedEvent:withText:withDenseFeature:]_block_invoke
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/SuggestedEvents/FBSDKSuggestedEventsIndexer.m
+__53+[FBSDKSuggestedEventsIndexer predictEvent:withText:]_block_invoke_2
+__53+[FBSDKSuggestedEventsIndexer predictEvent:withText:]_block_invoke
+__55+[FBSDKSuggestedEventsIndexer handleView:withDelegate:]_block_invoke.91
+__55+[FBSDKSuggestedEventsIndexer handleView:withDelegate:]_block_invoke
+__36+[FBSDKSuggestedEventsIndexer setup]_block_invoke.53
+__36+[FBSDKSuggestedEventsIndexer setup]_block_invoke.49
+__36+[FBSDKSuggestedEventsIndexer setup]_block_invoke.41
+__36+[FBSDKSuggestedEventsIndexer setup]_block_invoke_2
+__36+[FBSDKSuggestedEventsIndexer setup]_block_invoke
+__37+[FBSDKSuggestedEventsIndexer enable]_block_invoke
++[FBSDKSwizzler initialize]
++[FBSDKSwizzler resolveConflict]
++[FBSDKSwizzler printSwizzles]
++[FBSDKSwizzler swizzleForMethod:]
++[FBSDKSwizzler removeSwizzleForMethod:]
++[FBSDKSwizzler setSwizzle:forMethod:]
++[FBSDKSwizzler isLocallyDefinedMethod:onClass:]
++[FBSDKSwizzler swizzleSelector:onClass:withBlock:named:]
+_fb_swizzleMethod_4_io
++[FBSDKSwizzler unswizzleSelector:onClass:]
++[FBSDKSwizzler unswizzleSelector:onClass:named:]
+-[FBSDKSwizzle init]
+-[FBSDKSwizzle initWithBlock:named:forClass:selector:originalMethod:withNumArgs:]
+-[FBSDKSwizzle description]
+-[FBSDKSwizzle class]
+-[FBSDKSwizzle setClass:]
+-[FBSDKSwizzle selector]
+-[FBSDKSwizzle setSelector:]
+-[FBSDKSwizzle originalMethod]
+-[FBSDKSwizzle setOriginalMethod:]
+-[FBSDKSwizzle numArgs]
+-[FBSDKSwizzle setNumArgs:]
+-[FBSDKSwizzle blocks]
+-[FBSDKSwizzle setBlocks:]
+-[FBSDKSwizzle .cxx_destruct]
+_fb_swizzledMethod_2
+_fb_swizzledMethod_3
+_fb_swizzledMethod_4
+_fb_swizzledMethod_5
+_fb_findSwizzle
+_swizzles
+_fb_swizzledMethods
+_OBJC_IVAR_$_FBSDKSwizzle._class
+_OBJC_IVAR_$_FBSDKSwizzle._selector
+_OBJC_IVAR_$_FBSDKSwizzle._originalMethod
+_OBJC_IVAR_$_FBSDKSwizzle._numArgs
+_OBJC_IVAR_$_FBSDKSwizzle._blocks
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSwizzler.m
+fb_findSwizzle
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSwizzler.m
+fb_swizzledMethod_5
+fb_swizzledMethod_4
+fb_swizzledMethod_3
+fb_swizzledMethod_2
+fb_swizzleMethod_4_io
+-[FBSDKTestUsersManager initWithAppID:appSecret:]
++[FBSDKTestUsersManager sharedInstanceForAppID:appSecret:]
+___58+[FBSDKTestUsersManager sharedInstanceForAppID:appSecret:]_block_invoke
+-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]
+___108-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]_block_invoke
+___108-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]_block_invoke_2
+___108-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]_block_invoke_3
+___copy_helper_block_e4_20b24s28w
+___destroy_helper_block_e4_20s24s28w
+___copy_helper_block_e4_20s24s28b32s36s40r44w
+___destroy_helper_block_e4_20s24s28s32s36s40r44w
+-[FBSDKTestUsersManager addTestAccountWithPermissions:completionHandler:]
+___73-[FBSDKTestUsersManager addTestAccountWithPermissions:completionHandler:]_block_invoke
+-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]
+___62-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]_block_invoke
+___copy_helper_block_e4_20b24r
+___62-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]_block_invoke.98
+___62-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]_block_invoke.103
+-[FBSDKTestUsersManager removeTestAccount:completionHandler:]
+___61-[FBSDKTestUsersManager removeTestAccount:completionHandler:]_block_invoke
+-[FBSDKTestUsersManager tokenDataForTokenString:permissions:userId:]
+-[FBSDKTestUsersManager userIdAndTokenOfExistingAccountWithPermissions:skip:]
+___77-[FBSDKTestUsersManager userIdAndTokenOfExistingAccountWithPermissions:skip:]_block_invoke
+___copy_helper_block_e4_20s24s28r32r
+___destroy_helper_block_e4_20s24s28r32r
+-[FBSDKTestUsersManager appAccessToken]
+-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]
+___74-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]_block_invoke
+___74-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]_block_invoke_2
+___74-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]_block_invoke_3
+___copy_helper_block_e4_20s24b28s32r36r
+___destroy_helper_block_e4_20s24s28s32r36r
+___copy_helper_block_e4_20b24s28s32r36r
+-[FBSDKTestUsersManager .cxx_destruct]
+_sharedInstanceForAppID:appSecret:.onceToken
+_gInstancesDictionary
+___block_descriptor_33_e4_20bs24s28w_e28_v12?0"NSArray"4"NSError"8l
+___block_descriptor_49_e4_20s24s28bs32s36s40r44w_e21_v16?0"NSSet"4I8^c12l
+___block_descriptor_33_e4_20bs24s28s_e16_v8?0"NSError"4l
+___block_descriptor_32_e4_20bs24s28s_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+___block_descriptor_28_e4_20bs24r_e16_v8?0"NSError"4l
+___block_descriptor_36_e4_20s24s28r32r_e38_v16?0"NSString"4"NSDictionary"8^c12l
+___block_descriptor_24_e4_20s_e28_v16?0"NSDictionary"4I8^c12l
+___block_descriptor_40_e4_20s24bs28s32r36r_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+___block_descriptor_40_e4_20bs24s28s32r36r_e51_v16?0"FBSDKGraphRequestConnection"48"NSError"12l
+_OBJC_IVAR_$_FBSDKTestUsersManager._appID
+_OBJC_IVAR_$_FBSDKTestUsersManager._appSecret
+_OBJC_IVAR_$_FBSDKTestUsersManager._accounts
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKTestUsersManager.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKTestUsersManager.m
+__copy_helper_block_e4_20b24s28s32r36r
+__destroy_helper_block_e4_20s24s28s32r36r
+__copy_helper_block_e4_20s24b28s32r36r
+__74-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]_block_invoke_3
+__74-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]_block_invoke_2
+__74-[FBSDKTestUsersManager fetchExistingTestAccountsWithAfterCursor:handler:]_block_invoke
+__destroy_helper_block_e4_20s24s28r32r
+__copy_helper_block_e4_20s24s28r32r
+__77-[FBSDKTestUsersManager userIdAndTokenOfExistingAccountWithPermissions:skip:]_block_invoke
+__61-[FBSDKTestUsersManager removeTestAccount:completionHandler:]_block_invoke
+__62-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]_block_invoke.103
+__62-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]_block_invoke.98
+__copy_helper_block_e4_20b24r
+__62-[FBSDKTestUsersManager makeFriendsWithFirst:second:callback:]_block_invoke
+__73-[FBSDKTestUsersManager addTestAccountWithPermissions:completionHandler:]_block_invoke
+__destroy_helper_block_e4_20s24s28s32s36s40r44w
+__copy_helper_block_e4_20s24s28b32s36s40r44w
+__destroy_helper_block_e4_20s24s28w
+__copy_helper_block_e4_20b24s28w
+__108-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]_block_invoke_3
+__108-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]_block_invoke_2
+__108-[FBSDKTestUsersManager requestTestAccountTokensWithArraysOfPermissions:createIfNotFound:completionHandler:]_block_invoke
+__58+[FBSDKTestUsersManager sharedInstanceForAppID:appSecret:]_block_invoke
++[FBSDKTimeSpentData suspend]
++[FBSDKTimeSpentData restore:]
++[FBSDKTimeSpentData singleton]
+___31+[FBSDKTimeSpentData singleton]_block_invoke
+-[FBSDKTimeSpentData instanceSuspend]
+-[FBSDKTimeSpentData instanceRestore:]
+-[FBSDKTimeSpentData appEventsParametersForActivate]
+-[FBSDKTimeSpentData appEventsParametersForDeactivate]
++[FBSDKTimeSpentData setSourceApplication:openURL:]
++[FBSDKTimeSpentData setSourceApplication:isFromAppLink:]
++[FBSDKTimeSpentData getSourceApplication]
++[FBSDKTimeSpentData resetSourceApplication]
++[FBSDKTimeSpentData registerAutoResetSourceApplication]
+-[FBSDKTimeSpentData .cxx_destruct]
+_INACTIVE_SECONDS_QUANTA
+_g_isOpenedFromAppLink
+_g_sourceApplication
+_OBJC_IVAR_$_FBSDKTimeSpentData._isCurrentlyLoaded
+_OBJC_IVAR_$_FBSDKTimeSpentData._shouldLogActivateEvent
+_OBJC_IVAR_$_FBSDKTimeSpentData._shouldLogDeactivateEvent
+_OBJC_IVAR_$_FBSDKTimeSpentData._secondsSpentInCurrentSession
+_OBJC_IVAR_$_FBSDKTimeSpentData._timeSinceLastSuspend
+_OBJC_IVAR_$_FBSDKTimeSpentData._numInterruptionsInCurrentSession
+_OBJC_IVAR_$_FBSDKTimeSpentData._lastRestoreTime
+_OBJC_IVAR_$_FBSDKTimeSpentData._lastSuspendTime
+_OBJC_IVAR_$_FBSDKTimeSpentData._sessionID
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKTimeSpentData.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKTimeSpentData.m
+__31+[FBSDKTimeSpentData singleton]_block_invoke
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTriStateBOOL.m
+BOOLFromFBSDKTriStateBOOL
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTriStateBOOL.m
+FBSDKTriStateBOOLFromNSNumber
+FBSDKTriStateBOOLFromBOOL
++[FBSDKTypeUtility arrayValue:]
++[FBSDKTypeUtility boolValue:]
++[FBSDKTypeUtility dictionaryValue:]
++[FBSDKTypeUtility integerValue:]
++[FBSDKTypeUtility objectValue:]
++[FBSDKTypeUtility stringValue:]
++[FBSDKTypeUtility timeIntervalValue:]
++[FBSDKTypeUtility unsignedIntegerValue:]
++[FBSDKTypeUtility URLValue:]
++[FBSDKTypeUtility _objectValue:ofClass:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKTypeUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKTypeUtility.m
+-[FBSDKURL initWithURL:forOpenInboundURL:sourceApplication:forRenderBackToReferrerBar:]
+-[FBSDKURL isAutoAppLink]
++[FBSDKURL URLWithURL:]
++[FBSDKURL URLWithInboundURL:sourceApplication:]
++[FBSDKURL URLForRenderBackToReferrerBarURL:]
++[FBSDKURL queryParametersForURL:]
+-[FBSDKURL targetURL]
+-[FBSDKURL targetQueryParameters]
+-[FBSDKURL appLinkData]
+-[FBSDKURL appLinkExtras]
+-[FBSDKURL appLinkReferer]
+-[FBSDKURL inputURL]
+-[FBSDKURL inputQueryParameters]
+-[FBSDKURL .cxx_destruct]
+_OBJC_IVAR_$_FBSDKURL._targetURL
+_OBJC_IVAR_$_FBSDKURL._targetQueryParameters
+_OBJC_IVAR_$_FBSDKURL._appLinkData
+_OBJC_IVAR_$_FBSDKURL._appLinkExtras
+_OBJC_IVAR_$_FBSDKURL._appLinkReferer
+_OBJC_IVAR_$_FBSDKURL._inputURL
+_OBJC_IVAR_$_FBSDKURL._inputQueryParameters
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKURL.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKURL.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKURL.h
+-[FBSDKURLSession initWithDelegate:delegateQueue:]
+-[FBSDKURLSession executeURLRequest:completionHandler:]
+___55-[FBSDKURLSession executeURLRequest:completionHandler:]_block_invoke
+-[FBSDKURLSession updateSessionWithBlock:]
+-[FBSDKURLSession invalidateAndCancel]
+-[FBSDKURLSession valid]
+-[FBSDKURLSession session]
+-[FBSDKURLSession setSession:]
+-[FBSDKURLSession delegate]
+-[FBSDKURLSession setDelegate:]
+-[FBSDKURLSession delegateQueue]
+-[FBSDKURLSession setDelegateQueue:]
+-[FBSDKURLSession .cxx_destruct]
+___block_descriptor_32_e4_20s24s28bs_e5_v4?0l
+_OBJC_IVAR_$_FBSDKURLSession._session
+_OBJC_IVAR_$_FBSDKURLSession._delegate
+_OBJC_IVAR_$_FBSDKURLSession._delegateQueue
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSession.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSession.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSession.h
+__55-[FBSDKURLSession executeURLRequest:completionHandler:]_block_invoke
+-[FBSDKURLSessionTask init]
+-[FBSDKURLSessionTask initWithRequest:fromSession:completionHandler:]
+-[FBSDKURLSessionTask state]
+-[FBSDKURLSessionTask start]
+-[FBSDKURLSessionTask cancel]
+-[FBSDKURLSessionTask task]
+-[FBSDKURLSessionTask setTask:]
+-[FBSDKURLSessionTask requestStartDate]
+-[FBSDKURLSessionTask handler]
+-[FBSDKURLSessionTask setHandler:]
+-[FBSDKURLSessionTask requestStartTime]
+-[FBSDKURLSessionTask setRequestStartTime:]
+-[FBSDKURLSessionTask loggerSerialNumber]
+-[FBSDKURLSessionTask setLoggerSerialNumber:]
+-[FBSDKURLSessionTask .cxx_destruct]
+_OBJC_IVAR_$_FBSDKURLSessionTask._task
+_OBJC_IVAR_$_FBSDKURLSessionTask._requestStartDate
+_OBJC_IVAR_$_FBSDKURLSessionTask._handler
+_OBJC_IVAR_$_FBSDKURLSessionTask._loggerSerialNumber
+_OBJC_IVAR_$_FBSDKURLSessionTask._requestStartTime
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSessionTask.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSessionTask.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSessionTask.h
++[FBSDKUserDataStore initialize]
++[FBSDKUserDataStore setAndHashUserEmail:firstName:lastName:phone:dateOfBirth:gender:city:state:zip:country:]
+___109+[FBSDKUserDataStore setAndHashUserEmail:firstName:lastName:phone:dateOfBirth:gender:city:state:zip:country:]_block_invoke
++[FBSDKUserDataStore setAndHashData:forType:]
++[FBSDKUserDataStore setHashData:forType:]
+___42+[FBSDKUserDataStore setHashData:forType:]_block_invoke
++[FBSDKUserDataStore clearDataForType:]
++[FBSDKUserDataStore getHashedData]
+___35+[FBSDKUserDataStore getHashedData]_block_invoke
++[FBSDKUserDataStore getHashedDataForType:]
+___43+[FBSDKUserDataStore getHashedDataForType:]_block_invoke
++[FBSDKUserDataStore stringByHashedData:]
++[FBSDKUserDataStore encryptData:type:]
++[FBSDKUserDataStore normalizeData:type:]
++[FBSDKUserDataStore maybeSHA256Hashed:]
+_hashedUserData
+___block_descriptor_24_e4_20r_e5_v4?0l
+___block_descriptor_28_e4_20s24r_e5_v4?0l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKUserDataStore.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/FBSDKUserDataStore.m
+__43+[FBSDKUserDataStore getHashedDataForType:]_block_invoke
+__35+[FBSDKUserDataStore getHashedData]_block_invoke
+__42+[FBSDKUserDataStore setHashData:forType:]_block_invoke
+__109+[FBSDKUserDataStore setAndHashUserEmail:firstName:lastName:phone:dateOfBirth:gender:city:state:zip:country:]_block_invoke
++[FBSDKUtility dictionaryWithQueryString:]
++[FBSDKUtility queryStringWithDictionary:error:]
++[FBSDKUtility URLDecode:]
++[FBSDKUtility URLEncode:]
++[FBSDKUtility startGCDTimerWithInterval:block:]
++[FBSDKUtility stopGCDTimer:]
++[FBSDKUtility SHA256Hash:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKUtility.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/FBSDKUtility.m
++[FBSDKViewHierarchy getChildren:]
++[FBSDKViewHierarchy getParent:]
++[FBSDKViewHierarchy getPath:]
++[FBSDKViewHierarchy getPath:limit:]
++[FBSDKViewHierarchy getAttributesOf:parent:]
++[FBSDKViewHierarchy getDetailAttributesOf:]
++[FBSDKViewHierarchy getDetailAttributesOf:withHash:]
++[FBSDKViewHierarchy getIndexPath:]
++[FBSDKViewHierarchy getText:]
++[FBSDKViewHierarchy getTextStyle:]
++[FBSDKViewHierarchy getHint:]
++[FBSDKViewHierarchy getClassBitmask:]
++[FBSDKViewHierarchy isUserInputView:]
++[FBSDKViewHierarchy recursiveCaptureTree:withObject:]
++[FBSDKViewHierarchy isRCTButton:]
++[FBSDKViewHierarchy getViewReactTag:]
++[FBSDKViewHierarchy isView:superViewOfView:]
++[FBSDKViewHierarchy getParentViewController:]
++[FBSDKViewHierarchy getParentTableView:]
++[FBSDKViewHierarchy getParentCollectionView:]
++[FBSDKViewHierarchy getTag:]
++[FBSDKViewHierarchy getDimensionOf:]
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ViewHierarchy/FBSDKViewHierarchy.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ViewHierarchy/FBSDKViewHierarchy.m
+fb_dispatch_on_default_thread
+fb_dispatch_on_main_thread
++[FBSDKViewImpressionTracker impressionTrackerWithEventName:]
+___61+[FBSDKViewImpressionTracker impressionTrackerWithEventName:]_block_invoke
+-[FBSDKViewImpressionTracker initWithEventName:]
+-[FBSDKViewImpressionTracker dealloc]
+-[FBSDKViewImpressionTracker logImpressionWithIdentifier:parameters:]
+-[FBSDKViewImpressionTracker _applicationDidEnterBackgroundNotification:]
+-[FBSDKViewImpressionTracker eventName]
+-[FBSDKViewImpressionTracker .cxx_destruct]
+_impressionTrackerWithEventName:._impressionTrackers
+_impressionTrackerWithEventName:.onceToken
+_OBJC_IVAR_$_FBSDKViewImpressionTracker._trackedImpressions
+_OBJC_IVAR_$_FBSDKViewImpressionTracker._eventName
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKViewImpressionTracker.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKViewImpressionTracker.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKViewImpressionTracker.h
+__61+[FBSDKViewImpressionTracker impressionTrackerWithEventName:]_block_invoke
++[FBSDKWebDialog showWithName:parameters:delegate:]
+-[FBSDKWebDialog dealloc]
+-[FBSDKWebDialog show]
+-[FBSDKWebDialog webDialogView:didCompleteWithResults:]
+-[FBSDKWebDialog webDialogView:didFailWithError:]
+-[FBSDKWebDialog webDialogViewDidCancel:]
+-[FBSDKWebDialog webDialogViewDidFinishLoad:]
+___45-[FBSDKWebDialog webDialogViewDidFinishLoad:]_block_invoke
+-[FBSDKWebDialog _addObservers]
+-[FBSDKWebDialog _deviceOrientationDidChangeNotification:]
+___58-[FBSDKWebDialog _deviceOrientationDidChangeNotification:]_block_invoke
+-[FBSDKWebDialog _removeObservers]
+-[FBSDKWebDialog _cancel]
+-[FBSDKWebDialog _completeWithResults:]
+-[FBSDKWebDialog _dismissAnimated:]
+___35-[FBSDKWebDialog _dismissAnimated:]_block_invoke
+___35-[FBSDKWebDialog _dismissAnimated:]_block_invoke.74
+-[FBSDKWebDialog _failWithError:]
+___33-[FBSDKWebDialog _failWithError:]_block_invoke
+-[FBSDKWebDialog _generateURL:]
+-[FBSDKWebDialog _showWebView]
+___30-[FBSDKWebDialog _showWebView]_block_invoke
+___30-[FBSDKWebDialog _showWebView]_block_invoke_2
+-[FBSDKWebDialog _transformForOrientation]
+-[FBSDKWebDialog _applicationFrameForOrientation]
+-[FBSDKWebDialog _updateViewsWithScale:alpha:animationDuration:completion:]
+___75-[FBSDKWebDialog _updateViewsWithScale:alpha:animationDuration:completion:]_block_invoke
+-[FBSDKWebDialog shouldDeferVisibility]
+-[FBSDKWebDialog setDeferVisibility:]
+-[FBSDKWebDialog delegate]
+-[FBSDKWebDialog setDelegate:]
+-[FBSDKWebDialog name]
+-[FBSDKWebDialog setName:]
+-[FBSDKWebDialog parameters]
+-[FBSDKWebDialog setParameters:]
+-[FBSDKWebDialog .cxx_destruct]
+_g_currentDialog
+___block_descriptor_28_e4_20s24s_e7_v8?0c4l
+___block_descriptor_68_e4_20s_e5_v4?0l
+__OBJC_PROTOCOL_$_FBSDKWebDialogViewDelegate
+__OBJC_LABEL_PROTOCOL_$_FBSDKWebDialogViewDelegate
+_OBJC_IVAR_$_FBSDKWebDialog._backgroundView
+_OBJC_IVAR_$_FBSDKWebDialog._dialogView
+_OBJC_IVAR_$_FBSDKWebDialog._deferVisibility
+_OBJC_IVAR_$_FBSDKWebDialog._delegate
+_OBJC_IVAR_$_FBSDKWebDialog._name
+_OBJC_IVAR_$_FBSDKWebDialog._parameters
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialog.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialog.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialog.h
+__75-[FBSDKWebDialog _updateViewsWithScale:alpha:animationDuration:completion:]_block_invoke
+__30-[FBSDKWebDialog _showWebView]_block_invoke_2
+__30-[FBSDKWebDialog _showWebView]_block_invoke
+__33-[FBSDKWebDialog _failWithError:]_block_invoke
+__35-[FBSDKWebDialog _dismissAnimated:]_block_invoke.74
+__35-[FBSDKWebDialog _dismissAnimated:]_block_invoke
+__58-[FBSDKWebDialog _deviceOrientationDidChangeNotification:]_block_invoke
+__45-[FBSDKWebDialog webDialogViewDidFinishLoad:]_block_invoke
+-[FBSDKWebDialogView initWithFrame:]
+-[FBSDKWebDialogView dealloc]
+-[FBSDKWebDialogView loadURL:]
+-[FBSDKWebDialogView stopLoading]
+-[FBSDKWebDialogView drawRect:]
+-[FBSDKWebDialogView layoutSubviews]
+-[FBSDKWebDialogView _close:]
+-[FBSDKWebDialogView webView:didFailNavigation:withError:]
+-[FBSDKWebDialogView webView:decidePolicyForNavigationAction:decisionHandler:]
+-[FBSDKWebDialogView webView:didFinishNavigation:]
+-[FBSDKWebDialogView delegate]
+-[FBSDKWebDialogView setDelegate:]
+-[FBSDKWebDialogView .cxx_destruct]
+_OBJC_IVAR_$_FBSDKWebDialogView._webView
+_OBJC_IVAR_$_FBSDKWebDialogView._closeButton
+_OBJC_IVAR_$_FBSDKWebDialogView._loadingView
+_OBJC_IVAR_$_FBSDKWebDialogView._delegate
+__OBJC_PROTOCOL_$_WKNavigationDelegate
+__OBJC_LABEL_PROTOCOL_$_WKNavigationDelegate
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.h
+-[FBSDKWebViewAppLinkResolverWebViewDelegate webView:didFinishNavigation:]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate webView:didFailNavigation:withError:]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate webView:decidePolicyForNavigationAction:decisionHandler:]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate didFinishLoad]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate setDidFinishLoad:]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate didFailLoadWithError]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate setDidFailLoadWithError:]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate hasLoaded]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate setHasLoaded:]
+-[FBSDKWebViewAppLinkResolverWebViewDelegate .cxx_destruct]
++[FBSDKWebViewAppLinkResolver sharedInstance]
+___45+[FBSDKWebViewAppLinkResolver sharedInstance]_block_invoke
+-[FBSDKWebViewAppLinkResolver followRedirects:handler:]
+___55-[FBSDKWebViewAppLinkResolver followRedirects:handler:]_block_invoke
+___55-[FBSDKWebViewAppLinkResolver followRedirects:handler:]_block_invoke.149
+-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]
+___54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke
+___54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke_2
+___54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke.157
+___54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke_2.158
+___copy_helper_block_e4_20s24b28s32s36r
+___destroy_helper_block_e4_20s24s28s32s36r
+___copy_helper_block_e4_20s24b28s32r
+___destroy_helper_block_e4_20s24s28s32r
+___54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke.170
+-[FBSDKWebViewAppLinkResolver parseALData:]
+-[FBSDKWebViewAppLinkResolver getALDataFromLoadedPage:handler:]
+___63-[FBSDKWebViewAppLinkResolver getALDataFromLoadedPage:handler:]_block_invoke
+-[FBSDKWebViewAppLinkResolver appLinkFromALData:destination:]
+_OBJC_IVAR_$_FBSDKWebViewAppLinkResolverWebViewDelegate._hasLoaded
+_OBJC_IVAR_$_FBSDKWebViewAppLinkResolverWebViewDelegate._didFinishLoad
+_OBJC_IVAR_$_FBSDKWebViewAppLinkResolverWebViewDelegate._didFailLoadWithError
+___block_descriptor_28_e4_20bs24s_e45_v16?0"NSURLResponse"4"NSData"8"NSError"12l
+___block_descriptor_24_e4_20bs_e45_v16?0"NSData"4"NSURLResponse"8"NSError"12l
+___block_descriptor_40_e4_20s24bs28s32s36r_e21_v8?0"NSDictionary"4l
+___block_descriptor_36_e4_20s24bs28s32r_e18_v8?0"WKWebView"4l
+___block_descriptor_28_e4_20bs24r_e30_v12?0"WKWebView"4"NSError"8l
+___block_descriptor_32_e4_20bs24s28s_e33_v12?0"NSDictionary"4"NSError"8l
+___block_descriptor_28_e4_20bs24s_e19_v12?04"NSError"8l
+/Users/tavnijain/Downloads/ios-sdk-master 6/Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKWebViewAppLinkResolver.m
+FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKWebViewAppLinkResolver.m
+__63-[FBSDKWebViewAppLinkResolver getALDataFromLoadedPage:handler:]_block_invoke
+__54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke.170
+__destroy_helper_block_e4_20s24s28s32r
+__copy_helper_block_e4_20s24b28s32r
+__destroy_helper_block_e4_20s24s28s32s36r
+__copy_helper_block_e4_20s24b28s32s36r
+__54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke_2.158
+__54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke.157
+__54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke_2
+__54-[FBSDKWebViewAppLinkResolver appLinkFromURL:handler:]_block_invoke
+__55-[FBSDKWebViewAppLinkResolver followRedirects:handler:]_block_invoke.149
+__55-[FBSDKWebViewAppLinkResolver followRedirects:handler:]_block_invoke
+__45+[FBSDKWebViewAppLinkResolver sharedInstance]_block_invoke
+/Users/tavnijain/Library/Developer/Xcode/DerivedData/LoginRadiusSDK-ekkyzptjltnsdfabidwewazzizyp/Build/Intermediates.noindex/ArchiveIntermediates/FBSDKCoreKit/IntermediateBuildFilesPath/Pods.build/Release-iphoneos/FBSDKCoreKit.build/DerivedSources/FBSDKCoreKit_vers.c
+__ZL15__ARCLite__loadv
+__ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+__ZL34__arclite_objc_autoreleasePoolPushv
+__ZL33__arclite_objc_autoreleasePoolPopPv
+__ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+__ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+__ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+__ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+__ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+__ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+__ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+__ZL18add_image_hook_ARCPK11mach_headerl
+__ZL27__arclite_objc_loadClassrefPP10objc_class
+__ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+__ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+__ZL21__arclite_object_copyP11objc_objectm
+__ZL21__arclite_objc_retainP11objc_object
+__ZL26__arclite_objc_retainBlockP11objc_object
+__ZL22__arclite_objc_releaseP11objc_object
+__ZL26__arclite_objc_autoreleaseP11objc_object
+__ZL32__arclite_objc_retainAutoreleaseP11objc_object
+__ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+__ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+__ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+__ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+__ZL22add_image_hook_swiftV1PK11mach_headerl
+__ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+__ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+__ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+__ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+__ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+__ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+__ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+__ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+__ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+__ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+__ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+__ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+__ZL32__arclite_object_getIndexedIvarsP11objc_object
+__ZL23__arclite_objc_getClassPKc
+__ZL27__arclite_objc_getMetaClassPKc
+__ZL31__arclite_objc_getRequiredClassPKc
+__ZL26__arclite_objc_lookUpClassPKc
+__ZL26__arclite_objc_getProtocolPKc
+__ZL23__arclite_class_getNameP10objc_class
+__ZL26__arclite_protocol_getNameP8Protocol
+__ZL37__arclite_objc_copyClassNamesForImagePKcPj
+__ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+__ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+__ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+__ZL14initialize_impP11objc_objectP13objc_selector
+__ZL18allocateMaybeSwiftP18glue_swift_class_tm
+__ZL22copySwiftV1MangledNamePKcb
+__ZL13demangledNamePKcb
+__ZL16scanMangledFieldRPKcS0_S1_Ri
+__ZL30arclite_uninitialized_functionv
+__ZL12cxxConstructP11objc_object
+__ZL20fixStringForCoreDataP11objc_object
+_OBJC_METACLASS_$___ARCLite__
+__ZL24OBJC_CLASS_$___ARCLite__
+__ZL31OBJC_METACLASS_RO_$___ARCLite__
+__non_lazy_classes
+__ZL27OBJC_CLASS_RO_$___ARCLite__
+__ZL11_class_name
+__ZL32OBJC_$_CLASS_METHODS___ARCLite__
+__ZL17_load_method_name
+__ZL17_load_method_type
+__ZL23NSAutoreleasePool_class
+__ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+__ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+__OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+__OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+__OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+__OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+__ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZL30NSUndoManagerProxy_targetClass
+__ZL29original_NSManagedObject_init
+__ZL40original_NSManagedObject_allocWithEntity
+__ZL35original_NSManagedObject_allocBatch
+__ZL25NSMutableDictionary_class
+__ZL22NSConstantString_class
+__ZL14NSString_class
+__ZL36original_NSKKMS_fastIndexForKnownKey
+__ZL27original_NSKKMS_indexForKey
+__ZL28original_NSKKsD_objectForKey
+__ZL34original_NSKKsD_removeObjectForKey
+__ZL32original_NSKKsD_setObject_forKey
+__ZL40original_NSKKsD_addEntriesFromDictionary
+__ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZL31original_objc_allocateClassPair
+__ZL31original_object_getIndexedIvars
+__ZL22original_objc_getClass
+__ZL26original_objc_getMetaClass
+__ZL30original_objc_getRequiredClass
+__ZL25original_objc_lookUpClass
+__ZL25original_objc_getProtocol
+__ZL22original_class_getName
+__ZL25original_protocol_getName
+__ZL36original_objc_copyClassNamesForImage
+__ZL12demangleLock
+__ZL9Demangled
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ --target=armv7-apple-ios4.3 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-objc-interface-ivars -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -D OBJC_OLD_DISPATCH_PROTOTYPES=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.0.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -Wno-semicolon-before-method-body -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources-normal/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.0.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.o -Wno-framework-include-private-from-public -Wno-atimport-in-framework-header -Wno-extra-semi-stmt -Wno-quoted-include-in-framework-header -mlinker-version=530 -march=armv7a
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76
+fixStringForCoreData
+source/arclite.mm
+cxxConstruct
+arclite_uninitialized_function
+scanMangledField
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.0.Internal.sdk/usr/include/_ctype.h
+__isctype
+demangledName
+copySwiftV1DemangledName
+copySwiftV1MangledName
+allocateMaybeSwift
+word_align
+isSwift
+initialize_imp
+transcribeProperties
+property_list_nth
+transcribeProtocols
+transcribeMethods
+method_list_nth
+__arclite_objc_copyClassNamesForImage
+__arclite_protocol_getName
+__arclite_class_getName
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+__arclite_objc_getClass
+__arclite_object_getIndexedIvars
+__arclite_objc_allocateClassPair
+metaclass
+__arclite_objc_readClassPair
+transcribeIvars
+ivar_list_nth
+max
+alignment
+ro
+fastFlags
+__arclite_NSKKsD_addEntriesFromDictionary
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+__arclite_NSManagedObject_init
+__arclite_NSUndoManagerProxy_isKindOfClass
+add_image_hook_swiftV1
+patch_t<const char **(const char *, unsigned int *)>
+patch_t<const char *(Protocol *)>
+patch_t<const char *(Class)>
+patch_t<Protocol *(const char *)>
+patch_t<Class (const char *)>
+patch_t<void *(id)>
+patch_t<Class (Class, const char *, unsigned long)>
+patch_t<Class (Class, const objc_image_info *)>
+__arclite_objc_storeStrong
+__arclite_objc_release
+__arclite_objc_retain
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+__arclite_objc_retainBlock
+__arclite_object_copy
+fixupCopiedReferences
+_class_getInstanceStart
+alignedInstanceStart
+__arclite_class_usesAutomaticRetainRelease
+classOrSuperClassesUseARR
+__arclite_object_setIvar
+isScannedOffset
+_ivar_getClass
+__arclite_object_setInstanceVariable
+__arclite_objc_loadClassref
+add_image_hook_ARC
+patch_t<void (id *, id)>
+patch_t<id (id)>
+patch_t<void (id)>
+patch_t<id (id, unsigned long)>
+patch_t<void (id, objc_ivar *, id)>
+patch_t<objc_ivar *(id, const char *, void *)>
+patch_t<Class (Class *)>
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+__arclite_NSArray_objectAtIndexedSubscript
+patch_lazy_pointers
+__arclite_objc_autoreleasePoolPop
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+patch_t<void (void *)>
+patch_t<void *()>
+__ARCLite__load
+install_swiftV1
+replaceMethod
+install_ARC
+install_dict_nil_value
+addOrReplaceMethod
+keyedGetter
+install_subscripting
+addMethod
+indexedGetter
+install_autoreleasepool

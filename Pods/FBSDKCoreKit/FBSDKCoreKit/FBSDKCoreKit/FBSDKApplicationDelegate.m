@@ -25,7 +25,10 @@
 #import "FBSDKConstants.h"
 #import "FBSDKDynamicFrameworkLoader.h"
 #import "FBSDKError.h"
+#import "FBSDKEventDeactivationManager.h"
+#import "FBSDKFeatureManager.h"
 #import "FBSDKGateKeeperManager.h"
+#import "FBSDKInstrumentManager.h"
 #import "FBSDKInternalUtility.h"
 #import "FBSDKLogger.h"
 #import "FBSDKServerConfiguration.h"
@@ -103,9 +106,28 @@ static UIApplicationState _applicationState;
 
   [delegate application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
 
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureInstrument completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKInstrumentManager enable];
+    }
+  }];
+
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureRestrictiveDataFiltering completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKRestrictiveDataFilterManager enable];
+    }
+  }];
+
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureEventDeactivation completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKEventDeactivationManager enable];
+    }
+  }];
+
 #if !TARGET_OS_TV
   // Register Listener for App Link measurement events
   [FBSDKMeasurementEventListener defaultListener];
+  [delegate _logIfAutoAppLinkEnabled];
 #endif
   // Set the SourceApplication for time spent data. This is not going to update the value if the app has already launched.
   [FBSDKTimeSpentData setSourceApplication:launchOptions[UIApplicationLaunchOptionsSourceApplicationKey]
@@ -204,8 +226,6 @@ static UIApplicationState _applicationState;
     [FBSDKAccessToken setCurrentAccessToken:cachedToken];
     // fetch app settings
     [FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:NULL];
-    // fetch gate keepers
-    [FBSDKGateKeeperManager loadGateKeepers];
 
     if (FBSDKSettings.isAutoLogAppEventsEnabled) {
         [self _logSDKInitialize];
@@ -344,6 +364,32 @@ static UIApplicationState _applicationState;
     bit++;
   }
 
+  // Tracking if the consuming Application is using Swift
+  id delegate = [UIApplication sharedApplication].delegate;
+  NSString const *className = NSStringFromClass([delegate class]);
+  if ([className componentsSeparatedByString:@"."].count > 1) {
+    params[@"is_using_swift"] = @YES;
+  }
+
+  void (^checkViewForSwift)(void) = ^void ()
+  {
+    // Additional check to see if the consuming application perhaps was
+    // originally an objc project but is now using Swift
+    UIViewController *topMostViewController = [FBSDKInternalUtility topMostViewController];
+    NSString const *vcClassName = NSStringFromClass([topMostViewController class]);
+    if ([vcClassName componentsSeparatedByString:@"."].count > 1) {
+      params[@"is_using_swift"] = @YES;
+    }
+  };
+
+  if ([NSThread isMainThread]) {
+    checkViewForSwift();
+  } else {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      checkViewForSwift();
+    });
+  }
+
   NSInteger existingBitmask = [[NSUserDefaults standardUserDefaults] integerForKey:FBSDKKitsBitmaskKey];
   if (existingBitmask != bitmask) {
     [[NSUserDefaults standardUserDefaults] setInteger:bitmask forKey:FBSDKKitsBitmaskKey];
@@ -351,6 +397,22 @@ static UIApplicationState _applicationState;
                           parameters:params
                   isImplicitlyLogged:NO];
   }
+}
+
+- (void)_logIfAutoAppLinkEnabled
+{
+#if !TARGET_OS_TV
+  NSNumber *enabled = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FBSDKAutoAppLinkEnabled"];
+  if (enabled.boolValue) {
+    NSMutableDictionary<NSString *, NSString *> *params = [[NSMutableDictionary alloc] init];
+    if (![FBSDKAppLinkUtility isMatchURLScheme:[NSString stringWithFormat:@"fb%@", [FBSDKSettings appID]]]) {
+      NSString *warning = @"You haven't set the Auto App Link URL scheme: fb<YOUR APP ID>";
+      params[@"SchemeWarning"] = warning;
+      NSLog(@"%@", warning);
+    }
+    [FBSDKAppEvents logInternalEvent:@"fb_auto_applink" parameters:params isImplicitlyLogged:YES];
+  }
+#endif
 }
 
 + (BOOL)isSDKInitialized

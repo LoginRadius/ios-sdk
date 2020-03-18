@@ -2,15 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Example/ObjCDemo/ObjCDemo.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Example/SwiftDemo/SwiftDemo.xcodeproj">
+      location = "group:LoginRadiusSDK.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Podfile">
    </FileRef>
 </Workspace>

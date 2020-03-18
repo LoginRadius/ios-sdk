@@ -1,6 +1,0 @@
-framework module LoginRadiusSDK {
-  umbrella header "LoginRadiusSDK-umbrella.h"
-
-  export *
-  module * { export * }
-}

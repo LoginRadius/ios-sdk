@@ -160,7 +160,7 @@
     return nil;
   }
 
-  return [FBSDKInternalUtility gzip:self.data];
+  return [FBSDKBasicUtility gzip:self.data];
 }
 
 @end

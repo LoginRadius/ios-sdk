@@ -18,7 +18,9 @@
 
 #import "FBSDKAppEventsState.h"
 
-#import "FBSDKBasicUtility+Internal.h"
+#import "FBSDKBasicUtility.h"
+#import "FBSDKEventDeactivationManager.h"
+#import "FBSDKRestrictiveDataFilterManager.h"
 
 #define FBSDK_APPEVENTSTATE_ISIMPLICIT_KEY @"isImplicit"
 
@@ -163,6 +165,8 @@
 
 - (NSString *)JSONStringForEvents:(BOOL)includeImplicitEvents
 {
+  [FBSDKEventDeactivationManager processEvents:_mutableEvents];
+
   NSMutableArray *events = [[NSMutableArray alloc] initWithCapacity:_mutableEvents.count];
   for (NSDictionary *eventAndImplicitFlag in _mutableEvents) {
     if (!includeImplicitEvents && [eventAndImplicitFlag[FBSDK_APPEVENTSTATE_ISIMPLICIT_KEY] boolValue]) {

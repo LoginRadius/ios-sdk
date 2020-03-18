@@ -16,14 +16,27 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKLoginManager+Internal.h"
 #import "FBSDKLoginManagerLoginResult+Internal.h"
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
+#ifdef SWIFT_PACKAGE
+#import "FBSDKAccessToken.h"
+#import "FBSDKSettings.h"
+#else
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#endif
+
+#ifdef FBSDKCOCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
+#import "FBSDKCoreKit+Internal.h"
+#endif
 
 #import "_FBSDKLoginRecoveryAttempter.h"
-#import "FBSDKCoreKit+Internal.h"
 #import "FBSDKLoginCompletion.h"
 #import "FBSDKLoginConstants.h"
 #import "FBSDKLoginError.h"
@@ -217,7 +230,8 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
                                                                          userID:parameters.userID
                                                                  expirationDate:parameters.expirationDate
                                                                     refreshDate:[NSDate date]
-                                                                    dataAccessExpirationDate:parameters.dataAccessExpirationDate];
+                                                                    dataAccessExpirationDate:parameters.dataAccessExpirationDate
+                                                                    graphDomain:parameters.graphDomain];
         result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:token
                                                          isCancelled:NO
                                                   grantedPermissions:recentlyGrantedPermissions
@@ -313,7 +327,7 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 
   NSMutableDictionary *loginParams = [NSMutableDictionary dictionary];
   loginParams[@"client_id"] = [FBSDKSettings appID];
-  loginParams[@"response_type"] = @"token,signed_request";
+  loginParams[@"response_type"] = @"token_or_nonce,signed_request,graph_domain";
   loginParams[@"redirect_uri"] = @"fbconnect://success";
   loginParams[@"display"] = @"touch";
   loginParams[@"sdk"] = @"ios";
@@ -322,6 +336,9 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   loginParams[@"fbapp_pres"] = @([FBSDKInternalUtility isFacebookAppInstalled]);
   loginParams[@"auth_type"] = self.authType;
   loginParams[@"logging_token"] = serverConfiguration.loggingToken;
+  long long cbtInMilliseconds = round(1000 * [NSDate date].timeIntervalSince1970);
+  loginParams[@"cbt"] = @(cbtInMilliseconds);
+  loginParams[@"ies"] = [FBSDKSettings isAutoLogAppEventsEnabled] ? @1 : @0;
 
   [FBSDKBasicUtility dictionary:loginParams setObject:[FBSDKSettings appURLSchemeSuffix] forKey:@"local_client_id"];
   [FBSDKBasicUtility dictionary:loginParams setObject:[FBSDKLoginUtility stringForAudience:self.defaultAudience] forKey:@"default_audience"];
@@ -346,7 +363,7 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 
   [_logger startSessionForLoginManager:self];
 
-  [self logInWithBehavior:self.loginBehavior];
+  [self logIn];
 }
 
 - (void)reauthorizeDataAccess:(FBSDKLoginManagerLoginResultBlock)handler
@@ -358,18 +375,17 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   _requestedPermissions = [NSSet set];
   self.authType = FBSDKLoginAuthTypeReauthorize;
   [_logger startSessionForLoginManager:self];
-  [self logInWithBehavior:self.loginBehavior];
+  [self logIn];
 }
 
-- (void)logInWithBehavior:(FBSDKLoginBehavior)loginBehavior
+- (void)logIn
 {
   FBSDKServerConfiguration *serverConfiguration = [FBSDKServerConfigurationManager cachedServerConfiguration];
   NSDictionary *loginParams = [self logInParametersWithPermissions:_requestedPermissions serverConfiguration:serverConfiguration];
   self->_usedSFAuthSession = NO;
 
-  void(^completion)(BOOL, NSString *, NSError *) = ^void(BOOL didPerformLogIn, NSString *authMethod, NSError *error) {
+  void(^completion)(BOOL, NSError *) = ^void(BOOL didPerformLogIn, NSError *error) {
     if (didPerformLogIn) {
-      [self->_logger startAuthMethod:authMethod];
       self->_state = FBSDKLoginManagerStatePerformingLogin;
     } else if ([error.domain isEqualToString:SFVCCanceledLogin] ||
                [error.domain isEqualToString:ASCanceledLogin]) {
@@ -383,9 +399,8 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   };
 
   [self performBrowserLogInWithParameters:loginParams handler:^(BOOL openedURL,
-                                                                NSString *authMethod,
                                                                 NSError *openedURLError) {
-    completion(openedURL, authMethod, openedURLError);
+    completion(openedURL, openedURLError);
   }];
 }
 
@@ -462,10 +477,13 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
                                               queryParameters:browserParams
                                                         error:&error];
   }
+
+  [_logger startAuthMethod:authMethod];
+
   if (authURL) {
     void(^handlerWrapper)(BOOL, NSError*) = ^(BOOL didOpen, NSError *anError) {
       if (handler) {
-        handler(didOpen, authMethod, anError);
+        handler(didOpen, anError);
       }
     };
 
@@ -480,9 +498,9 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
       [[FBSDKBridgeAPI sharedInstance] openURL:authURL sender:self handler:handlerWrapper];
     }
   } else {
-    error = error ?: [NSError fbErrorWithCode:FBSDKLoginErrorUnknown message:@"Failed to construct oauth browser url"];
+    error = error ?: [FBSDKError errorWithCode:FBSDKLoginErrorUnknown message:@"Failed to construct oauth browser url"];
     if (handler) {
-      handler(NO, nil, error);
+      handler(NO, error);
     }
   }
 }
@@ -519,12 +537,8 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
         annotation:(id)annotation
 {
   // verify the URL is intended as a callback for the SDK's log in
-  BOOL isFacebookURL = [url.scheme hasPrefix:[NSString stringWithFormat:@"fb%@", [FBSDKSettings appID]]] &&
+  return [url.scheme hasPrefix:[NSString stringWithFormat:@"fb%@", [FBSDKSettings appID]]] &&
   [url.host isEqualToString:@"authorize"];
-
-  BOOL isExpectedSourceApplication = [sourceApplication hasPrefix:@"com.facebook"] || [sourceApplication hasPrefix:@"com.apple"] || [sourceApplication hasPrefix:@"com.burbn"];
-
-  return isFacebookURL && isExpectedSourceApplication;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -540,3 +554,5 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 }
 
 @end
+
+#endif
