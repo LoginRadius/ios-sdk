@@ -21,38 +21,12 @@ For full documentation visit [here](https://docs.loginradius.com/api/v2/mobile-l
 
 This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
-
-#### There are three projects in the library:
-a. ObjCDemo - This is the demo application in objective-c.<br>
-a. SwiftDemo - This is the demo application in Swift(Supported Swift version 4.2).<br>
-b. LoginRadiusSDK -This is the LoginRadius SDK.
-
-
 ## Installing
 
-We recommend using CocoaPods for installing the library in a project.
+This is the carthage build LoginRadius iOS SDK.you can just add the build file directly via "Embedded Binaries" section in the xcode.
 
-CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
+1. Copy the LRSDK_CART folder and paste it into your project directory manually.
 
-```
-$ gem install cocoapods
-```
+2. Select your project target, under Build Phases menu expand Link Binary With Libraries, and drag the frameworks in the "LRSDK_CART" folder over to Xcode as seen in this GIF:
 
-To integrate LRSDK into your Xcode project using CocoaPods, specify it in your Podfile:
-
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform : ios, '9.0'
-
-target 'TargetName' do
-pod 'LoginRadiusSDK', '~> 5.4.0'
-end
-
-```
-
-Then, run the following command:
-
-```
-$ pod install
-
-```
+![gif Image](https://apidocs.lrcontent.com/images/ios_op_323095e71fd67290ba9.29293753.gif)
