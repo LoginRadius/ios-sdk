@@ -29,4 +29,4 @@ This is the carthage build LoginRadius iOS SDK. You can just add the build file 
 
 2. Select your project target, under General menu expand Frameworks, Libraries, and Embedded Content Section and drag the frameworks from the "LRSDK_CART" folder in Xcode as shown in this GIF:
 
-![](https://media.giphy.com/media/TL1ZSHHDbxwxFauCa7/giphy.gif)
+![](https://media.giphy.com/media/TL1ZSHHDbxwxFauCa7/giphy.gif) 
