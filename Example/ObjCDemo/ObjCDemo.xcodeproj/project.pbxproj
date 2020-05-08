@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		099BC4B3B02C343C6007D470 /* Pods_ObjCDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84063B8378AC28BA2F5D4FA9 /* Pods_ObjCDemo.framework */; };
 		152C02D51EEAF7B100E4AF97 /* XLFormViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 152C02D41EEAF7B100E4AF97 /* XLFormViewControllerExtension.m */; };
+		1E28CC09246281FF00C74CB0 /* LoginRadiusSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E28CC08246281FF00C74CB0 /* LoginRadiusSDK.framework */; };
 		682D11381CEC500B009274E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D11371CEC500B009274E2 /* main.m */; };
 		682D113B1CEC500B009274E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D113A1CEC500B009274E2 /* AppDelegate.m */; };
 		682D113E1CEC500B009274E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D113D1CEC500B009274E2 /* ViewController.m */; };
@@ -18,23 +19,11 @@
 		682D11531CEC50CA009274E2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682D11521CEC50CA009274E2 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		6830081D1CECF460000E43DC /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		152C02D31EEAF5ED00E4AF97 /* XLFormViewControllerExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLFormViewControllerExtension.h; sourceTree = "<group>"; };
 		152C02D41EEAF7B100E4AF97 /* XLFormViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormViewControllerExtension.m; sourceTree = "<group>"; };
 		15AAE7BA1EDCA42D009F66F0 /* ObjCDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ObjCDemo.entitlements; sourceTree = "<group>"; };
+		1E28CC08246281FF00C74CB0 /* LoginRadiusSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoginRadiusSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		682D11331CEC500B009274E2 /* ObjCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682D11371CEC500B009274E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		682D11391CEC500B009274E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,6 +47,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				099BC4B3B02C343C6007D470 /* Pods_ObjCDemo.framework in Frameworks */,
+				1E28CC09246281FF00C74CB0 /* LoginRadiusSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +104,7 @@
 		9B063E2B7E59643CD72D2D26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E28CC08246281FF00C74CB0 /* LoginRadiusSDK.framework */,
 				84063B8378AC28BA2F5D4FA9 /* Pods_ObjCDemo.framework */,
 			);
 			name = Frameworks;
@@ -140,7 +131,6 @@
 				682D112F1CEC500B009274E2 /* Sources */,
 				682D11301CEC500B009274E2 /* Frameworks */,
 				682D11311CEC500B009274E2 /* Resources */,
-				6830081D1CECF460000E43DC /* Embed Frameworks */,
 				F25119E5CD27D149EE2BCAD3 /* [CP] Embed Pods Frameworks */,
 				90B8420AC29E61F97ACA3E4C /* 📦 Embed Pods Frameworks */,
 			);

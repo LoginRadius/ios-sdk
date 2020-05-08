@@ -26,30 +26,30 @@
 @implementation LoginRadiusSocialLoginManager
 
 + (instancetype)sharedInstance {
-	static dispatch_once_t onceToken;
-	static LoginRadiusSocialLoginManager *instance;
+    static dispatch_once_t onceToken;
+    static LoginRadiusSocialLoginManager *instance;
 
-	dispatch_once(&onceToken, ^{
-		instance = [[LoginRadiusSocialLoginManager alloc] init];
-	});
+    dispatch_once(&onceToken, ^{
+        instance = [[LoginRadiusSocialLoginManager alloc] init];
+    });
 
-	return instance;
+    return instance;
 }
 
 -(instancetype)init {
-	self = [super init];
-	if (self) {
-		_twitterLogin = [[LoginRadiusTwitterLogin alloc] init];
-		_facebookLogin = [[LoginRadiusFacebookLogin alloc] init];
+    self = [super init];
+    if (self) {
+        _twitterLogin = [[LoginRadiusTwitterLogin alloc] init];
+        _facebookLogin = [[LoginRadiusFacebookLogin alloc] init];
         _safariLogin = [[LoginRadiusSafariLogin alloc] init];
-	}
-	return self;
+    }
+    return self;
 }
 
 #pragma mark Login Methods
 -(void)loginWithProvider:(NSString*)provider
-			inController:(UIViewController*)controller
-	   completionHandler:(LRAPIResponseHandler)handler {
+            inController:(UIViewController*)controller
+       completionHandler:(LRAPIResponseHandler)handler {
    
     // Use SFSafariViewController if available by defualt. Recommended approach
     if ([SFSafariViewController class] != nil) {
@@ -57,18 +57,17 @@
         [self.safariLogin loginWithProvider:provider inController:controller completionHandler:handler];
         return;
     }
-   
 
     // Use web login
-	LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider completionHandler:handler];
-	UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
-	[controller presentViewController:navVC animated:YES completion:nil];
+    LoginRadiusWebLoginViewController *webVC = [[LoginRadiusWebLoginViewController alloc] initWithProvider:provider completionHandler:handler];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:webVC];
+    [controller presentViewController:navVC animated:YES completion:nil];
 }
 
 
 - (void)nativeFacebookLoginWithPermissions:(NSDictionary *)params
-							  inController:(UIViewController *)controller
-						 completionHandler:(LRAPIResponseHandler)handler {
+                              inController:(UIViewController *)controller
+                         completionHandler:(LRAPIResponseHandler)handler {
    // self.handler=handler;
     _isFacebookNativeLogin = YES;
     [self.facebookLogin loginfromViewController:controller parameters:params handler:handler];
@@ -124,8 +123,8 @@
 
 
 - (void)logout {
-	// Only facebook native login stores sessions that we have to clear
-	[self.facebookLogin logout];
+    // Only facebook native login stores sessions that we have to clear
+    [self.facebookLogin logout];
 }
 
 #pragma mark Application delegate methods

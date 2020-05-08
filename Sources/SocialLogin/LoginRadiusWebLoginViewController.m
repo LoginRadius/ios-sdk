@@ -10,14 +10,14 @@
 #import "LRErrors.h"
 #import "ReachabilityCheck.h"
 #import "LoginRadius.h"
+#import <WebKit/WebKit.h>
 
-
-@interface LoginRadiusWebLoginViewController () <UIWebViewDelegate>
+@interface LoginRadiusWebLoginViewController () <WKNavigationDelegate>
 
 @property(nonatomic, copy) NSString* provider;
 @property(nonatomic, copy) NSURL * serviceURL;
 @property(nonatomic, copy) LRAPIResponseHandler handler;
-@property(nonatomic, weak) UIWebView* webView;
+@property(nonatomic, weak) WKWebView* webView;
 @property(nonatomic, weak) UIView *retryView;
 @property(nonatomic, weak) UILabel *retryLabel;
 @property(nonatomic, weak) UIButton *retryButton;
@@ -26,20 +26,29 @@
 @implementation LoginRadiusWebLoginViewController
 
 - (instancetype)initWithProvider: (NSString*) provider completionHandler:(LRAPIResponseHandler)handler{
-	self = [super init];
-	if (self) {
-		_provider = [provider lowercaseString];
-		_handler = handler;
+    self = [super init];
+    if (self) {
+        _provider = [provider lowercaseString];
+        _handler = handler;
         
-	}
-	return self;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    webView.scalesPageToFit = YES;
-    webView.delegate = self;
+    [super viewDidLoad];
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+
+
+    WKWebView* webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkWebConfig];
+    webView.navigationDelegate = self;
     
     UIView * retryView = [[UIView alloc] initWithFrame:self.view.frame];
     retryView.backgroundColor = [UIColor whiteColor];
@@ -81,13 +90,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+    [super viewWillAppear:animated];
 
-	UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
 
-	self.navigationItem.leftBarButtonItem = cancelItem;
+    self.navigationItem.leftBarButtonItem = cancelItem;
     self.provider=[_provider lowercaseString];
-	
+    
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.hub.loginradius.com/RequestHandlor.aspx?apikey=%@&provider=%@&ismobile=1", [LoginRadiusSDK siteName], [LoginRadiusSDK apiKey], _provider]];
     
@@ -120,8 +129,8 @@
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidLayoutSubviews {
@@ -130,31 +139,36 @@
 }
 
 #pragma mark - Web View Delegates
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSLog(@"final url %@",request.URL.absoluteString);
-    NSString *expatedFinalString = [NSString stringWithFormat:@"%@.%@", [LoginRadiusSDK siteName], [[NSBundle mainBundle] bundleIdentifier]];
-    
-    if ([request.URL.absoluteString rangeOfString:@"://#lr-token="].location == NSNotFound) {
-        NSLog(@"string does not contain bla %@",expatedFinalString);
-    } else {
-        NSLog(@"string contains bla! %@",expatedFinalString);
-    }
-	if ([request.URL.absoluteString rangeOfString:@"://#lr-token="].location != NSNotFound) {
-        NSString *token = [[request.URL fragment] substringFromIndex:9];
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+      
+           decisionHandler(WKNavigationActionPolicyAllow);
 
-		if( token ) {
-           [self finishSocialLogin:token withError:nil];
-           
-        } else {
-            [self finishSocialLogin:@"" withError:[LRErrors socialLoginFailed:_provider]];
-		}
-		return YES;
-	}
-	return YES;
 }
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    
+  
+   if ([webView.URL.absoluteString rangeOfString:@"token="].location != NSNotFound) {
+       NSString *token;
+      NSURLComponents *components = [NSURLComponents componentsWithURL:webView.URL resolvingAgainstBaseURL:NO];
+       NSArray *queryItems = [components queryItems];
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+
+       for (NSURLQueryItem *item in queryItems)
+       {
+           if([item.name isEqualToString:@"token"])
+               token = item.value;
+           
+       }
+       if( token ) {
+                  [self finishSocialLogin:token withError:nil];
+    
+               } else {
+                   [self finishSocialLogin:@"" withError:[LRErrors socialLoginFailed:_provider]];
+               }
+           }
+
+}
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
 
     /* Facebook Auth fails with the following error.
         Error Domain=NSURLErrorDomain Code=-999 "(null)"
@@ -181,15 +195,18 @@
 }
 
 - (void)finishSocialLogin:(NSString * )access_token withError:(NSError*) error {
-	if (self.handler) {
+    if (self.handler) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSDictionary *data = [NSDictionary dictionaryWithObject:access_token forKey:@"access_token"];
             NSLog(@"test %@", [data objectForKey:@"access_token"]);
             self.handler(data, error);
         });
-	}
-	[self dismissViewControllerAnimated:YES completion:nil];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 @end
+
+
+
