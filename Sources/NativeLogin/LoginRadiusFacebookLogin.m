@@ -20,6 +20,7 @@
 
 - (void)loginfromViewController:(UIViewController*)controller
                      parameters:(NSDictionary*)params
+              withSocialAppName:(NSString *)socialAppName
                         handler:(LRAPIResponseHandler)handler {
     
     BOOL permissionsAllowed = YES;
@@ -39,7 +40,7 @@
     login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorBrowser;
     
     void (^handleLogin)(FBSDKLoginManagerLoginResult *result, NSError *error) = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        [self onLoginResult:result error:error controller:controller];
+        [self onLoginResult:result error:error  withSocialAppName:socialAppName controller:controller];
     };
     
     if (token) {
@@ -62,7 +63,7 @@
             if ([[[LoginRadiusSDK sharedInstance] session] isLoggedIn]){
                 [self finishLogin:[[[LoginRadiusSDK sharedInstance] session] userProfile] withError:nil];
             }else{
-                [self convertFacebookTokenToLRToken:[token tokenString] inController:controller];
+                [self convertFacebookTokenToLRToken:[token tokenString] withSocialAppName:socialAppName inController:controller];
             }
         } else if (publishPermissionFound && readPermissionFound) {
             // Mix of permissions, not allowed
@@ -88,6 +89,7 @@
 
 - (void) onLoginResult:(FBSDKLoginManagerLoginResult *) result
                  error:(NSError *)error
+     withSocialAppName:(NSString *)socialAppName
             controller:(UIViewController *) controller{
     if (error) {
         [self finishLogin:nil withError:error];
@@ -98,16 +100,21 @@
         NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
         // Get loginradius access_token for facebook access_token
         
-        [self convertFacebookTokenToLRToken:accessToken inController:controller];
+        [self convertFacebookTokenToLRToken:accessToken  withSocialAppName:socialAppName inController:controller];
         
     }
 }
-
 - (void)convertFacebookTokenToLRToken :(NSString*)fb_token
+                     withSocialAppName:(NSString *)socialAppName
                           inController:(UIViewController *)controller {
-    
-    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/facebook" queryParams:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : fb_token} completionHandler:^(NSDictionary *data, NSError *error) {
-        self.handler(data, error); 
+    NSMutableDictionary *dictParam = [NSMutableDictionary dictionaryWithDictionary:@{@"key": [LoginRadiusSDK apiKey], @"fb_access_token" : fb_token}];
+     if(socialAppName && [socialAppName length]) {
+           [dictParam setValue:socialAppName forKey:@"socialappname"];
+       }
+       
+   
+    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/facebook" queryParams:dictParam completionHandler:^(NSDictionary *data, NSError *error) {
+        self.handler(data, error);
     }];
 }
 

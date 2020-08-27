@@ -82,8 +82,8 @@ static BOOL useFacebookNative    = NO;
     return canOpen;
 }
 
-/* Google Native Sign in
-
+// Google Native Sign in
+/*
 - (void)signIn:(GIDSignIn *)signIn
      didSignInForUser:(GIDGoogleUser *)user
             withError:(NSError *)error {
@@ -99,8 +99,8 @@ static BOOL useFacebookNative    = NO;
         NSString *clientID = user.authentication.clientID;
         UIViewController *currentVC = [(UINavigationController *)[[self window] rootViewController] topViewController];
 
-        [[LoginRadiusSocialLoginManager sharedInstance] convertGoogleTokenToLRToken:googleToken google_refresh_token:refreshToken google_client_id:clientID inController:currentVC completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
-            id safeData = (data) ? data : [NSNull null];
+        [[LoginRadiusSocialLoginManager sharedInstance] convertGoogleTokenToLRToken:googleToken google_refresh_token:refreshToken google_client_id:clientID withSocialAppName:@"" inController:currentVC completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+            id safeData =x (data) ? data : [NSNull null];
             id safeError = (error) ? error : [NSNull null];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userAuthenticatedFromNativeGoogle" object:nil userInfo:@{@"data":safeData,@"error":safeError}];

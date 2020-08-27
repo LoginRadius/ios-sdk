@@ -145,7 +145,6 @@
 
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    
   
    if ([webView.URL.absoluteString rangeOfString:@"token="].location != NSNotFound) {
        NSString *token;

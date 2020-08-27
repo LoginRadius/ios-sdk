@@ -66,27 +66,37 @@
 
 
 - (void)nativeFacebookLoginWithPermissions:(NSDictionary *)params
+withSocialAppName:(NSString *)socialAppName
                               inController:(UIViewController *)controller
-                         completionHandler:(LRAPIResponseHandler)handler {
+completionHandler:(LRAPIResponseHandler)handler {
    // self.handler=handler;
     _isFacebookNativeLogin = YES;
-    [self.facebookLogin loginfromViewController:controller parameters:params handler:handler];
+    [self.facebookLogin loginfromViewController:controller parameters:params withSocialAppName:socialAppName handler:handler];
 }
 
-- (void)convertTwitterTokenToLRToken:(NSString *)twitterAccessToken twitterSecret:(NSString *)twitterSecret inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
-    [self.twitterLogin getLRTokenWithTwitterToken:twitterAccessToken twitterSecret:twitterSecret inController:controller handler:handler];
+- (void)convertTwitterTokenToLRToken:(NSString *)twitterAccessToken twitterSecret:(NSString *)twitterSecret
+                         withSocialAppName:(NSString *)socialAppName
+                        inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
+    [self.twitterLogin getLRTokenWithTwitterToken:twitterAccessToken twitterSecret:twitterSecret withSocialAppName:socialAppName inController:controller handler:handler];
     
 }
 
-- (void)convertGoogleTokenToLRToken:(NSString *)google_token google_refresh_token:(NSString *)google_refresh_token google_client_id:(NSString *)google_client_id inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
+- (void)convertGoogleTokenToLRToken:(NSString *)google_token google_refresh_token:(NSString *)google_refresh_token google_client_id:(NSString *)google_client_id
+                        withSocialAppName:(NSString *)socialAppName
+                       inController:(UIViewController *)controller completionHandler:(LRAPIResponseHandler)handler {
     NSString *refresh_token = google_refresh_token ? google_refresh_token: @"";
     NSString *client_id = google_client_id ? google_client_id: @"";
+    NSMutableDictionary *dictParam = [NSMutableDictionary dictionaryWithDictionary:@{@"key": [LoginRadiusSDK apiKey],
+    @"google_access_token" : google_token,
+    @"refresh_token" : refresh_token,
+    @"client_id" : client_id
+    }];
+    if(socialAppName && [socialAppName length]) {
+        [dictParam setValue:socialAppName forKey:@"socialappname"];
+    }
+    
     [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/google"
-                               queryParams:@{@"key": [LoginRadiusSDK apiKey],
-                                             @"google_access_token" : google_token,
-                                             @"refresh_token" : refresh_token,
-                                             @"client_id" : client_id
-                                             }
+                               queryParams:dictParam
                          completionHandler:^(NSDictionary *data, NSError *error) {
 
          handler(data, error);
@@ -94,7 +104,6 @@
     }];
 
 }
-
 
 - (void)convertWeChatCodeToLRToken:(NSString *)code completionHandler:(LRAPIResponseHandler)handler {
     [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/wechat"
@@ -108,12 +117,18 @@
 
 }
 
-
-- (void)convertAppleCodeToLRToken:(NSString *)code completionHandler:(LRAPIResponseHandler)handler {
+- (void)convertAppleCodeToLRToken:(NSString *)code
+                 withSocialAppName:(NSString *)socialAppName
+                completionHandler:(LRAPIResponseHandler)handler {
+    NSMutableDictionary *dictParam = [NSMutableDictionary dictionaryWithDictionary:@{ @"key": [LoginRadiusSDK apiKey],
+      @"code" : code
+    }];
+   if(socialAppName && [socialAppName length]) {
+        [dictParam setValue:socialAppName forKey:@"socialappname"];
+    }
+    
     [[LoginRadiusREST apiInstance] sendGET:@"api/v2/access_token/apple"
-                            queryParams:@{ @"key": [LoginRadiusSDK apiKey],
-                                           @"code" : code
-                                         }
+                            queryParams:dictParam
                          completionHandler:^(NSDictionary *data, NSError *error) {
          handler(data, error);
         

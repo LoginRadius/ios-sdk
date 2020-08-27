@@ -182,7 +182,7 @@ class ViewController: FormViewController
     
     func setupForm()
     {
-        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.4.1 🇨🇦"
+        self.navigationController?.navigationBar.topItem?.title = "LoginRadius SwiftDemo 5.4.2 🇨🇦"
         self.form = Form()
         
         //These is the just rules to toggle visibility of the UI elements
@@ -796,11 +796,11 @@ class ViewController: FormViewController
     
     func showNativeTwitterLogin()
     {
-        
+
          /* Twitter Native Sign in
          TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
          if let session = session {
-         LoginRadiusSocialLoginManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, in: self, completionHandler: {(data, error) in
+         LoginRadiusSocialLoginManager.sharedInstance().convertTwitterToken(toLRToken: session.authToken, twitterSecret: session.authTokenSecret, withSocialAppName:"", in: self,  completionHandler: {(data, error) in
          if let _ = data
          {
          let access_token = data!["access_token"] as! NSString
@@ -825,7 +825,7 @@ class ViewController: FormViewController
     
     func showNativeFacebookLogin()
     {
-        LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile"]], in: self, completionHandler: {( data, error) -> Void in
+        LoginRadiusSocialLoginManager.sharedInstance().nativeFacebookLogin(withPermissions: ["facebookPermissions": ["public_profile"]], withSocialAppName:"",  in: self, completionHandler: {( data, error) -> Void in
             
             if let err = error {
                 self.errorAlert(data:data, error:err)
@@ -1001,7 +1001,7 @@ extension ViewController: ASAuthorizationControllerDelegate {
             
             // Convert apple Code to LoginRadius Acess Token
             
-            LoginRadiusSocialLoginManager.sharedInstance()?.convertAppleCode(toLRToken:code, completionHandler: {(data, error) in
+            LoginRadiusSocialLoginManager.sharedInstance()?.convertAppleCode(toLRToken:code, withSocialAppName:"",  completionHandler: {(data, error) in
               
                 if let _ = data
                 {

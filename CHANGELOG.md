@@ -1,3 +1,11 @@
+5.4.2 Release notes (2020-08-27)
+=============================================================
+
+### Enhancements
+* Changed nil unwrapping process for SourceApplication as Apple returns nil for SourceApplication in iOS 13
+* Added a new optional parameter to native social login methods for supporting multiple social apps for same provider 
+* Upgraded Eureka version to 5.2.1 for crashing in Swift demo on Xcode v11.4 or above
+
 5.4.1 Release notes (2020-05-08)
 =============================================================
 
