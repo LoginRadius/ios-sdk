@@ -15,7 +15,7 @@ end
 target 'SwiftDemo' do
     project 'Example/SwiftDemo/SwiftDemo.xcodeproj'
     pod 'LoginRadiusSDK', :path => './'
-    pod 'Eureka', '<= 5.0.0'
+    pod 'Eureka', '<= 5.2.1'
     pod 'SwiftyJSON', '<= 4.0'
     pod 'Alamofire', '<= 4.8.2'
     #pod 'Google/SignIn', '<= 4.1.0'

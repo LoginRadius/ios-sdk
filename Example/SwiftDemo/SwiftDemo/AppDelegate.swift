@@ -83,9 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         /* Twitter Native Sign in
         canOpen = (canOpen || TWTRTwitter.sharedInstance().application(app, open: url, options: options))
          */
-    
-        canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))
-    
+
+
+        canOpen = (canOpen || LoginRadiusSDK.sharedInstance().application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))
+
         return canOpen
     }
 
@@ -104,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             if let navVC = self.window?.rootViewController as? UINavigationController,
             let currentVC = navVC.topViewController
             {
-                LoginRadiusSocialLoginManager.sharedInstance().convertGoogleToken(toLRToken: googleToken,google_refresh_token:refreshToken, google_client_id:clientID, in:currentVC, completionHandler: {( data ,  error) -> Void in
+                LoginRadiusSocialLoginManager.sharedInstance().convertGoogleToken(toLRToken: googleToken,google_refresh_token:refreshToken, google_client_id:clientID, withSocialAppName:"",  in:currentVC, completionHandler: {( data ,  error) -> Void in
                 NotificationCenter.default.post(name: Notification.Name("userAuthenticatedFromNativeGoogle"), object: nil, userInfo: ["data":data as Any,"error":error as Any])
 
                 })

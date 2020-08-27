@@ -53,7 +53,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 
 - (BOOL)application:(UIApplication *_Nonnull)application
             openURL:(NSURL *_Nonnull)url
-  sourceApplication:(NSString *_Nonnull)sourceApplication
+  sourceApplication:(NSString *_Nullable)sourceApplication
          annotation:(id _Nullable )annotation;
 
 - (void)applicationDidBecomeActive:(UIApplication *_Nonnull)application;

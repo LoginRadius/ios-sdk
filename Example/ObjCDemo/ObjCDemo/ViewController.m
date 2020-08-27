@@ -114,7 +114,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.4.1 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.4.2 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
@@ -529,7 +529,7 @@
      [[TWTRTwitter sharedInstance] logInWithCompletion:
      ^(TWTRSession * _Nullable session, NSError * _Nullable error) {
      if (session){
-     [[LoginRadiusSocialLoginManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret inController:self completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+     [[LoginRadiusSocialLoginManager sharedInstance] convertTwitterTokenToLRToken:session.authToken twitterSecret:session.authTokenSecret withSocialAppName:@"" inController:self completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
      if (error){
      [self showAlert:@"ERROR" message:error.localizedDescription];
      }else{
@@ -544,7 +544,7 @@
 
 - (void) showNativeFacebookLogin
 {
-    [[LoginRadiusSocialLoginManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions":@[@"public_profile",@"email"]} inController:self completionHandler: ^(NSDictionary *data, NSError *error){
+    [[LoginRadiusSocialLoginManager sharedInstance] nativeFacebookLoginWithPermissions:@{@"facebookPermissions":@[@"public_profile",@"email"]} withSocialAppName:@"" inController:self completionHandler: ^(NSDictionary *data, NSError *error){
         if(error)
         {
             [self errorMessage:data error:error];
