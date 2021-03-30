@@ -37,7 +37,6 @@
     
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    login.loginBehavior = params[@"facebookLoginBehavior"] || FBSDKLoginBehaviorBrowser;
     
     void (^handleLogin)(FBSDKLoginManagerLoginResult *result, NSError *error) = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
         [self onLoginResult:result error:error  withSocialAppName:socialAppName controller:controller];

@@ -114,7 +114,7 @@
 
 - (void) setupForm
 {
-    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.4.2 🇮🇳";
+    [[[self navigationController] navigationBar] topItem].title = @"LoginRadius ObjCDemo 5.5.0 🇮🇳";
     
     XLFormDescriptor * form;
     XLFormSectionDescriptor * section;
@@ -594,7 +594,7 @@
                    {
                        if ([[LoginRadiusSDK sharedInstance] session].isLoggedIn)
                        {
-                           NSString *additionalErrorMsg = [NSString stringWithFormat:@"%@.\n\n See our Swift Demo for an example to handle missing required fields."];
+                           NSString *additionalErrorMsg = [NSString stringWithFormat:@"See our Swift Demo for an example to handle missing required fields."];
                            [self showAlert:@"ERROR" message:additionalErrorMsg];
                            [self performSegueWithIdentifier:@"profile" sender:self];
                        }else
