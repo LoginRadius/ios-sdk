@@ -41,7 +41,7 @@
  *  @param params     dict of parameters
  These are the valid keys
  - facebookPermissions : should be an array of strings
- - facebookLoginBehavior : should be FBSDKLoginBehaviorNative / FBSDKLoginBehaviorBrowser / FBSDKLoginBehaviorSystemAccount / FBSDKLoginBehaviorWeb
+ - facebookLoginBehavior : New FB SDK is supporting FBSDKLoginBehaviorBrowser only
  recommended approach is to use FBSDKLoginBehaviorSystemAccount
  *  @param socialAppName  should have unique social app name as a provider in case of multiple social apps for the same provider (eg. facebook_<social app name> )
  *  @param controller view controller where social login take place should not be nil

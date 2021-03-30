@@ -1,8 +1,9 @@
+#Comment the next line if you don't want to use dynamic frameworks
 use_frameworks!
 
 workspace 'LoginRadiusSDK'
 
-platform :ios, '9.3'
+platform :ios, '9.0'
 
 target 'ObjCDemo' do
     project 'Example/ObjCDemo/ObjCDemo.xcodeproj'
@@ -15,7 +16,7 @@ end
 target 'SwiftDemo' do
     project 'Example/SwiftDemo/SwiftDemo.xcodeproj'
     pod 'LoginRadiusSDK', :path => './'
-    pod 'Eureka', '<= 5.2.1'
+    pod 'Eureka'
     pod 'SwiftyJSON', '<= 4.0'
     pod 'Alamofire', '<= 4.8.2'
     #pod 'Google/SignIn', '<= 4.1.0'

@@ -1,3 +1,11 @@
+5.5.0 Release notes (2021-03-30)
+=============================================================
+
+### Enhancements
+* Upgraded FBSDK dependencies in LoginRadiusSDK for new build system of new Xcode.
+* Upgraded Eureka version to latest in Swift demo on Xcode.
+* Dropping support for Xcode versions below 11. This is in line with Apple's plans to disallow submission of Apps that do not include the iOS 13 SDK.
+
 5.4.2 Release notes (2020-08-27)
 =============================================================
 
