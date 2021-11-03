@@ -32,7 +32,7 @@ b. LoginRadiusSDK -This is the LoginRadius SDK.
 
 We recommend using CocoaPods for installing the library in a project.
 
-CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
+CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command :
 
 ```
 $ gem install cocoapods
