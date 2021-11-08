@@ -81,6 +81,7 @@
     [[LoginRadiusREST apiInstance] sendPOST:@"identity/v2/auth/register"
                                 queryParams:@{
                                               @"apikey": [LoginRadiusSDK apiKey],
+                                              @"registrationsource":[LoginRadiusSDK registrationSource],
                                               @"sott": sott,
                                               @"verificationurl": [LoginRadiusSDK verificationUrl],
                                               @"emailtemplate": email_template,
