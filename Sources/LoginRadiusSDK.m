@@ -11,6 +11,8 @@
 
 static NSString * const LoginRadiusPlistFileName = @"LoginRadius";
 static NSString * const LoginRadiusAPIKey = @"apiKey";
+static NSString * const LoginRadiusRegistrationSource = @"registrationSource";
+static NSString * const LoginRadiusCustomHeaders = @"customHeaders";
 static NSString * const LoginRadiusSiteName = @"siteName";
 static NSString * const LoginRadiusVerificationUrl = @"verificationUrl";
 static NSString * const LoginRadiusKeychain = @"useKeychain";
@@ -28,6 +30,8 @@ static NSString * const LoginRadiusCustomDomain = @"customDomain";
     NSString *path = [[NSBundle mainBundle] pathForResource:LoginRadiusPlistFileName ofType:@"plist"];
     NSDictionary* values = [NSDictionary dictionaryWithContentsOfFile:path];
     NSString *apiKey = values[LoginRadiusAPIKey];
+    NSString *registrationSource = values[LoginRadiusRegistrationSource];
+    NSDictionary *customHeaders = values[ LoginRadiusCustomHeaders];
     NSString *siteName = values[LoginRadiusSiteName];
     NSString *verificationUrl = values[LoginRadiusVerificationUrl] ? values[LoginRadiusVerificationUrl] : @"https://auth.lrcontent.com/mobile/verification/index.html";
     BOOL useKeychain = values[LoginRadiusKeychain] ? [values[LoginRadiusKeychain] boolValue] : NO; // if nil set to false
@@ -41,11 +45,15 @@ static NSString * const LoginRadiusCustomDomain = @"customDomain";
     NSAssert(apiKey, @"apiKey cannot be null in LoginRadius.plist");
     NSAssert(siteName, @"siteName cannot be null in LoginRadius.plist");
     
+    if(!registrationSource){
+        registrationSource = @"iOS";
+    }
     
     self = [super init];
     
     if (self) {
         _apiKey = apiKey;
+        _registrationSource = registrationSource;
         _siteName = siteName;
         _verificationUrl=verificationUrl;
         _customDomain =customDomain;
@@ -53,6 +61,7 @@ static NSString * const LoginRadiusCustomDomain = @"customDomain";
         _session = [[LRSession alloc] init];
         _socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
+        _customHeaders = customHeaders;
     }
     
     return self;
@@ -88,7 +97,9 @@ static NSString * const LoginRadiusCustomDomain = @"customDomain";
 + (NSString*) apiKey {
     return [LoginRadiusSDK sharedInstance].apiKey;
 }
-
++ (NSString*) registrationSource {
+    return [LoginRadiusSDK sharedInstance].registrationSource;
+}
 + (NSString*) siteName {
     return [LoginRadiusSDK sharedInstance].siteName;
 }
@@ -103,6 +114,9 @@ static NSString * const LoginRadiusCustomDomain = @"customDomain";
 
 + (BOOL) useKeychain {
     return [LoginRadiusSDK sharedInstance].useKeychain;
+}
++ (NSDictionary*) customHeaders {
+    return [LoginRadiusSDK sharedInstance].customHeaders;
 }
 
 

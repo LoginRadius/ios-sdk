@@ -1,3 +1,10 @@
+5.6.0 Release notes (2021-11-08)
+=============================================================
+
+### Enhancements
+* Added support to pass custom headers in the SDK. 
+* Added support to set the Referer header in the SDK.
+
 5.5.0 Release notes (2021-03-30)
 =============================================================
 

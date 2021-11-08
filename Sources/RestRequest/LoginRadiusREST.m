@@ -55,240 +55,290 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
         _baseURL = [NSURL URLWithString:BASE_URL_STRING(baseUrlEnum)];
         NSString *stringUrl = _baseURL.absoluteString;
         if (![[LoginRadiusSDK customDomain] isEqualToString:@""] && [stringUrl containsString:@"api"]) {
-        _baseURL = [NSURL URLWithString:[LoginRadiusSDK customDomain]];
+            _baseURL = [NSURL URLWithString:[LoginRadiusSDK customDomain]];
         }
-}
+    }
     return self;
 }
 
 - (void)sendGET:(NSString *)url queryParams:(id)queryParams completionHandler:(LRAPIResponseHandler)completion {
     
-        NSString *access_token;
-        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
+    NSString *access_token;
+    NSMutableDictionary* queryParameters = [queryParams mutableCopy];
     
-        if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
-          access_token = queryParameters[@"access_token"];
-          [queryParameters removeObjectForKey:@"access_token"];
+    if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+        access_token = queryParameters[@"access_token"];
+        [queryParameters removeObjectForKey:@"access_token"];
+    }
+    
+    NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParameters ? [url stringByAppendingString:[queryParameters queryString]]: url]];
+    
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    
+    [request setHTTPMethod:@"GET"];//use GET
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *providedCustomHeaders = [NSDictionary dictionaryWithDictionary: [LoginRadiusSDK customHeaders]];
+    if (providedCustomHeaders.count > 0){
+        
+        for(NSString * headersValue in providedCustomHeaders){
+            
+            [request addValue: [providedCustomHeaders valueForKey:headersValue]  forHTTPHeaderField: headersValue ];
         }
-    
-        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParameters ? [url stringByAppendingString:[queryParameters queryString]]: url]];
         
-        
-        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
-        
-        [request setHTTPMethod:@"GET"];//use GET
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        if (access_token !=nil) {
+    }
+    if (access_token !=nil) {
         NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
         [request addValue:token forHTTPHeaderField:@"Authorization"];
-        }
+    }
+    
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:
-                                      ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                                          
-                                          if([httpResponse statusCode] == 200){
-                                             
-                                              NSError *jsonError = nil;
-                                              id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
-                                              
-                                              if ([jsonObject isKindOfClass:[NSArray class]]) {
-                                                  NSArray *jsonArray = (NSArray *)jsonObject;
-                                                  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-                                                  [dict setObject:jsonArray forKey:@"Data"];
-                                                  completion(dict, nil);
-                                              }
-                                              else {
-                                                  NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
-                                                  completion(jsonDictionary, nil);
+        if([httpResponse statusCode] == 200){
             
-                                              }
-                                          }else{
-                                              completion(nil, [self convertError:data response:response]); 
-                                          }
-                                      }];
-        
-        [task resume];
-  
+            NSError *jsonError = nil;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            if ([jsonObject isKindOfClass:[NSArray class]]) {
+                NSArray *jsonArray = (NSArray *)jsonObject;
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                [dict setObject:jsonArray forKey:@"Data"];
+                completion(dict, nil);
+            }
+            else {
+                NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
+                completion(jsonDictionary, nil);
+                
+            }
+        }else{
+            completion(nil, [self convertError:data response:response]);
+        }
+    }];
+    
+    [task resume];
 }
 
 - (void)sendPOST:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
-        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
-        NSString *sott;
-        NSString *access_token;
-        NSError* error;
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
-        if (queryParameters[@"sott"]) {
-            sott = queryParameters[@"sott"];
-            [queryParameters removeObjectForKey:@"sott"];
-        }else if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
-            access_token = queryParameters[@"access_token"];
-            [queryParameters removeObjectForKey:@"access_token"];
-        }
-        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParameters ? [url stringByAppendingString:[queryParameters queryString]]: url]];
-        
-        
-        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
-        
-        [request setHTTPMethod:@"POST"];//use POST
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-           [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
-        if (sott !=nil) {
-            [request addValue:sott forHTTPHeaderField:@"X-LoginRadius-Sott"];
-        }else if (access_token !=nil) {
-            NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
-            [request addValue:token forHTTPHeaderField:@"Authorization"];
-        }
+    NSMutableDictionary* queryParameters = [queryParams mutableCopy];
+    NSString *sott;
+    NSString *access_token;
+    NSString *registrationsource;
     
-        [request setHTTPBody:jsonData];//set data
+    NSError* error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
+    
+    if (queryParameters[@"sott"]) {
+        sott = queryParameters[@"sott"];
+        [queryParameters removeObjectForKey:@"sott"];
+    }
+    else if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+        access_token = queryParameters[@"access_token"];
+        [queryParameters removeObjectForKey:@"access_token"];
+    }
+    
+    if (queryParameters[@"registrationsource"] && [queryParameters[@"registrationsource"] length]) {
+        registrationsource = queryParameters[@"registrationsource"];
+        [queryParameters removeObjectForKey:@"registrationsource"];
+    }
+    NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParameters ? [url stringByAppendingString:[queryParameters queryString]]: url]];
+    
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    
+    [request setHTTPMethod:@"POST"];//use POST
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+    if (sott !=nil) {
+        [request addValue:sott forHTTPHeaderField:@"X-LoginRadius-Sott"];
+    }
+    else if (access_token !=nil) {
+        NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+        [request addValue:token forHTTPHeaderField:@"Authorization"];
+    }
+    if ((registrationsource !=nil) && registrationsource.length) {
+        [request addValue:registrationsource forHTTPHeaderField:@"Referer"];
+    }
+    
+    NSDictionary *providedCustomHeaders = [NSDictionary dictionaryWithDictionary: [LoginRadiusSDK customHeaders]];
+    if (providedCustomHeaders.count > 0){
         
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:
-                                      ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                                          
-                                          if([httpResponse statusCode] == 200){
-                                              
-                                              NSError *jsonError = nil;
-                                              id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
-                                              
-                                              if ([jsonObject isKindOfClass:[NSArray class]]) {
-                                                  NSArray *jsonArray = (NSArray *)jsonObject;
-                                                  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-                                                  [dict setObject:jsonArray forKey:@"Data"];
-                                                  completion(dict, nil);
-                                              }
-                                              else {
-                                                  NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
-                                                  completion(jsonDictionary, nil);
-                                                  
-                                              }
-                                          }else{
-                                              completion(nil, [self convertError:data response:response]);
-                                          }
-                                      }];
+        for(NSString * headersValue in providedCustomHeaders){
+            
+            [request addValue: [providedCustomHeaders valueForKey:headersValue]  forHTTPHeaderField: headersValue ];
+        }
         
-        [task resume];
-
+    }
+    [request setHTTPBody:jsonData];//set data
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        
+        if([httpResponse statusCode] == 200){
+            
+            NSError *jsonError = nil;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            if ([jsonObject isKindOfClass:[NSArray class]]) {
+                NSArray *jsonArray = (NSArray *)jsonObject;
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                [dict setObject:jsonArray forKey:@"Data"];
+                completion(dict, nil);
+            }
+            else {
+                NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
+                completion(jsonDictionary, nil);
+                
+            }
+        }else{
+            completion(nil, [self convertError:data response:response]);
+        }
+    }];
+    
+    [task resume];
+    
 }
 
 - (void)sendPUT:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
     
-        NSString *access_token;
-        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
-        NSError* error;
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
+    NSString *access_token;
+    NSMutableDictionary* queryParameters = [queryParams mutableCopy];
+    NSError* error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
     
-        if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
-          access_token = queryParameters[@"access_token"];
-          [queryParameters removeObjectForKey:@"access_token"];
+    if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+        access_token = queryParameters[@"access_token"];
+        [queryParameters removeObjectForKey:@"access_token"];
+    }
+    
+    NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
+    
+    
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    
+    [request setHTTPMethod:@"PUT"];//use PUT
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+    if (access_token !=nil) {
+        NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+        [request addValue:token forHTTPHeaderField:@"Authorization"];
+    }
+    NSDictionary *providedCustomHeaders = [NSDictionary dictionaryWithDictionary: [LoginRadiusSDK customHeaders]];
+    if (providedCustomHeaders.count > 0){
+        
+        for(NSString * headersValue in providedCustomHeaders){
+            
+            [request addValue: [providedCustomHeaders valueForKey:headersValue]  forHTTPHeaderField: headersValue ];
         }
         
-        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
+    }
+    [request setHTTPBody:jsonData];//set data
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-        
-        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
-        
-        [request setHTTPMethod:@"PUT"];//use PUT
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
-        if (access_token !=nil) {
-          NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
-          [request addValue:token forHTTPHeaderField:@"Authorization"];
+        if([httpResponse statusCode] == 200){
+            
+            NSError *jsonError = nil;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            if ([jsonObject isKindOfClass:[NSArray class]]) {
+                NSArray *jsonArray = (NSArray *)jsonObject;
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                [dict setObject:jsonArray forKey:@"Data"];
+                completion(dict, nil);
+            }
+            else {
+                NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
+                completion(jsonDictionary, nil);
+                
+            }
+        }else{
+            completion(nil, [self convertError:data response:response]);
         }
-        [request setHTTPBody:jsonData];//set data
-        
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:
-                                      ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                                          
-                                          if([httpResponse statusCode] == 200){
-                                              
-                                              NSError *jsonError = nil;
-                                              id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
-                                              
-                                              if ([jsonObject isKindOfClass:[NSArray class]]) {
-                                                  NSArray *jsonArray = (NSArray *)jsonObject;
-                                                  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-                                                  [dict setObject:jsonArray forKey:@"Data"];
-                                                  completion(dict, nil);
-                                              }
-                                              else {
-                                                  NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
-                                                  completion(jsonDictionary, nil);
-                                                  
-                                              }
-                                          }else{
-                                              completion(nil, [self convertError:data response:response]);
-                                          }
-                                      }];
-        
-        [task resume];
+    }];
+    
+    [task resume];
 }
 
 - (void)sendDELETE:(NSString *)url queryParams:(id)queryParams body:(id)body completionHandler:(LRAPIResponseHandler)completion {
     
-        NSString *access_token;
-        NSMutableDictionary* queryParameters = [queryParams mutableCopy];
-        NSError* error;
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
+    NSString *access_token;
+    NSMutableDictionary* queryParameters = [queryParams mutableCopy];
+    NSError* error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error: &error];
     
-        if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
-          access_token = queryParameters[@"access_token"];
-          [queryParameters removeObjectForKey:@"access_token"];
+    if (queryParameters[@"access_token"] && [url rangeOfString:@"/auth"].location != NSNotFound) {
+        access_token = queryParameters[@"access_token"];
+        [queryParameters removeObjectForKey:@"access_token"];
+    }
+    //
+    NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    
+    [request setHTTPMethod:@"DELETE"];//use DELETE
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
+    if (access_token !=nil) {
+        NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
+        [request addValue:token forHTTPHeaderField:@"Authorization"];
+    }
+    NSDictionary *providedCustomHeaders = [NSDictionary dictionaryWithDictionary: [LoginRadiusSDK customHeaders]];
+    if (providedCustomHeaders.count > 0){
+        
+        for(NSString * headersValue in providedCustomHeaders){
+            
+            [request addValue: [providedCustomHeaders valueForKey:headersValue]  forHTTPHeaderField: headersValue ];
         }
-
-        NSURL *requestUrl = [NSURL URLWithString:[_baseURL.absoluteString stringByAppendingString:queryParams ? [url stringByAppendingString:[queryParams queryString]]: url]];
         
+    }
+    [request setHTTPBody:jsonData];//set data
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
-        
-        [request setHTTPMethod:@"DELETE"];//use DELETE
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-length"];
-        if (access_token !=nil) {
-          NSString *token = [NSString stringWithFormat: @"Bearer %@", access_token];
-          [request addValue:token forHTTPHeaderField:@"Authorization"];
+        if([httpResponse statusCode] == 200){
+            
+            NSError *jsonError = nil;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            
+            if ([jsonObject isKindOfClass:[NSArray class]]) {
+                NSArray *jsonArray = (NSArray *)jsonObject;
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                [dict setObject:jsonArray forKey:@"Data"];
+                completion(dict, nil);
+            }
+            else {
+                NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
+                completion(jsonDictionary, nil);
+                
+            }
+        }else{
+            completion(nil, [self convertError:data response:response]);
         }
-        [request setHTTPBody:jsonData];//set data
-        
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:
-                                      ^(NSData *data, NSURLResponse *response, NSError *error) {
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                                          
-                                          if([httpResponse statusCode] == 200){
-                                              
-                                              NSError *jsonError = nil;
-                                              id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
-                                              
-                                              if ([jsonObject isKindOfClass:[NSArray class]]) {
-                                                  NSArray *jsonArray = (NSArray *)jsonObject;
-                                                  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-                                                  [dict setObject:jsonArray forKey:@"Data"];
-                                                  completion(dict, nil);
-                                              }
-                                              else {
-                                                  NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
-                                                  completion(jsonDictionary, nil);
-                                                  
-                                              }
-                                          }else{
-                                              completion(nil, [self convertError:data response:response]);
-                                          }
-         }];
-        
-        [task resume];
+    }];
+    
+    [task resume];
     
 }
 
@@ -300,9 +350,9 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
     
     if([httpResponse statusCode] == 0){
-    loginRadiusError = [NSError errorWithCode:0 description:@"something went wrong or network not available please try again later" failureReason:@"something went wrong please try again later"];
+        loginRadiusError = [NSError errorWithCode:0 description:@"something went wrong or network not available please try again later" failureReason:@"something went wrong please try again later"];
     }else{
-    
+        
         NSError *jsonError;
         NSDictionary *payload = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError] dictionaryWithLowercaseKeys]; //lowercase all json dictionary keys
         if (!jsonError) { // HTTP Not acceptable errorCode. Deserialize LoginRadius Error if payload present
@@ -327,7 +377,7 @@ typedef NS_ENUM(NSUInteger, BASE_URL_ENUM) {
             }
         }
     }
-             return loginRadiusError;
+    return loginRadiusError;
     
 }
 
