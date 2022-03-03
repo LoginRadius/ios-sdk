@@ -62,7 +62,6 @@ completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)getStatusWithAccessToken:(NSString *)access_token completionHandler:(LRAPIResponseHandler)completion;
 
-- (void)getUserprofileWithAccessToken:(NSString *)access_token completionHandler:(LRAPIResponseHandler)completion;
 
 - (void)getVideoWithAccessToken:(NSString *)access_token
       nextcursor:(NSString *)nextcursor

@@ -230,17 +230,6 @@ completionHandler:(LRAPIResponseHandler)completion {
     
 }
 
-- (void)getUserprofileWithAccessToken:(NSString *)access_token
-completionHandler:(LRAPIResponseHandler)completion {
-    
-    [[LoginRadiusREST apiInstance] sendGET:@"api/v2/userprofile"
-                               queryParams:@{
-                                             @"access_token": access_token
-                                             }
-                         completionHandler:completion];
-    
-}
-
 - (void)getVideoWithAccessToken:(NSString *)access_token
         nextcursor:(NSString *)nextcursor
  completionHandler:(LRAPIResponseHandler)completion {

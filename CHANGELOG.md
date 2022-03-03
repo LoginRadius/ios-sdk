@@ -1,3 +1,14 @@
+5.6.1 Release notes (2022-03-03)
+
+### Removed (Deprecated) API:
+
+* getUserprofileWithAccessToken (Social User Profile EndPoint)
+
+In this iOS SDK version, we have removed/deprecated the `getUserprofileWithAccessToken` method (Social User Profile EndPoint ). This API endpoint will also be deprecated from the LoginRadius backend soon, so we will suggest please use `profilesWithAccessToken` method instead of `getUserprofileWithAccessToken` method.
+
+To know more about the Implementation of this API please refer to this [document](https://www.loginradius.com/docs/libraries/mobile-sdk-libraries/ios-library/#social-user-profile).
+
+
 5.6.0 Release notes (2021-11-08)
 =============================================================
 
