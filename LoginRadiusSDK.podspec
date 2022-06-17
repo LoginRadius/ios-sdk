@@ -26,7 +26,7 @@ s.source       = { :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag =>
 
 s.source_files = ['Sources/**/*.{h,m}']
 
-s.dependency 'FBSDKLoginKit', '~> 9.0'
+s.dependency 'FBSDKLoginKit', '~> 11.0'
 s.dependency 'SimpleKeychain', '~> 0.7.0'
 
 s.ios.frameworks = 'Foundation', 'UIKit', 'SystemConfiguration', 'Social', 'Accounts', 'SafariServices'
