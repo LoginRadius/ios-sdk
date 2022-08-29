@@ -1,4 +1,15 @@
+5.6.2 Release notes (2022-08-29)
+=============================================================
+
+### Enhancements
+* Upgraded FBSDK dependencies in LoginRadiusSDK for new build system of new Xcode.
+
+### Breaking changes
+
+* As part of FBSDK version 13+ it is required to set FacebookClientToken in the project's Info.plist file. For details on FacebookClientToken please see Facebook document : https://developers.facebook.com/docs/ios/getting-started/#client-token
+
 5.6.1 Release notes (2022-03-03)
+=============================================================
 
 ### Removed (Deprecated) API:
 

@@ -42,13 +42,13 @@ To integrate LRSDK into your Xcode project using CocoaPods, specify it in your P
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'TargetName' do
 
 #Comment the next line if you don't want to use dynamic frameworks
 use_frameworks!
-pod 'LoginRadiusSDK', '~> 5.6.1'
+pod 'LoginRadiusSDK', '~> 5.6.2'
 end
 
 ```
