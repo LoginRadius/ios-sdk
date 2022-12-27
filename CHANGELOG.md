@@ -1,3 +1,10 @@
+5.7.0 Release notes (2022-12-27)
+=============================================================
+
+### Enhancements
+* Added Secure Enclave in the LoginRadius SDK to encrypt/decrypt sensitive data. For detailed information on Secure Enclave, please refer to the following document : https://support.apple.com/en-in/guide/security/sec59b0b31ff/web 
+
+
 5.6.2 Release notes (2022-08-29)
 =============================================================
 
