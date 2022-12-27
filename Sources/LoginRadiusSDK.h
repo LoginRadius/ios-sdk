@@ -23,6 +23,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 @property (strong, readonly, nonatomic) NSString* _Nonnull customDomain;
 @property (strong, atomic) LRSession* _Nonnull session;
 @property (readonly, nonatomic) BOOL useKeychain;
+@property (readonly, nonatomic) BOOL setEncryption;
 
 
 #pragma mark - Initilizers
@@ -45,7 +46,7 @@ typedef void (^LRServiceCompletionHandler)(BOOL success, NSError * _Nullable err
 + (NSString*_Nonnull)verificationUrl;
 + (NSString*_Nonnull)customDomain;
 + (BOOL)useKeychain;
-
++ (BOOL)setEncryption;
 #pragma mark - Application Delegate methods
 
 /** Application Delegate methods
