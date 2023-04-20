@@ -45,6 +45,8 @@
 + (NSError*)touchIDNotAvailable;
 + (NSError*)touchIDNotDeviceOwner;
 
-
+#pragma mark - Face ID
++ (NSError*)faceIDNotAvailable;
++ (NSError*)faceIDNotDeviceOwner;
 
 @end

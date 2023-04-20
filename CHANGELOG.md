@@ -1,3 +1,12 @@
+5.8.0 Release notes (2023-04-20)
+=============================================================
+
+### Enhancements
+* Added FaceID helper in the LoginRadius SDK for authentication through facial recognition. 
+  For detailed information on FaceID, please refer to the following document:
+    https://developer.apple.com/documentation/localauthentication/logging_a_user_into_your_app_with_face_id_or_touch_id
+
+
 5.7.0 Release notes (2022-12-27)
 =============================================================
 

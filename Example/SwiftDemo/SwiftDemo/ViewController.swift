@@ -10,6 +10,7 @@ import LoginRadiusSDK
 import Eureka
 import SwiftyJSON
 import AuthenticationServices
+import LocalAuthentication
 
 /* Google Native SignIn
  import GoogleSignIn
@@ -363,16 +364,16 @@ class ViewController: FormViewController
         
         if !LoginRadiusSDK.sharedInstance().session.isLoggedIn
         {
-            form +++ Section("Touch ID")
+            form +++ Section("Touch / Face ID")
             {
-                $0.tag = "Touch ID"
+                $0.tag = "Touch / Face ID"
                 }
                 
-                <<< ButtonRow ("Touch ID")
+                <<< ButtonRow ("Touch / Face ID")
                 {
                     $0.title = $0.tag
                     }.onCellSelection{ row,arg  in
-                        self.showTouchIDLogin()
+                        self.biometryType()
             }
         }
         
@@ -852,6 +853,57 @@ class ViewController: FormViewController
         })
     }
     
+    func showFaceIDLogin()
+    {
+        LRFaceIDAuth.sharedInstance().localAuthentication(withFallbackTitle: " ", completion: {
+        (success, error) in
+            if let err = error{
+                self.showAlert(title: "ERROR", message: err.localizedDescription)
+            }else{
+                self.showAlert(title: "SUCCESS", message:"Valid User")
+                print("Face ID authentication successfull")
+                self.showProfileController()
+            }
+        })
+    }
+    
+    
+    func biometryType()
+    {
+        
+        let context = LAContext()
+            
+            var error: NSError?
+            
+            if context.canEvaluatePolicy(
+                LAPolicy.deviceOwnerAuthenticationWithBiometrics,
+                error: &error) {
+           if (error != nil) {
+               print(error?.description)
+           } else {
+
+               if #available(iOS 11.0.1, *) {
+                   if (context.biometryType == .faceID) {
+                       //localizedReason = "Unlock using Face ID"
+                       self.showFaceIDLogin()
+
+                      print("Face ID supports")
+
+                   } else if (context.biometryType == .touchID) {
+                       //localizedReason = "Unlock using Touch ID"
+                       self.showTouchIDLogin()
+                       print("TouchId support")
+
+                  } else {
+                       //localizedReason = "Unlock using Application Passcode"
+                     print("No Biometric support")
+                    }
+
+                }
+            }
+        }
+
+    }
     func errorAlert(data:[AnyHashable:Any]?, error:Error )
     {
         

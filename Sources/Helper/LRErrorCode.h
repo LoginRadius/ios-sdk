@@ -107,6 +107,13 @@ typedef NS_ENUM(NSInteger, LRErrorCode) {
     /**
      *  User is not verified
      */
+    /**
+     * FaceID error
+     */
+    LRErrorCodeFaceIDNotAvailable,
+    /**
+     *  User is not verified
+     */
     LRErrorCodeUserIsNotVerified,
     /**
      *  Failed to fetch social login list

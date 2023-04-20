@@ -7,6 +7,7 @@
 #import "LoginRadiusSDK.h"
 #import "LoginRadiusSocialLoginManager.h"
 #import "LRTouchIDAuth.h"
+#import "LRFaceIDAuth.h"
 #import "LRSession.h"
 #import "LoginRadiusEncryptor.h"
 
@@ -26,6 +27,7 @@ static NSString * const LoginRadiusSetEncryption = @"setEncryption";
 @interface LoginRadiusSDK ()
 @property (strong, nonatomic) LoginRadiusSocialLoginManager *socialLoginManager;
 @property (strong, nonatomic) LRTouchIDAuth *touchIDManager;
+@property (strong, nonatomic) LRFaceIDAuth *faceIDManager;
 @end
 
 @implementation LoginRadiusSDK
@@ -79,6 +81,7 @@ static NSString * const LoginRadiusSetEncryption = @"setEncryption";
         _session = [[LRSession alloc] init];
         _socialLoginManager = [[LoginRadiusSocialLoginManager alloc] init];
         _touchIDManager = [[LRTouchIDAuth alloc] init];
+        _faceIDManager = [[LRFaceIDAuth alloc] init];
         _customHeaders = customHeaders;
         _setEncryption = setEncryption;
     }

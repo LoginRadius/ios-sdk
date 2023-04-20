@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "XLFormViewControllerExtension.h"
 #import "AppDelegate.h"
+#import <LocalAuthentication/LocalAuthentication.h>
 
 @interface ViewController ()
 @property ( nonatomic, nullable)  BOOL *isEmailAvailable;
@@ -210,11 +211,11 @@
     //Social Login Section
     if(![[[LoginRadiusSDK sharedInstance] session] isLoggedIn])
     {
-        section = [XLFormSectionDescriptor formSectionWithTitle:@"Touch ID"];
+        section = [XLFormSectionDescriptor formSectionWithTitle:@"Touch / Face ID"];
         [form addFormSection:section];
         
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"TouchID" rowType:XLFormRowDescriptorTypeButton title:@"Touch ID"];
-        row.action.formSelector = @selector(showTouchIDLogin);
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Touch / Face ID" rowType:XLFormRowDescriptorTypeButton title:@"Touch / Face ID"];
+        row.action.formSelector = @selector(biometryType);
         [section addFormRow:row];
     }
     
@@ -573,13 +574,63 @@
 {
     [[LRTouchIDAuth sharedInstance] localAuthenticationWithFallbackTitle:@"" completion:^(BOOL success, NSError *error) {
         if (success) {
+            [self showAlert:@"Success" message:@"Successfully Authenticated"];
             NSLog(@"successfully authenticated with touch id");
             [self showProfileController];
         } else {
+            [self showAlert:@"Error" message:error.description];
             NSLog(@"Error: %@", [error description]);
         }
     }];
 }
+
+- (void) showFaceIDLogin
+{
+    [[LRFaceIDAuth sharedInstance]localAuthenticationWithFallbackTitle:@"" completion:^(BOOL success, NSError *error) {
+        if (success){
+            [self showAlert:@"Success" message:@"Successfully Authenticated"];
+            NSLog(@"Successfully authenticated with Face ID");
+            [self showProfileController];
+        }else{
+            [self showAlert:@"Error" message:error.description];
+            NSLog(@"Error: %@", [error description]);
+        }
+    }];
+}
+
+- (void) biometryType
+{
+    LAContext *laContext = [[LAContext alloc] init];
+    
+    NSError *error;
+
+    if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+
+        if (error != NULL) {
+            NSLog(error.description);
+        } else {
+
+            if (@available(iOS 11.0.1, *)) {
+                if (laContext.biometryType == LABiometryTypeFaceID) {
+                    //localizedReason = "Unlock using Face ID"
+                    [self showFaceIDLogin];
+                    NSLog(@"FaceId support");
+                    
+                } else if (laContext.biometryType == LABiometryTypeTouchID) {
+                    //localizedReason = "Unlock using Touch ID"
+                    [self showTouchIDLogin];
+                    NSLog(@"TouchId support");
+
+                } else {
+                    //localizedReason = "Unlock using Application Passcode"
+                    NSLog(@"No Biometric support");
+                }
+
+            }
+        }
+    }
+}
+
 
 - (void) errorMessage:(NSDictionary *)data
                              error: (NSError *) error{

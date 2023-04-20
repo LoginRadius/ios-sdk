@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = 'LoginRadiusSDK'
-s.version      = '5.7.0'
+s.version      = '5.8.0'
 s.summary      = 'Official LoginRadius SDK for iOS to integrate User Registration Service or Social Login in your app.'
 
 s.description  = <<-DESC

@@ -150,4 +150,15 @@
                     failureReason:@"TouchID Authentiction failed since the user is not the device's owner"];
 }
 
++ (NSError*)faceIDNotAvailable {
+    return [NSError errorWithCode:LRErrorCodeFaceIDNotAvailable
+                      description:@"Face ID authentication failed"
+                    failureReason:@"The User's device cannot be authenticated using FaceID"];
+}
+
++ (NSError*)faceIDNotDeviceOwner {
+    return [NSError errorWithCode:LRErrorCodeFaceIDNotAvailable
+                      description:@"Face ID authentication failed"
+                    failureReason:@"FaceID Authentiction failed since the user is not the device's owner"];
+}
 @end
