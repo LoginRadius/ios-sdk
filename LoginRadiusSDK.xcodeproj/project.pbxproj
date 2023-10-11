@@ -63,6 +63,8 @@
 		1E7741F32463598A0095C2B9 /* LoginRadiusWebLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7741F12463598A0095C2B9 /* LoginRadiusWebLoginViewController.m */; };
 		1E7741F42463598A0095C2B9 /* LoginRadiusWebLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E7741F22463598A0095C2B9 /* LoginRadiusWebLoginViewController.h */; };
 		6896D6F61D2E6C4800937820 /* LoginRadiusSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6896D6F51D2E6C4800937820 /* LoginRadiusSDK.podspec */; };
+		C0CCC1452AA6F52D00111DA4 /* LRKeychainWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = C0CCC1442AA6F52D00111DA4 /* LRKeychainWrapper.h */; };
+		C0CCC1472AA6F54300111DA4 /* LRKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CCC1462AA6F54300111DA4 /* LRKeychainWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,8 @@
 		6809CDB81E49BE5F004017BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6884DF381CC9FC8A0071EFFB /* LoginRadiusSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoginRadiusSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6896D6F51D2E6C4800937820 /* LoginRadiusSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoginRadiusSDK.podspec; sourceTree = "<group>"; };
+		C0CCC1442AA6F52D00111DA4 /* LRKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRKeychainWrapper.h; sourceTree = "<group>"; };
+		C0CCC1462AA6F54300111DA4 /* LRKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRKeychainWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 				1E1E3877246333AA00D7B615 /* Api */,
 				1E1E3888246333AA00D7B615 /* LoginRadius.h */,
 				1E1E3889246333AA00D7B615 /* LoginRadiusSDK.h */,
+				C0CCC1462AA6F54300111DA4 /* LRKeychainWrapper.m */,
+				C0CCC1442AA6F52D00111DA4 /* LRKeychainWrapper.h */,
 				1E1E388A246333AA00D7B615 /* Helper */,
 			);
 			path = Sources;
@@ -320,6 +326,7 @@
 				1E1E38AA246333AA00D7B615 /* LRSession.h in Headers */,
 				1E1E38A6246333AA00D7B615 /* LoginRadiusSafariLogin.h in Headers */,
 				1E1E38BD246333AA00D7B615 /* LoginRadius.h in Headers */,
+				C0CCC1452AA6F52D00111DA4 /* LRKeychainWrapper.h in Headers */,
 				1E1E3896246333AA00D7B615 /* LRMutableDictionary.h in Headers */,
 				1E1E38AD246333AA00D7B615 /* CustomObjectAPI.h in Headers */,
 				1E1E38B4246333AA00D7B615 /* PasswordlessLoginAPI.h in Headers */,
@@ -344,6 +351,8 @@
 			dependencies = (
 			);
 			name = LoginRadiusSDK;
+			packageProductDependencies = (
+			);
 			productName = LRSDK;
 			productReference = 6884DF381CC9FC8A0071EFFB /* LoginRadiusSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -440,6 +449,7 @@
 				1E1E38BC246333AA00D7B615 /* PasswordlessLoginAPI.m in Sources */,
 				1E1E389E246333AA00D7B615 /* LoginRadiusREST.m in Sources */,
 				1E1E38A0246333AA00D7B615 /* LRSession.m in Sources */,
+				C0CCC1472AA6F54300111DA4 /* LRKeychainWrapper.m in Sources */,
 				1E1E38B1246333AA00D7B615 /* ConfigurationAPI.m in Sources */,
 				1E1E38AB246333AA00D7B615 /* LRTouchIDAuth.m in Sources */,
 				1E1E389B246333AA00D7B615 /* ReachabilityCheck.m in Sources */,

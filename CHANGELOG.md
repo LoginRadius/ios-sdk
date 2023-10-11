@@ -1,3 +1,14 @@
+5.9.0 Release notes (2023-10-10)
+=============================================================
+
+### Enhancements
+* Added Package.swift to the project to support Swift Package Manager (SPM).
+  For detailed information on Swift Package Manager, please refer to the following document:
+  https://www.swift.org/package-manager/
+* Remove support of SimpleKeychain Pod in SDK.
+* Added LRKeychain Wrapper in SDK.
+  
+
 5.8.0 Release notes (2023-04-20)
 =============================================================
 
