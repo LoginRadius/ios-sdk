@@ -30,6 +30,8 @@ b. LoginRadiusSDK -This is the LoginRadius SDK.
 
 ## Installing
 
+CocoaPods
+
 We recommend using CocoaPods for installing the library in a project.
 
 CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
@@ -59,3 +61,30 @@ Then, run the following command:
 $ pod install
 
 ```
+Swift Package Manager
+
+The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into the swift compiler.
+
+To add LoginRadiusSDK to your project using SwiftPM follow these steps:
+
+ 1. Open your project in Xcode
+ 2. In the main menu, select File -> Swift Packages -> Add Package Dependency...
+ 3. In the window, enter the package url
+     https://github.com/LoginRadius/ios-sdk.git 
+  
+To use LoginRadiusSDK in your code, import the module or header files as needed:
+
+Objective-c
+
+```
+@import LoginRadiusPackage;  
+
+```
+Swift
+
+```
+import LoginRadiusPackage     
+
+```
+
+

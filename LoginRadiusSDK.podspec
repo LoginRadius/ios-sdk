@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = 'LoginRadiusSDK'
-s.version      = '5.8.0'
+s.version      = '5.9.0'
 s.summary      = 'Official LoginRadius SDK for iOS to integrate User Registration Service or Social Login in your app.'
 
 s.description  = <<-DESC
@@ -27,7 +27,6 @@ s.source       = { :git => 'https://github.com/LoginRadius/ios-sdk.git', :tag =>
 s.source_files = ['Sources/**/*.{h,m}']
 
 s.dependency 'FBSDKLoginKit', '~> 14.1.0'
-s.dependency 'SimpleKeychain', '~> 0.7.0'
 
 s.ios.frameworks = 'Foundation', 'UIKit', 'SystemConfiguration', 'Social', 'Accounts', 'SafariServices'
 
