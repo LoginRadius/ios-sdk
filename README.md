@@ -1,4 +1,4 @@
-# LoginRadius iOS SDK
+# LoginRadius iOS Swift SDK
 ![Home Image](http://docs.lrcontent.com/resources/github/banner-1544x500.png)
 
 ## Introduction ##
@@ -22,45 +22,14 @@ For full documentation visit [here](https://docs.loginradius.com/api/v2/mobile-l
 This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
 
-#### There are three projects in the library:
-a. ObjCDemo - This is the demo application in objective-c.<br>
+#### There are two projects in the library:
 a. SwiftDemo - This is the demo application in Swift(Supported Swift version 4.2).<br>
-b. LoginRadiusSDK -This is the LoginRadius SDK.
+b. LoginRadiusSwiftSDK -This is the LoginRadius Swift SDK.
 
 
 ## Installing
 
-CocoaPods
 
-We recommend using CocoaPods for installing the library in a project.
-
-CocoaPods is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```
-$ gem install cocoapods
-```
-
-To integrate LRSDK into your Xcode project using CocoaPods, specify it in your Podfile:
-
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
-
-target 'TargetName' do
-
-#Comment the next line if you don't want to use dynamic frameworks
-use_frameworks!
-pod 'LoginRadiusSDK', '~> 5.9.0'
-end
-
-```
-
-Then, run the following command:
-
-```
-$ pod install
-
-```
 Swift Package Manager
 
 The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into the swift compiler.
@@ -70,21 +39,34 @@ To add LoginRadiusSDK to your project using SwiftPM follow these steps:
  1. Open your project in Xcode
  2. In the main menu, select File -> Swift Packages -> Add Package Dependency...
  3. In the window, enter the package url
-     https://github.com/LoginRadius/ios-sdk.git 
+    https://github.com/LoginRadius/ios-swift-sdk.git
   
 To use LoginRadiusSDK in your code, import the module or header files as needed:
 
-Objective-c
-
-```
-@import LoginRadiusPackage;  
-
-```
 Swift
 
 ```
 import LoginRadiusPackage     
 
 ```
+
+To use our Swift demo, follow these steps:
+
+ 1. Open a terminal window.
+ 2. Navigate to the location of the Xcode project.
+ 3. Run the following commands:
+
+```
+$ gem install cocoapods 
+
+```
+
+```
+$ pod install
+
+```
+These commands will install the necessary dependencies required for the demo.
+
+
 
 

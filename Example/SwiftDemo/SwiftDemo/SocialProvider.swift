@@ -2,8 +2,8 @@
 //  SocialProvider.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 18/05/16.
-//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import UIKit
@@ -68,9 +68,9 @@ public class SocialProvidersManager {
     }()
     
     static let LRDefaultSocialProviders:[SocialProvider] = {
-
+        
         return generateSocialProviderObjects(providers: socialProvidersIconMapping.map{return $0.name})
-
+        
     }()
     
     static func generateSocialProviderObjects(providers:[String]) -> [SocialProvider]
@@ -78,7 +78,7 @@ public class SocialProvidersManager {
         var sp:[SocialProvider] = []
         let iconMap = SocialProvidersManager.socialProvidersIconMapping
         let iconLength = socialIconsFull.cgImage!.width
-
+        
         for p in providers
         {
             if let index = iconMap.index(where: { $0.name == p })
@@ -87,12 +87,12 @@ public class SocialProvidersManager {
                 let cropRect = CGRect(x: 0, y: spTuple.index*iconLength, width: iconLength, height: iconLength)
                 let imageRef:CGImage = socialIconsFull.cgImage!.cropping(to: cropRect)!
                 let cropped:UIImage = UIImage(cgImage:imageRef)
-            
+                
                 sp.append(SocialProvider(name: spTuple.name, icon: cropped))
             }
-
+            
         }
         return sp
     }
-
+    
 }

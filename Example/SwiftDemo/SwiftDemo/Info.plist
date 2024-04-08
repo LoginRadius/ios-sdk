@@ -26,7 +26,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>&lt;Your site name&gt;.&lt;Your Bundle Identifier&gt;</string>
-				<string>&lt;Your Google's REVERSED_CLIENT_ID, if you are not using google native login delete this row&gt;</string>
+				<string>&lt;Your Google&apos;s REVERSED_CLIENT_ID, if you are not using google native login delete this row&gt;</string>
 				<string>fb&lt;Your Facebook App ID&gt;</string>
 				<string>twitterkit-&lt;Your Twitter Consumer Key&gt;</string>
 			</array>
