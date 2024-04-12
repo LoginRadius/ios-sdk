@@ -11,7 +11,7 @@ LoginRadius helps businesses boost user engagement on their web/mobile platform,
 Please visit [here](http://www.loginradius.com/) for more information.
 
 ## Documentation
-For full documentation visit [here](https://docs.loginradius.com/api/v2/mobile-libraries/ios-library)
+For full documentation please refer to Swift Document of this repository
 
 ## Author
 
@@ -29,7 +29,6 @@ b. LoginRadiusSwiftSDK -This is the LoginRadius Swift SDK.
 
 ## Installing
 
-
 Swift Package Manager
 
 The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into the swift compiler.
@@ -39,7 +38,7 @@ To add LoginRadiusSDK to your project using SwiftPM follow these steps:
  1. Open your project in Xcode
  2. In the main menu, select File -> Swift Packages -> Add Package Dependency...
  3. In the window, enter the package url
-    https://github.com/LoginRadius/ios-swift-sdk.git
+    https://github.com/LoginRadius/ios-sdk.git and branch is **SwiftSDK-Master**
   
 To use LoginRadiusSDK in your code, import the module or header files as needed:
 
@@ -66,7 +65,4 @@ $ pod install
 
 ```
 These commands will install the necessary dependencies required for the demo.
-
-
-
 
