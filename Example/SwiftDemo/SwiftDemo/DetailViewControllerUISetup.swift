@@ -2,8 +2,8 @@
 //  DetailViewControllerUISetup.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 2017-05-19.
-//  Copyright © 2017 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import Foundation
@@ -18,17 +18,17 @@ extension DetailViewController
         if ((userProfile["Email"].array)) != nil && (userProfile["Email"].array)?.isEmpty == false{
             userEmail = (((userProfile["Email"].array)?[0]["Value"] )?.string)!
         }
-       
+        
         
         var userCountry:String? = nil
         if let addrArr = userProfile["Country"].dictionary,
-            let countryStr = addrArr["Name"]?.string
+           let countryStr = addrArr["Name"]?.string
         {
             userCountry = countryStr
         }
-
+        
         let gender = userProfile["Gender"].string ?? "?"
-    
+        
         let profileCondition = Condition.function(["User Profile"], { form in
             return !((form.rowBy(tag: "User Profile") as? SwitchRow)?.value ?? false)
         })
@@ -46,8 +46,8 @@ extension DetailViewController
             $0.value = userProfile[$0.tag!].stringValue
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         <<< NameRow("LastName")
         {
@@ -57,9 +57,9 @@ extension DetailViewController
             $0.add(rule: RuleRequired())
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
-
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+            
         }
         <<< EmailRow("Email")
         {
@@ -83,8 +83,8 @@ extension DetailViewController
             $0.selectorTitle = "Country"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         } 
         <<< TextRow("IsSecurePassword"){
             $0.title = $0.tag
@@ -96,8 +96,8 @@ extension DetailViewController
         {
             $0.title = $0.tag
             $0.hidden = profileCondition
-            }.onCellSelection{ cell, row in
-                self.validateUserProfileInput()
+        }.onCellSelection{ cell, row in
+            self.validateUserProfileInput()
         }
         +++ Section("up<->vfp")
         {
@@ -108,8 +108,11 @@ extension DetailViewController
         {
             $0.title = $0.tag
             $0.hidden = profileCondition
-            }.onCellSelection{ cell, row in
-                self.showFullProfileController()
+        }.onCellSelection{ cell, row in 
+            self.showFullProfileController()
+            
+            
+            
         }
     }
     
@@ -118,7 +121,7 @@ extension DetailViewController
         let accessCondition = Condition.function(["Access Token"], { form in
             return !((form.rowBy(tag: "Access Token") as? SwitchRow)?.value ?? false)
         })
-
+        
         form  +++ Section("Access Token API Demo")
         <<< SwitchRow("Access Token")
         {
@@ -136,15 +139,15 @@ extension DetailViewController
         {
             $0.title = "Validate"
             $0.hidden = accessCondition
-            }.onCellSelection{ cell, row in
-                self.validateAccessToken()
+        }.onCellSelection{ cell, row in
+            self.validateAccessToken()
         }
         <<< ButtonRow("Invalidate Access Token")
         {
             $0.title = "Invalidate"
             $0.hidden = accessCondition
-            }.onCellSelection{ cell, row in
-                self.invalidateAccessToken()
+        }.onCellSelection{ cell, row in
+            self.invalidateAccessToken()
         }
     }
     
@@ -153,7 +156,7 @@ extension DetailViewController
         let objectCondition = Condition.function(["Custom Object"], { form in
             return !((form.rowBy(tag: "Custom Object") as? SwitchRow)?.value ?? false)
         })
-    
+        
         let objectCreateCondition = Condition.function(["Custom Object", "Create Custom Obj"], { form in
             let cusObj = (form.rowBy(tag: "Custom Object") as? SwitchRow)?.value ?? false
             let cusObjCr = (form.rowBy(tag: "Create Custom Obj") as? SwitchRow)?.value ?? false
@@ -198,8 +201,8 @@ extension DetailViewController
             $0.placeholder = "See LR dashboard for obj name"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         <<< LabelRow("CrCO DataLabel")
         {
@@ -213,8 +216,8 @@ extension DetailViewController
             $0.hidden = objectCreateCondition
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         <<< ButtonRow("CrCO Send")
         {
@@ -237,8 +240,8 @@ extension DetailViewController
             $0.placeholder = "See LR dashboard for obj name"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         
         <<< ButtonRow("GetCO Send")
@@ -262,8 +265,8 @@ extension DetailViewController
             $0.placeholder = "Record Id"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         
         <<< AccountRow("GetCO Object Name with RecordId")
@@ -273,8 +276,8 @@ extension DetailViewController
             $0.placeholder = "See LR dashboard for obj name"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         
         <<< ButtonRow("GetCO Send with RecordId")
@@ -284,7 +287,7 @@ extension DetailViewController
         }.onCellSelection{cell, row in
             self.getCustomObjectWithRecordId()
         }
-
+        
         <<< SwitchRow("Put Custom Obj")
         {
             $0.title = $0.tag
@@ -299,8 +302,8 @@ extension DetailViewController
             $0.placeholder = "Record Id"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         
         <<< AccountRow("PutCO Object Name")
@@ -310,8 +313,8 @@ extension DetailViewController
             $0.placeholder = "See LR dashboard for obj name"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         <<< LabelRow("PutCO DataLabel")
         {
@@ -325,8 +328,8 @@ extension DetailViewController
             $0.hidden = objectPutCondition
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         <<< ButtonRow("PutCO Send")
         {
@@ -348,8 +351,8 @@ extension DetailViewController
             $0.placeholder = "Record Id"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         
         <<< AccountRow("DelCO Object Name")
@@ -359,8 +362,8 @@ extension DetailViewController
             $0.placeholder = "See LR dashboard for obj name"
             $0.add(rule: RuleRequired())
             $0.validationOptions = .validatesOnDemand
-            }.onRowValidationChanged { cell, row in
-                self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
+        }.onRowValidationChanged { cell, row in
+            self.toggleRedBorderShowErrorMessage(cell: cell, row: row)
         }
         <<< ButtonRow("DelCO Send")
         {

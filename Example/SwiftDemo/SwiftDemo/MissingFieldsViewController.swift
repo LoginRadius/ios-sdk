@@ -2,13 +2,13 @@
 //  DetailViewController.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 19/05/16.
-//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import Foundation
 import Eureka
-import LoginRadiusSDK
+import LoginRadiusSwiftSDK
 
 class MissingFieldsViewController: FormViewController
 {
@@ -20,14 +20,14 @@ class MissingFieldsViewController: FormViewController
         let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
         return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
     }
-
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       
-       
+        
+        
+        
         
         setupForm()
     }
@@ -36,7 +36,7 @@ class MissingFieldsViewController: FormViewController
     {
         self.navigationItem.title = "Missing Fields"
         self.showAlert(title: "WARNING", message: "User need to add these fields in order to proceed the login process")
-
+        
         self.form = Form()
         let mfSection = Section("Missing Fields Section")
         {
@@ -45,11 +45,11 @@ class MissingFieldsViewController: FormViewController
         }
         
         self.form +++ mfSection
-       
-    
         
-        setupDynamicRequredfieldForm(lrFields: LoginRadiusSchema.sharedInstance().fields, dynamicRegSection: mfSection, loadingRow: nil, hiddenCondition: nil, sendButtonTitle: "Send", askForEmailAvailability: false, askForUsernameAvailability:false, sendHandler:
-        {
+        
+        
+        setupDynamicRequredfieldForm(lrFields: LoginRadiusSchema.sharedInstance.fields, dynamicRegSection: mfSection, loadingRow: nil, hiddenCondition: nil, sendButtonTitle: "Send", askForEmailAvailability: false, askForUsernameAvailability:false, sendHandler:
+                                        {
             self.validateUserProfileInput()
         })
     }
@@ -98,7 +98,7 @@ class MissingFieldsViewController: FormViewController
                     parameters[row.tag!] = dateFormatter.string(from: dateRow.value!)
                 }else
                 {
-                
+                    
                     parameters[row.tag!] = row.baseValue
                 }
             }else{
@@ -147,7 +147,8 @@ class MissingFieldsViewController: FormViewController
             arr[0]["type"] = "Personal"
             parameters["addresses"] = arr
         }
-AuthenticationAPI.authInstance().updateProfile(withAccessToken:accessToken!, emailtemplate:nil, smstemplate:nil, payload:parameters, completionHandler: { (data, error) in
+        
+        AuthenticationAPI.shared.updateProfileWithAccessToken(access_token: accessToken!, emailtemplate: nil, smstemplate: nil, payload: parameters, completionHandler: { (data, error) in
             
             if let err = error
             {
@@ -156,7 +157,7 @@ AuthenticationAPI.authInstance().updateProfile(withAccessToken:accessToken!, ema
             }else
             {
                 DispatchQueue.main.async
-                    {
+                {
                     self.navigationController?.popViewController(animated: false, completion: { navVC in
                         if let vc = navVC.viewControllers.first as? ViewController
                         {
@@ -165,14 +166,14 @@ AuthenticationAPI.authInstance().updateProfile(withAccessToken:accessToken!, ema
                                 vc.showAlert(title: "ERROR", message: err.localizedDescription)
                             }else
                             {
-                                LRSession.init(accessToken:self.accessToken!, userProfile:data!["Data"] as! [AnyHashable : Any])
+                                LRSession.init()
                                 vc.showProfileController()
                             }
                         }
                     })
                 }
             }
-        
+            
         })
     }
 }

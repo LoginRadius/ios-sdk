@@ -2,20 +2,20 @@
 //  DetailViewController.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 19/05/16.
-//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import Eureka
 import SwiftyJSON
-import LoginRadiusSDK
+import LoginRadiusSwiftSDK
 /* Google Native SignIn
-import GoogleSignIn
-*/
+ import GoogleSignIn
+ */
 
 /* Twitter Native Sign in
-import TwitterKit
-*/
+ import TwitterKit
+ */
 
 class DetailViewController: FormViewController {
     
@@ -45,7 +45,7 @@ class DetailViewController: FormViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
-
+        
     }
     
     deinit
@@ -54,7 +54,7 @@ class DetailViewController: FormViewController {
     }
     
     @objc func setupForm(){
-        guard let userAccessToken = LoginRadiusSDK.sharedInstance().session.accessToken
+        guard let userAccessToken = LoginRadiusSDK.sharedInstance.session.accessToken
         else
         {
             self.showAlert(title: "ERROR", message: "Access token is missing or logged out")
@@ -65,15 +65,15 @@ class DetailViewController: FormViewController {
         accessToken = userAccessToken
         validateAccessToken(showSuccess: false)
         
-        if let userDict = LoginRadiusSDK.sharedInstance().session.userProfile
+        if let userDict = LoginRadiusSDK.sharedInstance.session.userProfile
         {
             if let oldProfile = self.userProfile,
-                oldProfile == JSON(userDict)
+               oldProfile == JSON(userDict)
             {
                 //same userProfile, don't reload ui
                 return
             }
-        
+            
             userProfile = JSON(userDict)
         }else{
             userProfile = JSON([])
@@ -82,7 +82,7 @@ class DetailViewController: FormViewController {
         //Small UI modification
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.title = "User Profile Swift"
-
+        
         //Form setup
         self.form = Form()
         
@@ -90,8 +90,8 @@ class DetailViewController: FormViewController {
         <<< ButtonRow("Log out")
         {
             $0.title = $0.tag
-            }.onCellSelection{ cell, row in
-                self.logoutPressed()
+        }.onCellSelection{ cell, row in
+            self.logoutPressed()
         }
         
         self.smallUserProfileUISetup()
@@ -109,12 +109,12 @@ class DetailViewController: FormViewController {
         let lName = form.rowBy(tag: "LastName")!
         let gender = form.rowBy(tag: "Gender")!
         let country = form.rowBy(tag: "Country")!
-    
+        
         var errors = fName.validate()
         errors += lName.validate()
         errors += gender.validate()
         errors += country.validate()
-
+        
         if errors.count > 0{
             showAlert(title: "ERROR", message: errors[0].msg)
             return
@@ -130,7 +130,7 @@ class DetailViewController: FormViewController {
         for row in rows
         {
             parameters[row.tag!] = row.baseValue
-        
+            
         }
         let country = parameters["Country"] as! String
         let Gender = parameters["Gender"] as! String
@@ -138,18 +138,18 @@ class DetailViewController: FormViewController {
         let LastName = parameters["LastName"] as! String
         
         let Country:AnyObject = ["Code":"Primary",
-                               "Name":country
-            ] as AnyObject
-       
+                                 "Name":country
+        ] as AnyObject
+        
         let par:AnyObject = [ "Country":Country,
-           "Gender": Gender,
-           "FirstName": FirstName,
-           "LastName": LastName
-            ]as AnyObject
-
-       
-    
-        AuthenticationAPI.authInstance().updateProfile(withAccessToken:accessToken, emailtemplate: "", smstemplate: "", payload: par as! [AnyHashable : Any], completionHandler: { (data, error) in
+                              "Gender": Gender,
+                              "FirstName": FirstName,
+                              "LastName": LastName
+        ]as AnyObject
+        
+        
+        
+        AuthenticationAPI.shared.updateProfileWithAccessToken(access_token: accessToken, emailtemplate: "", smstemplate: "", payload: par as![String:Any], completionHandler:{ (data, error) in
             
             if let err = error
             {
@@ -157,18 +157,24 @@ class DetailViewController: FormViewController {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else
             {
-                let access_token = LoginRadiusSDK.sharedInstance().session.accessToken
+                let access_token = LoginRadiusSDK.sharedInstance.session.accessToken
                 self.showAlert(title: "SUCCESS", message: "User updated!")
                 print("Here is the raw NSDictionary user profile:")
-                let session = LRSession.init(accessToken:access_token as! String, userProfile:data!["Data"] as! [AnyHashable : Any])
-                print(data as Any)
+                //                let session = LRSession.init(accessToken:access_token as! String, userProfile:data!["Data"] as! [AnyHashable : Any])
+                
+                
+                let session = LRSession.init(token: self.accessToken!, userProfile: data!["Data"] as! [String:Any])
+                print(data! as Any)
                 print("end of raw NSDictionary user profile")
-                self.viewDidLoad()
+                DispatchQueue.main.async {
+                    self.viewDidLoad()
+                }
+                
             }
-        
+            
         })
     }
-
+    
     // End of User Profile API Demo
     
     // Access Token API Demo
@@ -178,15 +184,15 @@ class DetailViewController: FormViewController {
         
         
         
-        AuthenticationAPI.authInstance().validateAccessToken(accessToken, completionHandler: {(data, error) in
+        AuthenticationAPI.shared.validateAccessToken(accessToken, completionHandler: {(data, error) in
             
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else if let d = data,
-                    let at = d["access_token"],
-                    let expiry = d["expires_in"],
-                    showSuccess
+                     let at = d["access_token"],
+                     let expiry = d["expires_in"],
+                     showSuccess
             {
                 self.showAlert(title: "SUCCESS", message: "Access Token: \(at) is VALID\n expires in: \(expiry)")
             }
@@ -195,8 +201,8 @@ class DetailViewController: FormViewController {
     
     func invalidateAccessToken()
     {
-       
-        AuthenticationAPI.authInstance().invalidateAccessToken(accessToken, completionHandler: {(data, error) in
+        
+        AuthenticationAPI.shared.invalidateAccessToken(accessToken, completionHandler: {(data, error) in
             
             if let err = error
             {
@@ -213,7 +219,7 @@ class DetailViewController: FormViewController {
     {
         var errors = form.rowBy(tag: "CrCO Object Name")!.validate()
         errors += form.rowBy(tag: "CrCO Data")!.validate()
-
+        
         if errors.count > 0
         {
             showAlert(title: "ERROR", message: errors[0].msg)
@@ -229,9 +235,9 @@ class DetailViewController: FormViewController {
             return
         }
         
-     
-    
-        CustomObjectAPI.customInstance().createCustomObject(withObjectName: objectName, accessToken: accessToken, payload: dataDict, completionHandler: {data, error in
+        
+        
+        CustomObjectAPI.customInstance.createCustomObject(withObjectName: objectName, accessToken: accessToken, payload: dataDict, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -245,7 +251,7 @@ class DetailViewController: FormViewController {
     func getCustomObject()
     {
         var errors = form.rowBy(tag: "GetCO Object Name")!.validate()
-
+        
         if errors.count > 0
         {
             showAlert(title: "ERROR", message: errors[0].msg)
@@ -254,8 +260,8 @@ class DetailViewController: FormViewController {
         
         let objectName = form.rowBy(tag: "GetCO Object Name")!.baseValue! as! String
         
-
-        CustomObjectAPI.customInstance().getCustomObject(withObjectName: objectName, accessToken: accessToken, completionHandler: {data, error in
+        
+        CustomObjectAPI.customInstance.getCustomObject(withObjectName: objectName, accessToken: accessToken, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -266,12 +272,12 @@ class DetailViewController: FormViewController {
         })
     }
     
-            
+    
     func getCustomObjectWithRecordId()
     {
         var errors = form.rowBy(tag: "GetCO Object Name with RecordId")!.validate()
         errors = form.rowBy(tag: "GetCO RecordId with RecordId")!.validate()
-
+        
         if errors.count > 0
         {
             showAlert(title: "ERROR", message: errors[0].msg)
@@ -281,7 +287,7 @@ class DetailViewController: FormViewController {
         let objectName = form.rowBy(tag: "GetCO Object Name with RecordId")!.baseValue! as! String
         let recordId = form.rowBy(tag: "GetCO RecordId with RecordId")!.baseValue! as! String
         
-        CustomObjectAPI.customInstance().getCustomObject(withObjectRecordId:recordId, accessToken:accessToken, objectname:objectName, completionHandler: {data, error in
+        CustomObjectAPI.customInstance.getCustomObject(withObjectRecordId:recordId, accessToken:accessToken, objectname:objectName, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -297,7 +303,7 @@ class DetailViewController: FormViewController {
         var errors = form.rowBy(tag: "PutCO Object Name")!.validate()
         errors += form.rowBy(tag: "PutCO RecordId")!.validate()
         errors += form.rowBy(tag: "PutCO Data")!.validate()
-
+        
         if errors.count > 0
         {
             showAlert(title: "ERROR", message: errors[0].msg)
@@ -315,8 +321,8 @@ class DetailViewController: FormViewController {
             return
         }
         
-
-        CustomObjectAPI.customInstance().updateCustomObject(withObjectName: objectName, accessToken: accessToken, objectRecordId:recordId, updatetype:"replace", payload: dataDict, completionHandler: {data, error in
+        
+        CustomObjectAPI.customInstance.updateCustomObject(withObjectName: objectName, accessToken: accessToken, objectRecordId:recordId, updatetype:"replace", payload: dataDict, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -331,7 +337,7 @@ class DetailViewController: FormViewController {
     {
         var errors = form.rowBy(tag: "DelCO Object Name")!.validate()
         errors += form.rowBy(tag: "DelCO RecordId")!.validate()
-
+        
         if errors.count > 0
         {
             showAlert(title: "ERROR", message: errors[0].msg)
@@ -341,7 +347,7 @@ class DetailViewController: FormViewController {
         let objectName = form.rowBy(tag: "DelCO Object Name")!.baseValue! as! String
         let recordId = form.rowBy(tag: "DelCO RecordId")!.baseValue! as! String
         
-        CustomObjectAPI.customInstance().deleteCustomObject(withObjectRecordId:recordId, accessToken:accessToken, objectname:objectName, completionHandler: {data, error in
+        CustomObjectAPI.customInstance.deleteCustomObject(withObjectRecordId:recordId, accessToken:accessToken, objectname:objectName, completionHandler: {data, error in
             if let err = error
             {
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
@@ -358,31 +364,34 @@ class DetailViewController: FormViewController {
     
     func showFullProfileController ()
     {
-        self.performSegue(withIdentifier: "full profile", sender: self);
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "full profile", sender: self);
+            
+        }
     }
     
     func logoutPressed()
     {
         /* Google Native Sign in
-        GIDSignIn.sharedInstance().signOut()
-        */
-
+         GIDSignIn.sharedInstance().signOut()
+         */
+        
         /* Twitter Native Sign in
-        twitterLogout()
-        */
+         twitterLogout()
+         */
         LoginRadiusSDK.logout()
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* Twitter Native Sign in
-    func twitterLogout(){
-        if let twitterSessions = Twitter.sharedInstance().sessionStore.existingUserSessions() as? [TWTRAuthSession]{
-            for session in twitterSessions{
-                Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
-            }
-        }
-    }
-    */
+     func twitterLogout(){
+     if let twitterSessions = Twitter.sharedInstance().sessionStore.existingUserSessions() as? [TWTRAuthSession]{
+     for session in twitterSessions{
+     Twitter.sharedInstance().sessionStore.logOutUserID(session.userID)
+     }
+     }
+     }
+     */
     
     func toggleRedBorderShowErrorMessage(cell:UIView, row:BaseRow)
     {

@@ -2,8 +2,8 @@
 //  SocialProviderIconCell.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 18/05/16.
-//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import UIKit
@@ -24,5 +24,5 @@ class SocialProviderIconCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    
 }

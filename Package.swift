@@ -28,11 +28,7 @@ let package = Package(
             name: "LoginRadiusPackage",
             dependencies: [.product(name: "FacebookCore", package: "facebook-ios-sdk"),
                            .product(name: "FacebookLogin", package: "facebook-ios-sdk")],
-            path: "LoginRadiusSDK",
-            publicHeadersPath: ".",
-            cSettings: [
-                .headerSearchPath(".")
-            ],
+            path: "Sources",
         
             linkerSettings: [
             .linkedFramework("SafariServices"),

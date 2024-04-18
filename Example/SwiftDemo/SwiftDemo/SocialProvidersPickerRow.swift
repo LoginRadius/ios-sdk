@@ -2,8 +2,8 @@
 //  SocialProvidersPickerRow.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 18/05/16.
-//  Copyright © 2016 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import UIKit
@@ -13,17 +13,17 @@ import Eureka
 public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var collectionView : UICollectionView
-
+    
     public var socialProviders : [SocialProvider] = []
     {
         didSet {
             collectionView.reloadData()
         }
     }
-
+    
     private var dynamicConstraints = [NSLayoutConstraint]()
     private var notificationObserver : NSObjectProtocol?
-
+    
     required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -33,7 +33,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         layout.minimumInteritemSpacing = 2.0
         layout.minimumLineSpacing = 2.0
         layout.scrollDirection = .horizontal
-
+        
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -63,7 +63,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
     
     public override func setup() {
         super.setup()
-
+        
         selectionStyle = .none
         layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.backgroundColor = backgroundColor
@@ -75,7 +75,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
                                                                       object: nil,
                                                                       queue: nil,
                                                                       using: { [weak self] (note) in
-                                                                        self?.setNeedsUpdateConstraints()
+            self?.setNeedsUpdateConstraints()
         })
     }
     
@@ -83,7 +83,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         customConstraints()
         super.updateConstraints()
     }
-
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -95,15 +95,15 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
     
     public func customConstraints() {
         let views : [String: AnyObject] = ["collectionView": collectionView]
-
+        
         contentView.removeConstraints(dynamicConstraints)
-
+        
         dynamicConstraints = []
         dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[collectionView(84)]|", options: [], metrics: nil, views: views))
         dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[collectionView]-|", options: [], metrics: nil, views: views))
         contentView.addConstraints(dynamicConstraints)
     }
-
+    
     public func indexPath(forSocialProvider name : String?) -> IndexPath? {
         if let name = name {
             var row = 0
@@ -118,7 +118,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         
         return nil
     }
-
+    
     
     //  UICollectionViewDelegate
     
@@ -127,7 +127,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
         baseRow.baseValue = spName
         baseRow.didSelect()
     }
-
+    
     //  UICollectionViewDataSource
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -141,7 +141,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SocialProviderIconCell", for: indexPath) as! SocialProviderIconCell
-
+        
         cell.imageView.image = socialProviders[indexPath.row].icon
         return cell
     }
@@ -150,7 +150,7 @@ public final class SocialProvidersPickerCell : Cell<String>, CellType, UICollect
 // MARK: SocialProvidersPickerRow
 
 open class _SocialProvidersPickerRow: Row<SocialProvidersPickerCell> {
-
+    
     override open func updateCell() {
         cell.height = { return CGFloat(85) }
     }

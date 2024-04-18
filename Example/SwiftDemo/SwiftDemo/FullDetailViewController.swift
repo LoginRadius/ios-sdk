@@ -2,14 +2,14 @@
 //  FullDetailViewController.swift
 //  SwiftDemo
 //
-//  Created by LoginRadius Development Team on 2017-05-16.
-//  Copyright © 2017 LoginRadius Inc. All rights reserved.
+//  Created by Megha Agrawal.
+//  Copyright © 2023 LoginRadius Inc. All rights reserved.
 //
 
 import Foundation
 import Eureka
 import SwiftyJSON
-import LoginRadiusSDK
+import LoginRadiusSwiftSDK
 
 class FullDetailViewController: FormViewController {
     
@@ -30,7 +30,7 @@ class FullDetailViewController: FormViewController {
         
     }
     
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -44,7 +44,7 @@ class FullDetailViewController: FormViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
-
+        
     }
     
     deinit
@@ -54,7 +54,7 @@ class FullDetailViewController: FormViewController {
     
     @objc func setupForm() {
         
-        guard let userAccessToken = LoginRadiusSDK.sharedInstance().session.accessToken
+        guard let userAccessToken = LoginRadiusSDK.sharedInstance.session.accessToken
         else
         {
             //if logged out for some reason, go back. (e.g. shared keychain, and it logged out from another app, and this app enters from background)
@@ -63,18 +63,19 @@ class FullDetailViewController: FormViewController {
         }
         
         if let oldToken = self.accessToken,
-            oldToken == userAccessToken
+           oldToken == userAccessToken
         {
             //same token, don't reload ui
             return
         }
         
         accessToken = userAccessToken
-                
-        if let userDict = LoginRadiusSDK.sharedInstance().session.userProfile
+        
+        if let userDict = LoginRadiusSDK.sharedInstance.session.userProfile
+            
         {
             if let oldProfile = self.userProfile,
-                oldProfile == JSON(userDict)
+               oldProfile == JSON(userDict)
             {
                 //same userProfile, don't reload ui
                 return
@@ -84,11 +85,11 @@ class FullDetailViewController: FormViewController {
         }else{
             userProfile = JSON([])
         }
-
+        
         self.form = Form()
         
         self.navigationItem.title = "Full Profile"
-    
+        
         form  +++ Section("")
         for (k,v) in userProfile
         {
@@ -100,7 +101,7 @@ class FullDetailViewController: FormViewController {
     func addEurekaElement( key:String, userInfo: JSON )
     {
         var lastSection:Section = form.last!
-            
+        
         if let bool = userInfo.bool
         {
             //print("\(key) is a Bool")
@@ -132,7 +133,7 @@ class FullDetailViewController: FormViewController {
                     $0.disabled = Condition(booleanLiteral: true)
                 }
             }else if key.lowercased().contains("url"),
-                let url = URL(string:str)
+                     let url = URL(string:str)
             {
                 lastSection <<< URLRow(key)
                 {
@@ -189,7 +190,7 @@ class FullDetailViewController: FormViewController {
                     {
                         for (dictkey, dictv) in newDict
                         {
-                            let k = dictkey 
+                            let k = dictkey
                             let v = dictv as! String
                             
                             if k.contains("Value")
@@ -222,7 +223,7 @@ class FullDetailViewController: FormViewController {
                     {
                         for (dictkey, dictv) in newDict
                         {
-                            let k = dictkey 
+                            let k = dictkey
                             let v = dictv as! String
                             
                             if k.contains("PhoneNumber")
@@ -240,7 +241,7 @@ class FullDetailViewController: FormViewController {
                                 {
                                     $0.title = $0.tag
                                     $0.value = v
-                                    $0.disabled = Condition(booleanLiteral: true) 
+                                    $0.disabled = Condition(booleanLiteral: true)
                                 }
                             }
                         }
