@@ -1,3 +1,27 @@
+5.9.1 Release notes (2025-07-2)
+=============================================================
+
+### Enhancements
+Removed/deprecated following Social APIs:
+* postMessageWithAccessToken
+* statusPostingWithAccessToken
+* getAlbumWithAccessToken
+* getAudioWithAccessToken
+* getCheckInWithAccessToken
+* getCompanyWithAccessToken
+* getContactWithAccessToken
+* getEventWithAccessToken
+* getFollowingWithAccessToken
+* getGroupWithAccessToken
+* getLikeWithAccessToken
+* getMentionWithAccessToken
+* getPageWithAccessToken
+* getPhotoWithAccessToken
+* getPostWithAccessToken
+* getStatusWithAccessToken
+* getVideoWithAccessToken
+
+
 5.9.0 Release notes (2023-10-10)
 =============================================================
 

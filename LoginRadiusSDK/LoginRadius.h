@@ -18,7 +18,6 @@
 #import <LRErrorCode.h>
 #import <LRErrors.h>
 #import <LRMutableDictionary.h>
-#import <SocialAPI.h>
 #import <AuthenticationAPI.h>
 #import <CustomObjectAPI.h>
 #import <ConfigurationAPI.h>

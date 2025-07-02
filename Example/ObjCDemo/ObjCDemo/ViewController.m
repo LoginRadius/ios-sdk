@@ -369,7 +369,7 @@
              [self errorMessage:data error:error];
          }else
          {
-             NSLog(@"successfully registered");
+             NSLog(@"Successfully Registered");
              [self showAlert:@"SUCCESS" message:@"Please verify your email"];
              
              
@@ -418,7 +418,7 @@
              NSString *access_token= [data objectForKey:@"access_token"];
              NSDictionary *_data =[data objectForKey:@"Profile"];
              LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[_data mutableCopy] replaceNullWithBlank]];
-             NSLog(@"LRSession Store Token%@",session.accessToken);
+             NSLog(@"LRSession Store Access Token%@",session.accessToken);
              NSLog(@"LRSession Store UserProfile%@",session.userProfile);
              [self showProfileController];
          }
@@ -470,7 +470,7 @@
                 
                 LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[response mutableCopy] replaceNullWithBlank]];
                 
-                NSLog(@"LRSession Store Token%@",session.accessToken);
+                NSLog(@"LRSession Store Access Token%@",session.accessToken);
                 NSLog(@"LRSession Store UserProfile%@",session.userProfile);
                 
                
@@ -508,12 +508,12 @@
             
             [[AuthenticationAPI authInstance] profilesWithAccessToken:access_token completionHandler:^(NSDictionary *response, NSError *error) {
                 
-                NSLog(@"get profile api error %@",error.localizedDescription);
+                NSLog(@"get profile with token api error %@",error.localizedDescription);
                 
                 
                 LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[response mutableCopy] replaceNullWithBlank]];
                 
-                NSLog(@"LRSession Store Token%@",session.accessToken);
+                NSLog(@"LRSession Store Acsess Token%@",session.accessToken);
                 NSLog(@"LRSession Store UserProfile%@",session.userProfile);
                 
                 
@@ -555,12 +555,12 @@
             
             [[AuthenticationAPI authInstance] profilesWithAccessToken:access_token completionHandler:^(NSDictionary *response, NSError *error) {
                 
-                NSLog(@"get profile api error %@",error.localizedDescription);
+                NSLog(@"get profile with token api error  %@",error.localizedDescription);
                 
                 
                 LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[response mutableCopy] replaceNullWithBlank]];
                 
-                NSLog(@"LRSession Store Token%@",session.accessToken);
+                NSLog(@"LRSession Store Access Token%@",session.accessToken);
                 NSLog(@"LRSession Store UserProfile%@",session.userProfile);
                 
                 
@@ -575,7 +575,7 @@
     [[LRTouchIDAuth sharedInstance] localAuthenticationWithFallbackTitle:@"" completion:^(BOOL success, NSError *error) {
         if (success) {
             [self showAlert:@"Success" message:@"Successfully Authenticated"];
-            NSLog(@"successfully authenticated with touch id");
+            NSLog(@"Successfully Authenticated with Touch ID");
             [self showProfileController];
         } else {
             [self showAlert:@"Error" message:error.description];
@@ -589,7 +589,7 @@
     [[LRFaceIDAuth sharedInstance]localAuthenticationWithFallbackTitle:@"" completion:^(BOOL success, NSError *error) {
         if (success){
             [self showAlert:@"Success" message:@"Successfully Authenticated"];
-            NSLog(@"Successfully authenticated with Face ID");
+            NSLog(@"Successfully Authenticated with Face ID");
             [self showProfileController];
         }else{
             [self showAlert:@"Error" message:error.description];
