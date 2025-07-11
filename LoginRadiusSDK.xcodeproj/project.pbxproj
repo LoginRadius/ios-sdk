@@ -33,12 +33,10 @@
 		1E1E38AD246333AA00D7B615 /* CustomObjectAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E1E3878246333AA00D7B615 /* CustomObjectAPI.h */; };
 		1E1E38AE246333AA00D7B615 /* AuthenticationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E1E3879246333AA00D7B615 /* AuthenticationAPI.h */; };
 		1E1E38AF246333AA00D7B615 /* PinAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E387A246333AA00D7B615 /* PinAuthentication.m */; };
-		1E1E38B0246333AA00D7B615 /* SocialAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E1E387B246333AA00D7B615 /* SocialAPI.h */; };
 		1E1E38B1246333AA00D7B615 /* ConfigurationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E387C246333AA00D7B615 /* ConfigurationAPI.m */; };
 		1E1E38B2246333AA00D7B615 /* SmartLoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E387D246333AA00D7B615 /* SmartLoginAPI.m */; };
 		1E1E38B3246333AA00D7B615 /* OneTouchLoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E387E246333AA00D7B615 /* OneTouchLoginAPI.m */; };
 		1E1E38B4246333AA00D7B615 /* PasswordlessLoginAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E1E387F246333AA00D7B615 /* PasswordlessLoginAPI.h */; };
-		1E1E38B5246333AA00D7B615 /* SocialAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3880246333AA00D7B615 /* SocialAPI.m */; };
 		1E1E38B6246333AA00D7B615 /* PinAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E1E3881246333AA00D7B615 /* PinAuthentication.h */; };
 		1E1E38B7246333AA00D7B615 /* CustomObjectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3882246333AA00D7B615 /* CustomObjectAPI.m */; };
 		1E1E38B8246333AA00D7B615 /* AuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3883246333AA00D7B615 /* AuthenticationAPI.m */; };
@@ -94,12 +92,10 @@
 		1E1E3878246333AA00D7B615 /* CustomObjectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomObjectAPI.h; sourceTree = "<group>"; };
 		1E1E3879246333AA00D7B615 /* AuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationAPI.h; sourceTree = "<group>"; };
 		1E1E387A246333AA00D7B615 /* PinAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAuthentication.m; sourceTree = "<group>"; };
-		1E1E387B246333AA00D7B615 /* SocialAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialAPI.h; sourceTree = "<group>"; };
 		1E1E387C246333AA00D7B615 /* ConfigurationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationAPI.m; sourceTree = "<group>"; };
 		1E1E387D246333AA00D7B615 /* SmartLoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartLoginAPI.m; sourceTree = "<group>"; };
 		1E1E387E246333AA00D7B615 /* OneTouchLoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTouchLoginAPI.m; sourceTree = "<group>"; };
 		1E1E387F246333AA00D7B615 /* PasswordlessLoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordlessLoginAPI.h; sourceTree = "<group>"; };
-		1E1E3880246333AA00D7B615 /* SocialAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialAPI.m; sourceTree = "<group>"; };
 		1E1E3881246333AA00D7B615 /* PinAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAuthentication.h; sourceTree = "<group>"; };
 		1E1E3882246333AA00D7B615 /* CustomObjectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomObjectAPI.m; sourceTree = "<group>"; };
 		1E1E3883246333AA00D7B615 /* AuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationAPI.m; sourceTree = "<group>"; };
@@ -229,12 +225,10 @@
 				1E1E3878246333AA00D7B615 /* CustomObjectAPI.h */,
 				1E1E3879246333AA00D7B615 /* AuthenticationAPI.h */,
 				1E1E387A246333AA00D7B615 /* PinAuthentication.m */,
-				1E1E387B246333AA00D7B615 /* SocialAPI.h */,
 				1E1E387C246333AA00D7B615 /* ConfigurationAPI.m */,
 				1E1E387D246333AA00D7B615 /* SmartLoginAPI.m */,
 				1E1E387E246333AA00D7B615 /* OneTouchLoginAPI.m */,
 				1E1E387F246333AA00D7B615 /* PasswordlessLoginAPI.h */,
-				1E1E3880246333AA00D7B615 /* SocialAPI.m */,
 				1E1E3881246333AA00D7B615 /* PinAuthentication.h */,
 				1E1E3882246333AA00D7B615 /* CustomObjectAPI.m */,
 				1E1E3883246333AA00D7B615 /* AuthenticationAPI.m */,
@@ -304,7 +298,6 @@
 				1E1E38C4246333AA00D7B615 /* LoginRadiusFieldRule.h in Headers */,
 				1E1E38C9246333AA00D7B615 /* LoginRadiusError.h in Headers */,
 				1E1E38B6246333AA00D7B615 /* PinAuthentication.h in Headers */,
-				1E1E38B0246333AA00D7B615 /* SocialAPI.h in Headers */,
 				1E1E38C7246333AA00D7B615 /* LRErrorCode.h in Headers */,
 				1E1E38A9246333AA00D7B615 /* LoginRadiusSocialLoginManager.h in Headers */,
 				1E1E38AE246333AA00D7B615 /* AuthenticationAPI.h in Headers */,
@@ -443,7 +436,6 @@
 				1E1E38C0246333AA00D7B615 /* LoginRadiusField.m in Sources */,
 				1E1E389A246333AA00D7B615 /* LRMutableDictionary.m in Sources */,
 				1E1E389D246333AA00D7B615 /* LRDictionary.m in Sources */,
-				1E1E38B5246333AA00D7B615 /* SocialAPI.m in Sources */,
 				1E1E38A8246333AA00D7B615 /* LoginRadiusSafariLogin.m in Sources */,
 				1E1E389C246333AA00D7B615 /* LRString.m in Sources */,
 				1E1E38BC246333AA00D7B615 /* PasswordlessLoginAPI.m in Sources */,

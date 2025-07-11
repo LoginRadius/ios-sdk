@@ -602,7 +602,7 @@ class ViewController: FormViewController
             {
                 self.errorAlert(data:data, error:err)
             }else{
-                print("successfully registered");
+                print("Successfully Registered");
                 self.showAlert(title:"SUCCESS", message:"Please verify your email")
             }
             
@@ -640,10 +640,10 @@ class ViewController: FormViewController
             
             if let err = error
             {
-                 print("successfully registered");
+                 print("Successfully Registered");
                 self.errorAlert(data:data, error:err)
             }else{
-                print("successfully registered");
+                print("Successfully Registered");
                 self.showAlert(title:"SUCCESS", message:"Please verify your email")
             }
             
@@ -861,7 +861,7 @@ class ViewController: FormViewController
                 self.showAlert(title: "ERROR", message: err.localizedDescription)
             }else{
                 self.showAlert(title: "SUCCESS", message:"Valid User")
-                print("Face ID authentication successfull")
+                print("Face ID Authentication Auccessfull")
                 self.showProfileController()
             }
         })
