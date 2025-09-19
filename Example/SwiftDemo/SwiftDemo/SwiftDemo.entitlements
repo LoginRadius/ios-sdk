@@ -6,6 +6,11 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:your-domain.com</string>
+		<string>webcredentials:your-domain.com</string>
+	</array>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)&lt;your-sitename&gt;</string>

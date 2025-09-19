@@ -1,3 +1,20 @@
+6.0.0 Release notes (2025-09-19)
+=============================================================
+
+### Enhancements
+
+Added Passkey Authentication APIs
+Introduced support for Passkeys, a modern, secure, and passwordless authentication method built on WebAuthn standards. Passkeys provide a safer and more seamless login experience by leveraging device biometrics.
+
+APIs available for Passkey authentication:
+* Register with Passkey
+* Login with Passkey 
+* List User Passkeys
+* Delete Passkey
+* Add Passkey to Account
+* Autofill with Passkey
+
+
 5.9.1 Release notes (2025-07-2)
 =============================================================
 

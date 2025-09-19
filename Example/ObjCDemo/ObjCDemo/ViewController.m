@@ -150,6 +150,12 @@
     row.action.formSelector = @selector(traditionalLogin);
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"LoginPasskey" rowType:XLFormRowDescriptorTypeButton title:@"Login with Passkey"];
+      row.action.formSelector = @selector(beginLoginPasskey);
+    
+    row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
+    [section addFormRow:row];
     //end of Login Section
     
     //Register Section
@@ -184,6 +190,11 @@
     row.action.formSelector = @selector(requestSOTT);
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"PasskeyRegistrationSend" rowType:XLFormRowDescriptorTypeButton title:@"Register with Passkey"];
+    row.action.formSelector = @selector(beginRegisterPasskey);
+    row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
+    [section addFormRow:row];
     //end of Register Section
     
     //Forgot Password Section
@@ -207,8 +218,9 @@
     row.hidden = [NSString stringWithFormat:@"$%@ == 0", switchRow];
     [section addFormRow:row];
     //end of Forgot Password Section
-    
-    //Social Login Section
+  
+
+    //touch and face id section
     if(![[[LoginRadiusSDK sharedInstance] session] isLoggedIn])
     {
         section = [XLFormSectionDescriptor formSectionWithTitle:@"Touch / Face ID"];
@@ -217,8 +229,11 @@
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Touch / Face ID" rowType:XLFormRowDescriptorTypeButton title:@"Touch / Face ID"];
         row.action.formSelector = @selector(biometryType);
         [section addFormRow:row];
+
     }
+    // End of face/touch id section
     
+
     //Social Login Section
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Normal Social Logins"];
     [form addFormSection:section];
@@ -226,7 +241,7 @@
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"SocialLoginsLoading" rowType:XLFormRowDescriptorTypeInfo title:@"Loading"];
     [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textLabel.textAlignment"];
     [section addFormRow:row];
-    //end of Social PasswoLoginrd Section
+    //end of Social Login Section
     
     BOOL socialNativeLoginEnabled = (AppDelegate.useGoogleNative ||  AppDelegate.useTwitterNative || AppDelegate.useFacebookNative);
     
@@ -401,10 +416,6 @@
                                   @"Password":[passRow value],
                                   @"securityanswer":@""
                                   };
-    
-    
-   
-        
     
     [[AuthenticationAPI authInstance] loginWithPayload:parameter loginurl:nil emailtemplate:nil smstemplate:nil g_recaptcha_response:nil completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
          if (error)
@@ -655,6 +666,57 @@
                    });
 }
 
+- (void)beginLoginPasskey {
+    [[PasskeyAPI passkeyInstance] setPresentationContext:self];
+
+    XLFormRowDescriptor *emailRow = [[self form] formRowWithTag:@"EmailLogin"];
+    NSString *email = [emailRow value];
+  
+    [[PasskeyAPI passkeyInstance] beginLoginWithPasskey:email
+                                            completion:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            
+            NSString *access_token= [data objectForKey:@"access_token"];
+            NSDictionary *_data =[data objectForKey:@"Profile"];
+            LRSession *session = [[LRSession alloc] initWithAccessToken:access_token userProfile:[[_data mutableCopy] replaceNullWithBlank]];
+            NSLog(@"LRSession Store Access Token%@",session.accessToken);
+            NSLog(@"LRSession Store UserProfile%@",session.userProfile);
+            [self showProfileController];
+
+       
+        } else {
+            NSLog(@"Begin login error: %@", error.localizedDescription);
+            [self showAlert:@"ERROR" message:[error description]];
+        }
+    }];
+}
+
+- (void)beginRegisterPasskey {
+    
+    [[PasskeyAPI passkeyInstance] setPresentationContext:self];
+
+    XLFormRowDescriptor *emailRow = [[self form] formRowWithTag:@"EmailStaticRegister"];
+    NSString *email = [emailRow value];
+    [[PasskeyAPI passkeyInstance] beginRegistrationWithPasskey:email
+                                                   completion:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Begin registration success: %@", data);
+            [self showAlert:@"SUCCESS" message:@"Passkey registration Successfull!"];
+          
+        } else {
+            NSLog(@"Error: %@", [error description]);
+            [self showAlert:@"ERROR" message:[error description]];
+        }
+    }];
+}
+
+#pragma mark - ASAuthorizationControllerPresentationContextProviding
+
+- (ASPresentationAnchor)presentationAnchorForAuthorizationController:(ASAuthorizationController *)controller {
+    return self.view.window;
+}
+
+
 //to eliminate "< Back" button showing up when user already logged in
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -663,6 +725,7 @@
         [[segue destinationViewController] navigationItem].hidesBackButton = YES;
     }
 }
+
 
 @end
 

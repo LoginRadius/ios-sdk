@@ -234,6 +234,15 @@ class ViewController: FormViewController
                 }.onCellSelection{ cell, row in
                     self.traditionalLogin()
             }
+        
+        //Passkey login button
+        <<< ButtonRow("Passkey Login send")
+        {
+            $0.title = "Login with Passkey"
+            $0.hidden = loginCondition
+            }.onCellSelection{ cell, row in
+            self.passkeyLogin()
+        }
             <<< SwitchRow("Login by Username")
             {
                 $0.title = $0.tag
@@ -323,6 +332,15 @@ class ViewController: FormViewController
                 }.onCellSelection{ cell, row in
                     self.requestSOTT(completion: self.traditionalRegistration)
             }
+        
+                //Passkey register button
+        <<< ButtonRow("Passkey Registration Send")
+        {
+            $0.title = "Register with Passkey"
+            $0.hidden = staticRegisterCondition
+            }.onCellSelection{ cell, row in
+                self.passkeyregister()
+        }
             
             +++ Section("Forgot Password Section")
             {
@@ -609,7 +627,46 @@ class ViewController: FormViewController
         })
         
     }
+    func passkeyregister()
+    {
+        PasskeyAPI.passkeyInstance().setPresentationContext(self)
+
+        let email : String = form.rowBy(tag: "Email Static Registration")!.baseValue! as! String
+
+        PasskeyAPI.passkeyInstance().beginRegistration(withPasskey: email) { data, error in
+            if let err = error
+            {
+                print(err);
+                self.errorAlert(data:data, error:err)
+            }else{
+                print("Successfully Registered\(data)");
+                self.showAlert(title:"SUCCESS", message:"Successfully Registered")
+            }
+
+        }
+        
+    }
     
+    func passkeyLogin(){
+        PasskeyAPI.passkeyInstance().setPresentationContext(self)
+        
+        let email = form.rowBy(tag: "Email Login")!.baseValue! as! String
+        PasskeyAPI.passkeyInstance().beginLogin(withPasskey: email) { data, error in
+            if let err = error {
+                print(err);
+                self.errorAlert(data:data, error:err)
+            } else {
+                print("Successfully login\(data)");
+                let access_token = data!["access_token"] as! NSString
+                let profile = data!["Profile"] as! [AnyHashable:Any]?
+                self.checkRequiredFields(profile:profile,token:access_token)
+               
+            }
+        }
+        
+        
+    }
+
     func traditionalRegistration(sott:String)
     {
         
